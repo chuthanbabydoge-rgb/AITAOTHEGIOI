@@ -1682,6 +1682,7 @@ onclick="showPanel('dashboard')">
         <span class="nav-icon">🐉</span><span>Linh Vật</span>
       </button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-migration" onclick="showPanel('migration');if(typeof meRenderPanel==='function')meRenderPanel();" data-panel="migration">🚶 Di Dân</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-project-status" onclick="showPanel('project-status');if(typeof psRenderPanel==='function')psRenderPanel();" data-panel="project-status">📋 Hồ Sơ Dự Án</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2480,6 +2481,10 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by irRenderPanel() in diplomacyEngine.js -->
       </div>
 
+      <div id="panel-project-status" class="panel">
+        <!-- Rendered by psRenderPanel() in projectStatusEngine.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2682,11 +2687,12 @@ window.addEventListener("load", function() {
 <script src="espionageEngine.js"></script>
 <script src="politicalReligionEngine.js"></script>
 <script src="cultureHeritageEngine.js"></script>
+<script src="projectStatusEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
