@@ -6,3 +6,9 @@ id = "7QdjNcSeobIVTU1vpQbwj"
 uri = "file://PROJECT_V23_EMPIRE_KINGDOM_ENGINE.zip"
 type = "unspecified"
 title = "PROJECT_V23_EMPIRE_KINGDOM_ENGINE.zip"
+
+[[outputs]]
+id = "_vgw_TT-yufXyI8_6dA7w"
+uri = "file://PROMPT_TEMPLATE.md"
+type = "text"
+title = "PROMPT_TEMPLATE.md — Onboarding AI Mới"
