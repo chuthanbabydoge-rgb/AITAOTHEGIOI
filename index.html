@@ -1659,6 +1659,9 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-culture-heritage" onclick="showPanel('culture-heritage');if(typeof chRenderPanel==='function')chRenderPanel();" data-panel="culture-heritage">
         <span class="nav-icon">🎨</span><span>Văn Hóa</span>
       </button>
+      <button class="nav-btn" id="btn-spirit-beast" onclick="showPanel('spirit-beast');if(typeof renderSpiritBeastPanel==='function')renderSpiritBeastPanel();" data-panel="spirit-beast">
+        <span class="nav-icon">🐉</span><span>Linh Vật</span>
+      </button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2423,6 +2426,11 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by chRenderPanel() in cultureHeritageEngine.js -->
       </div>
 
+      <!-- SPIRIT BEAST SYSTEM PANEL -->
+      <div id="panel-spirit-beast" class="panel">
+        <!-- Rendered by renderSpiritBeastPanel() in spiritBeastSystem.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2452,6 +2460,7 @@ onclick="showPanel('dashboard')">
 <script src="economyAuditSystem.js"></script>
 <script src="autoPlayerAI.js"></script>
 <script src="living-world-engine.js"></script>
+<script src="spiritBeastSystem.js"></script>
 
 <script>
 // ============================

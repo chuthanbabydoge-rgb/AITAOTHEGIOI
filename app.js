@@ -322,6 +322,8 @@ function save() {
     if (typeof heroLegendEngine_save === "function") heroLegendEngine_save();
     // NPC Reputation Engine
     if (typeof npcReputationEngine_save === "function") npcReputationEngine_save();
+    // Spirit Beast System
+    if (typeof spiritBeastSystem_save === "function") spiritBeastSystem_save();
   } catch(e) { console.warn("Save failed:", e); }
   // Đồng bộ multi-world mỗi lần save
   if (typeof saveWorlds === "function") saveWorlds();
@@ -369,6 +371,8 @@ function load() {
     if (typeof npcReputationEngine_init === "function") npcReputationEngine_init();
     // World Memory Engine
     if (typeof worldMemoryEngine_init === "function") worldMemoryEngine_init();
+    // Spirit Beast System
+    if (typeof spiritBeastSystem_load === "function") spiritBeastSystem_load();
   } catch(e) {
     console.warn("Load failed, starting fresh:", e);
   }
