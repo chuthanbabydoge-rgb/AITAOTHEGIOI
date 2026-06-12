@@ -1,0 +1,45 @@
+Xây dựng hệ thống động cơ lục địa V26.
+
+Tạo:
+
+- continentEngine.js
+
+- migrationEngine.js
+
+- continentalPoliticsEngine.js
+
+Tính năng:
+
+Thế giới
+→ Lục địa
+→ Vương quốc
+→ Lãnh thổ
+→ Thành phố
+
+Lục địa có:
+
+- Dân số
+- Tài nguyên
+- Khí hậu
+- Ảnh hưởng
+- Công nghệ
+
+Thêm:
+
+- Chiến tranh lục địa
+- Xếp hạng lục địa
+- Di cư
+- Mở rộng
+
+Tích hợp với:
+
+- Động cơ Vương quốc
+- Động cơ Đế chế
+- Động cơ Ngoại giao
+- Động cơ Kinh tế
+
+Thêm giao diện người dùng:
+
+🌎 Lục địa
+
+Giữ nguyên tất cả các hệ thống hiện có.

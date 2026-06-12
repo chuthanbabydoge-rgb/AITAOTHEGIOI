@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V24 — Diplomacy Engine** (2026-06-12)
+**V26 — Continental Engine** (2026-06-12)
 
 ---
 
@@ -50,7 +50,12 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### Diplomacy V24 (5 systems) ← NEWEST
+### Continental V26 (3 systems) ← NEWEST
+- `continentEngineV26.js` — Phân cấp TG→LC→VK→LT→TP · Dân số · Tài nguyên · Khí hậu · Ảnh hưởng · Công nghệ · Chiến tranh LC · Xếp hạng
+- `migrationEngineV26.js` — Di cư liên lục địa · 8 nguyên nhân · Sóng lớn · Thống kê chi tiết
+- `continentalPoliticsEngine.js` — Bá quyền · Liên minh LC · Hội nghị · Sự cố chính trị · Uy danh
+
+### Diplomacy V24 (5 systems)
 - `allianceEngine.js` — 6 alliance types, AI auto-formation
 - `treatyEngine.js` — 8 treaty types (Peace/Trade/Military/Non-Aggr/Open Borders/Marriage/Suzerainty/Vassal)
 - `sanctionEngine.js` — 5 sanction types, Vassal/Protectorate/Tributary
@@ -119,12 +124,10 @@
 
 Xem PROJECT_STATUS.md → "Current UI Tabs" để có danh sách đầy đủ.
 
-**V24 tabs mới nhất:**
-- 🤝 Ngoại Giao V24 (panel-diplomacy-v24)
-- 📜 Hiệp Ước (panel-treaties-v24)
-- 🏛 Hội Đồng (panel-world-council)
-- 🌍 Quan Hệ Quốc Tế (panel-intl-relations)
-- 📋 Hồ Sơ Dự Án (panel-project-status)
+**V26 tabs mới nhất:**
+- 🌎 Lục Địa V26 (panel-continent-v26)
+- 🚶 Di Cư V26 (panel-migration-v26)
+- 🏛️ Chính Trị LC (panel-cont-politics)
 
 ---
 

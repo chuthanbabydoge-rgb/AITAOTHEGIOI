@@ -1688,6 +1688,9 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-econ-crisis" onclick="showPanel('econ-crisis');if(typeof ecRenderPanel==='function')ecRenderPanel();" data-panel="econ-crisis">💹 Sự Kiện KT</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-world-event-v25" onclick="showPanel('world-event-v25');if(typeof wev25RenderPanel==='function')wev25RenderPanel();" data-panel="world-event-v25">🗡️ Chính Trị V25</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-age-v25" onclick="showPanel('age-v25');if(typeof av25RenderPanel==='function')av25RenderPanel();" data-panel="age-v25">🌅 Thời Đại V25</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-continent-v26" onclick="showPanel('continent-v26');if(typeof window.cev26RenderPanel==='function')window.cev26RenderPanel();" data-panel="continent-v26">🌎 Lục Địa V26</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-migration-v26" onclick="showPanel('migration-v26');if(typeof window.mev26RenderPanel==='function')window.mev26RenderPanel();" data-panel="migration-v26">🚶 Di Cư V26</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-cont-politics" onclick="showPanel('cont-politics');if(typeof window.cpRenderPanel==='function')window.cpRenderPanel();" data-panel="cont-politics">🏛️ Chính Trị LC</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2510,6 +2513,18 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by av25RenderPanel() in ageEngineV25.js -->
       </div>
 
+      <div id="panel-continent-v26" class="panel">
+        <!-- Rendered by cev26RenderPanel() in continentEngineV26.js -->
+      </div>
+
+      <div id="panel-migration-v26" class="panel">
+        <!-- Rendered by mev26RenderPanel() in migrationEngineV26.js -->
+      </div>
+
+      <div id="panel-cont-politics" class="panel">
+        <!-- Rendered by cpRenderPanel() in continentalPoliticsEngine.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2719,11 +2734,14 @@ window.addEventListener("load", function() {
 <script src="economicCrisisEngine.js"></script>
 <script src="worldEventEngineV25.js"></script>
 <script src="ageEngineV25.js"></script>
+<script src="continentEngineV26.js"></script>
+<script src="migrationEngineV26.js"></script>
+<script src="continentalPoliticsEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
