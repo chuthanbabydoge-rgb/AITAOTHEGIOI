@@ -1683,6 +1683,11 @@ onclick="showPanel('dashboard')">
       </button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-migration" onclick="showPanel('migration');if(typeof meRenderPanel==='function')meRenderPanel();" data-panel="migration">🚶 Di Dân</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-project-status" onclick="showPanel('project-status');if(typeof psRenderPanel==='function')psRenderPanel();" data-panel="project-status">📋 Hồ Sơ Dự Án</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-disaster" onclick="showPanel('disaster');if(typeof deRenderPanel==='function')deRenderPanel();" data-panel="disaster">🌋 Thiên Tai</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-plague" onclick="showPanel('plague');if(typeof plRenderPanel==='function')plRenderPanel();" data-panel="plague">💀 Đại Dịch</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-econ-crisis" onclick="showPanel('econ-crisis');if(typeof ecRenderPanel==='function')ecRenderPanel();" data-panel="econ-crisis">💹 Sự Kiện KT</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-event-v25" onclick="showPanel('world-event-v25');if(typeof wev25RenderPanel==='function')wev25RenderPanel();" data-panel="world-event-v25">🗡️ Chính Trị V25</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-age-v25" onclick="showPanel('age-v25');if(typeof av25RenderPanel==='function')av25RenderPanel();" data-panel="age-v25">🌅 Thời Đại V25</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2485,6 +2490,26 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by psRenderPanel() in projectStatusEngine.js -->
       </div>
 
+      <div id="panel-disaster" class="panel">
+        <!-- Rendered by deRenderPanel() in disasterEngine.js -->
+      </div>
+
+      <div id="panel-plague" class="panel">
+        <!-- Rendered by plRenderPanel() in plagueEngine.js -->
+      </div>
+
+      <div id="panel-econ-crisis" class="panel">
+        <!-- Rendered by ecRenderPanel() in economicCrisisEngine.js -->
+      </div>
+
+      <div id="panel-world-event-v25" class="panel">
+        <!-- Rendered by wev25RenderPanel() in worldEventEngineV25.js -->
+      </div>
+
+      <div id="panel-age-v25" class="panel">
+        <!-- Rendered by av25RenderPanel() in ageEngineV25.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2688,11 +2713,17 @@ window.addEventListener("load", function() {
 <script src="politicalReligionEngine.js"></script>
 <script src="cultureHeritageEngine.js"></script>
 <script src="projectStatusEngine.js"></script>
+<!-- ═══ V25 WORLD EVENT SYSTEM SCRIPTS ═══ -->
+<script src="disasterEngine.js"></script>
+<script src="plagueEngine.js"></script>
+<script src="economicCrisisEngine.js"></script>
+<script src="worldEventEngineV25.js"></script>
+<script src="ageEngineV25.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
