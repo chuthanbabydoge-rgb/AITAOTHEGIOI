@@ -1,0 +1,275 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+- AI_MEMORY.md
+
+- PROJECT_STATUS.md
+
+- PROJECT_ARCHITECTURE.md
+
+- PROJECT_CHANGELOG.md
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu đã có các hệ thống tương tự:
+
+nâng cấp và mở rộng chúng.
+
+=================================================
+MỤC TIÊU XÂY DỰNG
+==================================================
+
+HỆ THỐNG VƯƠNG QUỐC THẦN THÁNH V30
+
+==================================================
+REALM ENGINE
+==================================================
+
+Tạo:
+
+- realmEngine.js
+
+Thế giới Hệ thống phân cấp:
+
+1. Giới Phàm Trần
+2. Giới Tu Luyện
+3. Giới Bất Tử
+4. Giới Thần Thánh
+5. Giới Thiên Đường
+6. Giới Hư Không
+7. Giới Sáng Tạo
+
+Mỗi giới có:
+
+- realmId
+- realmName
+- dân số
+- tài nguyên
+- cấp độ năng lượng
+- độ ổn định
+- người cai trị
+
+===================================================
+THĂNG TIẾN GIỮA CÁC GIỚI
+===================================================
+
+Tạo:
+
+- realmAscensionEngine.js
+
+Yêu cầu:
+
+- Cấp độ Tu Luyện
+- Danh tiếng
+- Thử thách Thần Thánh
+- Giới Năng lượng
+
+Cho phép:
+
+- Thăng thiên
+- Giáng thiên
+- Du hành giữa các cõi
+
+==================================================
+THẦN LINH
+==================================================
+
+Tạo ra:
+
+- divineBeingEngine.js
+
+Loại:
+
+- Thần nhỏ
+- Thần lớn
+- Thần cổ đại
+- Thần nguyên thủy
+- Thần sáng tạo
+
+Thuộc tính:
+
+- Sức mạnh thần thánh
+- Tín đồ
+- Ảnh hưởng
+- Lĩnh vực
+
+==================================================
+LĨNH VỰC THẦN THÁNH
+==================================================
+
+Tạo:
+
+- divineDomainEngine.js
+
+Các lĩnh vực:
+
+- Chiến tranh
+- Cái chết
+- Sự sống
+- Thiên nhiên
+- Thời gian
+- Không gian
+- Lửa
+- Nước
+- Tri thức
+- Hỗn loạn
+
+Các vị thần nhận được sức mạnh từ những người theo dõi.
+
+=================================================
+HỆ THỐNG THỜ PHƯỢNG THẦN THÁNH
+==================================================
+
+Tích hợp với:
+
+- religionEngine.js
+
+Tính năng:
+
+- Đền thờ
+- Thầy tế
+
+- Thờ cúng
+- Phước lành của Thần thánh
+- Hình phạt của Thần thánh
+==================================================
+THẦN THÁNH CHIẾN TRANH
+=================================================
+
+Tạo:
+
+- divineWarEngine.js
+
+Cho phép:
+
+- Thần đấu Thần
+- Chiến tranh Thần thoại
+- Chiến tranh Vương quốc
+- Thập tự chinh Thánh chiến
+
+===================================================
+HỆ THỐNG THẦN THÁNH
+==================================================
+
+Tạo:
+
+- pantheonEngine.js
+
+Thần thoại bao gồm:
+
+- Các vị thần
+- Lãnh địa
+- Ảnh hưởng
+- Thần thánh Thủ đô
+
+=================================================
+CỔNG THẾ GIỚI
+==================================================
+
+Tạo:
+
+- portalEngine.js
+
+Cho phép di chuyển giữa các thế giới.
+
+Các loại cổng:
+
+- Cổng Ổn Định
+- Cổng Cổ Đại
+- Khe Nứt Thần Thánh
+- Cổng Hư Không
+
+==================================================
+CÁC VẬT PHẨM THẦN THÁNH
+==================================================
+
+Tích hợp với:
+
+- artifactSystem.js
+
+Thêm:
+
+- Vũ Khí Thần Thánh
+- Di Vật Thiên Giới
+- Vật Phẩm Thế Giới
+- Di Vật Sáng Tạo
+
+====================================================
+THẦN THÁNH LỊCH SỬ
+=================================================
+
+Tích hợp với:
+
+- historicalTimeline.js
+
+- worldMemoryEngine.js
+
+Ghi lại:
+
+- Thăng Thiên
+- Thần Giáng Sinh
+- Thần Giáng Sinh
+- Chiến Tranh Thần Thánh
+- Sáng Tạo Thần Điện
+- Sự Sụp Đổ Của Các Cõi
+
+===================================================
+Giao Diện Người Dùng
+====================================================
+
+Thêm các tab:
+
+🌌 Các Cõi
+
+👼 Các vị thần
+
+⚡ Sức mạnh thần thánh
+
+🏛 Thần thoại
+
+🌀 Cổng dịch chuyển
+
+⚔ Chiến tranh thần thánh
+
+📜 Lịch sử thần thánh
+
+===================================================
+HỆ THỐNG LƯU TRỮ
+===================================================
+
+Lưu:
+
+- Các cõi
+- Các vị thần
+- Thần thoại
+- Cổng dịch chuyển
+- Cổ vật thần thánh
+- Chiến tranh thần thánh
+
+Duy trì khả năng tương thích với tất cả các bản lưu cũ.
+
+=================================================
+ĐẦU RA
+==================================================
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Chỉ sau đó mới tạo mã.
+
+CHỈ MỞ RỘNG.
+
+KHÔNG BAO GIỜ XÓA.
+
+KHÔNG BAO GIỜ THAY THẾ.
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI.

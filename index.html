@@ -1710,6 +1710,14 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-techniques-v29" onclick="showPanel('techniques-v29');if(typeof seV29RenderTechPanel==='function')seV29RenderTechPanel();" data-panel="techniques-v29">📖 Kỹ Thuật</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-disciples-v29" onclick="showPanel('disciples-v29');if(typeof seV29RenderDiscPanel==='function')seV29RenderDiscPanel();" data-panel="disciples-v29">🎓 Đệ Tử</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-guild-v29" onclick="showPanel('guild-v29');if(typeof guildV29RenderPanel==='function')guildV29RenderPanel();" data-panel="guild-v29">🏛 Bang Hội</button>
+      <!-- ═══ V30 VƯƠNG QUỐC THẦN THÁNH ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-realm-v30" onclick="showPanel('realm-v30');if(typeof realmV30RenderPanel==='function')realmV30RenderPanel();" data-panel="realm-v30">🌌 Các Cõi</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-v30" onclick="showPanel('divine-v30');if(typeof divineV30RenderPanel==='function')divineV30RenderPanel();" data-panel="divine-v30">👼 Thần Linh</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-domain-v30" onclick="showPanel('domain-v30');if(typeof divineV30RenderDomainPanel==='function')divineV30RenderDomainPanel();" data-panel="domain-v30">⚡ Lĩnh Vực TT</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-pantheon-v30" onclick="showPanel('pantheon-v30');if(typeof panV30RenderPanel==='function')panV30RenderPanel();" data-panel="pantheon-v30">🏛 Thần Điện</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-portal-v30" onclick="showPanel('portal-v30');if(typeof portalV30RenderPanel==='function')portalV30RenderPanel();" data-panel="portal-v30">🌀 Cổng DChuyển</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-divinewar-v30" onclick="showPanel('divinewar-v30');if(typeof dwV30RenderPanel==='function')dwV30RenderPanel();" data-panel="divinewar-v30">⚔️ CT Thần Thánh</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-history-v30" onclick="showPanel('divine-history-v30');if(typeof divineV30RenderHistoryPanel==='function')divineV30RenderHistoryPanel();" data-panel="divine-history-v30">📜 Sử Thần Thánh</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2569,6 +2577,35 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by guildV29RenderPanel() in guildEngineV29.js -->
       </div>
 
+      <!-- ═══ V30 VƯƠNG QUỐC THẦN THÁNH PANELS ═══ -->
+      <div id="panel-realm-v30" class="panel">
+        <!-- Rendered by realmV30RenderPanel() in realmEngineV30.js -->
+      </div>
+
+      <div id="panel-divine-v30" class="panel">
+        <!-- Rendered by divineV30RenderPanel() in divineBeingEngine.js -->
+      </div>
+
+      <div id="panel-domain-v30" class="panel">
+        <!-- Rendered by divineV30RenderDomainPanel() in divineBeingEngine.js -->
+      </div>
+
+      <div id="panel-pantheon-v30" class="panel">
+        <!-- Rendered by panV30RenderPanel() in pantheonEngineV30.js -->
+      </div>
+
+      <div id="panel-portal-v30" class="panel">
+        <!-- Rendered by portalV30RenderPanel() in portalEngineV30.js -->
+      </div>
+
+      <div id="panel-divinewar-v30" class="panel">
+        <!-- Rendered by dwV30RenderPanel() in divineWarEngine.js -->
+      </div>
+
+      <div id="panel-divine-history-v30" class="panel">
+        <!-- Rendered by divineV30RenderHistoryPanel() in divineBeingEngine.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2808,11 +2845,17 @@ window.addEventListener("load", function() {
 <script src="sectEngineV29.js"></script>
 <script src="sectWarEngineV29.js"></script>
 <script src="guildEngineV29.js"></script>
+<!-- ═══ V30 VƯƠNG QUỐC THẦN THÁNH SCRIPTS ═══ -->
+<script src="realmEngineV30.js"></script>
+<script src="divineBeingEngine.js"></script>
+<script src="divineWarEngine.js"></script>
+<script src="pantheonEngineV30.js"></script>
+<script src="portalEngineV30.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
