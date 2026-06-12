@@ -1,0 +1,239 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+- AI_MEMORY.md
+
+- PROJECT_STATUS.md
+
+- PROJECT_ARCHITECTURE.md
+
+- PROJECT_CHANGELOG.md
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu các hệ thống tương tự đã tồn tại:
+
+nâng cấp và mở rộng chúng.
+
+==================================================
+MỤC TIÊU XÂY DỰNG
+===================================================
+
+HỆ THỐNG BANG HỘI & GIÁO PHÁI V29
+
+Mục tiêu:
+
+Cho phép người chơi và NPC tạo tổ chức.
+
+Các tổ chức trở thành những thế lực lớn trên thế giới.
+
+==================================================
+CƠ CỨU GIÁO PHÁI
+===================================================
+
+Tạo:
+
+- sectEngine.js
+
+Mỗi giáo phái chứa:
+
+- sectId
+- sectName
+- người sáng lập
+- người lãnh đạo giáo phái
+- thành viên
+- lãnh thổ
+- danh tiếng
+- tài sản
+- cấp độ tu luyện
+- ảnh hưởng
+
+=====================================================
+GIÁO PHÁI CÁC LOẠI
+==================================================
+
+Thành lập:
+
+- Chính đạo
+- Ma đạo
+- Trung đạo
+- Hội Thương nhân
+- Hội Sát thủ
+- Hội Pháp sư
+- Giáo hội Thánh
+- Thuần hóa Thú
+
+===================================================
+CẤP BẬC TRONG GIÁO PHÁI
+===================================================
+
+Cấp bậc:
+
+- Đệ tử Ngoại môn
+- Đệ tử Nội môn
+- Đệ tử Tinh anh
+- Đệ tử Cốt lõi
+- Trưởng lão
+- Trưởng lão
+- Phó tông chủ
+- Tông chủ
+
+==================================================
+LÃNH THỔ CỦA CÁC TÔN GIÁO
+===================================================
+
+Mỗi tông giáo có thể sở hữu:
+
+- Núi
+- Thành phố
+- Khu vực tài nguyên
+- Bí cảnh
+- Đền thờ
+
+===================================================
+TÔN GIÁO TÀI NGUYÊN
+==================================================
+
+Quản lý:
+
+- Linh Thạch
+- Vàng
+- Cổ Vật
+- Kỹ Thuật
+- Thư Viện
+- Di Vật
+
+====================================================
+HỆ THỐNG TU LUYỆN CỦA MÔN PHÁI
+===================================================
+
+Tích hợp với:
+
+- cultivationPlayerEngine.js
+
+Thành viên môn phái nhận được:
+
+- Thưởng huấn luyện
+- Kỹ Thuật
+- Bí Thuật
+- Đột Phá Phần thưởng
+
+==================================================
+CHIẾN TRANH GIÁO PHÁI
+===================================================
+
+Tạo:
+
+- sectWarEngine.js
+
+Cho phép:
+
+- Chiến tranh giáo phái
+- Chiến tranh lãnh thổ
+- Chiến tranh tài nguyên
+- Chiến tranh thánh chiến
+
+===================================================
+GIÁO PHÁI NGOẠI GIAO
+==================================================
+
+Tích hợp với:
+
+- diplomacyEngine.js
+
+Cho phép:
+
+- Liên minh
+- Đối thủ
+- Hiệp định thương mại
+- Hiệp ước không xâm lược
+
+===================================================
+BANG HỘI NGƯỜI CHƠI
+===================================================
+
+Tạo:
+
+- guildEngine.js
+
+Người chơi có thể tạo:
+
+- Bang hội
+- Công ty lính đánh thuê
+- Thương mại Các Công ty
+- Hội Thám hiểm
+
+==================================================
+LỊCH SỬ GIÁO PHÁI
+==================================================
+
+Tích hợp với:
+
+- historicalTimeline.js
+
+- worldMemoryEngine.js
+
+Ghi chép:
+
+- Giáo phái được thành lập
+- Giáo phái bị tiêu diệt
+- Chiến tranh giáo phái
+- Lãnh đạo huyền thoại
+- Vĩ đại Sự phản bội
+
+=================================================
+Giao diện người dùng
+==================================================
+
+Thêm các tab:
+
+🏯 Môn phái
+
+⚔ Chiến tranh giữa các môn phái
+
+📖 Kỹ thuật
+
+🎓 Đệ tử
+
+🏛 Bang hội
+
+===================================================
+LƯU HỆ THỐNG
+==================================================
+
+Lưu:
+
+- Giáo phái
+- Bang hội
+- Thành viên
+- Kỹ thuật
+- Tài nguyên
+- Chiến tranh
+
+Duy trì khả năng tương thích với tất cả các bản lưu cũ.
+
+=================================================
+ĐẦU RA
+===================================================
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Chỉ sau đó mới tạo mã.
+
+CHỈ MỞ RỘNG.
+
+KHÔNG BAO GIỜ XÓA.
+
+KHÔNG BAO GIỜ THAY THẾ.
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI.

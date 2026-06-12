@@ -1704,6 +1704,12 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-migration-v26" onclick="showPanel('migration-v26');if(typeof window.mev26RenderPanel==='function')window.mev26RenderPanel();" data-panel="migration-v26">🚶 Di Cư V26</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-cont-politics" onclick="showPanel('cont-politics');if(typeof window.cpRenderPanel==='function')window.cpRenderPanel();" data-panel="cont-politics">🏛️ Chính Trị LC</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-next-version" onclick="showPanel('next-version');if(typeof nvRenderPanel==='function')nvRenderPanel();" data-panel="next-version">🗺️ Roadmap</button>
+      <!-- ═══ V29 BANG HỘI & GIÁO PHÁI ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-sect-v29" onclick="showPanel('sect-v29');if(typeof seV29RenderPanel==='function')seV29RenderPanel();" data-panel="sect-v29">🏯 Môn Phái</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-sect-war-v29" onclick="showPanel('sect-war-v29');if(typeof swV29RenderPanel==='function')swV29RenderPanel();" data-panel="sect-war-v29">⚔️ CT Môn Phái</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-techniques-v29" onclick="showPanel('techniques-v29');if(typeof seV29RenderTechPanel==='function')seV29RenderTechPanel();" data-panel="techniques-v29">📖 Kỹ Thuật</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-disciples-v29" onclick="showPanel('disciples-v29');if(typeof seV29RenderDiscPanel==='function')seV29RenderDiscPanel();" data-panel="disciples-v29">🎓 Đệ Tử</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-guild-v29" onclick="showPanel('guild-v29');if(typeof guildV29RenderPanel==='function')guildV29RenderPanel();" data-panel="guild-v29">🏛 Bang Hội</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2542,6 +2548,27 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by nvRenderPanel() in nextVersionEngine.js -->
       </div>
 
+      <!-- ═══ V29 BANG HỘI & GIÁO PHÁI PANELS ═══ -->
+      <div id="panel-sect-v29" class="panel">
+        <!-- Rendered by seV29RenderPanel() in sectEngineV29.js -->
+      </div>
+
+      <div id="panel-sect-war-v29" class="panel">
+        <!-- Rendered by swV29RenderPanel() in sectWarEngineV29.js -->
+      </div>
+
+      <div id="panel-techniques-v29" class="panel">
+        <!-- Rendered by seV29RenderTechPanel() in sectEngineV29.js -->
+      </div>
+
+      <div id="panel-disciples-v29" class="panel">
+        <!-- Rendered by seV29RenderDiscPanel() in sectEngineV29.js -->
+      </div>
+
+      <div id="panel-guild-v29" class="panel">
+        <!-- Rendered by guildV29RenderPanel() in guildEngineV29.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2777,11 +2804,15 @@ window.addEventListener("load", function() {
 <script src="colonyEngine.js"></script>
 <script src="oceanTradeEngine.js"></script>
 <script src="nextVersionEngine.js"></script>
+<!-- ═══ V29 BANG HỘI & GIÁO PHÁI SCRIPTS ═══ -->
+<script src="sectEngineV29.js"></script>
+<script src="sectWarEngineV29.js"></script>
+<script src="guildEngineV29.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
