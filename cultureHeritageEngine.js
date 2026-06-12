@@ -89,6 +89,20 @@ const FESTIVAL_TYPES = {
   AGRARIAN:    { name: "Lễ Hội Mùa Màng Bội Thu",      icon: "🌾", desc: "Cúng tế Thổ Thần, chia sẻ sản vật với láng giềng.", bonuses: { population: 18, stability: 14 }, spreadBoost: 16 },
 };
 
+const ICON_TYPES = {
+  GRAND_ARCH:  { role:"Kiến Trúc Sư Vĩ Đại",      icon:"🏛️", bonus:{ softPower:15, stability:10 }, lifeMin:30, lifeMax:65 },
+  FINE_ARTS:   { role:"Nghệ Nhân Bậc Thầy",        icon:"🎨", bonus:{ softPower:22, tech:6 },       lifeMin:25, lifeMax:55 },
+  LITERATURE:  { role:"Học Giả Vĩ Đại",            icon:"📚", bonus:{ tech:18, softPower:8 },       lifeMin:35, lifeMax:70 },
+  WARRIOR:     { role:"Chiến Tướng Huyền Thoại",   icon:"⚔️", bonus:{ military:20, softPower:8 },   lifeMin:20, lifeMax:50 },
+  MARITIME:    { role:"Hải Thuyền Trưởng Vĩ Đại",  icon:"🚢", bonus:{ economy:18, softPower:10 },   lifeMin:25, lifeMax:55 },
+  MYSTICAL:    { role:"Pháp Sư Tối Thượng",         icon:"🔮", bonus:{ tech:10, softPower:15 },      lifeMin:40, lifeMax:80 },
+  PERFORMING:  { role:"Nghệ Sĩ Đại Tài",           icon:"🎭", bonus:{ softPower:25, stability:8 },  lifeMin:18, lifeMax:45 },
+  AGRARIAN:    { role:"Tiên Nông Vĩ Đại",           icon:"🌾", bonus:{ population:15, stability:12 }, lifeMin:30, lifeMax:65 },
+};
+
+const ICON_SURNAMES  = ["Nguyễn","Trần","Lê","Phạm","Hoàng","Vũ","Đặng","Bùi","Đỗ","Hồ","Ngô","Dương","Lý","Phan","Tô","Đinh"];
+const ICON_GIVEN     = ["Thiên Tài","Huyền Minh","Bảo Long","Kim Cương","Thái Bình","Vĩnh Hùng","Quang Vinh","Trí Tuệ","Tiên Phong","Đại Nghĩa","Văn Hiến","Thần Công","Kỳ Tài","Siêu Việt","Cẩm Tú","Phong Vũ","Tuấn Kiệt","Hải Đăng","Nhật Minh","Bích Ngọc"];
+
 // ─── STATE ────────────────────────────────────────────────────────
 let state = {
   powerCultures:  {},   // powerName → { styleId, points, level, wonders:[], softPowerMap:{} }
@@ -99,6 +113,7 @@ let state = {
   influence:      {},   // "powerA|powerB" → softPower score 0-100
   culturalWars:   [],   // { id, aggressor, target, startYear, agPower, tgPower, phase, result }
   manifestos:     [],   // { id, power, styleId, year, adherents:[] }
+  icons:          [],   // { id, name, type, power, styleId, born, alive, legacy, recruited }
   culturalLog:    [],
   idCounter:      0,
   initialized:    false,
@@ -489,6 +504,152 @@ function _tickCulturalWars() {
   }
 }
 
+// ─── CULTURAL ICONS (VĨ NHÂN) SYSTEM ─────────────────────────────
+function _iconName() {
+  const s = ICON_SURNAMES[Math.floor(Math.random()*ICON_SURNAMES.length)];
+  const g = ICON_GIVEN[Math.floor(Math.random()*ICON_GIVEN.length)];
+  return s + " " + g;
+}
+
+function chBornIcon(powerName) {
+  const pc = state.powerCultures[powerName];
+  if (!pc) return { ok:false, msg:`${powerName} chưa có văn hóa` };
+
+  const alive = state.icons.filter(ic => ic.alive && ic.power === powerName);
+  if (alive.length >= 3) return { ok:false, msg:`${powerName} đã có ${alive.length} Vĩ Nhân đang hoạt động (tối đa 3)` };
+
+  const typeKey  = pc.styleId || Object.keys(ICON_TYPES)[0];
+  const typeDef  = ICON_TYPES[typeKey] || ICON_TYPES.FINE_ARTS;
+  const styleDef = CULTURE_STYLES[typeKey] || {};
+  const lifespan = typeDef.lifeMin + Math.floor(Math.random()*(typeDef.lifeMax - typeDef.lifeMin));
+  const icon = {
+    id:        _newId(),
+    name:      _iconName(),
+    typeKey,
+    power:     powerName,
+    styleId:   pc.styleId,
+    born:      _year(),
+    deathYear: _year() + lifespan,
+    alive:     true,
+    legacy:    false,
+    recruited: false,
+    originalPower: powerName,
+  };
+  state.icons.push(icon);
+
+  const bonusStr = Object.entries(typeDef.bonus).map(([k,v])=>`+${v} ${k}`).join(', ');
+  _log(`🌟 ${powerName} xuất hiện Vĩ Nhân: ${typeDef.icon} ${icon.name} (${typeDef.role}) — ${bonusStr}`, "success");
+  if (typeof toast === "function")
+    toast(`🌟 Vĩ Nhân! ${typeDef.icon} ${icon.name} — ${typeDef.role} của ${powerName}`, "success");
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year:_year(), text:`🌟 ${powerName} xuất hiện Vĩ Nhân ${typeDef.icon} ${icon.name} (${typeDef.role})`, tag:"culture" });
+
+  chSave();
+  return { ok:true, icon };
+}
+
+function chAssassinateIcon(iconId, byPower) {
+  const icon = state.icons.find(ic => ic.id === iconId);
+  if (!icon) return { ok:false, msg:"Không tìm thấy Vĩ Nhân" };
+  if (!icon.alive) return { ok:false, msg:"Vĩ Nhân này đã qua đời" };
+  if (icon.power === byPower) return { ok:false, msg:"Không thể ám sát Vĩ Nhân của chính mình" };
+
+  const typeDef = ICON_TYPES[icon.typeKey] || {};
+  icon.alive    = false;
+  icon.deathYear = _year();
+  icon.legacy   = true;
+
+  // Leave a legacy heritage boost for their nation
+  chDevelopCulture(icon.originalPower, 10);
+
+  _log(`🗡️ ${byPower} ám sát Vĩ Nhân ${typeDef.icon||'🌟'} ${icon.name} (${typeDef.role||''}) của ${icon.power}!`, "danger");
+  if (typeof toast === "function")
+    toast(`🗡️ ${icon.name} bị ám sát bởi ${byPower}!`, "danger");
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year:_year(), text:`🗡️ Vĩ Nhân ${icon.name} của ${icon.power} bị ${byPower} ám sát`, tag:"war" });
+
+  chSave();
+  chRenderPanel();
+  return { ok:true };
+}
+
+function chRecruitIcon(iconId, toPower) {
+  const icon = state.icons.find(ic => ic.id === iconId);
+  if (!icon) return { ok:false, msg:"Không tìm thấy Vĩ Nhân" };
+  if (!icon.alive) return { ok:false, msg:"Vĩ Nhân này đã qua đời" };
+  if (icon.power === toPower) return { ok:false, msg:"Vĩ Nhân này đã thuộc về bạn" };
+
+  const typeDef  = ICON_TYPES[icon.typeKey] || {};
+  const fromPower = icon.power;
+  icon.power     = toPower;
+  icon.recruited = true;
+
+  // Boost influence from original power to recruiter
+  const k = _pairKey(toPower, fromPower);
+  state.influence[k] = Math.min(100, (state.influence[k]||0) + 20);
+
+  // Cultural exchange: recruiter gains some culture from original power
+  chSpreadCulture(fromPower, toPower);
+  chDevelopCulture(toPower, 15);
+
+  _log(`🤝 ${toPower} chiêu mộ Vĩ Nhân ${typeDef.icon||'🌟'} ${icon.name} từ ${fromPower}!`, "important");
+  if (typeof toast === "function")
+    toast(`🤝 ${icon.name} được ${toPower} chiêu mộ từ ${fromPower}!`, "important");
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year:_year(), text:`🤝 ${toPower} chiêu mộ Vĩ Nhân ${icon.name} từ ${fromPower}`, tag:"culture" });
+
+  chSave();
+  chRenderPanel();
+  return { ok:true };
+}
+
+function _tickIcons() {
+  const powers = _getPowers();
+  const curYear = _year();
+
+  // Natural aging — icons die when they reach their deathYear
+  state.icons.filter(ic => ic.alive).forEach(ic => {
+    if (curYear >= ic.deathYear) {
+      ic.alive   = false;
+      ic.legacy  = true;
+      const typeDef = ICON_TYPES[ic.typeKey] || {};
+      // Leave a legacy cultural boost
+      chDevelopCulture(ic.originalPower, 20);
+      _log(`✨ Vĩ Nhân ${typeDef.icon||'🌟'} ${ic.name} (${typeDef.role||''}) của ${ic.originalPower} đã qua đời — để lại Di Sản Vĩ Nhân bất tử!`, "important");
+      if (typeof htAddEvent === "function")
+        htAddEvent({ year:curYear, text:`✨ Vĩ Nhân ${ic.name} của ${ic.originalPower} qua đời — di sản bất tử`, tag:"culture" });
+    }
+  });
+
+  // Passive bonus: alive icons boost their power's soft power each tick
+  state.icons.filter(ic => ic.alive).forEach(ic => {
+    const typeDef = ICON_TYPES[ic.typeKey] || {};
+    const k = _pairKey(ic.power, ic.power + "_self");
+    // Spread influence outward
+    powers.forEach(p => {
+      if (p.name === ic.power) return;
+      const inf = _pairKey(ic.power, p.name);
+      state.influence[inf] = Math.min(100, (state.influence[inf]||0) + (typeDef.bonus.softPower||5) * 0.02);
+    });
+  });
+
+  // AI: 8% chance a high-culture power spontaneously births an icon
+  if (Math.random() < 0.08) {
+    const eligible = powers.filter(p => {
+      const pc = state.powerCultures[p.name];
+      if (!pc || pc.level < 1) return false;
+      const alive = state.icons.filter(ic => ic.alive && ic.power === p.name).length;
+      return alive < 2;
+    });
+    if (eligible.length > 0) {
+      const chosen = eligible[Math.floor(Math.random()*eligible.length)];
+      chBornIcon(chosen.name);
+    }
+  }
+
+  chSave();
+}
+
 // ─── FESTIVAL SYSTEM ──────────────────────────────────────────────
 function chHostFestival(powerName) {
   const pc = state.powerCultures[powerName];
@@ -584,6 +745,9 @@ function chTick() {
     });
   }
 
+  // Process cultural icons lifecycle
+  _tickIcons();
+
   // Process cultural wars
   _tickCulturalWars();
 
@@ -625,12 +789,12 @@ function chRenderPanel() {
     </p>
 
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-      ${["cultures","develop","heritage","wonders","influence","festival","cultwar","log"].map((tab,i) => `
+      ${["cultures","develop","heritage","wonders","influence","festival","icons","cultwar","log"].map((tab,i) => `
         <button onclick="chSwitchTab('${tab}')" id="ch-tab-${tab}"
-          style="flex:1;min-width:55px;padding:7px 2px;border-radius:8px;border:none;cursor:pointer;font-size:.74em;font-weight:700;
+          style="flex:1;min-width:50px;padding:6px 2px;border-radius:8px;border:none;cursor:pointer;font-size:.72em;font-weight:700;
           background:${i===0?'#4a1535':'#1a2535'};color:${i===0?'#f472b6':'#94a3b8'};
           border:1px solid ${i===0?'#db2777':'#2d3748'};">
-          ${{cultures:"🎨 Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", festival:"🎪 Lễ Hội", cultwar:"⚔️ Chiến Tranh", log:"📜 Nhật Ký"}[tab]}
+          ${{cultures:"🎨 Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", festival:"🎪 Lễ Hội", icons:"🌟 Vĩ Nhân", cultwar:"⚔️ Chiến Tranh", log:"📜 Nhật Ký"}[tab]}
         </button>`).join('')}
     </div>
 
@@ -640,6 +804,7 @@ function chRenderPanel() {
     <div id="ch-content-wonders" style="display:none">${_renderWondersTab(wonders)}</div>
     <div id="ch-content-influence" style="display:none">${_renderInfluenceTab(powers)}</div>
     <div id="ch-content-festival" style="display:none">${_renderFestivalTab(powers)}</div>
+    <div id="ch-content-icons" style="display:none">${_renderIconTab(powers)}</div>
     <div id="ch-content-cultwar" style="display:none">${_renderCulturalWarTab(powers)}</div>
     <div id="ch-content-log" style="display:none">${_renderLogTab()}</div>
   </div>`;
@@ -875,6 +1040,105 @@ function _renderInfluenceTab(powers) {
   return html;
 }
 
+function _renderIconTab(powers) {
+  const pNames   = powers.map(p => p.name);
+  const hasCult  = powers.filter(p => state.powerCultures[p.name]);
+  const liveIcons = state.icons.filter(ic => ic.alive);
+  const deadIcons = state.icons.filter(ic => !ic.alive && ic.legacy).slice(0, 12);
+
+  // ── Tạo Vĩ Nhân ──────────────────────────────────────────────────
+  let bornSection = `<div style="background:#0f172a;border:1px solid #78350f44;border-radius:10px;padding:14px;margin-bottom:12px;">
+    <div style="color:#fbbf24;font-weight:700;margin-bottom:8px;font-size:.9em;">🌟 Khai Sinh Vĩ Nhân</div>
+    <p style="color:#94a3b8;font-size:.8em;margin:0 0 10px;">Loại Vĩ Nhân phụ thuộc vào phong cách văn hóa của thế lực. Mỗi thế lực tối đa 3 Vĩ Nhân cùng lúc.</p>
+    <div style="margin-bottom:8px;">
+      <select id="ic-born-power" style="width:100%;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:6px;padding:6px;font-size:.82em;">
+        ${hasCult.length > 0
+          ? hasCult.map(p => {
+              const pc = state.powerCultures[p.name];
+              const t  = ICON_TYPES[pc?.styleId] || {};
+              const alive = state.icons.filter(ic=>ic.alive&&ic.power===p.name).length;
+              return `<option value="${p.name}">${t.icon||'🌟'} ${p.name} (${alive}/3 Vĩ Nhân)</option>`;
+            }).join('')
+          : `<option value="">— Chưa có văn hóa —</option>`}
+      </select>
+    </div>
+    <button onclick="chActionBornIcon()" style="width:100%;padding:9px;background:#451a03;color:#fbbf24;border:1px solid #d97706;border-radius:8px;cursor:pointer;font-size:.84em;font-weight:700;">
+      🌟 Khai Sinh Vĩ Nhân!
+    </button>
+    <div id="ic-born-msg" style="margin-top:8px;font-size:.82em;color:#94a3b8;text-align:center;"></div>
+  </div>`;
+
+  // ── Danh sách Vĩ Nhân đang sống ──────────────────────────────────
+  let liveSection = '';
+  if (liveIcons.length === 0) {
+    liveSection = `<div style="color:#64748b;text-align:center;padding:20px 0;font-size:.85em;">
+      <div style="font-size:2em;margin-bottom:6px;">🌟</div>
+      Chưa có Vĩ Nhân nào. Khai sinh để thế giới xuất hiện nhân tài!
+    </div>`;
+  } else {
+    liveSection = `<div style="color:#fbbf24;font-weight:700;margin-bottom:10px;font-size:.88em;">🌟 ${liveIcons.length} Vĩ Nhân Đang Hoạt Động</div>`;
+    liveSection += liveIcons.map(ic => {
+      const typeDef  = ICON_TYPES[ic.typeKey] || {};
+      const styleDef = CULTURE_STYLES[ic.styleId] || {};
+      const age      = _year() - ic.born;
+      const remaining = Math.max(0, ic.deathYear - _year());
+      const bonusStr = Object.entries(typeDef.bonus||{}).map(([k,v])=>`<span style="color:#4ade80;font-size:.72em;">+${v} ${k}</span>`).join(' ');
+      const otherPowers = pNames.filter(n => n !== ic.power);
+      return `<div style="background:#0f172a;border:1px solid ${styleDef.color||'#fbbf24'}33;border-left:4px solid ${styleDef.color||'#fbbf24'};border-radius:10px;padding:12px;margin-bottom:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;">
+          <div>
+            <span style="color:#fbbf24;font-weight:700;font-size:.9em;">${typeDef.icon||'🌟'} ${ic.name}</span>
+            ${ic.recruited ? `<span style="color:#94a3b8;font-size:.72em;margin-left:6px;">(chiêu mộ từ ${ic.originalPower})</span>` : ''}
+          </div>
+          <span style="color:#64748b;font-size:.75em;white-space:nowrap;margin-left:6px;">Tuổi ${age}·còn ~${remaining} năm</span>
+        </div>
+        <div style="color:${styleDef.color||'#94a3b8'};font-size:.78em;margin-bottom:4px;">${typeDef.role||''} · ${ic.power}</div>
+        <div style="margin-bottom:7px;">${bonusStr}</div>
+        ${otherPowers.length > 0 ? `
+        <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+          <select id="ic-sel-${ic.id}" style="flex:2;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:5px;padding:3px;font-size:.75em;">
+            ${otherPowers.map(n=>`<option value="${n}">${n}</option>`).join('')}
+          </select>
+          <button onclick="chActionRecruitIcon('${ic.id}')" style="flex:1;padding:4px;background:#1e3a5f;color:#60a5fa;border:1px solid #3b82f6;border-radius:5px;cursor:pointer;font-size:.73em;">🤝 Chiêu Mộ</button>
+          <button onclick="chActionAssassinateIcon('${ic.id}')" style="flex:1;padding:4px;background:#450a0a;color:#f87171;border:1px solid #dc2626;border-radius:5px;cursor:pointer;font-size:.73em;">🗡️ Ám Sát</button>
+        </div>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  // ── Loại Vĩ Nhân reference ────────────────────────────────────────
+  let typeRef = `<div style="color:#fbbf24;font-weight:700;margin:12px 0 8px;font-size:.88em;">✨ Các Loại Vĩ Nhân</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:12px;">
+    ${Object.entries(ICON_TYPES).map(([sid,td])=>{
+      const s=CULTURE_STYLES[sid]||{};
+      return `<div style="background:#0f172a;border:1px solid ${s.color||'#fbbf24'}22;border-radius:8px;padding:7px;">
+        <div style="color:${s.color||'#fbbf24'};font-size:.78em;font-weight:700;">${td.icon} ${td.role}</div>
+        <div style="color:#64748b;font-size:.71em;margin-top:2px;">Thọ ${td.lifeMin}–${td.lifeMax} năm</div>
+        <div style="margin-top:3px;">${Object.entries(td.bonus).map(([k,v])=>`<span style="color:#4ade80;font-size:.7em;">+${v} ${k} </span>`).join('')}</div>
+      </div>`;
+    }).join('')}
+  </div>`;
+
+  // ── Di sản Vĩ Nhân đã qua đời ────────────────────────────────────
+  let legacySection = '';
+  if (deadIcons.length > 0) {
+    legacySection = `<div style="color:#94a3b8;font-weight:700;margin-bottom:8px;font-size:.88em;">🕯️ Di Sản Vĩ Nhân Đã Qua Đời</div>`;
+    legacySection += deadIcons.map(ic => {
+      const typeDef = ICON_TYPES[ic.typeKey] || {};
+      const lived   = (ic.deathYear||_year()) - ic.born;
+      return `<div style="background:#0f172a;border-left:3px solid #475569;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:5px;">
+        <div style="display:flex;justify-content:space-between;">
+          <span style="color:#94a3b8;font-size:.82em;">${typeDef.icon||'✨'} ${ic.name}</span>
+          <span style="color:#475569;font-size:.73em;">Năm ${ic.born}–${ic.deathYear||'?'} (${lived} năm)</span>
+        </div>
+        <div style="color:#64748b;font-size:.75em;margin-top:2px;">${typeDef.role||''} · ${ic.originalPower}</div>
+      </div>`;
+    }).join('');
+  }
+
+  return bornSection + liveSection + typeRef + legacySection;
+}
+
 function _renderCulturalWarTab(powers) {
   const pNames = powers.map(p => p.name);
   const hasCulture = powers.filter(p => {
@@ -1090,13 +1354,14 @@ function _renderLogTab() {
 
 // ─── GLOBAL UI CALLBACKS ──────────────────────────────────────────
 window.chSwitchTab = function(tab) {
-  ["cultures","develop","heritage","wonders","influence","festival","cultwar","log"].forEach(t => {
+  ["cultures","develop","heritage","wonders","influence","festival","icons","cultwar","log"].forEach(t => {
     const c = document.getElementById("ch-content-"+t);
     const b = document.getElementById("ch-tab-"+t);
     if (c) c.style.display = (t===tab) ? "" : "none";
     if (b) {
       const theme = {
         festival: { bg:"#3b0764", color:"#c084fc", border:"#7c3aed" },
+        icons:    { bg:"#451a03", color:"#fbbf24", border:"#d97706" },
         cultwar:  { bg:"#450a0a", color:"#f87171", border:"#dc2626" },
         default:  { bg:"#4a1535", color:"#f472b6", border:"#db2777" },
       };
@@ -1168,6 +1433,40 @@ window.chActionSpread = function() {
   setTimeout(chRenderPanel, 200);
 };
 
+window.chActionBornIcon = function() {
+  const power = document.getElementById("ic-born-power")?.value;
+  const msg   = document.getElementById("ic-born-msg");
+  if (!power) { if(msg){ msg.style.color="#f87171"; msg.textContent="⚠️ Chọn thế lực"; } return; }
+  const r = chBornIcon(power);
+  if (msg) {
+    msg.style.color = r.ok ? "#fbbf24" : "#f87171";
+    msg.textContent = r.ok
+      ? `🌟 ${r.icon.name} xuất hiện! (${(ICON_TYPES[r.icon.typeKey]||{}).role||''})`
+      : "⚠️ " + r.msg;
+  }
+  setTimeout(() => { chRenderPanel(); chSwitchTab("icons"); }, 300);
+};
+
+window.chActionAssassinateIcon = function(iconId) {
+  const selEl = document.getElementById("ic-sel-" + iconId);
+  const byPower = selEl?.value;
+  if (!byPower) { if(typeof toast==="function") toast("⚠️ Chọn thế lực thực hiện", "danger"); return; }
+  const r = chAssassinateIcon(iconId, byPower);
+  if (typeof toast === "function")
+    toast(r.ok ? `🗡️ Ám sát thành công!` : "⚠️ " + r.msg, r.ok ? "danger" : "danger");
+  setTimeout(() => { chRenderPanel(); chSwitchTab("icons"); }, 300);
+};
+
+window.chActionRecruitIcon = function(iconId) {
+  const selEl = document.getElementById("ic-sel-" + iconId);
+  const toPower = selEl?.value;
+  if (!toPower) { if(typeof toast==="function") toast("⚠️ Chọn thế lực chiêu mộ", "danger"); return; }
+  const r = chRecruitIcon(iconId, toPower);
+  if (typeof toast === "function")
+    toast(r.ok ? `🤝 Chiêu mộ thành công!` : "⚠️ " + r.msg, r.ok ? "important" : "danger");
+  setTimeout(() => { chRenderPanel(); chSwitchTab("icons"); }, 300);
+};
+
 window.chActionLaunchWar = function() {
   const aggressor = document.getElementById("cw-aggressor")?.value;
   const target    = document.getElementById("cw-target")?.value;
@@ -1227,6 +1526,9 @@ window.chAdoptHeritage     = chAdoptHeritage;
 window.chSpreadCulture     = chSpreadCulture;
 window.chAssimilate        = chAssimilate;
 window.chHostFestival      = chHostFestival;
+window.chBornIcon          = chBornIcon;
+window.chAssassinateIcon   = chAssassinateIcon;
+window.chRecruitIcon       = chRecruitIcon;
 window.chLaunchCulturalWar = chLaunchCulturalWar;
 window.chResistCulturalWar = chResistCulturalWar;
 window.chDeclareManifesto  = chDeclareManifesto;
