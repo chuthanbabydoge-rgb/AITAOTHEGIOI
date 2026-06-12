@@ -1638,6 +1638,18 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-naval-ocean" onclick="showPanel('naval-ocean');if(typeof oeRenderPanel==='function')oeRenderPanel();" data-panel="naval-ocean">
         <span class="nav-icon">🌊</span><span>Đại Dương</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-naval-v27" onclick="showPanel('naval-v27');if(typeof nvRenderPanel==='function')nvRenderPanel();if(typeof feRenderFleets==='function')feRenderFleets('panel-naval-v27');" data-panel="naval-v27">
+        <span class="nav-icon">🚢</span><span>Hải Quân</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-pirates" onclick="showPanel('pirates');if(typeof piRenderPanel==='function')piRenderPanel();" data-panel="pirates">
+        <span class="nav-icon">🏴</span><span>Cướp Biển</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-ocean-v27" onclick="showPanel('ocean-v27');if(typeof otRenderPanel==='function')otRenderPanel();" data-panel="ocean-v27">
+        <span class="nav-icon">🌊</span><span>Thương Mại Biển</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-colonies" onclick="showPanel('colonies');if(typeof coRenderPanel==='function')coRenderPanel();" data-panel="colonies">
+        <span class="nav-icon">🏝</span><span>Thuộc Địa</span>
+      </button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-bloodlines" onclick="showPanel('bloodlines');if(typeof blRenderPanel==='function')blRenderPanel();" data-panel="bloodlines">
         <span class="nav-icon">🧬</span><span>Bloodlines</span>
       </button>
@@ -2533,6 +2545,22 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by oeRenderPanel() in navalOceanEngine.js -->
       </div>
 
+      <div id="panel-naval-v27" class="panel">
+        <!-- Rendered by nvRenderPanel() in navalEngine.js + feRenderFleets() in fleetEngine.js -->
+      </div>
+
+      <div id="panel-pirates" class="panel">
+        <!-- Rendered by piRenderPanel() in pirateEngine.js -->
+      </div>
+
+      <div id="panel-ocean-v27" class="panel">
+        <!-- Rendered by otRenderPanel() in oceanTradeEngine.js -->
+      </div>
+
+      <div id="panel-colonies" class="panel">
+        <!-- Rendered by coRenderPanel() in colonyEngine.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2737,11 +2765,17 @@ window.addEventListener("load", function() {
 <script src="continentEngineV26.js"></script>
 <script src="migrationEngineV26.js"></script>
 <script src="continentalPoliticsEngine.js"></script>
+<!-- ═══ V27 NAVAL & OCEAN EMPIRE SCRIPTS ═══ -->
+<script src="navalEngine.js"></script>
+<script src="fleetEngine.js"></script>
+<script src="pirateEngine.js"></script>
+<script src="colonyEngine.js"></script>
+<script src="oceanTradeEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }

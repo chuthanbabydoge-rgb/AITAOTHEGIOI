@@ -72,11 +72,11 @@ function _getBaseContinents() {
   return [];
 }
 function _getKingdoms() {
-  if (typeof window.kingdomData !== "undefined" && window.kingdomData.kingdoms) return window.kingdomData.kingdoms;
+  if (typeof window.kingdomData !== "undefined" && window.kingdomData.kingdoms) return Object.values(window.kingdomData.kingdoms);
   return [];
 }
 function _getEmpires() {
-  if (typeof window.empireData !== "undefined" && window.empireData.empires) return window.empireData.empires;
+  if (typeof window.empireData !== "undefined" && window.empireData.empires) return Object.values(window.empireData.empires);
   return [];
 }
 function _getCountries() {

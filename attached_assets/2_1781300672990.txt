@@ -1,0 +1,44 @@
+Xây dựng Engine Đế chế Hải quân & Đại dương V27.
+
+Tạo:
+
+- navalEngine.js
+
+- fleetEngine.js
+
+- pirateEngine.js
+
+- colonyEngine.js
+
+- oceanTradeEngine.js
+
+Tính năng:
+
+- Hải quân
+- Hạm đội
+- Cướp biển
+- Thuộc địa
+- Thương mại đường biển
+- Trận hải chiến
+- Thám hiểm đại dương
+- Đế chế hải ngoại
+
+Tích hợp với:
+
+- Engine Vương quốc
+- Engine Đế chế
+- Engine Kinh tế
+- Engine Ngoại giao
+- Engine Lục địa
+
+Thêm các tab giao diện người dùng:
+
+🚢 Hải quân
+
+🏴 Cướp biển
+🌊 Đại dương
+🏝 Thuộc địa
+
+Giữ nguyên tất cả các hệ thống hiện có.
+
+Không xóa hoặc thay thế bất kỳ mã hiện có nào.
