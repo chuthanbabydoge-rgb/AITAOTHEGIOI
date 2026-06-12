@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☯ Creator God V6 — Nền Tảng Đa Thế Giới ☯</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CREATOR GOD V6 — FULL CSS (embedded)
+   ============================================================ */
+
+/* --- RESET & BASE --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+
+/* --- CSS VARIABLES --- */
+:root {
+  --bg-primary:   #0a0c10;
+  --bg-secondary: #0f1218;
+  --bg-card:      #13171f;
+  --bg-hover:     #1a2030;
+  --border:       rgba(250,204,21,0.12);
+  --border-hover: rgba(250,204,21,0.35);
+
+  --gold:         #facc15;
+  --gold-dim:     #c4961e;
+  --gold-faint:   rgba(250,204,21,0.08);
+  --jade:         #4ade80;
+  --jade-dim:     #22863a;
+  --blue:         #60a5fa;
+  --purple:       #c084fc;
+  --red:          #f87171;
+  --orange:       #fb923c;
+
+  --white-main:   #e8e8f0;
+  --white-dim:    rgba(232,232,240,0.45);
+  --white-faint:  rgba(232,232,240,0.12);
+
+  --font-heading: 'Cinzel Decorative', serif;
+  --font-title:   'Cinzel', serif;
+  --font-body:    'Noto Serif', 'IM Fell English', serif;
+  --font-cjk:     'Noto Serif', 'Noto Serif SC', serif;
+
+  --sidebar-w:    240px;
+  --topbar-h:     56px;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.25); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(250,204,21,0.5); }
+
+#particleCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+.app-layout {
+  display: flex; height: 100vh; position: relative; z-index: 1;
+  background: var(--bg-primary); color: var(--white-main);
+  font-family: var(--font-cjk), serif;
+}
+
+.sidebar {
+  width: var(--sidebar-w); min-width: var(--sidebar-w);
+  background: linear-gradient(180deg, #0d1018 0%, #0a0c10 100%);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow-y: auto; overflow-x: hidden; z-index: 10;
+}
+.sidebar-logo { padding: 20px 16px 14px; border-bottom: 1px solid var(--border); text-align: center; }
+.logo-symbol {
+  font-size: 32px; line-height: 1; margin-bottom: 4px;
+  filter: drop-shadow(0 0 12px rgba(250,204,21,0.6));
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%,100% { filter: drop-shadow(0 0 10px rgba(250,204,21,0.5)); }
+  50%      { filter: drop-shadow(0 0 22px rgba(250,204,21,0.9)); }
+}
+.logo-text { font-family: var(--font-heading); font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 2px; }
+.logo-sub  { font-size: 10px; color: var(--white-dim); letter-spacing: 1px; }
+
+.sidebar-nav { padding: 10px 8px; flex-shrink: 0; }
+.nav-btn {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  padding: 9px 12px; background: transparent; border: 1px solid transparent;
+  border-radius: 8px; color: var(--white-dim);
+  font-family: var(--font-cjk), serif; font-size: 13px;
+  cursor: pointer; transition: all 0.2s; margin-bottom: 2px; text-align: left;
+}
+.nav-btn:hover { background: var(--bg-hover); border-color: var(--border); color: var(--white-main); }
+.nav-btn.active {
+  background: linear-gradient(135deg, rgba(250,204,21,0.12), rgba(250,204,21,0.05));
+  border-color: rgba(250,204,21,0.3); color: var(--gold);
+}
+.nav-icon { font-size: 15px; width: 20px; text-align: center; }
+
+.sidebar-heaven { padding: 12px 10px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.heaven-label { font-size: 10px; letter-spacing: 1.5px; color: var(--gold-dim); margin-bottom: 4px; }
+.heaven-points {
+  font-family: var(--font-heading); font-size: 26px; color: var(--gold);
+  text-shadow: 0 0 16px rgba(250,204,21,0.5); margin-bottom: 8px; line-height: 1;
+}
+.heaven-actions { display: flex; flex-direction: column; gap: 5px; }
+.heaven-btn {
+  padding: 6px 10px;
+  background: linear-gradient(135deg, rgba(250,204,21,0.06), transparent);
+  border: 1px solid rgba(250,204,21,0.18); border-radius: 6px;
+  color: var(--gold); font-size: 11px; cursor: pointer; transition: all 0.2s;
+  text-align: left; font-family: var(--font-cjk), serif;
+}
+.heaven-btn:hover {
+  background: linear-gradient(135deg, rgba(250,204,21,0.15), rgba(250,204,21,0.05));
+  border-color: var(--gold); box-shadow: 0 0 8px rgba(250,204,21,0.2);
+}
+
+.heaven-mode-panel { display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; margin-top: 10px; }
+.heaven-mode-title { grid-column:1/-1; font-size:10px; letter-spacing:1.5px; color:var(--gold-dim); text-align:center; padding-bottom:4px; border-bottom:1px solid var(--border); margin-bottom:2px; }
+.heaven-mode-stats { grid-column:1/-1; font-size:10px; color:var(--white-dim); text-align:center; font-style:italic; margin-bottom:2px; }
+.heaven-action {
+  background: linear-gradient(135deg, rgba(250,204,21,0.05), rgba(196,150,30,0.08));
+  border: 1px solid rgba(250,204,21,0.18); border-radius: 8px;
+  padding: 8px 6px; text-align: center; cursor: pointer; transition: all 0.2s;
+}
+.heaven-action:hover { border-color:var(--gold); background:linear-gradient(135deg,rgba(250,204,21,0.12),rgba(196,150,30,0.18)); transform:translateY(-2px); }
+.ha-icon  { font-size:18px; margin-bottom:3px; }
+.ha-name  { font-size:10px; color:var(--white-main); font-weight:600; margin-bottom:2px; line-height:1.2; }
+.ha-cost  { font-size:11px; color:var(--gold); font-weight:700; margin-bottom:2px; }
+.ha-desc  { font-size:9px; color:var(--white-dim); line-height:1.2; }
+
+.sim-controls { padding: 10px; margin-top: auto; border-top: 1px solid var(--border); }
+.sim-label { font-size:10px; letter-spacing:1.5px; color:var(--white-dim); margin-bottom:6px; }
+.sim-speed-row { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--white-dim); margin-bottom:6px; }
+.sim-toggle {
+  width:100%; padding:7px;
+  background:linear-gradient(135deg,rgba(96,165,250,0.1),transparent);
+  border:1px solid rgba(96,165,250,0.25); border-radius:6px;
+  color:var(--blue); font-size:12px; cursor:pointer; transition:all 0.2s;
+  font-family:var(--font-cjk),serif;
+}
+.sim-toggle:hover { background:rgba(96,165,250,0.18); }
+.sim-toggle.paused { background:linear-gradient(135deg,rgba(251,146,60,0.1),transparent); border-color:rgba(251,146,60,0.3); color:var(--orange); }
+
+.main-content { flex:1; display:flex; flex-direction:column; overflow:hidden; min-width:0; }
+
+.top-bar {
+  height:var(--topbar-h); background:linear-gradient(90deg,#0d1018,#0a0c10);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; flex-shrink:0;
+}
+.top-bar-left { display:flex; flex-direction:column; gap:2px; }
+.world-title-bar { font-family:var(--font-title); font-size:15px; color:var(--gold); letter-spacing:1px; }
+.world-stats-bar { font-size:11px; color:var(--white-dim); }
+.top-bar-right { display:flex; align-items:center; gap:12px; }
+.time-display {
+  display:flex; align-items:center; gap:5px;
+  font-family:var(--font-title); font-size:13px; color:var(--gold);
+  background:rgba(250,204,21,0.06); border:1px solid var(--border);
+  border-radius:6px; padding:4px 10px;
+}
+.time-icon { font-size:14px; }
+
+.panels { flex:1; overflow:hidden; position:relative; }
+.panel { display:none; height:100%; overflow-y:auto; padding:16px; animation:fadeIn 0.25s ease; }
+.panel.active { display:block; }
+#panel-world3d.active { display:flex; height:100%; overflow:hidden; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+.panel-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.panel-toolbar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; align-items:center; }
+.span-2    { grid-column: span 2; }
+.span-full { grid-column: 1/-1; }
+
+.card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+.card-title {
+  font-family:var(--font-title); font-size:13px; letter-spacing:1px; color:var(--gold);
+  margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+
+.dao-input, .dao-select {
+  background:rgba(255,255,255,0.04); border:1px solid var(--border);
+  border-radius:7px; color:var(--white-main); font-family:var(--font-cjk),serif;
+  font-size:13px; padding:8px 12px; outline:none; transition:border-color 0.2s;
+}
+.dao-input:focus,.dao-select:focus { border-color:var(--gold); }
+.dao-input::placeholder { color:var(--white-dim); }
+.dao-select { cursor:pointer; }
+.dao-select option { background:#13171f; color:var(--white-main); }
+.dao-input.small,.dao-select.small { font-size:12px; padding:6px 10px; }
+
+.btn-primary,.btn-secondary,.btn-jade,.btn-danger {
+  padding:9px 18px; border-radius:7px; border:1px solid;
+  font-family:var(--font-cjk),serif; font-size:13px; cursor:pointer;
+  transition:all 0.2s; font-weight:600; white-space:nowrap;
+}
+.btn-primary { background:linear-gradient(135deg,rgba(250,204,21,0.18),rgba(250,204,21,0.08)); border-color:rgba(250,204,21,0.5); color:var(--gold); }
+.btn-primary:hover { background:linear-gradient(135deg,rgba(250,204,21,0.3),rgba(250,204,21,0.15)); box-shadow:0 0 12px rgba(250,204,21,0.25); }
+.btn-secondary { background:rgba(255,255,255,0.04); border-color:var(--border); color:var(--white-dim); }
+.btn-secondary:hover { border-color:var(--white-dim); color:var(--white-main); background:rgba(255,255,255,0.08); }
+.btn-jade { background:linear-gradient(135deg,rgba(74,222,128,0.14),rgba(74,222,128,0.06)); border-color:rgba(74,222,128,0.4); color:var(--jade); }
+.btn-jade:hover { background:rgba(74,222,128,0.22); box-shadow:0 0 10px rgba(74,222,128,0.2); }
+.btn-danger { background:linear-gradient(135deg,rgba(248,113,113,0.14),rgba(248,113,113,0.06)); border-color:rgba(248,113,113,0.4); color:var(--red); }
+.btn-danger:hover { background:rgba(248,113,113,0.22); }
+.btn-primary.small,.btn-secondary.small,.btn-jade.small,.btn-danger.small { padding:5px 12px; font-size:11px; }
+
+.create-world-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.create-world-form .dao-input { flex:1; min-width:160px; }
+.npc-gen-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.npc-gen-row .dao-input.small { width:70px; }
+
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.stat-item { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:7px; padding:8px; text-align:center; }
+.s-label { font-size:10px; color:var(--white-dim); margin-bottom:3px; }
+.s-value { font-size:14px; font-weight:700; color:var(--white-main); word-break:break-all; }
+
+.regions-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.region-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px; }
+.region-box h3 { font-size:12px; color:var(--gold); margin-bottom:5px; font-family:var(--font-cjk),serif; }
+.region-box p  { font-size:11px; color:var(--white-dim); margin-bottom:3px; }
+.region-box p span { color:var(--white-main); }
+
+.npc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+.npc-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-top:2px solid var(--realm-color,var(--border));
+  border-radius:10px; padding:12px; cursor:pointer; transition:all 0.2s;
+}
+.npc-card:hover { border-color:var(--realm-color,var(--gold)); background:var(--bg-hover); transform:translateY(-2px); box-shadow:0 4px 20px rgba(0,0,0,0.4); }
+.npc-card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+.npc-name { font-size:13px; font-weight:600; color:var(--white-main); }
+.npc-realm-badge { font-size:10px; padding:2px 6px; border-radius:4px; border:1px solid currentColor; font-family:var(--font-title); }
+.npc-info { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-bottom:7px; }
+.npc-info-item { font-size:11px; color:var(--white-dim); }
+.npc-info-item span { color:var(--white-main); }
+.npc-bars { display:flex; flex-direction:column; gap:4px; margin-bottom:6px; }
+.bar-row { display:flex; align-items:center; gap:5px; }
+.bar-label { font-size:11px; width:18px; flex-shrink:0; }
+.bar-track { flex:1; height:5px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; transition:width 0.4s ease; }
+.bar-fill.hp { background:linear-gradient(90deg,#ef4444,#f87171); }
+.bar-fill.mp { background:linear-gradient(90deg,#3b82f6,#60a5fa); }
+.bar-fill.exp{ background:linear-gradient(90deg,#eab308,#facc15); }
+.bar-val { font-size:10px; color:var(--white-dim); min-width:60px; text-align:right; }
+.npc-titles { display:flex; flex-wrap:wrap; gap:3px; margin-bottom:6px; }
+.npc-actions { display:flex; gap:5px; flex-wrap:wrap; margin-top:4px; }
+
+.realm-0{color:#94a3b8;border-color:#94a3b8} .realm-1{color:#4ade80;border-color:#4ade80}
+.realm-2{color:#facc15;border-color:#facc15} .realm-3{color:#fb923c;border-color:#fb923c}
+.realm-4{color:#f472b6;border-color:#f472b6} .realm-5{color:#c084fc;border-color:#c084fc}
+.realm-6{color:#67e8f9;border-color:#67e8f9} .realm-7{color:#ff9e40;border-color:#ff9e40}
+.realm-8{color:#ffffff;border-color:#ffffff}
+
+.title-badge {
+  font-size:10px; padding:2px 7px; border:1px solid rgba(250,204,21,0.3);
+  border-radius:4px; background:rgba(250,204,21,0.06); color:var(--gold);
+  font-family:var(--font-cjk),serif;
+}
+
+.sect-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.sect-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:14px; transition:border-color 0.2s; }
+.sect-card:hover { border-color:rgba(250,204,21,0.3); }
+.sect-name { font-size:14px; color:var(--gold); font-family:var(--font-title); margin-bottom:8px; }
+.sect-info { font-size:12px; color:var(--white-dim); margin-bottom:4px; }
+.sect-info span { color:var(--white-main); }
+
+.country-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+#countryList { width: 100%; }
+.country-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:14px; }
+.country-name { font-size:14px; color:var(--blue); font-family:var(--font-title); margin-bottom:10px; }
+.country-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:8px; }
+.country-stat { text-align:center; }
+.cs-label { font-size:10px; color:var(--white-dim); margin-bottom:2px; }
+.cs-val   { font-size:14px; font-weight:700; color:var(--white-main); }
+
+.boss-area { padding:4px; display:flex; flex-direction:column; gap:14px; }
+.boss-card { background:linear-gradient(135deg,#1a0a0a,#110808); border:1px solid rgba(255,100,100,0.25); border-radius:12px; padding:18px; }
+.boss-card-name { font-family:var(--font-heading); font-size:18px; color:#ff8080; margin-bottom:10px; text-shadow:0 0 20px rgba(255,80,80,0.5); }
+.boss-hp-bar { height:12px; background:rgba(255,255,255,0.06); border-radius:6px; overflow:hidden; margin:10px 0 4px; }
+.boss-hp-fill { height:100%; background:linear-gradient(90deg,#dc2626,#f87171); border-radius:6px; transition:width 0.5s; }
+.boss-hp-text { font-size:12px; color:rgba(255,180,180,0.7); }
+
+.leaderboard-list { display:flex; flex-direction:column; gap:5px; }
+.rank-item {
+  display:flex; align-items:center; gap:10px; padding:8px 12px;
+  background:rgba(255,255,255,0.02); border:1px solid var(--border);
+  border-radius:8px; cursor:pointer; transition:all 0.2s;
+}
+.rank-item:hover { border-color:rgba(250,204,21,0.3); background:var(--bg-hover); }
+.rank-num { font-size:13px; font-weight:700; color:var(--white-dim); min-width:28px; text-align:center; }
+.rank-num.top3 { color:var(--gold); font-size:16px; }
+.rank-info { flex:1; }
+.rank-name { font-size:13px; color:var(--white-main); margin-bottom:2px; }
+.rank-sub  { font-size:11px; color:var(--white-dim); }
+.rank-realm { font-size:11px; padding:2px 7px; border-radius:4px; border:1px solid currentColor; white-space:nowrap; }
+
+.logs-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.logs-list { display:flex; flex-direction:column; gap:3px; max-height:calc(100vh - 200px); overflow-y:auto; }
+.log-item {
+  display:flex; gap:10px; align-items:baseline; padding:6px 10px;
+  border-radius:6px; font-size:12px; border-left:2px solid transparent;
+  background:rgba(255,255,255,0.02);
+}
+.log-item.important   { border-left-color:var(--gold); background:rgba(250,204,21,0.04); }
+.log-item.death       { border-left-color:var(--red);  background:rgba(248,113,113,0.04); }
+.log-item.breakthrough{ border-left-color:var(--jade); background:rgba(74,222,128,0.04); }
+.log-year { font-size:10px; color:var(--white-dim); min-width:50px; flex-shrink:0; }
+.log-text { color:var(--white-main); line-height:1.4; }
+
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(4px); z-index:100;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.modal-overlay.hidden { display:none; }
+.modal-container {
+  background:linear-gradient(145deg,#14191f,#0f1318);
+  border:1px solid rgba(250,204,21,0.2); border-radius:16px; padding:24px;
+  width:100%; max-width:680px; max-height:85vh; overflow-y:auto;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,0.7),0 0 40px rgba(250,204,21,0.05);
+}
+.modal-close {
+  position:absolute; top:14px; right:14px;
+  background:rgba(255,255,255,0.06); border:1px solid var(--border);
+  color:var(--white-dim); font-size:14px; width:28px; height:28px;
+  border-radius:50%; cursor:pointer; transition:all 0.2s;
+  display:flex; align-items:center; justify-content:center;
+}
+.modal-close:hover { background:rgba(248,113,113,0.2); border-color:var(--red); color:var(--red); }
+
+.modal-header { display:flex; gap:16px; align-items:flex-start; margin-bottom:16px; }
+.modal-avatar { font-size:40px; line-height:1; }
+.modal-npc-title { font-family:var(--font-title); font-size:20px; color:var(--gold); margin-bottom:4px; }
+.modal-npc-subtitle { font-size:12px; color:var(--white-dim); }
+.modal-tabs { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:10px; }
+.modal-tab {
+  padding:5px 11px; background:transparent; border:1px solid var(--border);
+  border-radius:6px; color:var(--white-dim); font-size:11px; cursor:pointer;
+  transition:all 0.18s; font-family:var(--font-cjk),serif;
+}
+.modal-tab:hover { border-color:rgba(250,204,21,0.3); color:var(--white-main); }
+.modal-tab.active { background:rgba(250,204,21,0.1); border-color:rgba(250,204,21,0.4); color:var(--gold); }
+.modal-tab-content { display:none; }
+.modal-tab-content.active { display:block; }
+.modal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+.modal-stat { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:7px; padding:8px 10px; }
+.ms-label { font-size:9px; letter-spacing:1px; color:var(--white-dim); margin-bottom:3px; }
+.ms-value { font-size:14px; font-weight:700; color:var(--white-main); }
+.modal-section { margin-bottom:14px; }
+.modal-section-title { font-size:10px; letter-spacing:1.5px; color:var(--gold-dim); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--border); }
+
+.inventory-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(100px,1fr)); gap:7px; }
+.inv-item { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:7px; padding:8px; text-align:center; transition:all 0.18s; }
+.inv-item:hover { border-color:rgba(250,204,21,0.3); background:rgba(250,204,21,0.04); }
+.inv-item-icon   { font-size:20px; margin-bottom:4px; }
+.inv-item-name   { font-size:10px; color:var(--white-main); margin-bottom:2px; line-height:1.3; }
+.inv-item-type   { font-size:9px; color:var(--white-dim); margin-bottom:2px; }
+.inv-item-rarity { font-size:9px; padding:1px 4px; border-radius:3px; border:1px solid currentColor; display:inline-block; }
+.rarity-common   { color:#94a3b8; } .rarity-uncommon{ color:#4ade80; }
+.rarity-rare     { color:#60a5fa; } .rarity-epic    { color:#c084fc; }
+.rarity-legendary{ color:#facc15; }
+
+.rel-list { display:flex; flex-direction:column; gap:6px; }
+.rel-item { display:flex; align-items:center; gap:10px; padding:8px 12px; background:rgba(255,255,255,0.02); border-radius:7px; border:1px solid var(--border); font-size:13px; color:var(--white-main); }
+.rel-type { font-size:10px; padding:2px 7px; border-radius:4px; border:1px solid currentColor; flex-shrink:0; }
+.rel-spouse  { color:#f472b6; } .rel-master  { color:var(--gold); }
+.rel-child   { color:var(--jade); } .rel-disciple{ color:var(--blue); }
+.rel-parent  { color:#fb923c; }
+
+.history-list { display:flex; flex-direction:column; gap:6px; }
+.history-item { padding:8px 12px; background:rgba(255,255,255,0.02); border-radius:7px; border-left:2px solid rgba(250,204,21,0.3); }
+.history-year  { font-size:10px; color:var(--gold-dim); margin-bottom:2px; }
+.history-event { font-size:12px; color:var(--white-main); line-height:1.5; }
+
+/* === TICKER / MARQUEE NOTIFICATION (kiểu game online) === */
+#toast-container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 36px;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  white-space: nowrap;
+  background: linear-gradient(90deg, rgba(10,12,20,0.97) 0%, rgba(20,16,36,0.97) 100%);
+  border-bottom: 1px solid rgba(250,204,21,0.45);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.6);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white-main);
+  letter-spacing: 0.3px;
+  padding: 0;
+  /* slide down vào */
+  animation: tickerSlideDown 0.25s ease forwards;
+}
+.toast-label {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #b8860b, #facc15);
+  color: #0a0c14;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0 10px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+.toast-track {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
+.toast-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tickerScroll var(--scroll-duration, 12s) linear forwards;
+  color: var(--white-main);
+  height: 100%;
+  line-height: 36px;
+}
+.toast-text.important { color: #facc15; text-shadow: 0 0 8px rgba(250,204,21,0.5); }
+.toast-text.danger    { color: #f87171; text-shadow: 0 0 8px rgba(248,113,113,0.5); }
+.toast-text.success   { color: #4ade80; text-shadow: 0 0 8px rgba(74,222,128,0.4); }
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-200%); }
+}
+@keyframes tickerSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.dash-section { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px; }
+.dash-title { font-family:var(--font-title); color:var(--gold); font-size:13px; letter-spacing:1px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.dash-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.dash-stat { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:10px; text-align:center; }
+.ds-icon  { font-size:20px; margin-bottom:4px; }
+.ds-val   { font-size:13px; font-weight:700; color:var(--white-main); word-break:break-all; }
+.ds-label { font-size:10px; color:var(--white-dim); margin-top:3px; letter-spacing:0.5px; }
+#dashTimeline .dash-section { overflow-y:auto; max-height:500px; }
+
+.hidden { display:none !important; }
+
+@media (max-width:900px) {
+  :root { --sidebar-w:200px; }
+  .panel-grid { grid-template-columns:1fr; }
+  .span-2 { grid-column:span 1; }
+  .dash-grid-4 { grid-template-columns:repeat(2,1fr); }
+  .heaven-mode-panel { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:600px) {
+  :root { --sidebar-w:56px; }
+  .sidebar-logo,.sidebar-heaven,.sim-controls { display:none; }
+  .nav-btn span:last-child { display:none; }
+  .nav-icon { width:auto; }
+}
+
+/* ============================
+   FACTION WAR SYSTEM — CSS
+   ============================ */
+#panel-sectwars .panel-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 768px) { #panel-sectwars .panel-grid { grid-template-columns: 1fr; } }
+.sw-sect-card:hover { border-color: var(--border-hover) !important; background: rgba(255,255,255,0.04) !important; transform: translateX(2px); transition: all 0.2s; }
+.war-status-pill { display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.5px; }
+.war-status-pill.winner { background:rgba(74,222,128,0.12);color:var(--jade);border:1px solid rgba(74,222,128,0.3); }
+.war-status-pill.loser  { background:rgba(248,113,113,0.12);color:var(--red);border:1px solid rgba(248,113,113,0.3); }
+.war-resource-chip { display:inline-flex;align-items:center;gap:3px;padding:2px 7px;background:rgba(250,204,21,0.06);border:1px solid rgba(250,204,21,0.15);border-radius:12px;font-size:10px;color:var(--white-main); }
+.power-bar { height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden; }
+.power-bar-fill { height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:2px;transition:width 0.5s ease; }
+@keyframes war-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,0.4)} 50%{box-shadow:0 0 0 6px rgba(248,113,113,0)} }
+
+/* ============================
+   CIVILIZATION / COUNTRY PANEL — CSS (Redesigned)
+   ============================ */
+
+/* ---- Rankings Banner ---- */
+.civ-rankings-banner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+@media (max-width: 768px) { .civ-rankings-banner { grid-template-columns: repeat(2, 1fr); } }
+
+.civ-rank-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s;
+}
+.civ-rank-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: inherit;
+}
+.civ-rank-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.45); }
+.civ-rank-card:hover::before { opacity: 1; }
+
+.civ-rank-card.rich   { border-left: 3px solid var(--gold); }
+.civ-rank-card.rich::before   { background: linear-gradient(90deg, rgba(250,204,21,0.06), transparent); }
+.civ-rank-card.strong { border-left: 3px solid var(--red); }
+.civ-rank-card.strong::before { background: linear-gradient(90deg, rgba(248,113,113,0.06), transparent); }
+.civ-rank-card.pop    { border-left: 3px solid var(--blue); }
+.civ-rank-card.pop::before    { background: linear-gradient(90deg, rgba(96,165,250,0.06), transparent); }
+.civ-rank-card.tech   { border-left: 3px solid var(--orange); }
+.civ-rank-card.tech::before   { background: linear-gradient(90deg, rgba(251,146,60,0.06), transparent); }
+
+.crk-icon  { font-size: 26px; flex-shrink: 0; position: relative; z-index: 1; }
+.crk-body  { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.crk-label { font-size: 9px; letter-spacing: 1.5px; color: var(--white-dim); margin-bottom: 3px; text-transform: uppercase; }
+.crk-name  { font-size: 13px; font-weight: 700; color: var(--white-main); margin-bottom: 2px; font-family: var(--font-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.crk-val   { font-size: 12px; color: var(--gold); font-weight: 700; }
+
+/* ---- Civ Grid: 2 column layout ---- */
+.civ-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 900px) { .civ-grid { grid-template-columns: 1fr; } }
+
+/* ---- Civ Card ---- */
+.civ-card {
+  position: relative;
+  background: linear-gradient(160deg, #141920 0%, #0f1318 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+.civ-card:hover {
+  border-color: rgba(250,204,21,0.28);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(250,204,21,0.05) inset;
+  transform: translateY(-2px);
+}
+.civ-card--highlight {
+  border-color: rgba(250,204,21,0.22);
+  background: linear-gradient(160deg, #16201a 0%, #101814 100%);
+}
+
+/* Card accent stripe at top */
+.civ-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(250,204,21,0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.civ-card:hover::before,
+.civ-card--highlight::before { opacity: 1; }
+
+/* ---- Card Header ---- */
+.civ-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.civ-card-name {
+  font-family: var(--font-title);
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.civ-level-badge {
+  font-size: 11px;
+  color: var(--white-dim);
+  margin-bottom: 5px;
+}
+.civ-level-circle {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, rgba(250,204,21,0.18), rgba(250,204,21,0.04));
+  border: 1px solid rgba(250,204,21,0.35);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-title); font-size: 15px; font-weight: 700; color: var(--gold);
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(250,204,21,0.12);
+}
+
+/* Badges */
+.civ-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.civ-badge {
+  font-size: 9px; padding: 2px 7px; border-radius: 20px;
+  border: 1px solid currentColor; font-weight: 700; letter-spacing: 0.5px;
+}
+.civ-badge.gold   { color: var(--gold);   background: rgba(250,204,21,0.07); }
+.civ-badge.red    { color: var(--red);    background: rgba(248,113,113,0.07); }
+.civ-badge.blue   { color: var(--blue);   background: rgba(96,165,250,0.07); }
+.civ-badge.purple { color: var(--purple); background: rgba(192,132,252,0.07); }
+
+/* ---- Card Body ---- */
+.civ-card-body { padding: 14px 18px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---- Stats Grid: 4 across ---- */
+.civ-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.civ-stat-box {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 9px;
+  padding: 9px 6px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.civ-stat-box:hover { background: rgba(255,255,255,0.05); }
+.csb-icon  { font-size: 15px; margin-bottom: 4px; }
+.csb-val   { font-size: 14px; font-weight: 800; color: var(--white-main); line-height: 1; letter-spacing: -0.3px; }
+.csb-label { font-size: 9px; color: var(--white-dim); margin-top: 3px; letter-spacing: 0.3px; }
+
+/* ---- Progress Bars ---- */
+.civ-bars { display: flex; flex-direction: column; gap: 7px; }
+.civ-bar-row  { display: grid; grid-template-columns: 72px 1fr 44px; align-items: center; gap: 8px; }
+.civ-bar-label { font-size: 10px; color: var(--white-dim); }
+.civ-bar-track {
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.civ-bar-fill  {
+  height: 100%; border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.civ-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 4px; height: 100%;
+  background: rgba(255,255,255,0.4);
+  border-radius: 2px;
+  filter: blur(1px);
+}
+.civ-bar-val { font-size: 10px; color: var(--white-dim); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---- Soft Stats (Tech / Culture) ---- */
+.civ-soft-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.css-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.css-row   { display: flex; align-items: center; justify-content: space-between; }
+.css-label { font-size: 10px; color: var(--white-dim); margin-bottom: 3px; display: block; }
+.css-stars { font-size: 9px; letter-spacing: 1.5px; }
+
+/* ---- Emperor ---- */
+.civ-emperor {
+  display: flex; gap: 8px; align-items: center;
+  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(250,204,21,0.05), transparent);
+  border: 1px solid rgba(250,204,21,0.12);
+  border-radius: 8px;
+}
+.ce-label { font-size: 10px; color: var(--gold-dim); flex-shrink: 0; letter-spacing: 0.5px; }
+.ce-name  { font-size: 12px; color: var(--white-main); font-weight: 700; }
+
+/* ---- Next Level Progress ---- */
+.civ-nextlevel { }
+.cnl-label { font-size: 10px; color: var(--white-dim); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+.cnl-bar   { height: 6px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+.cnl-fill  {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(250,204,21,0.5), var(--gold));
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+.cnl-fill::after {
+  content: '';
+  position: absolute; top: 0; right: 0;
+  width: 6px; height: 100%;
+  background: rgba(255,255,255,0.5);
+  filter: blur(2px);
+}
+.cnl-pct { font-size: 10px; color: var(--gold); font-weight: 700; }
+
+/* ---- Recent History (compact timeline) ---- */
+.civ-history {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ch-item {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 11px;
+  padding-left: 8px;
+  border-left: 2px solid rgba(250,204,21,0.15);
+  transition: border-color 0.2s;
+}
+.ch-item:hover { border-left-color: rgba(250,204,21,0.4); }
+.ch-year  { color: var(--gold-dim); flex-shrink: 0; font-size: 10px; font-variant-numeric: tabular-nums; min-width: 52px; }
+.ch-event { color: rgba(232,232,240,0.55); line-height: 1.4; }
+
+/* ---- Territory ---- */
+.civ-territory {
+  font-size: 11px; color: var(--white-dim);
+  padding: 8px 18px;
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,0.01);
+  border-radius: 0 0 14px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.3px;
+}
+.at-war { animation: war-pulse 2s ease-in-out infinite; }
+
+/* ============================
+   SECRET REALM SYSTEM — CSS
+   ============================ */
+.sr-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+.sr-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+}
+.sr-card.active-realm::before  { background: radial-gradient(ellipse at top left, #c084fc, transparent 70%); opacity: 0.12; }
+.sr-card.closed-realm::before  { background: radial-gradient(ellipse at top left, #60a5fa, transparent 70%); opacity: 0.06; }
+.sr-card:hover { border-color: var(--border-hover); transform: translateY(-1px); }
+
+.sr-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.sr-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  background: rgba(192,132,252,0.08); border: 1px solid rgba(192,132,252,0.2);
+}
+.sr-icon-wrap.legendary { background:rgba(250,204,21,0.1); border-color:rgba(250,204,21,0.3); }
+.sr-icon-wrap.epic      { background:rgba(192,132,252,0.1); border-color:rgba(192,132,252,0.3); }
+.sr-icon-wrap.rare      { background:rgba(96,165,250,0.1); border-color:rgba(96,165,250,0.3); }
+.sr-icon-wrap.uncommon  { background:rgba(74,222,128,0.1); border-color:rgba(74,222,128,0.3); }
+
+.sr-name { font-family: var(--font-title); font-size: 14px; color: var(--white-main); letter-spacing: 0.5px; }
+.sr-level-badge {
+  display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.5px; margin-top: 3px;
+}
+.sr-level-badge.legendary { background:rgba(250,204,21,0.15); color:var(--gold); border:1px solid rgba(250,204,21,0.3); }
+.sr-level-badge.epic      { background:rgba(192,132,252,0.15); color:var(--purple); border:1px solid rgba(192,132,252,0.3); }
+.sr-level-badge.rare      { background:rgba(96,165,250,0.15); color:var(--blue); border:1px solid rgba(96,165,250,0.3); }
+.sr-level-badge.uncommon  { background:rgba(74,222,128,0.15); color:var(--jade); border:1px solid rgba(74,222,128,0.3); }
+.sr-level-badge.common    { background:rgba(148,163,184,0.15); color:#94a3b8; border:1px solid rgba(148,163,184,0.3); }
+
+.sr-stats-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+.sr-stat-chip {
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 9px; background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 11px; color: var(--white-dim);
+}
+.sr-stat-chip span { color: var(--white-main); font-weight: 600; }
+
+.sr-participants { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.sr-participant-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 6px; font-size: 11px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  color: var(--white-main);
+}
+.sr-participant-tag.dead   { background:rgba(248,113,113,0.08); border-color:rgba(248,113,113,0.2); color:var(--red); text-decoration:line-through; }
+.sr-participant-tag.alive  { background:rgba(74,222,128,0.06); border-color:rgba(74,222,128,0.2); color:var(--jade); }
+.sr-participant-tag.winner { background:rgba(250,204,21,0.08); border-color:rgba(250,204,21,0.25); color:var(--gold); }
+
+.sr-timer-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+.sr-timer-fill { height: 100%; border-radius: 2px; transition: width 0.5s; }
+
+.sr-result-entry {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px;
+}
+.sr-result-entry:last-child { border-bottom: none; }
+
+/* Explorer leaderboard */
+.explorer-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+}
+.explorer-row:last-child { border-bottom: none; }
+.explorer-rank { width: 24px; text-align: center; font-size: 14px; flex-shrink: 0; }
+.explorer-info { flex: 1; min-width: 0; }
+.explorer-name { font-size: 13px; color: var(--white-main); }
+.explorer-sub  { font-size: 10px; color: var(--white-dim); }
+.explorer-score { text-align: right; font-size: 13px; font-weight: 700; color: var(--gold); }
+
+/* Animated shimmer for active realms */
+@keyframes realm-shimmer {
+  0%   { opacity: 0.5; transform: translateX(-100%) skewX(-15deg); }
+  100% { opacity: 0; transform: translateX(300%) skewX(-15deg); }
+}
+.sr-card.active-realm::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; height: 100%; width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(192,132,252,0.08), transparent);
+  animation: realm-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ============================
+   ARTIFACT SYSTEM — CSS
+   ============================ */
+
+/* Equipment slot cards */
+.art-slot-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.2s;
+  margin-bottom: 8px;
+}
+.art-slot-card.art-slot-empty { opacity: 0.5; }
+.art-slot-card:not(.art-slot-empty):hover { transform: translateX(3px); }
+.art-slot-icon-wrap {
+  width: 46px; height: 46px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  border: 1px solid var(--border);
+}
+.art-slot-icon-wrap.empty { opacity: 0.3; border-style: dashed; }
+.art-slot-name  { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.art-slot-rarity{ font-size: 11px; margin-bottom: 4px; }
+.art-slot-info  { flex: 1; min-width: 0; }
+
+/* Stat chips on artifacts */
+.art-stat-chip {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 1px 7px; border-radius: 8px; font-size: 11px; font-weight: 600;
+  margin-right: 3px;
+}
+.art-stat-chip.atk  { background:rgba(248,113,113,0.12); color:#f87171; border:1px solid rgba(248,113,113,0.25); }
+.art-stat-chip.def  { background:rgba(96,165,250,0.12);  color:#60a5fa; border:1px solid rgba(96,165,250,0.25);  }
+.art-stat-chip.hp   { background:rgba(74,222,128,0.12);  color:#4ade80; border:1px solid rgba(74,222,128,0.25);  }
+.art-stat-chip.luck { background:rgba(250,204,21,0.12);  color:#facc15; border:1px solid rgba(250,204,21,0.25);  }
+
+/* Inventory item rows */
+.art-inv-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02); transition: all 0.15s;
+}
+.art-inv-card:hover { background: rgba(255,255,255,0.04); }
+.art-inv-icon {
+  width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  border: 1px solid var(--border);
+}
+
+/* Total Power Breakdown widget */
+.power-breakdown {
+  background: rgba(250,204,21,0.04);
+  border: 1px solid rgba(250,204,21,0.15);
+  border-radius: 12px; padding: 14px;
+  margin-bottom: 12px;
+}
+.pb-total { text-align: center; margin-bottom: 12px; }
+.pb-total-val {
+  font-family: var(--font-heading);
+  font-size: 32px; color: var(--gold); line-height: 1;
+  text-shadow: 0 0 20px rgba(250,204,21,0.4);
+}
+.pb-total-label { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-top: 2px; }
+.pb-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 6px;
+}
+@media (max-width: 500px) { .pb-grid { grid-template-columns: repeat(2,1fr); } }
+.pb-stat {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+  border-radius: 7px; padding: 6px; text-align: center;
+}
+.pb-stat.sub { opacity: 0.65; background: transparent; }
+.pb-icon  { display: block; font-size: 14px; }
+.pb-label { display: block; font-size: 9px; color: rgba(255,255,255,0.4); margin: 2px 0; }
+.pb-val   { display: block; font-size: 12px; font-weight: 700; color: var(--white-main); }
+
+/* Rarity badge color overrides for immortal */
+.rarity-immortal { color: #f97316; border-color: rgba(249,115,22,0.4); background: rgba(249,115,22,0.08); }
+
+/* ============================
+   WORLD TEMPLATE SELECTOR
+   ============================ */
+.tmpl-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tmpl-card:hover {
+  border-color: rgba(250,204,21,0.4);
+  background: rgba(250,204,21,0.05);
+  transform: translateY(-2px);
+}
+.tmpl-card.active {
+  border-color: var(--gold);
+  background: rgba(250,204,21,0.10);
+  box-shadow: 0 0 8px rgba(250,204,21,0.15);
+}
+.tmpl-icon { font-size: 20px; margin-bottom: 3px; }
+.tmpl-name { font-size: 10px; font-weight: 600; color: var(--white-main); letter-spacing: 0.5px; }
+
+/* ============================
+   CREATOR GOD V6 — WORLD MAP CSS
+   Add to existing <style> tag
+   ============================ */
+
+/* ---- WORLD MAP PANEL LAYOUT ---- */
+#panel-worldmap {
+  padding: 0 !important;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+#panel-worldmap.active {
+  display: flex !important;
+}
+
+/* Map toolbar */
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  z-index: 5;
+}
+.map-toolbar-title {
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-right: 4px;
+}
+.map-controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.map-ctrl-btn {
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--white-main);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-ctrl-btn:hover {
+  background: rgba(250,204,21,0.1);
+  border-color: rgba(250,204,21,0.4);
+  color: var(--gold);
+}
+
+/* Map body - canvas + sidebar */
+.map-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Canvas wrapper */
+.map-canvas-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #060a10;
+  min-width: 0;
+}
+#worldMapCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+#worldMapCanvas:active { cursor: grabbing; }
+
+/* Stats overlay on map */
+.map-stats-overlay {
+  position: absolute;
+  top: 10px; left: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  pointer-events: none;
+  z-index: 4;
+}
+.map-overlay-stat {
+  background: rgba(10,12,16,0.82);
+  border: 1px solid rgba(250,204,21,0.2);
+  border-radius: 8px;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 50px;
+  pointer-events: auto;
+}
+.map-overlay-stat span {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white-main);
+  line-height: 1;
+}
+.map-overlay-stat small {
+  font-size: 9px;
+  color: var(--white-dim);
+  letter-spacing: 0.5px;
+}
+
+/* Map right sidebar */
+.map-sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .map-sidebar { width: 170px; min-width: 170px; }
+}
+
+.map-sidebar-section {
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.map-sidebar-title {
+  font-family: var(--font-title);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--gold);
+  padding: 8px 12px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Info panel */
+#mapInfoPanel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  min-height: 0;
+}
+.map-info-title {
+  font-family: var(--font-title);
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+.map-info-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white-dim);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.map-info-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.map-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 4px;
+  text-align: center;
+}
+.ms-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white-main);
+  word-break: break-all;
+  margin-bottom: 2px;
+}
+.ms-lbl {
+  font-size: 9px;
+  color: var(--white-dim);
+  letter-spacing: 0.3px;
+}
+.map-info-section {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-dim);
+  margin: 10px 0 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
+}
+.map-info-row {
+  font-size: 11px;
+  color: var(--white-main);
+  padding: 4px 6px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 5px;
+  margin-bottom: 3px;
+  transition: background 0.15s;
+}
+.map-info-row:hover { background: rgba(255,255,255,0.05); }
+
+/* Legend */
+#mapLegendContent {
+  padding: 8px 12px 10px;
+}
+.map-legend-item {
+  font-size: 11px;
+  color: var(--white-dim);
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+/* Regenerate map button */
+.map-regen-btn {
+  padding: 8px 12px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.map-regen-btn button {
+  width: 100%;
+}
+
+/* ---- Map filter chips ---- */
+.map-filter-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+.map-filter-chip {
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-size: 10px;
+  color: var(--white-dim);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-cjk), serif;
+}
+.map-filter-chip.active,
+.map-filter-chip:hover {
+  background: rgba(250,204,21,0.1);
+  border-color: rgba(250,204,21,0.4);
+  color: var(--gold);
+}
+
+/* ============================================================
+   WORLD MAP — REDESIGNED UI
+   ============================================================ */
+#panel-worldmap { padding: 0 !important; }
+#panel-worldmap.active { display: flex !important; flex-direction: column; }
+#panel-world3d { padding: 0 !important; }
+#panel-world3d.active { display: flex !important; flex-direction: column; height: 100%; }
+
+/* Toolbar */
+.map-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, rgba(10,14,22,0.98), rgba(15,20,30,0.95));
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0; flex-wrap: wrap; z-index: 5;
+}
+.map-toolbar-title {
+  font-family: var(--font-title); font-size: 14px; color: var(--gold);
+  letter-spacing: 2px; margin-right: 6px; display: flex; align-items: center; gap: 6px;
+}
+.map-toolbar-title::after {
+  content: ""; display: inline-block; width: 1px; height: 16px;
+  background: var(--border); margin-left: 6px;
+}
+
+/* Zoom controls */
+.map-controls { display: flex; gap: 4px; align-items: center; }
+.map-ctrl-btn {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px; color: var(--white-main);
+  font-size: 15px; cursor: pointer;
+  transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-cjk), serif;
+}
+.map-ctrl-btn:hover { background: rgba(250,204,21,0.12); border-color: rgba(250,204,21,0.5); color: var(--gold); transform: scale(1.05); }
+
+/* Layer filter chips */
+.map-filter-row { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+.map-filter-chip {
+  padding: 4px 10px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  font-size: 10px; color: var(--white-dim);
+  cursor: pointer; transition: all .15s;
+  font-family: var(--font-cjk), serif;
+  letter-spacing: 0.3px;
+}
+.map-filter-chip.active { background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.45); color: var(--gold); }
+.map-filter-chip:hover { background: rgba(250,204,21,0.08); border-color: rgba(250,204,21,0.3); color: var(--gold-dim); }
+
+/* Map body layout */
+.map-body { flex: 1; display: flex; overflow: hidden; min-height: 0; }
+.map-canvas-wrap { flex: 1; position: relative; overflow: hidden; background: #050810; min-width: 0; }
+#worldMapCanvas { display: block; width: 100%; height: 100%; cursor: grab; }
+#worldMapCanvas:active { cursor: grabbing; }
+
+/* Stats overlay — top-left floating chips */
+.map-stats-overlay {
+  position: absolute; top: 12px; left: 12px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+  pointer-events: none; z-index: 4;
+}
+.map-overlay-stat {
+  background: rgba(6,10,18,0.88);
+  border: 1px solid rgba(250,204,21,0.18);
+  border-radius: 10px; padding: 6px 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 54px; pointer-events: auto;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s;
+}
+.map-overlay-stat:hover { border-color: rgba(250,204,21,0.45); }
+.map-overlay-stat span { font-family: var(--font-title); font-size: 14px; font-weight: 700; color: var(--white-main); line-height: 1; }
+.map-overlay-stat small { font-size: 9px; color: var(--white-dim); letter-spacing: .7px; text-transform: uppercase; }
+
+/* ---- SIDEBAR (right) ---- */
+.map-sidebar {
+  width: 240px; min-width: 240px;
+  background: linear-gradient(180deg, #0a0d16 0%, #080b14 100%);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden; flex-shrink: 0;
+}
+
+/* Sidebar section headers */
+.map-sidebar-title {
+  font-family: var(--font-title); font-size: 10px;
+  letter-spacing: 2px; color: var(--gold-dim);
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0; text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+}
+.map-sidebar-title::before { content: ""; width: 3px; height: 12px; background: var(--gold); border-radius: 2px; opacity: 0.6; }
+
+/* Info panel scroll area */
+#mapInfoPanel {
+  flex: 1; overflow-y: auto; padding: 14px; min-height: 0;
+  scrollbar-width: thin;
+}
+
+/* Info content styles */
+.map-info-title {
+  font-family: var(--font-cjk), serif; font-size: 15px;
+  color: var(--gold); margin-bottom: 3px;
+  letter-spacing: .5px; line-height: 1.4; font-weight: 700;
+}
+.map-info-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 700; letter-spacing: .5px;
+  padding: 2px 8px; border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--white-dim); margin-bottom: 12px;
+}
+.map-info-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 5px; margin-bottom: 10px;
+}
+.map-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 4px; text-align: center;
+}
+.ms-val { font-size: 12px; font-weight: 700; color: var(--white-main); word-break: break-all; margin-bottom: 3px; font-family: var(--font-cjk), serif; }
+.ms-lbl { font-size: 9px; color: var(--white-dim); letter-spacing: .3px; }
+.map-info-section {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--gold-dim); margin: 12px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(250,204,21,0.15);
+  text-transform: uppercase;
+}
+.map-info-row {
+  font-size: 11px; color: var(--white-main);
+  padding: 5px 8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid transparent;
+  border-radius: 6px; margin-bottom: 3px;
+  transition: all .15s; font-family: var(--font-cjk), serif;
+}
+.map-info-row:hover { background: rgba(250,204,21,0.06); border-color: rgba(250,204,21,0.2); }
+
+/* Legend */
+#mapLegendContent { padding: 10px 14px 12px; }
+.map-legend-item {
+  font-size: 11px; color: var(--white-dim);
+  margin-bottom: 6px; display: flex; align-items: center;
+  gap: 6px; font-family: var(--font-cjk), serif;
+}
+.map-legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0; display: inline-block;
+}
+
+/* Regen button area */
+.map-regen-btn { padding: 8px; flex-shrink: 0; }
+.map-regen-btn button { width: 100%; }
+
+@media (max-width: 768px) {
+  .map-sidebar { width: 170px; min-width: 170px; }
+  .map-filter-row { display: none; }
+  .map-toolbar-title::after { display: none; }
+}
+
+
+
+
+/* ========== TERRITORY WAR SYSTEM CSS ========== */
+#panel-territory-war { padding: 14px !important; }
+#panel-territory-war.active { display: flex !important; flex-direction: column; }
+@media (max-width: 900px) {
+  #panel-territory-war > div:last-child { grid-template-columns: 1fr !important; }
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.2); }
+}
+#territoryWarLog::-webkit-scrollbar { width: 4px; }
+#territoryWarLog::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+#territoryWarLog::-webkit-scrollbar-thumb { background: rgba(248,113,113,0.3); border-radius: 2px; }
+#factionStatsGrid::-webkit-scrollbar { width: 4px; }
+#factionStatsGrid::-webkit-scrollbar-thumb { background: rgba(100,116,139,0.4); border-radius: 2px; }
+#territoryWarMapList::-webkit-scrollbar { width: 4px; }
+#territoryWarMapList::-webkit-scrollbar-thumb { background: rgba(100,116,139,0.4); border-radius: 2px; }
+
+
+/* ===== AI STORY ENGINE / WORLD CHRONICLE ===== */
+.wc-timeline { max-height:70vh; overflow-y:auto; padding:8px 0; }
+.wc-entry { cursor:default; }
+.wc-entry-title {
+  font-size:14px;
+  font-weight:700;
+  color:var(--white);
+  margin:8px 0 6px;
+  line-height:1.4;
+}
+.wc-entry-body { font-size:12px; color:var(--white-dim); line-height:1.7; }
+.wc-body-header {
+  color:var(--white-dim);
+  font-size:11px;
+  opacity:.7;
+  margin-bottom:4px;
+  font-style:italic;
+}
+.wc-body-line { margin-bottom:3px; }
+.wc-badges { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.wc-badge {
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:20px;
+  border:1px solid;
+  white-space:nowrap;
+}
+.npc-badge  { background:rgba(250,204,21,.08);  color:#facc15; border-color:#facc1540; }
+.sect-badge { background:rgba(251,146,60,.08);  color:#fb923c; border-color:#fb923c40; }
+.dyn-badge  { background:rgba(192,132,252,.08); color:#c084fc; border-color:#c084fc40; }
+
+
+/* ===== AI STORY ENGINE V2 STYLES ===== */
+
+/* Chain badges */
+.wc-badge {
+  display:inline-flex; align-items:center; gap:3px;
+  font-size:10px; padding:2px 7px; border-radius:4px;
+  border:1px solid var(--border); background:rgba(255,255,255,0.04);
+  color:var(--white-dim); margin-right:3px; margin-top:3px;
+}
+.wc-badge.npc-badge  { color:#60a5fa; border-color:rgba(96,165,250,0.3); background:rgba(96,165,250,0.06); }
+.wc-badge.sect-badge { color:#fb923c; border-color:rgba(251,146,60,0.3); background:rgba(251,146,60,0.06); }
+.wc-badge.dyn-badge  { color:#4ade80; border-color:rgba(74,222,128,0.3); background:rgba(74,222,128,0.06); }
+.wc-badge.chain-badge { transition:opacity 0.2s; }
+.wc-badge.chain-badge:hover { opacity:0.75; }
+
+/* Entry body */
+.wc-entry-title {
+  font-size:13px; font-weight:700; color:var(--white-main);
+  margin:6px 0 5px; line-height:1.4;
+}
+.wc-entry-body { margin-bottom:7px; }
+.wc-body-header { font-size:11px; color:var(--white-dim); margin-bottom:3px; }
+.wc-body-line   { font-size:12px; color:var(--white-main); line-height:1.55; margin-bottom:2px; }
+.wc-badges { display:flex; flex-wrap:wrap; }
+
+/* Legend chips */
+.wc-legend-chip {
+  padding:6px 10px; border-radius:7px; border:1px solid;
+  cursor:pointer; transition:opacity 0.2s; min-width:100px;
+}
+.wc-legend-chip:hover { opacity:0.75; }
+
+/* Legend rows */
+.wc-legend-row {
+  padding:10px 12px; border-radius:8px; border:1px solid;
+  cursor:pointer; transition:background 0.2s;
+}
+.wc-legend-row:hover { filter:brightness(1.15); }
+
+/* Chain depth indent indicator */
+.wc-chain-depth { font-size:9px; color:rgba(250,204,21,0.5); margin-left:4px; }
+
+/* Timeline V2 tweaks */
+.wc-timeline { padding:8px 0; }
+
+</style>
+<link rel="stylesheet" href="v6_style_additions.css">
+<style id="ec-styles">
+/* ===== EMERGENT CIVILIZATION STYLES ===== */
+.ec-hidden { display: none !important; }
+@keyframes ec-unlock-flash {
+  0%   { background: rgba(250,204,21,0.35); box-shadow: 0 0 12px #facc15; }
+  60%  { background: rgba(250,204,21,0.15); }
+  100% { background: transparent; }
+}
+.ec-unlocked-flash { animation: ec-unlock-flash 1.2s ease-out; }
+#ec-world-state-panel { padding: 10px 0 4px; }
+.ec-state-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.ec-state-label { width:100px; font-size:12px; color:#aaa; flex-shrink:0; }
+.ec-bar-wrap { flex:1; height:8px; background:#1e293b; border-radius:4px; overflow:hidden; }
+.ec-bar { height:100%; border-radius:4px; transition: width 0.5s; }
+.ec-bar-prosperity { background: linear-gradient(90deg,#22c55e,#4ade80); }
+.ec-bar-corruption  { background: linear-gradient(90deg,#7f1d1d,#ef4444); }
+.ec-bar-chaos       { background: linear-gradient(90deg,#78350f,#f59e0b); }
+.ec-state-val { width:40px; text-align:right; font-size:11px; color:#cbd5e1; font-family:monospace; }
+</style>
+</head>
+<body>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- MODAL OVERLAY -->
+<div id="modalOverlay" class="modal-overlay hidden" onclick="closeModal(event)">
+  <div class="modal-container" id="modalContainer">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT — hidden until Hub is closed -->
+<div class="app-layout" id="appLayout" style="visibility:hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-symbol">☯</div>
+      <div class="logo-text">THIÊN ĐẠO</div>
+      <div class="logo-sub">Creator God V5.0</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" onclick="showPanel('world')" data-panel="world">
+        <span class="nav-icon">🌍</span><span>Thế Giới</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('npcs')" data-panel="npcs">
+        <span class="nav-icon">👥</span><span>Sinh Linh</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('sects')" data-panel="sects">
+        <span class="nav-icon">🏯</span><span>Tông Môn</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('countries')" data-panel="countries">
+        <span class="nav-icon">👑</span><span>Quốc Gia</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('empire')" data-panel="empire">
+        <span class="nav-icon">👑</span><span>Đế Quốc</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('boss')" data-panel="boss">
+        <span class="nav-icon">🐉</span><span>Boss</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('leaderboard')" data-panel="leaderboard">
+        <span class="nav-icon">🏆</span><span>Bảng Xếp Hạng</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('logs')" data-panel="logs">
+        <span class="nav-icon">📜</span><span>Nhật Ký</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('sectwars')" data-panel="sectwars">
+        <span class="nav-icon">⚔️</span><span>Tông Môn Chiến</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('secret-realms')" data-panel="secret-realms">
+        <span class="nav-icon">🌀</span><span>Bí Cảnh</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('world-history')" data-panel="world-history">
+        <span class="nav-icon">📖</span><span>Lịch Sử Thế Giới</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('world-chronicle');renderWorldChronicle();" data-panel="world-chronicle">
+        <span class="nav-icon">🖋️</span><span>AI Biên Niên Sử</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('dynasty')" data-panel="dynasty">
+        <span class="nav-icon">🏰</span><span>Vương Triều</span>
+      </button>
+	  <button
+class="nav-btn ec-hidden" style="display:none"
+data-panel="dashboard"
+onclick="showPanel('dashboard')">
+📊 Dashboard
+</button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('worldmap')" data-panel="worldmap">
+        <span class="nav-icon">🗺</span><span>Bản Đồ Thế Giới</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('world3d');if(typeof initWorldViewer3D==='function')initWorldViewer3D();" data-panel="world3d">
+        <span class="nav-icon">🔮</span><span>3D World Viewer</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('territories');if(typeof initTerritoryPanel==='function')initTerritoryPanel();" data-panel="territories">
+        <span class="nav-icon">🏔</span><span>Lãnh Địa</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('territory-war');if(typeof initTerritoryWarPanel==='function')initTerritoryWarPanel();" data-panel="territory-war">
+        <span class="nav-icon">⚔️</span><span>Chiến Tranh</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('economy');if(typeof renderEconomyPanel==='function')renderEconomyPanel();" data-panel="economy">
+        <span class="nav-icon">💹</span><span>Kinh Tế</span>
+      </button>
+      <button class="nav-btn ec-hidden" id="btn-economy-engine" style="display:none" onclick="showPanel('economy-engine');if(typeof economyEngine_renderPanel==='function')economyEngine_renderPanel();" data-panel="economy-engine">
+        <span class="nav-icon">💰</span><span>Economy V1</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('dungeon');renderDungeonPanel();" data-panel="dungeon">
+        <span class="nav-icon">🏰</span><span>Dungeon</span>
+      </button>
+      <button class="nav-btn player-nav-btn ec-hidden" style="display:none" onclick="showPanel('player');renderPlayerPanel();" data-panel="player">
+        <span class="nav-icon">🎮</span><span>Nhân Vật</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-war-engine" onclick="showPanel('war-engine');if(typeof warEngine_renderPanelContent==='function')warEngine_renderPanelContent();" data-panel="war-engine">
+        <span>⚔️</span><span>Chiến Tranh</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-dynasty-engine" onclick="showPanel('dynasty-engine');if(typeof renderDynastyEnginePanel==='function')renderDynastyEnginePanel();" data-panel="dynasty-engine">
+        <span>👑</span><span>Triều Đại</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-religion" onclick="showPanel('religion');if(typeof religionEngine_renderPanel==='function')religionEngine_renderPanel();" data-panel="religion">
+        <span>✝️</span><span>Tôn Giáo</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-age" onclick="showPanel('age');if(typeof renderAgePanel==='function')renderAgePanel();" data-panel="age">
+        <span>🌐</span><span>Kỷ Nguyên</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-hero-legend" onclick="showPanel('hero-legend');if(typeof renderHeroLegendPanel==='function')renderHeroLegendPanel();" data-panel="hero-legend">
+        <span>📖</span><span>Anh Hùng & Huyền Thoại</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-memory" onclick="showPanel('world-memory');if(typeof renderWorldMemoryPanel==='function')renderWorldMemoryPanel();" data-panel="world-memory">
+        <span>📚</span><span>Ký Ức Thế Giới</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-npc-reputation" onclick="showPanel('npc-reputation');if(typeof renderNpcReputationPanel==='function')renderNpcReputationPanel();" data-panel="npc-reputation">
+        <span>🌟</span><span>Danh Tiếng</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-mythology" onclick="showPanel('mythology');if(typeof mythologyEngine_renderPanel==='function')mythologyEngine_renderPanel();" data-panel="mythology">
+        <span>📖</span><span>Thần Thoại</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-technology" onclick="showPanel('technology');if(typeof renderTechnologyPanel==='function')renderTechnologyPanel();" data-panel="technology">
+        <span>⚙️</span><span>Công Nghệ</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-heaven">
+      <div class="heaven-label">⚡ THIÊN ĐẠO ĐIỂM</div>
+      <div class="heaven-points" id="heavenPoints">1000</div>
+      <div class="heaven-actions">
+	  <div id="heavenModePanel" class="heaven-mode-panel">
+    <div class="heaven-mode-title">
+        ☯ Heaven Mode
+    </div>
+
+    <div class="heaven-mode-stats">
+        Thiên Đạo đang quan sát...
+    </div>
+</div>
+        <button class="heaven-btn" onclick="useHeavenPoint('bless_all', 200)" title="Ban Phúc Đại Chúng - 200đ">🌟 Hồng Ân (200đ)</button>
+        <button class="heaven-btn" onclick="useHeavenPoint('summon_boss', 300)" title="Triệu Hồi Boss - 300đ">🐉 Triệu Boss (300đ)</button>
+        <button class="heaven-btn" onclick="useHeavenPoint('open_secret_realm', 250)" title="Khai Mở Bí Cảnh - 250đ">🌀 Bí Cảnh (250đ)</button>
+        <button class="heaven-btn" onclick="useHeavenPoint('heavenly_calamity', 150)" title="Giáng Thiên Kiếp - 150đ">⚡ Thiên Kiếp (150đ)</button>
+      </div>
+    </div>
+
+    <div class="sim-controls">
+      <div class="sim-label">⏱ MÔ PHỎNG</div>
+      <div class="sim-speed-row">
+        <span>Tốc độ:</span>
+        <select id="simSpeed" onchange="changeSimSpeed()">
+          <option value="5000">Chậm (5s)</option>
+          <option value="2000" selected>Bình (2s)</option>
+          <option value="1000">Nhanh (1s)</option>
+          <option value="500">Rất Nhanh (0.5s)</option>
+        </select>
+      </div>
+      <button class="sim-toggle" id="simToggle" onclick="toggleSimulation()">⏸ Tạm Dừng</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <div id="worldTitle" class="world-title-bar">Chưa Khai Thiên...</div>
+        <div id="worldStats" class="world-stats-bar"></div>
+      </div>
+      <div class="top-bar-right">
+        <div class="time-display">
+          <span class="time-icon">⏳</span>
+          <span id="yearDisplay">Năm 1</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- PANELS -->
+    <div class="panels">
+
+      <!-- WORLD PANEL -->
+      <div id="panel-world" class="panel active">
+        <div class="panel-grid">
+          <!-- Hidden inputs to keep existing create/template logic working -->
+          <input type="hidden" id="worldName" value="">
+          <input type="hidden" id="worldTemplateKey" value="cultivation">
+          <input type="hidden" id="territoryCount" value="20">
+          <select id="genre" style="display:none">
+            <option value="Tu Tiên">Tu Tiên</option>
+            <option value="Zombie">Zombie</option>
+            <option value="Thần Thoại">Thần Thoại</option>
+            <option value="Huyền Huyễn">Huyền Huyễn</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+          </select>
+
+          <div class="card">
+            <h2 class="card-title">📊 Thiên Hạ Thống Kê</h2>
+            <div id="worldStatsCard" class="stats-grid"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">🌡 Trạng Thái Thế Giới</h2>
+            <div id="ec-world-state-panel"><p style="color:#666;font-size:12px">Chưa có thế giới</p></div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title">🗺 Tứ Đại Vực</h2>
+            <div id="regions" class="regions-grid"></div>
+          </div>
+
+          <div class="card span-2">
+            <h2 class="card-title">👥 Triệu Hồi Chúng Sinh</h2>
+            <div class="npc-gen-row">
+              <input id="npcCount" type="number" class="dao-input small" value="20" min="1" max="100">
+              <button class="btn-primary" onclick="generateNPCs()">🌟 Triệu Hồi Tu Sĩ</button>
+              <button class="btn-secondary" onclick="generateNPCs(true)">👑 Tạo Thiên Kiêu</button>
+            </div>
+            <div class="npc-gen-row" style="margin-top:8px">
+              <label style="font-size:12px;color:var(--white-dim);white-space:nowrap">🗺 Số Lãnh Địa:</label>
+              <input id="territoryCountInput" type="number" class="dao-input small" value="20" min="5" max="200" oninput="document.getElementById('territoryCount').value=this.value" style="width:70px">
+              <button class="btn-secondary" onclick="regenTerritories()">🗺 Tái Tạo Lãnh Địa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NPCS PANEL -->
+      <div id="panel-npcs" class="panel">
+        <div class="panel-toolbar">
+          <input id="npcSearch" class="dao-input small" placeholder="🔍 Tìm kiếm tu sĩ..." oninput="filterNPCs()">
+          <select id="npcFilterRealm" class="dao-select small" onchange="filterNPCs()">
+            <option value="">Tất cả cảnh giới</option>
+            <option value="0">Luyện Khí</option>
+            <option value="1">Trúc Cơ</option>
+            <option value="2">Kim Đan</option>
+            <option value="3">Nguyên Anh</option>
+            <option value="4">Hóa Thần</option>
+            <option value="5">Luyện Hư</option>
+            <option value="6">Hợp Thể</option>
+            <option value="7">Đại Thừa</option>
+            <option value="8">Chân Tiên</option>
+          </select>
+          <select id="npcSort" class="dao-select small" onchange="filterNPCs()">
+            <option value="realm">Sắp xếp: Cảnh giới</option>
+            <option value="age">Sắp xếp: Tuổi</option>
+            <option value="attack">Sắp xếp: Công kích</option>
+            <option value="wealth">Sắp xếp: Tài phú</option>
+            <option value="reputation">Sắp xếp: Danh vọng</option>
+          </select>
+        </div>
+        <div id="npcList" class="npc-grid"></div>
+      </div>
+
+      <!-- SECTS PANEL -->
+      <div id="panel-sects" class="panel">
+        <div class="panel-toolbar">
+          <button class="btn-primary" onclick="openCreateSectModal()">🏯 Lập Tông Môn Mới</button>
+        </div>
+        <div id="sectList" class="sect-grid"></div>
+      </div>
+
+      <!-- COUNTRIES PANEL -->
+      <div id="panel-countries" class="panel">
+        <div id="countryList"></div>
+      </div>
+
+      <!-- EMPIRE PANEL -->
+      <div id="panel-empire" class="panel">
+        <div id="empireList"></div>
+      </div>
+
+      <!-- BOSS PANEL -->
+      <div id="panel-boss" class="panel">
+        <div id="bossList" class="boss-area"></div>
+      </div>
+
+      <!-- LEADERBOARD PANEL -->
+      <div id="panel-leaderboard" class="panel">
+        <div class="panel-grid">
+          <div class="card span-full">
+            <h2 class="card-title">🏆 Top Cường Giả</h2>
+            <div id="leaderboard" class="leaderboard-list"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">🌟 Thiên Kiêu Bảng</h2>
+            <div id="geniusBoard" class="leaderboard-list"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">☠️ Anh Hùng Đã Ngã</h2>
+            <div id="hallOfFame" class="leaderboard-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGS PANEL -->
+      <div id="panel-logs" class="panel">
+        <div class="card span-full">
+          <div class="logs-header">
+            <h2 class="card-title">📜 Thiên Đạo Ký Sự</h2>
+            <button class="btn-secondary small" onclick="clearLogs()">🗑 Xóa Nhật Ký</button>
+          </div>
+          <div id="logs" class="logs-list"></div>
+        </div>
+      </div>
+<!-- SECT WARS PANEL -->
+      <div id="panel-sectwars" class="panel">
+        <div class="panel-toolbar">
+          <button class="btn-primary" onclick="manualTriggerSectWar()">⚔️ Kích Hoạt Chiến Tranh</button>
+          <button class="btn-secondary" onclick="renderSectWars()">🔄 Làm Mới</button>
+        </div>
+        <div class="panel-grid">
+          <div class="card">
+            <h2 class="card-title">🏆 Bảng Xếp Hạng Tông Môn</h2>
+            <div id="sectWarRanking"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">⚔️ Chiến Sự Hiện Tại</h2>
+            <div id="sectWarCurrent"></div>
+          </div>
+          <div class="card span-full">
+            <h2 class="card-title">📜 Lịch Sử Chiến Tranh</h2>
+            <div id="sectWarHistory"></div>
+          </div>
+        </div>
+      </div>
+
+<!-- SECRET REALMS PANEL -->
+      <div id="panel-secret-realms" class="panel">
+        <div class="panel-toolbar">
+          <button class="btn-primary" onclick="heavenOpenRealm()">🌀 Khai Mở Bí Cảnh</button>
+          <button class="btn-secondary" onclick="renderSecretRealmsPanel()">🔄 Làm Mới</button>
+          <div style="margin-left:auto;font-size:12px;color:var(--white-dim)" id="srPanelStats"></div>
+        </div>
+        <div class="panel-grid">
+          <div class="card span-full">
+            <h2 class="card-title">🌀 Bí Cảnh Đang Hoạt Động</h2>
+            <div id="srActive"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">🏅 Thám Hiểm Gia Huyền Thoại</h2>
+            <div id="srTopExplorers"></div>
+          </div>
+          <div class="card">
+            <h2 class="card-title">📜 Lịch Sử Bí Cảnh</h2>
+            <div id="srCompleted"></div>
+          </div>
+        </div>
+      </div>
+
+<!-- DASHBOARD PANEL -->
+<div id="panel-dashboard" class="panel">
+
+    <div class="panel-grid">
+
+        <div class="card span-full">
+            <h2 class="card-title">
+                📊 Dashboard Thế Giới
+            </h2>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">
+                🌍 World Stats
+            </h2>
+
+            <div id="dashWorldStats"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">
+                🏆 Top Power
+            </h2>
+
+            <div id="dashTopPower"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">
+                🏯 Faction Ranking
+            </h2>
+
+            <div id="dashFactionRank"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">
+                🗺 Region Ranking
+            </h2>
+
+            <div id="dashRegionRank"></div>
+        </div>
+
+        <div class="card span-full">
+            <h2 class="card-title">
+                📜 Timeline
+            </h2>
+
+            <div id="dashTimeline"></div>
+        </div>
+
+    </div>
+
+</div>
+<!-- WORLD HISTORY PANEL -->
+      <div id="panel-world-history" class="panel">
+        <!-- Toolbar -->
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:14px">
+          <input id="whFilterSearch" class="dao-input small" placeholder="🔍 Tìm kiếm sự kiện..." oninput="renderWorldHistory()" style="min-width:180px">
+          <input id="whFilterYear"   class="dao-input small" placeholder="📅 Lọc theo năm..." oninput="renderWorldHistory()" style="width:140px">
+          <select id="whFilterType" class="dao-select small" onchange="renderWorldHistory()">
+            <option value="">Tất cả loại sự kiện</option>
+            <option value="breakthrough">✨ Đột Phá</option>
+            <option value="war">⚔️ Chiến Tranh</option>
+            <option value="marriage">💑 Đạo Lữ</option>
+            <option value="death">☠️ Tử Vong</option>
+            <option value="sect">🏯 Tông Môn</option>
+            <option value="boss">🐉 Boss Chiến</option>
+            <option value="heavenly">🌌 Thiên Sự</option>
+            <option value="civilization">🌟 Văn Minh</option>
+            <option value="era">🌐 Kỷ Nguyên</option>
+            <option value="realm">🌀 Bí Cảnh</option>
+          </select>
+          <span id="whResultCount" style="font-size:12px;color:var(--white-dim);margin-left:auto;align-self:center">0 sự kiện</span>
+          <button class="btn-secondary" style="padding:6px 12px;font-size:12px" onclick="clearWorldHistory()">🗑 Xóa Lịch Sử</button>
+        </div>
+
+        <!-- Summary stats row -->
+        <div class="card" style="margin-bottom:14px;padding:12px 16px">
+          <div class="card-title" style="margin-bottom:10px">📊 Thống Kê Lịch Sử</div>
+          <div id="whSummaryStats" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+        </div>
+
+        <!-- Timeline list -->
+        <div class="card">
+          <div class="card-title">⏳ Dòng Thời Gian Vĩnh Cửu</div>
+          <div id="whEventList" class="wh-timeline"></div>
+        </div>
+      </div>
+
+
+<!-- AI WORLD CHRONICLE PANEL -->
+      <div id="panel-world-chronicle" class="panel">
+
+        <!-- Header + Generate Buttons V2 -->
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:10px;align-items:center">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn-primary" style="padding:7px 14px;font-size:13px" onclick="generateStoryEvent();renderWorldChronicle();">&#x26A1; Sinh Truy&#x1EC7;n</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateWarChain();renderWorldChronicle();">&#x2694;&#xFE0F; Chi&#x1EBF;n Tranh</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateDynastyChain();renderWorldChronicle();">&#x1F3DB; Gia T&#x1ED9;c</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateKingdomChain();renderWorldChronicle();">&#x1F3F4; Qu&#x1ED1;c Gia</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateSectChain();renderWorldChronicle();">&#x1F3EF; T&#xF4;ng M&#xF4;n</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateLegendStory();renderWorldChronicle();">&#x1F4DC; Huy&#x1EC1;n Tho&#x1EA1;i</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="generateBossStory();renderWorldChronicle();">&#x1F409; Boss</button>
+            <button class="btn-jade" style="padding:7px 14px;font-size:13px" onclick="generateRevengeChain();renderWorldChronicle();">&#x1F525; B&#xE1;o Th&#xF9;</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="(function(){for(var i=0;i&lt;10;i++)generateStoryEvent();}());renderWorldChronicle();">&#x1F300; x10</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:13px" onclick="(function(){for(var i=0;i&lt;50;i++)generateStoryEvent();}());renderWorldChronicle();">&#x1F30C; x50</button>
+          </div>
+          <span id="wcCount" style="font-size:12px;color:var(--white-dim);margin-left:auto;align-self:center">0 s&#x1EF1; ki&#x1EC7;n</span>
+          <button class="btn-secondary" style="padding:6px 12px;font-size:12px" onclick="clearWorldChronicle()">&#x1F5D1; X&#xF3;a</button>
+        </div>
+
+        <!-- V2: Revenge Queue Indicator -->
+        <div id="wcRevengeQueue" style="margin-bottom:8px;min-height:20px;display:flex;align-items:center;gap:8px"></div>
+
+        <!-- Filters -->
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:10px">
+          <input id="wcFilterSearch"  class="dao-input small" placeholder="&#x1F50D; T&#xEC;m ki&#x1EBF;m..." oninput="renderWorldChronicle()" style="min-width:160px">
+          <input id="wcFilterYear"    class="dao-input small" placeholder="&#x1F4C5; N&#x103m..." oninput="renderWorldChronicle()" style="width:110px">
+          <input id="wcFilterNPC"     class="dao-input small" placeholder="&#x1F464; NPC..." oninput="renderWorldChronicle()" style="width:120px">
+          <input id="wcFilterSect"    class="dao-input small" placeholder="&#x1F3EF; T&#xF4;ng M&#xF4;n..." oninput="renderWorldChronicle()" style="width:130px">
+          <input id="wcFilterCountry" class="dao-input small" placeholder="&#x1F3F3; Qu&#x1ED1;c Gia..." oninput="renderWorldChronicle()" style="width:130px">
+          <select id="wcFilterType" class="dao-select small" onchange="renderWorldChronicle()">
+            <option value="">T&#x1EA5;t c&#x1EA3; s&#x1EF1; ki&#x1EC7;n</option>
+            <option value="breakthrough">&#x2728; &#x110;&#x1ED9;t Ph&#xE1;</option>
+            <option value="war">&#x2694;&#xFE0F; Chi&#x1EBF;n Tranh</option>
+            <option value="sect">&#x1F3EF; T&#xF4;ng M&#xF4;n</option>
+            <option value="boss">&#x1F409; Boss Chi&#x1EBF;n</option>
+            <option value="heavenly">&#x1F30C; Thi&#xEA;n S&#x1EF1;</option>
+            <option value="civilization">&#x1F31F; V&#x103n Minh</option>
+            <option value="marriage">&#x1F491; &#x110;&#x1EA1;o L&#x1EEF;</option>
+            <option value="death">&#x2620;&#xFE0F; T&#x1EED; Vong</option>
+          </select>
+          <button class="btn-secondary" style="padding:5px 10px;font-size:11px" onclick="renderLegendsPanel();document.getElementById('wcLegendsDetail').parentElement.style.display=document.getElementById('wcLegendsDetail').parentElement.style.display==='none'?'block':'none'">&#x1F4DC; Huy&#x1EC1;n Tho&#x1EA1;i</button>
+        </div>
+
+        <!-- V2: Stats bar -->
+        <div class="card" style="margin-bottom:10px;padding:10px 14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div class="card-title" style="margin-bottom:0">&#x1F4CA; Bi&#xEA;n Ni&#xEA;n S&#x1EED; V&#x1EA1;n N&#x103m</div>
+            <span style="font-size:10px;color:var(--white-dim)">V2 — Event Chain Engine</span>
+          </div>
+          <div id="wcStats" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+        </div>
+
+        <!-- V2: Legends row -->
+        <div id="wcLegendsRow" class="card" style="margin-bottom:10px;padding:10px 14px">
+          <div class="card-title" style="margin-bottom:8px">&#x1F4DC; Huy&#x1EC1;n Tho&#x1EA1;i &#x2014; Nh&#xE2;n V&#x1EAD;t L&#x1ECBch S&#x1EED;</div>
+          <div id="wcLegends" style="display:flex;flex-wrap:wrap;gap:8px">
+            <span style="color:var(--white-dim);font-size:11px;font-style:italic">Ch&#x1B0;a c&#xF3; huy&#x1EC1;n tho&#x1EA1;i n&#xE0;o...</span>
+          </div>
+        </div>
+
+        <!-- V2: Legends detail (hidden by default) -->
+        <div class="card" style="margin-bottom:10px;padding:10px 14px;display:none">
+          <div class="card-title" style="margin-bottom:8px">&#x1F4D6; H&#x1ECD; S&#x1ECD; Huy&#x1EC1;n Tho&#x1EA1;i</div>
+          <div id="wcLegendsDetail" style="display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto"></div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div class="card-title" style="margin-bottom:0">&#x26D3; L&#x1ECBch S&#x1EED; Th&#x1EBF; Gi&#x1EDBi &#x2014; Event Chain Engine</div>
+            <span style="font-size:10px;color:var(--white-dim)">Click &#x26D3; &#x2014; xem c&#xE2;y nh&#xE2;n qu&#x1EA3;</span>
+          </div>
+          <div id="wcEventList" class="wh-timeline wc-timeline"></div>
+        </div>
+      </div>
+
+<!-- DYNASTY PANEL -->
+      <div id="panel-dynasty" class="panel">
+
+        <!-- World dynasty stats bar -->
+        <div class="card" style="margin-bottom:14px;padding:12px 16px">
+          <div class="card-title" style="margin-bottom:10px">🌐 Thiên Hạ Gia Tộc Tổng Quan</div>
+          <div id="dynastyWorldStats" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px"></div>
+        </div>
+
+        <div class="panel-grid">
+          <!-- Left: Top 10 ranking -->
+          <div class="card">
+            <div class="card-title">🏆 Top 10 Gia Tộc Thiên Hạ</div>
+            <div id="dynastyRanking" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+
+          <!-- Right: Detail view -->
+          <div class="card">
+            <div class="card-title">🏰 Chi Tiết Gia Tộc</div>
+            <!-- hidden sentinel to track selected surname -->
+            <span id="dynastyDetailSurname" data-surname="" style="display:none"></span>
+            <div id="dynastyDetail">
+              <div style="padding:40px 20px;text-align:center;color:var(--white-dim);font-style:italic">
+                👆 Chọn một gia tộc ở bên trái để xem chi tiết gia phả và triều đại sử...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORLD MAP PANEL -->
+      <div id="panel-worldmap" class="panel">
+
+        <!-- MAP TOOLBAR -->
+        <div class="map-toolbar">
+          <span class="map-toolbar-title">🗺 BẢN ĐỒ THẾ GIỚI</span>
+          <div class="map-controls">
+            <button class="map-ctrl-btn" onclick="mapZoomIn()" title="Phóng to">＋</button>
+            <button class="map-ctrl-btn" onclick="mapZoomOut()" title="Thu nhỏ">－</button>
+            <button class="map-ctrl-btn" onclick="mapReset()" title="Đặt lại về trung tâm">⌂</button>
+            <button class="map-ctrl-btn" onclick="regenMapData()" title="Tạo lại bản đồ">🔄</button>
+          </div>
+          <!-- Layer toggle chips -->
+          <div class="map-filter-row">
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'regions')">🌐 Vùng</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'countries')">⚔️ Quốc Gia</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'cities')">🏙 Thành</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'dungeons')">🏚 Hầm Ngục</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'secrets')">🌀 Bí Mật</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'npcs')">👤 NPC</button>
+            <button class="map-filter-chip active" onclick="toggleMapLayer(this,'sects')">🏯 Tông Môn</button>
+          </div>
+        </div>
+
+        <!-- MAP BODY -->
+        <div class="map-body">
+
+          <!-- CANVAS AREA -->
+          <div class="map-canvas-wrap">
+            <canvas id="worldMapCanvas"></canvas>
+            <!-- Floating stats chips -->
+            <div class="map-stats-overlay" id="mapStatsOverlay"></div>
+          </div>
+
+          <!-- RIGHT SIDEBAR -->
+          <aside class="map-sidebar">
+
+            <!-- Section: Location Info -->
+            <div style="flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;border-bottom:1px solid var(--border)">
+              <div class="map-sidebar-title">📍 Thông Tin Địa Điểm</div>
+              <div id="mapInfoPanel">
+                <div style="color:var(--white-dim);font-size:12px;font-style:italic;text-align:center;padding:24px 12px;line-height:1.8">
+                  <span style="font-size:32px;display:block;margin-bottom:8px;opacity:0.4">🗺</span>
+                  Nhấp vào một địa điểm trên bản đồ để xem thông tin chi tiết.
+                </div>
+              </div>
+            </div>
+
+            <!-- Section: Legend -->
+            <div style="border-bottom:1px solid var(--border);flex-shrink:0">
+              <div class="map-sidebar-title">🔑 Chú Thích</div>
+              <div id="mapLegendContent"></div>
+            </div>
+
+            <!-- Section: Debug (hidden) -->
+            <div style="border-bottom:1px solid var(--border);flex-shrink:0">
+              <div class="map-sidebar-title" style="cursor:pointer;user-select:none"
+                   onclick="var d=document.getElementById('mapDebugLog');d.style.display=d.style.display==='none'?'block':'none'">
+                🐛 Debug Log
+              </div>
+              <div id="mapDebugLog" style="display:none;padding:6px 8px;max-height:120px;overflow-y:auto;font-family:monospace;font-size:10px;color:var(--white-dim)"></div>
+            </div>
+
+            <!-- Regen button -->
+            <div style="padding:10px;flex-shrink:0">
+              <button class="btn-primary small" style="width:100%;letter-spacing:1px" onclick="regenMapData()">
+                ✨ Tạo Lại Bản Đồ
+              </button>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+
+      <!-- ECONOMY PANEL -->
+      <div id="panel-economy" class="panel">
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;align-items:center">
+          <span style="font-weight:700;font-size:15px;color:var(--gold);">💹 HỆ THỐNG KINH TẾ</span>
+          <div id="econTabBar" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+          <button class="btn-secondary" onclick="renderEconomyPanel()" style="margin-left:auto;font-size:12px">🔄 Làm Mới</button>
+        </div>
+        <div id="econPanelContent" style="padding:4px 0 16px"></div>
+      </div>
+
+      <!-- ECONOMY ENGINE V1 PANEL -->
+      <div id="panel-economy-engine" class="panel">
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;align-items:center">
+          <span style="font-weight:700;font-size:15px;color:var(--gold);">💰 ECONOMY ENGINE V1</span>
+          <div id="engTabBar" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+          <button class="btn-secondary" onclick="economyEngine_renderPanel()" style="margin-left:auto;font-size:12px">🔄 Làm Mới</button>
+        </div>
+        <div id="engPanelContent" style="padding:4px 0 16px"></div>
+      </div>
+
+      <!-- TERRITORY PANEL -->
+      <div id="panel-territories" class="panel">
+        <div class="panel-toolbar">
+          <span style="font-weight:700;font-size:15px;color:var(--gold);">🏔 LÃNH ĐỊA THẾ GIỚI</span>
+          <select id="territoryFilterRegion" onchange="renderTerritories()" style="background:var(--card-bg);color:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;">
+            <option value="all">🌐 Tất Cả Vùng</option>
+          </select>
+          <select id="territoryFilterDanger" onchange="renderTerritories()" style="background:var(--card-bg);color:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;">
+            <option value="all">⚠️ Mọi Nguy Hiểm</option>
+            <option value="1">★ An Toàn</option>
+            <option value="2">★★ Bình Thường</option>
+            <option value="3">★★★ Nguy Hiểm</option>
+            <option value="4">★★★★ Cực Nguy</option>
+            <option value="5">★★★★★ Tử Địa</option>
+          </select>
+          <select id="territoryFilterBoss" onchange="renderTerritories()" style="background:var(--card-bg);color:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;">
+            <option value="all">🐉 Tất Cả</option>
+            <option value="yes">🐉 Có Boss</option>
+            <option value="no">✅ Không Boss</option>
+          </select>
+          <select id="territorySortBy" onchange="renderTerritories()" style="background:var(--card-bg);color:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;">
+            <option value="id">🔢 Mặc Định</option>
+            <option value="name">🔤 Tên</option>
+            <option value="population">👥 Dân Số</option>
+            <option value="spiritualEnergy">✨ Linh Khí</option>
+            <option value="minerals">⚙️ Khoáng Sản</option>
+            <option value="herbs">🌿 Thảo Dược</option>
+            <option value="dangerLevel">⚠️ Nguy Hiểm</option>
+          </select>
+          <button class="btn-secondary" onclick="renderTerritories()">🔄 Làm Mới</button>
+          <div style="margin-left:auto;font-size:12px;color:var(--white-dim);" id="territoryPanelStats"></div>
+        </div>
+        <div id="territoriesGrid" class="territory-panel-grid"></div>
+      </div>
+
+      <!-- ========== TERRITORY WAR PANEL ========== -->
+      <div id="panel-territory-war" class="panel">
+        <div class="panel-toolbar" style="flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+          <span style="font-weight:700;font-size:15px;color:#f87171;">⚔️ TERRITORY WAR SYSTEM</span>
+          <button class="btn-secondary" onclick="initTerritoryWarPanel()">🔄 Làm Mới</button>
+          <button class="btn-secondary" onclick="simulateTerritoryWar();renderFactionStats();renderWarLog();renderTerritoryMap();" style="border-color:#f87171;color:#f87171;">⚡ Simulate War</button>
+          <button class="btn-secondary" onclick="ensureTerritoryOwners();renderTerritoryMap();renderFactionInfluence();" style="border-color:#22d3ee;color:#22d3ee;">🗺 Reset Owners</button>
+          <div id="twsTickInfo" style="margin-left:auto;font-size:11px;color:#475569;"></div>
+        </div>
+
+        <!-- Layout: 2 columns -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;min-height:0;">
+
+          <!-- LEFT: Faction Influence Map -->
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;">🗺 Faction Influence Map</div>
+            <div style="position:relative;">
+              <div id="factionInfluenceMap" style="width:100%;height:340px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;background:#0a0a1a;"></div>
+              <div id="fimTooltip" style="display:none;position:absolute;background:rgba(10,10,30,0.95);border:1px solid rgba(250,204,21,0.3);border-radius:8px;padding:10px 12px;font-size:12px;color:#e2e8f0;pointer-events:none;z-index:100;min-width:160px;max-width:220px;line-height:1.6;"></div>
+            </div>
+
+            <!-- Faction Stats -->
+            <div style="font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">📊 Faction Control</div>
+            <div id="factionStatsGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:280px;overflow-y:auto;"></div>
+          </div>
+
+          <!-- RIGHT: Territory List + War Log -->
+          <div style="display:flex;flex-direction:column;gap:10px;min-height:0;">
+            <div style="font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;">🏔 Territory Ownership</div>
+            <div id="territoryWarMapList" style="max-height:300px;overflow-y:auto;border-radius:8px;"></div>
+
+            <div style="font-size:12px;font-weight:700;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">📜 War Log</div>
+            <div id="territoryWarLog" style="
+              flex:1;
+              max-height:320px;
+              overflow-y:auto;
+              background:rgba(10,10,20,0.7);
+              border:1px solid rgba(255,255,255,0.06);
+              border-radius:8px;
+              font-size:12px;
+            "></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== 3D WORLD VIEWER PANEL ========== -->
+      <div id="panel-world3d" class="panel" style="padding:0;flex-direction:column;position:relative;">
+        <!-- Toolbar -->
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--card-bg);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;">
+          <span style="font-weight:700;font-size:15px;color:#facc15;">🔮 3D WORLD VIEWER</span>
+          <span id="wv3d-count" style="font-size:12px;color:#64748b;"></span>
+          <span id="wv3d-npc-count" style="font-size:12px;color:#60a5fa;"></span>
+          <button onclick="if(typeof refreshWorldViewer3D==='function')refreshWorldViewer3D();" style="background:rgba(250,204,21,0.08);border:1px solid rgba(250,204,21,0.25);color:#facc15;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;">🔄 Làm Mới</button>
+          <button onclick="if(typeof forceSyncNPCSpatialEngine==='function')forceSyncNPCSpatialEngine();else if(typeof refreshNPCSpatialEngine==='function')refreshNPCSpatialEngine();" style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.25);color:#60a5fa;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;">👤 Sync NPC</button>
+          <button onclick="if(typeof refreshCityVisualization==='function')refreshCityVisualization();" style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);color:#fbbf24;border-radius:6px;padding:4px 12px;font-size:12px;cursor:pointer;">🏙️ Sync City</button>
+          <div style="margin-left:auto;font-size:11px;color:#475569;">
+            <span>🖱️ Kéo: Xoay</span> &nbsp;
+            <span>🖱️ Phải: Pan</span> &nbsp;
+            <span>🖱️ Scroll: Zoom</span> &nbsp;
+            <span>Click: Xem Chi Tiết</span>
+          </div>
+        </div>
+        <!-- 3D Canvas Container -->
+        <div id="wv3d-container" style="flex:1;min-height:0;position:relative;background:#0a0a1a;overflow:hidden;">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#475569;font-size:13px;">
+            Đang khởi tạo 3D Viewer...
+          </div>
+        </div>
+        <!-- Info Panel (overlays 3D) -->
+        <div id="wv3d-info" style="
+          display:none;
+          position:absolute;
+          bottom:20px;right:20px;
+          width:240px;
+          background:rgba(13,13,32,0.93);
+          border:1px solid rgba(250,204,21,0.25);
+          border-radius:12px;
+          padding:14px;
+          z-index:10;
+          backdrop-filter:blur(8px);
+          font-size:13px;
+          color:#e2e8f0;
+          box-shadow:0 8px 32px rgba(0,0,0,0.5);
+        "></div>
+      </div>
+
+      <!-- ========== PLAYER PANEL ========== -->
+<!-- DUNGEON & SECRET REALM PANEL -->
+      <div id="panel-dungeon" class="panel">
+        <!-- Rendered by renderDungeonPanel() in dungeonSystem.js -->
+        <div style="text-align:center;padding:40px;color:var(--white-dim)">
+          Đang tải hệ thống dungeon...
+        </div>
+      </div>
+
+      <div id="panel-player" class="panel">
+        <!-- Rendered by renderPlayerPanel() in playerSystem.js -->
+        <div style="text-align:center;padding:40px;color:var(--white-dim)">
+          Đang tải hệ thống nhân vật...
+        </div>
+      </div>
+
+      <div id="panel-war-engine" class="panel">
+        <!-- Rendered by warEngine_renderPanelContent() in warEngine.js -->
+        <div style="padding:14px;">
+          <div style="font-size:14px;font-weight:700;color:#f87171;margin-bottom:14px;letter-spacing:1px;">⚔️ HỆ THỐNG CHIẾN TRANH</div>
+          <div id="warEngineContent">
+            <div style="text-align:center;padding:40px;color:var(--white-dim)">Đang tải hệ thống chiến tranh…</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+            <button onclick="warEngine_forceWar()" style="background:rgba(248,113,113,0.15);border:1px solid rgba(248,113,113,0.4);color:#fca5a5;padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;">⚔️ Khai Chiến</button>
+            <button onclick="warEngine_forceBattle()" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;">🗡️ Mô Phỏng Trận</button>
+            <button onclick="warEngine_forceAlliance()" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.35);color:#4ade80;padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;">🤝 Kết Minh</button>
+            <button onclick="warEngine_renderPanelContent()" style="background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.3);color:#60a5fa;padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;">🔄 Làm Mới</button>
+            <button onclick="warEngine_tick();warEngine_renderPanelContent();" style="background:rgba(250,204,21,0.1);border:1px solid rgba(250,204,21,0.3);color:#facc15;padding:7px 14px;border-radius:6px;font-size:12px;cursor:pointer;">🛠️ Debug Tick</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DYNASTY ENGINE PANEL -->
+      <div id="panel-dynasty-engine" class="panel">
+        <!-- Rendered by renderDynastyEnginePanel() in dynastyEngine.js -->
+      </div>
+
+      <!-- RELIGION ENGINE PANEL -->
+      <div id="panel-religion" class="panel">
+        <!-- Rendered by religionEngine_renderPanel() in religionEngine.js -->
+      </div>
+
+      <!-- AGE ENGINE PANEL -->
+      <div id="panel-age" class="panel">
+        <!-- Rendered by renderAgePanel() in ageEngine.js -->
+      </div>
+
+      <!-- HERO & LEGEND ENGINE PANEL -->
+      <div id="panel-hero-legend" class="panel">
+        <!-- Rendered by renderHeroLegendPanel() in heroLegendEngine.js -->
+      </div>
+
+      <!-- WORLD MEMORY ENGINE PANEL -->
+      <div id="panel-world-memory" class="panel">
+        <!-- Rendered by renderWorldMemoryPanel() in worldMemoryEngine.js -->
+      </div>
+
+      <!-- NPC REPUTATION ENGINE PANEL -->
+      <div id="panel-npc-reputation" class="panel">
+        <!-- Rendered by renderNpcReputationPanel() in npcReputationEngine.js -->
+      </div>
+
+      <div id="panel-mythology" class="panel">
+        <!-- Rendered by mythologyEngine_renderPanel() in mythologyEngine.js -->
+      </div>
+
+      <div id="panel-technology" class="panel">
+        <!-- Rendered by renderTechnologyPanel() in technologyEngine.js -->
+      </div>
+
+
+    </div>
+  </main>
+</div>
+
+<script src="worldTemplates.js"></script>
+  <script src="app.js"></script>
+<script src="playerSystem.js"></script>
+<script src="thiendinhSystem.js"></script>
+<script src="questSystem.js"></script>
+<script src="questEngine.js"></script>
+<script src="globalSearchSystem.js"></script>
+<script src="artifactSystem.js"></script>
+<script src="multiWorldSystem.js"></script>
+<script src="worldMarketplace.js"></script>
+<script src="worldMapSystem.js"></script>
+<script src="aiWorldGenerator.js"></script>
+<script src="worldHub.js"></script>
+<script src="territorySystem.js"></script>
+<script src="worldViewer3D.js"></script>
+<script src="webxrSystem.js"></script>
+<script src="npcSpatialEngine.js"></script>
+<script src="cityVisualization.js"></script>
+<script src="dungeonSystem.js"></script>
+<script src="economySystem.js"></script>
+<script src="economyEngine.js"></script>
+<script src="economyEngineV2.js"></script>
+<script src="economyAuditSystem.js"></script>
+<script src="autoPlayerAI.js"></script>
+<script src="living-world-engine.js"></script>
+
+<script>
+// ============================
+// WAR ENGINE — SIDEBAR UNLOCK PATCH v2
+// Fix: patch chạy SAU khi emergentCivilization.js load xong
+// ============================
+(function patchWarEngineUnlock() {
+  // Luôn chạy sau DOM ready để đảm bảo ecRenderDynamicSidebar đã được định nghĩa
+  function _applyWarTabPatch() {
+    const _origEcRender = window.ecRenderDynamicSidebar;
+    window.ecRenderDynamicSidebar = function() {
+      if (typeof _origEcRender === 'function') _origEcRender();
+      // Hiện tab War Engine khi có ≥2 QG hoặc đã có chiến tranh
+      const livingCount = (window.countries || []).filter(c => !c.collapsed).length;
+      const hasWars = (window.warsActive && window.warsActive.length > 0) ||
+                      (window.warsHistory && window.warsHistory.length > 0);
+      const btn = document.querySelector('.nav-btn[data-panel="war-engine"]');
+      if (btn) {
+        if (livingCount >= 2 || hasWars) {
+          btn.style.display = '';
+          btn.classList.remove('ec-hidden');
+        }
+        // Không ẩn lại — một khi hiện thì giữ nguyên
+      }
+    };
+    // Chạy ngay một lần để hiện tab nếu đang có QG
+    try { window.ecRenderDynamicSidebar(); } catch(e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(_applyWarTabPatch, 500);
+    });
+  } else {
+    setTimeout(_applyWarTabPatch, 500);
+  }
+
+  // Backup: kiểm tra định kỳ mỗi 3 giây (phòng khi patch bị ghi đè)
+  setInterval(function() {
+    const livingCount = (window.countries || []).filter(c => !c.collapsed).length;
+    const hasWars = (window.warsActive && window.warsActive.length > 0) ||
+                    (window.warsHistory && window.warsHistory.length > 0);
+    if (livingCount >= 2 || hasWars) {
+      const btn = document.querySelector('.nav-btn[data-panel="war-engine"]');
+      if (btn && btn.style.display === 'none') {
+        btn.style.display = '';
+        btn.classList.remove('ec-hidden');
+        console.log('[WAR ENGINE] Tab Chiến Tranh đã được mở khóa! (', livingCount, 'QG)');
+      }
+    }
+  }, 3000);
+})();
+const TEMPLATE_META = {
+  cultivation: { genre: "Tu Tiên",     desc: "☯️ Tu Tiên — Thế giới tu tiên, luyện khí thành tiên, vạn đạo tranh phong." },
+  fantasy:     { genre: "Huyền Huyễn", desc: "🧙 Fantasy — Phép thuật và kiếm sĩ, vương quốc và rồng lửa." },
+  zombie:      { genre: "Zombie",      desc: "🧟 Zombie — Sinh tồn hậu tận thế, tiến hóa hay bị ăn thịt." },
+  mythology:   { genre: "Thần Thoại",  desc: "⚡ Thần Thoại — Thiên thần ác quỷ tranh đoạt vận mệnh nhân gian." },
+  scifi:       { genre: "Sci-Fi",      desc: "🚀 Sci-Fi — Thiên hà vô tận, cuộc chiến giữa các nền văn minh vũ trụ." },
+};
+
+function selectTemplate(key) {
+  document.querySelectorAll(".tmpl-card").forEach(el => {
+    el.classList.toggle("active", el.dataset.key === key);
+  });
+  const hiddenKey = document.getElementById("worldTemplateKey");
+  if (hiddenKey) hiddenKey.value = key;
+
+  const genreEl = document.getElementById("genre");
+  const meta = TEMPLATE_META[key];
+  if (genreEl && meta) genreEl.value = meta.genre;
+
+  const preview = document.getElementById("templatePreviewDesc");
+  if (preview && meta) preview.textContent = meta.desc;
+}
+
+// Show active template label on the World panel header if world exists
+function updateTemplateLabel() {
+  if (!world || !world.templateKey) return;
+  const labelEl = document.getElementById("activeTemplateLabel");
+  if (!labelEl) return;
+  const meta = TEMPLATE_META[world.templateKey];
+  if (meta) {
+    labelEl.textContent = meta.desc.split(" — ")[0];
+    labelEl.style.display = "inline-flex";
+  }
+}
+
+// ============================
+// POST-LOAD INIT FIXES
+// ============================
+window.addEventListener("beforeunload", function() {
+  try { if (typeof save === "function") save(); } catch (e) {}
+});
+
+window.addEventListener("load", function() {
+  // Fix 1: Tự động tạo lãnh địa nếu thế giới tồn tại nhưng chưa có territories
+  setTimeout(function() {
+    if (typeof world !== "undefined" && world && typeof generateTerritories === "function") {
+      if (!world.territories || !world.territories.length) {
+        world.territories = generateTerritories(20);
+        if (typeof addLog === "function") addLog("🗺️ Thiên Đạo phân chia thế giới thành " + world.territories.length + " lãnh địa.", "important");
+        if (typeof save === "function") save();
+        if (typeof renderTerritories === "function") renderTerritories();
+      }
+    }
+  }, 500);
+});
+</script>
+
+    <script src="territoryWarSystem.js"></script>
+    <script src="dynastySystem.js"></script>
+<script src="aiStoryEngine.js"></script>
+<script src="emergentCivilization.js"></script>
+<script src="warEngine.js"></script>
+<script src="dynastyEngine.js"></script>
+<script src="creatorGodEngine.js"></script>
+<script src="catastropheSystem.js"></script>
+<script src="religionEngine.js"></script>
+<script src="ageEngine.js"></script>
+<script src="heroLegendEngine.js"></script>
+<script src="worldMemoryEngine.js"></script>
+<script src="npcReputationEngine.js"></script>
+<script src="legendaryArtifactEngine.js"></script>
+<script src="artifactEvolutionEngine.js"></script>
+<script src="mythologyEngine.js"></script>
+<script src="technologyEngine.js"></script>
+</body>
+</html>

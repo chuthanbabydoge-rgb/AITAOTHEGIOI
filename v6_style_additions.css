@@ -1,0 +1,1475 @@
+/* ============================
+   CREATOR GOD V6 — CSS ADDITIONS
+   Add this to your existing <style> tag
+   ============================ */
+
+/* ---- DASHBOARD ---- */
+.dash-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.dash-title {
+  font-family: var(--font-heading);
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.dash-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@media (max-width: 768px) { .dash-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+.dash-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.ds-icon { font-size: 20px; margin-bottom: 4px; }
+.ds-val  { font-size: 14px; font-weight: 700; color: var(--white-main); word-break: break-all; }
+.ds-label{ font-size: 10px; color: var(--white-dim); margin-top: 3px; letter-spacing: 0.5px; }
+
+/* ---- HEAVEN MODE PANEL ---- */
+#heavenModePanel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+@media (max-width: 768px) { #heavenModePanel { grid-template-columns: repeat(2, 1fr); } }
+.heaven-action {
+  background: linear-gradient(135deg, rgba(250,204,21,0.05), rgba(196,150,30,0.08));
+  border: 1px solid rgba(250,204,21,0.2);
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.heaven-action:hover {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(250,204,21,0.12), rgba(196,150,30,0.18));
+  transform: translateY(-2px);
+}
+.ha-icon { font-size: 24px; margin-bottom: 5px; }
+.ha-name { font-size: 12px; color: var(--white-main); font-weight: 600; margin-bottom: 4px; }
+.ha-cost { font-size: 13px; color: var(--gold); font-weight: 700; margin-bottom: 3px; }
+.ha-desc { font-size: 10px; color: var(--white-dim); }
+
+/* ---- EQUIPMENT SLOT in modal ---- */
+#tab-equipment .inventory-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* ---- RESOURCES IN REGION ---- */
+.region-box p b { color: var(--gold); }
+
+/* ---- SECT WAR BUTTON ---- */
+.sect-card .btn-secondary { padding: 4px 10px; font-size: 11px; }
+
+/* ---- TIMELINE ---- */
+#dashTimeline .dash-section { overflow-y: auto; max-height: 500px; }
+
+/* ============================
+   FACTION WAR SYSTEM — CSS
+   ============================ */
+
+/* Sect Wars Panel */
+#panel-sectwars .panel-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 768px) { #panel-sectwars .panel-grid { grid-template-columns: 1fr; } }
+
+.sw-sect-card:hover {
+  border-color: var(--border-hover) !important;
+  background: rgba(255,255,255,0.04) !important;
+  transform: translateX(2px);
+  transition: all 0.2s;
+}
+
+/* War status pill */
+.war-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.war-status-pill.winner {
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--jade);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+.war-status-pill.loser {
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+/* Resource display in war panel */
+.war-resource-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  background: rgba(250, 204, 21, 0.06);
+  border: 1px solid rgba(250, 204, 21, 0.15);
+  border-radius: 12px;
+  font-size: 10px;
+  color: var(--white-main);
+}
+
+/* Power bar under ranking card */
+.power-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.power-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* Pulse animation for active wars */
+@keyframes war-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(248, 113, 113, 0); }
+}
+.at-war { animation: war-pulse 2s ease-in-out infinite; }
+
+/* ============================
+   WORLD HISTORY SYSTEM — CSS
+   ============================ */
+
+/* Summary stat chips */
+.wh-stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: default;
+  transition: transform 0.15s;
+}
+.wh-stat-chip:hover { transform: translateY(-2px); }
+
+/* Timeline wrapper */
+.wh-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding: 8px 0;
+}
+/* Vertical line down the center */
+.wh-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--border) 10%, var(--border) 90%, transparent);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .wh-timeline::before { left: 16px; }
+}
+
+/* Each timeline row */
+.wh-timeline-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  position: relative;
+  width: 100%;
+}
+.wh-left  { flex-direction: row;         justify-content: flex-end;   padding-right: calc(50% + 20px); }
+.wh-right { flex-direction: row-reverse; justify-content: flex-start; padding-left:  calc(50% + 20px); }
+
+@media (max-width: 768px) {
+  .wh-left, .wh-right {
+    flex-direction: row;
+    padding-left: 36px;
+    padding-right: 0;
+    justify-content: flex-start;
+  }
+}
+
+/* Node dot */
+.wh-timeline-node {
+  position: absolute;
+  left: calc(50% - 7px);
+  top: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+  flex-shrink: 0;
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  .wh-timeline-node { left: 9px; }
+}
+
+/* Entry card */
+.wh-entry {
+  background: var(--bg-card);
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px 14px;
+  max-width: 100%;
+  min-width: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.wh-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.wh-entry-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.wh-type-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 8px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.wh-year-badge {
+  font-size: 11px;
+  color: var(--white-dim);
+  font-style: italic;
+  margin-left: auto;
+}
+
+.wh-entry-desc {
+  font-size: 12px;
+  color: var(--white-main);
+  line-height: 1.5;
+}
+
+/* Empty state */
+.wh-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--white-dim);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ============================
+   DYNASTY SYSTEM — CSS
+   ============================ */
+
+/* ---- World stats row ---- */
+.dyn-world-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.dyn-ws-icon  { font-size: 18px; margin-bottom: 4px; }
+.dyn-ws-val   { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 2px; word-break: break-all; }
+.dyn-ws-label { font-size: 10px; color: var(--white-dim); letter-spacing: 0.5px; }
+@media (max-width: 768px) {
+  #dynastyWorldStats { grid-template-columns: repeat(3,1fr) !important; }
+}
+
+/* ---- Ranking cards ---- */
+.dyn-rank-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.dyn-rank-card:hover {
+  border-color: var(--gold);
+  background: rgba(250,204,21,0.04);
+  transform: translateX(3px);
+}
+.dyn-rank-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.dyn-rank-num {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+.dyn-surname {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.dyn-founded {
+  font-size: 10px;
+  color: var(--white-dim);
+  margin-bottom: 4px;
+}
+.dyn-titles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.dyn-title-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(250,204,21,0.1);
+  border: 1px solid rgba(250,204,21,0.25);
+  color: var(--gold-dim);
+  letter-spacing: 0.3px;
+}
+.dyn-rank-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 4px;
+}
+.dyn-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--white-main);
+}
+.dyn-stat span:first-child { font-size: 13px; }
+
+/* Alive ratio bar */
+.dyn-alive-bar-wrap {
+  height: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.dyn-alive-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--jade-dim), var(--jade));
+  border-radius: 1px;
+  transition: width 0.5s ease;
+}
+
+/* ---- Detail panel ---- */
+.dyn-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.dyn-detail-name {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.dyn-detail-sub {
+  font-size: 11px;
+  color: var(--white-dim);
+  margin-bottom: 6px;
+}
+.dyn-detail-power-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 6px;
+}
+.dyn-dp-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 7px 10px;
+  text-align: center;
+}
+.dyn-dp-val   { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+.dyn-dp-lbl   { font-size: 9px;  color: var(--white-dim); }
+
+/* ---- Family tree (left-to-right org-chart) ---- */
+.dyn-tree-wrap {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 70vh;
+  padding: 4px 4px 12px;
+}
+.dyn-tree-graph {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 12px 16px;
+  min-width: max-content;
+}
+.dyn-tree-root-group {
+  display: flex;
+}
+
+/* A branch = node on the left + its children stacked vertically on the right */
+.dyn-tree-branch {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.dyn-tree-self {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  padding-right: 18px; /* room for the right-going connector */
+}
+/* Horizontal line going right from a node that has (visible) children */
+.dyn-tree-branch:not(.has-collapsed-children) > .dyn-tree-self::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--border);
+  transform: translateY(-50%);
+}
+/* If a branch has no children at all, no line needed */
+.dyn-tree-branch:not(:has(> .dyn-tree-children)) > .dyn-tree-self::after {
+  display: none;
+}
+.dyn-tree-branch.has-collapsed-children > .dyn-tree-self::after {
+  display: none;
+}
+
+.dyn-tree-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1.3;
+}
+.dyn-tree-node.alive:hover {
+  border-color: var(--gold);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.dyn-tree-node.dead {
+  opacity: 0.5;
+  filter: grayscale(0.6);
+}
+.dyn-tree-name { font-weight: 600; }
+.dyn-tree-realm { font-size: 9px; opacity: 0.85; }
+.dyn-tree-dead { color: var(--red); font-size: 10px; }
+
+/* Collapse/expand toggle button */
+.dyn-tree-toggle {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card, #1a1a1a);
+  color: var(--white-dim);
+  font-size: 11px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  z-index: 1;
+}
+.dyn-tree-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Children column (stacked vertically to the right of the parent) */
+.dyn-tree-children {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  padding-left: 18px; /* room for the connector lines coming from the left */
+}
+.dyn-tree-children.dyn-tree-collapsed {
+  display: none;
+}
+/* Vertical bar connecting all children, drawn down the left edge of the column */
+.dyn-tree-children::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(50% / var(--n, 1) + 11px);
+  bottom: calc(50% / var(--n, 1) + 11px);
+  width: 1px;
+  background: var(--border);
+}
+/* If only one child, no vertical bar needed (just a straight line) */
+.dyn-tree-children:has(> .dyn-tree-child-row:only-child)::before {
+  display: none;
+}
+
+.dyn-tree-child-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+/* Horizontal stub from the vertical bar to each child node */
+.dyn-tree-child-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  width: 18px;
+  background: var(--border);
+  transform: translateY(-50%);
+}
+
+/* ---- Family tree (legacy indented list, kept for compatibility) ---- */
+.dyn-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  font-size: 12px;
+}
+.dyn-tree-connector {
+  color: var(--border);
+  font-family: monospace;
+  white-space: pre;
+}
+
+.dyn-gen-row {
+  margin-bottom: 6px;
+}
+.dyn-gen-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border);
+}
+.dyn-gen-badge {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  background: rgba(250,204,21,0.1);
+  border: 1px solid rgba(250,204,21,0.25);
+  color: var(--gold);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.dyn-gen-name {
+  font-size: 11px;
+  color: var(--white-dim);
+  letter-spacing: 1px;
+}
+.dyn-gen-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-left: 12px;
+}
+.dyn-gen-connector {
+  font-size: 18px;
+  color: var(--border);
+  padding-left: 30px;
+  margin: 2px 0;
+}
+.dyn-member-node {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 120px;
+}
+.dyn-member-node.alive:hover {
+  border-color: var(--gold);
+  background: rgba(250,204,21,0.06);
+  transform: translateY(-2px);
+}
+.dyn-member-node.dead {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+.dyn-member-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+}
+.dyn-member-info { flex: 1; min-width: 0; }
+.dyn-member-name  { font-size: 11px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dyn-member-realm { font-size: 10px; font-weight: 500; }
+.dyn-member-dead  { font-size: 9px; color: var(--white-dim); }
+.dyn-member-more  {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--white-dim);
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed var(--border);
+  border-radius: 8px; padding: 6px 12px;
+  font-style: italic;
+}
+
+/* ---- Dynasty history list ---- */
+.dyn-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.dyn-hist-item {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 12px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  border-left: 3px solid rgba(250,204,21,0.3);
+}
+.dyn-hist-year {
+  font-size: 10px;
+  color: var(--gold-dim);
+  white-space: nowrap;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.dyn-hist-text { color: var(--white-main); }
+
+/* ============================
+   TERRITORY SYSTEM STYLES
+   ============================ */
+
+.territory-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  padding: 4px 0 16px;
+}
+
+.territory-card {
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.territory-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+}
+
+.territory-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.territory-stat {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.04);
+  border-radius: 7px;
+  padding: 6px 9px;
+  gap: 2px;
+}
+.territory-stat-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+.territory-stat-label {
+  font-size: 10px;
+  color: var(--white-dim);
+}
+.territory-stat-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white-main);
+}
+
+@media (max-width: 600px) {
+  .territory-panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================
+   ECONOMY SYSTEM STYLES
+   ============================ */
+
+/* Tab bar */
+.econ-tab-btn {
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--white-dim);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.econ-tab-btn:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+.econ-tab-btn.active {
+  background: rgba(250,204,21,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Section wrapper */
+.econ-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.econ-section-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Stat grid */
+.econ-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.econ-stat-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+}
+.econ-stat-icon { font-size: 20px; margin-bottom: 4px; }
+.econ-stat-val  { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+.econ-stat-lbl  { font-size: 10px; color: var(--white-dim); }
+
+/* Market event badge */
+.econ-market-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Table */
+.econ-table-wrap { overflow-x: auto; }
+.econ-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.econ-table th {
+  background: rgba(255,255,255,0.05);
+  color: var(--white-dim);
+  padding: 7px 10px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.econ-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  white-space: nowrap;
+}
+.econ-table tr.econ-top-row td { background: rgba(250,204,21,0.04); }
+
+/* NPC top row */
+.econ-topnpc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.03);
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+.econ-topnpc-rank { font-size: 14px; min-width: 28px; }
+.econ-topnpc-name { font-weight: 600; font-size: 13px; min-width: 100px; }
+.econ-topnpc-realm { font-size: 11px; min-width: 80px; }
+.econ-topnpc-val  { font-size: 12px; font-weight: 600; }
+
+/* Sect grid */
+.econ-sect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.econ-sect-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.econ-sect-name { font-weight: 700; font-size: 13px; color: var(--gold); margin-bottom: 4px; }
+.econ-sect-meta { font-size: 11px; color: var(--white-dim); margin-bottom: 8px; }
+.econ-res-row   { display: flex; gap: 6px; flex-wrap: wrap; }
+.econ-res-chip  {
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Country grid */
+.econ-country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.econ-country-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.econ-country-name { font-weight: 700; font-size: 13px; color: var(--white); margin-bottom: 4px; }
+.econ-country-meta { font-size: 11px; color: var(--white-dim); margin-bottom: 8px; }
+
+.econ-empty {
+  text-align: center;
+  color: var(--white-dim);
+  padding: 40px;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .econ-stat-grid    { grid-template-columns: 1fr 1fr; }
+  .econ-sect-grid    { grid-template-columns: 1fr; }
+  .econ-country-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================
+   PLAYER AVATAR SYSTEM STYLES
+   ============================ */
+
+/* Nav button highlight */
+.player-nav-btn { border-color: rgba(250,204,21,0.5) !important; }
+.player-nav-btn.active { background: rgba(250,204,21,0.15) !important; }
+
+/* Panel layout */
+.player-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 900px) { .player-panel-grid { grid-template-columns: 1fr; } }
+
+/* Main player card */
+.player-main-card { grid-column: span 1; }
+
+/* Player header */
+.player-header {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.player-avatar {
+  font-size: 2.4em;
+  background: rgba(250,204,21,0.1);
+  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(250,204,21,0.25);
+}
+.player-header-info { flex: 1; min-width: 0; }
+.player-name {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--gold);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.player-realm-label {
+  font-size: 12px;
+  color: #c084fc;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.player-meta { font-size: 11px; color: var(--white-dim); line-height: 1.5; }
+.player-badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.player-badge.tianJiao { background: rgba(250,204,21,0.15); color: var(--gold); border: 1px solid rgba(250,204,21,0.3); }
+.player-badge.title    { background: rgba(192,132,252,0.15); color: #c084fc; border: 1px solid rgba(192,132,252,0.3); }
+
+/* HP/MP/EXP bars */
+.player-bars { margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
+.player-bar-row { display: flex; align-items: center; gap: 8px; }
+.bar-label { font-size: 11px; width: 28px; flex-shrink: 0; }
+.bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.hp-fill  { background: linear-gradient(90deg, #4ade80, #22c55e); }
+.mp-fill  { background: linear-gradient(90deg, #60a5fa, #3b82f6); }
+.exp-fill { background: linear-gradient(90deg, #facc15, #f59e0b); }
+.bar-val { font-size: 10px; color: var(--white-dim); width: 70px; text-align: right; flex-shrink: 0; }
+
+/* Stats grid */
+.player-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.pstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 6px 4px;
+}
+.pstat-icon { font-size: 14px; }
+.pstat-val  { font-size: 13px; font-weight: 700; color: var(--white); }
+.pstat-label{ font-size: 9px; color: var(--white-dim); }
+
+/* Secondary stats */
+.player-secondary-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.player-resources {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--white-dim);
+  flex-wrap: wrap;
+}
+
+/* Actions */
+.player-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.player-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.player-action-btn:hover { background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.4); }
+.player-action-btn > :first-child { font-size: 20px; }
+.player-action-btn.cultivate:hover { background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.4); }
+.player-action-btn.challenge:hover { background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.4); }
+.player-action-btn.gather:hover    { background: rgba(74,222,128,0.1);  border-color: rgba(74,222,128,0.4); }
+
+/* Equipment */
+.player-equip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.player-equip-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 11px;
+  text-align: center;
+}
+.player-equip-slot.equipped { border-color: rgba(250,204,21,0.35); background: rgba(250,204,21,0.06); }
+.player-equip-slot > :first-child { font-size: 20px; }
+.equip-name { color: var(--white); font-size: 10px; word-break: break-all; }
+
+/* Inventory */
+.player-inventory { display: flex; flex-wrap: wrap; gap: 6px; }
+.inv-item {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  white-space: nowrap;
+}
+.inv-item.rarity-uncommon { border-color: rgba(74,222,128,0.4); }
+.inv-item.rarity-rare     { border-color: rgba(96,165,250,0.4); }
+.inv-item.rarity-epic     { border-color: rgba(192,132,252,0.4); }
+.inv-item.rarity-legendary{ border-color: rgba(250,204,21,0.5); color: var(--gold); }
+
+/* Skill tags */
+.skill-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(192,132,252,0.1);
+  border: 1px solid rgba(192,132,252,0.3);
+  color: #c084fc;
+}
+
+/* Action log */
+.player-action-log { display: flex; flex-direction: column; gap: 3px; }
+.player-action-log-item {
+  font-size: 11px;
+  color: var(--white-dim);
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Biography */
+.player-biography { display: flex; flex-direction: column; gap: 5px; }
+.player-bio-item {
+  font-size: 12px;
+  color: var(--white-dim);
+  display: flex;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.5;
+}
+
+/* Creation Modal */
+.player-creation-modal { padding: 4px; }
+.player-form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.player-form-group { flex: 1; min-width: 120px; }
+.player-label {
+  display: block;
+  font-size: 11px;
+  color: var(--white-dim);
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Root cards */
+.player-root-card {
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-align: center;
+}
+.player-root-card:hover { border-color: rgba(250,204,21,0.35); }
+.player-root-card.selected { border-color: var(--gold) !important; background: rgba(250,204,21,0.08) !important; }
+.player-root-card.rarity-rare     { border-color: rgba(96,165,250,0.3); }
+.player-root-card.rarity-epic     { border-color: rgba(192,132,252,0.35); }
+.player-root-card.rarity-legendary{ border-color: rgba(250,204,21,0.4); }
+.prc-name  { font-weight: 700; font-size: 13px; color: var(--white); }
+.prc-power { font-size: 10px; color: var(--gold-dim); margin: 3px 0; }
+.prc-rarity{ font-size: 10px; color: var(--white-dim); margin-bottom: 3px; }
+.prc-desc  { font-size: 10px; color: var(--white-dim); line-height: 1.4; }
+
+/* Stats preview */
+.player-stats-preview {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+}
+
+/* Action choice (move/sect modal) */
+.player-action-choice {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: background 0.2s;
+}
+.player-action-choice:hover { background: rgba(250,204,21,0.08); border-color: rgba(250,204,21,0.3); }
+
+/* Notification */
+.player-notif-area {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20,20,30,0.95);
+  border: 1px solid rgba(250,204,21,0.35);
+  color: var(--white);
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  z-index: 9999;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  opacity: 0;
+  max-width: 80vw;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ===========================
+   DUNGEON SYSTEM STYLES — V7
+   =========================== */
+
+.dg-card {
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.dg-card:hover {
+  box-shadow: 0 4px 24px rgba(250,204,21,0.10);
+  transform: translateY(-1px);
+}
+.dg-diff-easy    { color: #4ade80; }
+.dg-diff-medium  { color: #facc15; }
+.dg-diff-hard    { color: #fb923c; }
+.dg-diff-extreme { color: #f87171; }
+
+/* Dungeon ranking table striped */
+#dg-ranking table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
+
+/* Secret realm quick row hover */
+#dg-secretrealm-quick > div:hover {
+  background: rgba(167,139,250,0.07);
+}
+
+/* ===================================================
+   WORLD PANEL — ENHANCED GLOW UI (v10 ticker)
+   =================================================== */
+
+/* Stats grid */
+.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.stat-item {
+  position: relative;
+  background: linear-gradient(135deg, rgba(250,204,21,0.05) 0%, rgba(10,12,20,0.75) 100%);
+  border: 1px solid rgba(250,204,21,0.16);
+  border-radius: 10px; padding: 12px 8px; text-align: center;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  cursor: default;
+}
+.stat-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 40%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(250,204,21,0.1) 0%, transparent 80%);
+  pointer-events: none;
+}
+.stat-item:hover {
+  border-color: rgba(250,204,21,0.5);
+  box-shadow: 0 0 20px rgba(250,204,21,0.14), inset 0 0 14px rgba(250,204,21,0.05);
+  transform: translateY(-2px);
+}
+.s-label { font-size:10px; color:var(--white-dim); margin-bottom:4px; letter-spacing:0.5px; }
+.s-value {
+  font-size: 16px; font-weight: 700; color: var(--white-main);
+  word-break: break-all;
+  text-shadow: 0 0 10px rgba(250,204,21,0.2);
+}
+@keyframes statPulse {
+  0%,100% { text-shadow: 0 0 8px rgba(250,204,21,0.15); }
+  50%      { text-shadow: 0 0 20px rgba(250,204,21,0.45); }
+}
+.stat-item:hover .s-value { animation: statPulse 2s ease infinite; }
+
+/* Regions grid */
+.regions-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.region-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(10,12,20,0.65) 100%);
+  border: 1px solid rgba(250,204,21,0.13);
+  border-radius: 10px; padding: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+.region-box::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(250,204,21,0.5), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.region-box:hover {
+  border-color: rgba(250,204,21,0.4);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(250,204,21,0.08);
+  transform: translateY(-2px);
+}
+.region-box:hover::after { opacity: 1; }
+.region-box h3 {
+  font-size: 13px; color: var(--gold); margin-bottom: 7px;
+  font-family: var(--font-cjk),serif;
+  text-shadow: 0 0 14px rgba(250,204,21,0.45);
+  letter-spacing: 1px;
+}
+.region-box p  { font-size:11px; color:var(--white-dim); margin-bottom:4px; }
+.region-box p span { color: var(--white-main); }
+
+/* World panel cards */
+#panel-world .card {
+  background: linear-gradient(160deg, rgba(22,18,35,0.97) 0%, rgba(13,15,22,0.99) 100%);
+  border: 1px solid rgba(250,204,21,0.15);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(250,204,21,0.06);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+#panel-world .card:hover {
+  box-shadow: 0 6px 36px rgba(0,0,0,0.5), 0 0 0 1px rgba(250,204,21,0.12);
+  border-color: rgba(250,204,21,0.22);
+}
+#panel-world .card-title {
+  font-size: 14px; letter-spacing: 2px;
+  text-shadow: 0 0 16px rgba(250,204,21,0.4);
+  border-bottom: 1px solid rgba(250,204,21,0.2);
+  padding-bottom: 10px; margin-bottom: 16px;
+}
+
+/* Summon button extra glow */
+#panel-world .btn-primary:hover {
+  box-shadow: 0 0 22px rgba(250,204,21,0.35), 0 0 44px rgba(250,204,21,0.12);
+}
+
+
+/* ================================================================
+   ECONOMY ENGINE V1 — CSS
+   ================================================================ */
+
+/* Tab bar */
+.eng-tab-btn, .econ-tab-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--white-dim);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.eng-tab-btn.active, .econ-tab-btn.active {
+  background: rgba(250,204,21,0.15);
+  border-color: rgba(250,204,21,0.5);
+  color: #facc15;
+  font-weight: 700;
+}
+.eng-tab-btn:hover, .econ-tab-btn:hover {
+  border-color: rgba(250,204,21,0.3);
+  color: var(--white);
+}
+
+/* Stat grid */
+.econ-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.econ-stat-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align: center;
+}
+.econ-stat-icon { font-size: 18px; margin-bottom: 4px; }
+.econ-stat-val  { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+.econ-stat-lbl  { font-size: 10px; color: var(--white-dim); margin-top: 2px; }
+
+/* Section */
+.econ-section { margin-top: 8px; }
+.econ-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(250,204,21,0.15);
+}
+
+/* Tables */
+.econ-table-wrap { overflow-x: auto; }
+.econ-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.econ-table th {
+  padding: 6px 8px;
+  text-align: left;
+  color: var(--white-dim);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-weight: 600;
+  font-size: 11px;
+}
+.econ-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.econ-table tr.econ-top-row td { background: rgba(250,204,21,0.05); }
+.econ-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* Sect / Country card grids */
+.econ-sect-grid, .econ-country-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.econ-sect-card, .econ-country-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 12px;
+}
+.econ-sect-name, .econ-country-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.econ-sect-meta, .econ-country-meta {
+  font-size: 11px;
+  color: var(--white-dim);
+  margin-bottom: 6px;
+}
+.econ-res-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+.econ-res-chip {
+  background: rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--white);
+}
+
+/* Empty / market badge */
+.econ-empty {
+  color: var(--white-dim);
+  font-size: 12px;
+  text-align: center;
+  padding: 30px;
+  opacity: 0.6;
+}
+.econ-market-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Top NPC row */
+.econ-topnpc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 3px;
+  background: rgba(255,255,255,0.02);
+}
+.econ-topnpc-rank { width: 28px; font-size: 14px; }
+.econ-topnpc-name { flex: 1; font-weight: 600; }
+.econ-topnpc-realm { font-size: 11px; }
+.econ-topnpc-val { white-space: nowrap; }
+
+@media (max-width: 600px) {
+  .econ-stat-grid { grid-template-columns: repeat(2,1fr); }
+  .econ-sect-grid, .econ-country-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   HERO & LEGEND ENGINE V1
+   Styles for the "📖 ANH HÙNG & HUYỀN THOẠI" panel are injected
+   dynamically at runtime by heroLegendEngine.js (hle- prefixed
+   classes: .hle-wrap, .hle-stats-row, .hle-tabs, .hle-list,
+   .hle-row, .hle-records, .hle-mem-row, etc.)
+   This is kept consistent with the convention used by
+   dynastyEngine.js / religionEngine.js / ageEngine.js, which
+   also inject their own scoped <style> blocks on load.
+   ============================================================ */

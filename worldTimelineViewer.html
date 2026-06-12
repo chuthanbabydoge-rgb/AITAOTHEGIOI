@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📜 World Timeline Viewer — Creator God V6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WORLD TIMELINE VIEWER — Creator God V6 Phase Next
+   READ-ONLY observer. No save mutation.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #050709; color: #e8e8f0; font-family: 'Noto Serif', 'Noto Serif SC', serif; overflow: hidden; }
+
+:root {
+  --bg0: #050709;
+  --bg1: #0a0d12;
+  --bg2: #0f1520;
+  --bg3: #161e2e;
+  --gold: #facc15;
+  --gold-dim: #b8920e;
+  --gold-faint: rgba(250,204,21,0.07);
+  --jade: #4ade80;
+  --blue: #60a5fa;
+  --purple: #c084fc;
+  --red: #f87171;
+  --orange: #fb923c;
+  --cyan: #22d3ee;
+  --pink: #f472b6;
+  --white: #e8e8f0;
+  --white-dim: rgba(232,232,240,0.5);
+  --border: rgba(250,204,21,0.14);
+  --font-h: 'Cinzel Decorative', serif;
+  --font-t: 'Cinzel', serif;
+}
+
+/* ─── SCROLLBARS ─── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(250,204,21,0.2); border-radius: 2px; }
+
+/* ─── LAYOUT ─── */
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* ─── TOPBAR ─── */
+#topbar {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 20px;
+  height: 56px;
+  background: linear-gradient(90deg, rgba(5,7,9,0.98), rgba(10,13,18,0.97));
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 100;
+}
+#topbar-title {
+  font-family: var(--font-h); font-size: 14px; color: var(--gold);
+  letter-spacing: 0.08em; white-space: nowrap; flex-shrink: 0;
+}
+#topbar-year {
+  font-family: var(--font-t); font-size: 22px; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.04em; flex-shrink: 0;
+}
+#topbar-year span { font-size: 13px; color: var(--white-dim); font-weight: 400; margin-left: 4px; }
+#topbar-stats { display: flex; gap: 12px; flex-shrink: 0; }
+.tstat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--white-dim); }
+.tstat-val { color: var(--white); font-weight: 600; }
+#topbar-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.top-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 4px; border: 1px solid var(--border);
+  background: var(--gold-faint); color: var(--white-dim); font-size: 12px;
+  cursor: pointer; font-family: var(--font-t); transition: all 0.15s;
+}
+.top-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(250,204,21,0.12); }
+.top-btn.active { border-color: var(--gold); color: var(--gold); }
+#no-save-msg {
+  position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px; background: var(--bg0); z-index: 999;
+}
+#no-save-msg h2 { font-family: var(--font-h); font-size: 20px; color: var(--gold); }
+#no-save-msg p { color: var(--white-dim); font-size: 14px; text-align: center; max-width: 400px; line-height: 1.7; }
+
+/* ─── MAIN CONTENT ─── */
+#main { display: flex; flex: 1; overflow: hidden; }
+
+/* ─── LEFT PANEL: Epoch Nav ─── */
+#epoch-panel {
+  flex-shrink: 0; width: 180px;
+  background: var(--bg1);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+#epoch-panel-title {
+  font-family: var(--font-t); font-size: 10px; color: var(--gold-dim);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 10px 14px 6px; border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+#epoch-list { flex: 1; overflow-y: auto; padding: 8px 0; }
+.epoch-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; cursor: pointer;
+  transition: all 0.15s; border-left: 2px solid transparent;
+}
+.epoch-item:hover { background: var(--bg2); }
+.epoch-item.active { background: var(--bg3); border-left-color: var(--gold); }
+.epoch-icon { font-size: 16px; flex-shrink: 0; }
+.epoch-label { font-family: var(--font-t); font-size: 11px; color: var(--white-dim); }
+.epoch-year { font-size: 10px; color: var(--gold-dim); margin-top: 1px; }
+.epoch-item.active .epoch-label { color: var(--gold); }
+
+/* ─── CENTER PANEL: Timeline ─── */
+#timeline-panel {
+  flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0;
+}
+
+/* Time Scrubber */
+#scrubber-bar {
+  flex-shrink: 0; padding: 10px 18px 8px;
+  background: var(--bg1); border-bottom: 1px solid var(--border);
+}
+#scrubber-label {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--white-dim); margin-bottom: 6px;
+  font-family: var(--font-t);
+}
+#scrubber-label span { color: var(--gold); font-weight: 600; }
+#scrubber {
+  -webkit-appearance: none; width: 100%; height: 4px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--pct, 100%), rgba(250,204,21,0.15) var(--pct, 100%));
+  border-radius: 2px; outline: none; cursor: pointer;
+}
+#scrubber::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px;
+  background: var(--gold); border-radius: 50%;
+  box-shadow: 0 0 8px rgba(250,204,21,0.6); cursor: pointer;
+}
+#scrubber-ticks {
+  display: flex; justify-content: space-between;
+  margin-top: 4px; padding: 0 1px;
+}
+.scrubber-tick { font-size: 9px; color: rgba(250,204,21,0.35); font-family: var(--font-t); }
+
+/* Filter Bar */
+#filter-bar {
+  flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; background: var(--bg1); border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.filter-chip {
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 9px; border-radius: 12px; border: 1px solid var(--border);
+  font-size: 11px; color: var(--white-dim); cursor: pointer;
+  transition: all 0.15s; white-space: nowrap; background: transparent;
+}
+.filter-chip:hover { border-color: rgba(250,204,21,0.3); color: var(--white); }
+.filter-chip.active { color: #000; font-weight: 600; border-color: transparent; }
+.filter-chip[data-type="war"].active         { background: var(--red); }
+.filter-chip[data-type="dynasty"].active     { background: var(--gold); }
+.filter-chip[data-type="nation_war"].active  { background: var(--orange); }
+.filter-chip[data-type="empire"].active      { background: var(--purple); }
+.filter-chip[data-type="boss"].active        { background: var(--cyan); }
+.filter-chip[data-type="religion"].active    { background: var(--pink); }
+.filter-chip[data-type="creator"].active     { background: var(--jade); }
+.filter-chip[data-type="all"].active         { background: var(--gold); }
+
+/* Timeline Events */
+#events-container { flex: 1; overflow-y: auto; padding: 16px 18px; }
+.timeline-group { margin-bottom: 28px; }
+.tg-year {
+  font-family: var(--font-h); font-size: 13px; color: var(--gold);
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+.tg-year-badge {
+  background: var(--gold); color: #000; font-family: var(--font-t);
+  font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 10px;
+}
+.event-entry {
+  display: flex; gap: 10px; padding: 8px 10px; border-radius: 6px;
+  margin-bottom: 6px; cursor: pointer; transition: background 0.12s;
+  border: 1px solid transparent; position: relative;
+}
+.event-entry:hover { background: var(--bg2); border-color: var(--border); }
+.event-entry.selected { background: var(--bg3); border-color: rgba(250,204,21,0.3); }
+.ev-icon { font-size: 16px; flex-shrink: 0; padding-top: 1px; }
+.ev-body { flex: 1; min-width: 0; }
+.ev-type {
+  font-size: 9px; font-family: var(--font-t); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 2px;
+}
+.ev-desc { font-size: 13px; color: var(--white); line-height: 1.5; }
+.ev-extra { font-size: 11px; color: var(--white-dim); margin-top: 3px; }
+.ev-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 5px; }
+.ev-tag {
+  font-size: 9px; padding: 1px 6px; border-radius: 8px;
+  border: 1px solid; font-family: var(--font-t); letter-spacing: 0.08em;
+}
+#empty-msg { text-align: center; padding: 60px 20px; color: var(--white-dim); font-size: 14px; }
+
+/* ─── RIGHT PANEL: Map + Detail ─── */
+#right-panel {
+  flex-shrink: 0; width: 300px;
+  background: var(--bg1); border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* Map section */
+#map-section { flex-shrink: 0; }
+#map-header {
+  font-family: var(--font-t); font-size: 10px; color: var(--gold-dim);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 10px 14px 6px; border-bottom: 1px solid var(--border);
+}
+#world-map {
+  padding: 12px; height: 200px; position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 60%, rgba(14,22,38,1) 0%, rgba(5,7,9,1) 100%);
+}
+#map-canvas { width: 100%; height: 100%; }
+
+/* Era indicator */
+#era-indicator {
+  padding: 8px 14px; border-bottom: 1px solid var(--border);
+  background: var(--gold-faint);
+}
+.era-label { font-size: 9px; color: var(--gold-dim); font-family: var(--font-t); letter-spacing: 0.1em; text-transform: uppercase; }
+.era-name { font-size: 14px; color: var(--gold); font-family: var(--font-t); font-weight: 600; margin-top: 2px; }
+.era-desc { font-size: 11px; color: var(--white-dim); margin-top: 2px; line-height: 1.5; }
+
+/* Detail / Legend section */
+#detail-section { flex: 1; overflow-y: auto; }
+#detail-header {
+  font-family: var(--font-t); font-size: 10px; color: var(--gold-dim);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 10px 14px 6px; border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--bg1); z-index: 10;
+}
+#detail-content { padding: 10px 14px; }
+.detail-block { margin-bottom: 16px; }
+.detail-block-title {
+  font-family: var(--font-t); font-size: 10px; color: var(--gold-dim);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 6px; padding-bottom: 3px; border-bottom: 1px solid rgba(250,204,21,0.08);
+}
+.detail-row {
+  display: flex; align-items: flex-start; gap: 7px;
+  padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+}
+.detail-row:last-child { border-bottom: none; }
+.dr-icon { font-size: 14px; flex-shrink: 0; }
+.dr-label { color: var(--white-dim); flex-shrink: 0; min-width: 60px; font-size: 11px; }
+.dr-val { color: var(--white); flex: 1; line-height: 1.45; }
+.legend-item { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 11px; color: var(--white-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* Country/Dynasty/Empire cards in right panel */
+.entity-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 10px; margin-bottom: 8px;
+}
+.entity-card-name { font-family: var(--font-t); font-size: 12px; color: var(--gold); font-weight: 600; margin-bottom: 4px; }
+.entity-card-rows { display: flex; flex-direction: column; gap: 2px; }
+.entity-row { font-size: 11px; color: var(--white-dim); display: flex; gap: 5px; }
+.entity-row span { color: var(--white); }
+
+/* Boss bar */
+.boss-card {
+  background: linear-gradient(135deg, rgba(192,132,252,0.1), rgba(96,165,250,0.05));
+  border: 1px solid rgba(192,132,252,0.25); border-radius: 6px;
+  padding: 8px 10px; margin-bottom: 8px;
+}
+.boss-card-name { font-family: var(--font-t); font-size: 13px; color: var(--purple); font-weight: 700; margin-bottom: 3px; }
+
+/* Highlight pulse for active epoch year */
+@keyframes pulse-gold {
+  0%,100% { box-shadow: 0 0 0 0 rgba(250,204,21,0); }
+  50%      { box-shadow: 0 0 0 6px rgba(250,204,21,0.15); }
+}
+.epoch-item.active { animation: pulse-gold 2s ease-in-out infinite; }
+
+/* Export button */
+#export-btn {
+  display: flex; align-items: center; gap: 6px;
+  margin: 12px 14px 8px;
+  padding: 7px 12px; border-radius: 5px;
+  background: rgba(250,204,21,0.08); border: 1px solid var(--border);
+  color: var(--white-dim); font-size: 12px; font-family: var(--font-t);
+  cursor: pointer; transition: all 0.15s; width: calc(100% - 28px);
+  justify-content: center; flex-shrink: 0;
+}
+#export-btn:hover { background: rgba(250,204,21,0.14); border-color: var(--gold); color: var(--gold); }
+
+/* Toast */
+#toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: rgba(10,13,18,0.97); border: 1px solid var(--gold);
+  color: var(--gold); font-family: var(--font-t); font-size: 13px;
+  padding: 8px 20px; border-radius: 6px;
+  opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 999;
+  white-space: nowrap;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Stars bg */
+#stars {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.star { position: absolute; background: white; border-radius: 50%; }
+#app { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="no-save-msg" style="display:none;">
+  <div style="font-size:48px">📜</div>
+  <h2>Không Tìm Thấy Dữ Liệu</h2>
+  <p>Chưa có dữ liệu game nào được lưu trong trình duyệt này.<br>Hãy chơi Creator God V6 trước, sau đó mở lại trang này để xem lịch sử thế giới.</p>
+  <p style="font-size:12px; margin-top:8px;">Cần mở <code style="color:var(--gold)">worldTimelineViewer.html</code> trong cùng trình duyệt với game chính.</p>
+</div>
+
+<div id="app">
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <div id="topbar-title">📜 World Timeline Viewer</div>
+    <div id="topbar-year">Year <span id="tb-year">—</span> <span id="tb-age-label">Kỷ Nguyên Khởi Đầu</span></div>
+    <div id="topbar-stats">
+      <div class="tstat">⚔️ Wars: <span class="tstat-val" id="stat-wars">0</span></div>
+      <div class="tstat">👑 Dynasties: <span class="tstat-val" id="stat-dynasties">0</span></div>
+      <div class="tstat">🌍 Nations: <span class="tstat-val" id="stat-nations">0</span></div>
+      <div class="tstat">🐉 Bosses: <span class="tstat-val" id="stat-bosses">0</span></div>
+      <div class="tstat">⛩ Religions: <span class="tstat-val" id="stat-religions">0</span></div>
+    </div>
+    <div id="topbar-right">
+      <button class="top-btn" onclick="refreshData()">🔄 Refresh</button>
+      <button class="top-btn" id="btn-all-events" onclick="toggleShowAll()">📋 All Events</button>
+    </div>
+  </div>
+
+  <div id="main">
+    <!-- LEFT: Epoch Nav -->
+    <div id="epoch-panel">
+      <div class="epoch-panel-title" style="font-family:var(--font-t);font-size:10px;color:var(--gold-dim);letter-spacing:.15em;text-transform:uppercase;padding:10px 14px 6px;border-bottom:1px solid var(--border);flex-shrink:0;">⌛ EPOCHS</div>
+      <div id="epoch-list"></div>
+    </div>
+
+    <!-- CENTER: Timeline -->
+    <div id="timeline-panel">
+      <!-- Scrubber -->
+      <div id="scrubber-bar">
+        <div id="scrubber-label">
+          <span>⏳ Time Scrubber</span>
+          <span>Year <span id="scrub-display">1</span> / <span id="scrub-max">1</span></span>
+        </div>
+        <input type="range" id="scrubber" min="1" max="5000" value="5000" oninput="onScrub(this.value)">
+        <div id="scrubber-ticks"></div>
+      </div>
+
+      <!-- Filter -->
+      <div id="filter-bar">
+        <button class="filter-chip active" data-type="all" onclick="setFilter('all', this)">🌐 All</button>
+        <button class="filter-chip" data-type="war" onclick="setFilter('war', this)">⚔️ Wars</button>
+        <button class="filter-chip" data-type="dynasty" onclick="setFilter('dynasty', this)">👑 Dynasty</button>
+        <button class="filter-chip" data-type="nation_war" onclick="setFilter('nation_war', this)">🏴 Nations</button>
+        <button class="filter-chip" data-type="empire" onclick="setFilter('empire', this)">🌏 Empires</button>
+        <button class="filter-chip" data-type="boss" onclick="setFilter('boss', this)">🐉 Bosses</button>
+        <button class="filter-chip" data-type="religion" onclick="setFilter('religion', this)">⛩ Religions</button>
+        <button class="filter-chip" data-type="creator" onclick="setFilter('creator', this)">✨ Creator</button>
+      </div>
+
+      <!-- Events -->
+      <div id="events-container">
+        <div id="empty-msg">Đang tải lịch sử thế giới…</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Map + Detail -->
+    <div id="right-panel">
+      <div id="map-section">
+        <div id="map-header">🗺 World Map</div>
+        <div id="world-map">
+          <canvas id="map-canvas"></canvas>
+        </div>
+      </div>
+
+      <div id="era-indicator">
+        <div class="era-label">Current Era</div>
+        <div class="era-name" id="era-name">—</div>
+        <div class="era-desc" id="era-desc">—</div>
+      </div>
+
+      <div id="detail-section">
+        <div id="detail-header">📖 World State</div>
+        <div id="detail-content">
+          <div id="detail-nations-block" class="detail-block">
+            <div class="detail-block-title">🌍 Nations & Empires</div>
+            <div id="detail-nations"></div>
+          </div>
+          <div id="detail-dynasty-block" class="detail-block">
+            <div class="detail-block-title">👑 Active Dynasties</div>
+            <div id="detail-dynasties"></div>
+          </div>
+          <div id="detail-boss-block" class="detail-block">
+            <div class="detail-block-title">🐉 Bosses</div>
+            <div id="detail-bosses"></div>
+          </div>
+          <div id="detail-religion-block" class="detail-block">
+            <div class="detail-block-title">⛩ Religions</div>
+            <div id="detail-religions"></div>
+          </div>
+          <div class="detail-block">
+            <div class="detail-block-title">🎨 Legend</div>
+            <div id="legend-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <button id="export-btn" onclick="exportTimeline()">⬇ Export Timeline JSON</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+//  WORLD TIMELINE VIEWER — Creator God V6
+//  READ-ONLY. Does NOT modify localStorage.
+// ============================================================
+
+'use strict';
+
+// ── DATA ──────────────────────────────────────────────────
+let G = {
+  year:          1,
+  maxYear:       1,
+  worldHistory:  [],
+  warsHistory:   [],
+  warsActive:    [],
+  dynastyData:   {},
+  dynasties:     {},
+  countries:     [],
+  religions:     [],
+  holyWars:      [],
+  bosses:        [],
+  creatorHistory:[],
+  hof:           [],
+  storyEvents:   [],
+  storyChapters: [],
+  worldEvents:   [],
+  timeline:      [],
+  sects:         [],
+  warStats:      {},
+  world:         null,
+};
+
+// Scrubber state
+let scrubYear    = null; // null = show all
+let activeFilter = 'all';
+let showAllMode  = false;
+let selectedEvId = null;
+
+// ── EPOCH DEFINITIONS ─────────────────────────────────────
+const EPOCHS = [
+  { id:'e1',  label:'Dawn',       icon:'🌄', yearMin:1,    yearMax:99,   desc:'The First Hundred Years' },
+  { id:'e2',  label:'Ancient',    icon:'🏺', yearMin:100,  yearMax:499,  desc:'Year 100 – 499' },
+  { id:'e3',  label:'Classical',  icon:'⚔️', yearMin:500,  yearMax:999,  desc:'Year 500 – 999' },
+  { id:'e4',  label:'Medieval',   icon:'🏰', yearMin:1000, yearMax:4999, desc:'Year 1000 – 4999' },
+  { id:'e5',  label:'Celestial',  icon:'🌌', yearMin:5000, yearMax:Infinity, desc:'Year 5000+' },
+];
+
+// ── EVENT META ─────────────────────────────────────────────
+const EV_META = {
+  war:          { icon:'⚔️',  color:'#f87171', label:'Sect War',        filter:'war'     },
+  nation_war:   { icon:'🏴',  color:'#fb923c', label:'Nation War',      filter:'nation_war' },
+  dynasty:      { icon:'👑',  color:'#facc15', label:'Dynasty',         filter:'dynasty' },
+  civilization: { icon:'🌟',  color:'#4ade80', label:'Civilization',    filter:'dynasty' },
+  empire:       { icon:'🌏',  color:'#c084fc', label:'Empire',          filter:'empire'  },
+  boss:         { icon:'🐉',  color:'#22d3ee', label:'Boss Event',      filter:'boss'    },
+  religion:     { icon:'⛩',  color:'#f472b6', label:'Religion',        filter:'religion'},
+  heavenly:     { icon:'🌌',  color:'#60a5fa', label:'Heavenly Event',  filter:'creator' },
+  creator:      { icon:'✨',  color:'#4ade80', label:'Creator God',     filter:'creator' },
+  breakthrough: { icon:'💫',  color:'#fde047', label:'Breakthrough',    filter:'all'     },
+  marriage:     { icon:'💑',  color:'#f472b6', label:'Marriage',        filter:'all'     },
+  death:        { icon:'☠️',  color:'#94a3b8', label:'Death',           filter:'all'     },
+  sect:         { icon:'🏯',  color:'#fb923c', label:'Sect Founded',    filter:'all'     },
+  era:          { icon:'🌐',  color:'#67e8f9', label:'New Era',         filter:'all'     },
+  ascend:       { icon:'🌠',  color:'#fde68a', label:'Ascension',       filter:'all'     },
+  birth:        { icon:'🌱',  color:'#86efac', label:'Birth',           filter:'all'     },
+  realm:        { icon:'🌀',  color:'#a78bfa', label:'Secret Realm',    filter:'all'     },
+};
+
+// ── LOAD DATA FROM LOCALSTORAGE ────────────────────────────
+function loadData() {
+  try {
+    G.year         = parseInt(localStorage.getItem('cgv6_year'))          || 1;
+    G.worldHistory = JSON.parse(localStorage.getItem('cgv6_worldHistory')) || [];
+    G.warsHistory  = JSON.parse(localStorage.getItem('cgv6_warEngine'))?.warsHistory || [];
+    G.warsActive   = JSON.parse(localStorage.getItem('cgv6_warEngine'))?.warsActive  || [];
+    G.warStats     = JSON.parse(localStorage.getItem('cgv6_warEngine'))?.warStats     || {};
+    G.dynastyData  = JSON.parse(localStorage.getItem('cgv6_dynastyEngine'))           || {};
+    G.dynasties    = JSON.parse(localStorage.getItem('cgv6_dynasties'))               || {};
+    G.countries    = JSON.parse(localStorage.getItem('cgv6_countries'))               || [];
+    G.religions    = JSON.parse(localStorage.getItem('cgv6_religions'))               || [];
+    G.holyWars     = JSON.parse(localStorage.getItem('cgv6_holyWars'))                || [];
+    G.bosses       = JSON.parse(localStorage.getItem('cgv6_bosses'))                  || [];
+    G.creatorHistory = JSON.parse(localStorage.getItem('cgv6_creatorGodHistory'))     || [];
+    G.hof          = JSON.parse(localStorage.getItem('cgv6_hof'))                     || [];
+    G.storyEvents  = JSON.parse(localStorage.getItem('cgv6_worldStory'))              || [];
+    G.storyChapters= JSON.parse(localStorage.getItem('cgv6_storyChapters'))           || [];
+    G.worldEvents  = JSON.parse(localStorage.getItem('cgv6_worldEvents'))             || [];
+    G.timeline     = JSON.parse(localStorage.getItem('cgv6_timeline'))                || [];
+    G.sects        = JSON.parse(localStorage.getItem('cgv6_sects'))                   || [];
+    G.world        = JSON.parse(localStorage.getItem('cgv6_world'))                   || null;
+    return true;
+  } catch(e) {
+    console.error('Load error:', e);
+    return false;
+  }
+}
+
+// Build unified event stream from all sources
+function buildAllEvents() {
+  const evs = [];
+
+  // worldHistory (primary)
+  for (const e of G.worldHistory) {
+    evs.push({
+      id: 'wh_' + e.id,
+      year: e.year || 1,
+      type: e.eventType || 'civilization',
+      desc: e.description || '',
+      extra: e,
+      src: 'world',
+    });
+  }
+
+  // Creator God interventions
+  for (const e of G.creatorHistory) {
+    evs.push({
+      id: 'cg_' + e.id,
+      year: e.year || 1,
+      type: 'creator',
+      desc: `[${e.action}] ${e.targetName}: ${e.detail || ''}`,
+      extra: e,
+      src: 'creator',
+    });
+  }
+
+  // War history from warEngine
+  for (const w of G.warsHistory) {
+    if (!G.worldHistory.find(wh => wh.description && wh.description.includes(w.attacker))) {
+      evs.push({
+        id: 'war_' + w.id,
+        year: w.startYear || 1,
+        type: 'nation_war',
+        desc: `⚔️ ${w.attacker} vs ${w.defender} — ${w.status || 'ended'}`,
+        extra: w,
+        src: 'war',
+      });
+    }
+  }
+
+  // Religion founding events
+  for (const r of G.religions) {
+    const yrNum = r.foundYear || 1;
+    if (!evs.find(e => e.year === yrNum && e.type === 'religion' && e.desc.includes(r.name))) {
+      evs.push({
+        id: 'rel_' + r.id,
+        year: yrNum,
+        type: 'religion',
+        desc: `${r.icon || '⛩'} ${r.name} được sáng lập bởi ${r.founderName || '?'} tại ${r.holyCity || '?'}`,
+        extra: r,
+        src: 'religion',
+      });
+    }
+  }
+
+  // Holy Wars
+  for (const hw of G.holyWars || []) {
+    evs.push({
+      id: 'hw_' + hw.id,
+      year: hw.startYear || 1,
+      type: 'religion',
+      desc: `🕊 Thánh Chiến: ${hw.attacker} vs ${hw.defender} — kết quả: ${hw.result || '?'}`,
+      extra: hw,
+      src: 'religion',
+    });
+  }
+
+  // Dynasty key events from dynastyData
+  for (const [cid, dd] of Object.entries(G.dynastyData || {})) {
+    if (dd.dynastyHistory && dd.dynastyHistory.length) {
+      for (const dh of dd.dynastyHistory.slice(0, 5)) { // top 5 per dynasty
+        if (dh.year && dh.event) {
+          if (!evs.find(e => e.year === dh.year && e.desc === dh.event)) {
+            evs.push({
+              id: 'dyn_' + cid + '_' + dh.year,
+              year: dh.year,
+              type: 'dynasty',
+              desc: dh.event,
+              extra: { ...dh, dynastyName: dd.dynastyName, countryName: dd.countryName },
+              src: 'dynasty',
+            });
+          }
+        }
+      }
+    }
+  }
+
+  // Hall of Fame entries (as milestones)
+  for (const h of (G.hof || []).slice(0, 10)) {
+    if (h.year) {
+      evs.push({
+        id: 'hof_' + h.id,
+        year: h.year,
+        type: 'ascend',
+        desc: `🌠 ${h.name} nhập Bảng Vinh Danh — ${h.realm || ''} ${h.achievement || ''}`,
+        extra: h,
+        src: 'hof',
+      });
+    }
+  }
+
+  // Deduplicate by id
+  const seen = new Set();
+  const unique = evs.filter(e => {
+    if (seen.has(e.id)) return false;
+    seen.add(e.id);
+    return true;
+  });
+
+  return unique.sort((a, b) => b.year - a.year);
+}
+
+// ── SCRUBBER ──────────────────────────────────────────────
+function onScrub(val) {
+  scrubYear = parseInt(val);
+  document.getElementById('scrub-display').textContent = scrubYear;
+  const pct = ((scrubYear - 1) / Math.max(G.maxYear - 1, 1)) * 100;
+  document.getElementById('scrubber').style.setProperty('--pct', pct + '%');
+  renderEvents();
+  updateRightPanel();
+}
+
+// ── FILTER ────────────────────────────────────────────────
+function setFilter(type, el) {
+  activeFilter = type;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderEvents();
+}
+
+function toggleShowAll() {
+  showAllMode = !showAllMode;
+  document.getElementById('btn-all-events').classList.toggle('active', showAllMode);
+  renderEvents();
+}
+
+// ── RENDER ────────────────────────────────────────────────
+function renderEvents() {
+  const container = document.getElementById('events-container');
+  const allEvs = buildAllEvents();
+  const maxY = scrubYear || G.maxYear;
+
+  // Filter by year
+  let evs = allEvs.filter(e => e.year <= maxY);
+
+  // Filter by type
+  if (activeFilter !== 'all') {
+    evs = evs.filter(e => {
+      const meta = EV_META[e.type];
+      if (!meta) return false;
+      return meta.filter === activeFilter;
+    });
+  }
+
+  // In non-showAll mode, limit to significant events
+  if (!showAllMode) {
+    const significant = new Set(['war','nation_war','dynasty','empire','boss','religion','creator','heavenly','era','sect','ascend','civilization']);
+    evs = evs.filter(e => significant.has(e.type) || e.src === 'creator');
+  }
+
+  if (evs.length === 0) {
+    container.innerHTML = '<div id="empty-msg">Không có sự kiện nào trong giai đoạn này.</div>';
+    return;
+  }
+
+  // Group by year bucket
+  const grouped = {};
+  for (const e of evs) {
+    const bucket = getYearBucket(e.year);
+    if (!grouped[bucket]) grouped[bucket] = { label: bucket, year: e.year, evs: [] };
+    grouped[bucket].evs.push(e);
+  }
+
+  const buckets = Object.values(grouped).sort((a, b) => b.year - a.year);
+
+  let html = '';
+  for (const bucket of buckets) {
+    const epoch = getEpoch(bucket.year);
+    html += `<div class="timeline-group">
+      <div class="tg-year">
+        <span>${epoch?.icon || '📅'}</span>
+        Year ${bucket.label}
+        <span class="tg-year-badge">${epoch?.label || ''}</span>
+      </div>`;
+    for (const e of bucket.evs) {
+      const meta = EV_META[e.type] || { icon:'📌', color:'#94a3b8', label: e.type };
+      const tags = buildTags(e);
+      html += `<div class="event-entry${e.id === selectedEvId ? ' selected':''}" onclick="selectEvent('${e.id.replace(/'/g,"\\'")}')">
+        <div class="ev-icon">${meta.icon}</div>
+        <div class="ev-body">
+          <div class="ev-type" style="color:${meta.color}">${meta.label} · Năm ${e.year}</div>
+          <div class="ev-desc">${escHtml(e.desc)}</div>
+          ${tags.length ? `<div class="ev-tags">${tags.map(t => `<span class="ev-tag" style="color:${t.color};border-color:${t.color}20;background:${t.color}12">${t.text}</span>`).join('')}</div>` : ''}
+        </div>
+      </div>`;
+    }
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function getYearBucket(year) {
+  if (year < 100)  return `${year}`;
+  if (year < 500)  return `${Math.floor(year/50)*50}–${Math.floor(year/50)*50+49}`;
+  if (year < 2000) return `${Math.floor(year/100)*100}–${Math.floor(year/100)*100+99}`;
+  return `${Math.floor(year/500)*500}–${Math.floor(year/500)*500+499}`;
+}
+
+function getEpoch(year) {
+  return EPOCHS.find(e => year >= e.yearMin && year <= e.yearMax);
+}
+
+function buildTags(e) {
+  const tags = [];
+  if (e.extra?.dynastyName) tags.push({ text: e.extra.dynastyName, color: '#facc15' });
+  if (e.extra?.countryName && e.extra.countryName !== e.extra.dynastyName)
+    tags.push({ text: e.extra.countryName, color: '#60a5fa' });
+  if (e.extra?.winner) tags.push({ text: '🏆 ' + e.extra.winner, color: '#4ade80' });
+  if (e.extra?.loser)  tags.push({ text: '💔 ' + e.extra.loser,  color: '#f87171' });
+  if (e.extra?.faithType) tags.push({ text: e.extra.faithType, color: '#f472b6' });
+  if (e.extra?.action && e.src === 'creator') tags.push({ text: e.extra.action, color: '#4ade80' });
+  return tags;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function selectEvent(id) {
+  selectedEvId = id;
+  renderEvents();
+}
+
+// ── EPOCH NAV ─────────────────────────────────────────────
+function renderEpochs() {
+  const list = document.getElementById('epoch-list');
+  const allEvs = buildAllEvents();
+  let html = '';
+  for (const ep of EPOCHS) {
+    const count = allEvs.filter(e => e.year >= ep.yearMin && e.year <= ep.yearMax).length;
+    if (count === 0 && ep.yearMin > G.maxYear) continue;
+    const active = scrubYear ? (scrubYear >= ep.yearMin && scrubYear <= ep.yearMax) : (ep.yearMax >= G.maxYear);
+    html += `<div class="epoch-item${active ? ' active' : ''}" onclick="jumpToEpoch(${ep.yearMax === Infinity ? G.maxYear : ep.yearMax})">
+      <div class="epoch-icon">${ep.icon}</div>
+      <div>
+        <div class="epoch-label">${ep.label}</div>
+        <div class="epoch-year">${ep.yearMin === 1 ? 'Year 1' : 'Year ' + ep.yearMin}${ep.yearMax === Infinity ? '+' : '–' + ep.yearMax}</div>
+      </div>
+    </div>`;
+  }
+  list.innerHTML = html;
+}
+
+function jumpToEpoch(year) {
+  const y = Math.min(year, G.maxYear);
+  document.getElementById('scrubber').value = y;
+  onScrub(y);
+  renderEpochs();
+}
+
+// ── RIGHT PANEL ───────────────────────────────────────────
+function updateRightPanel() {
+  const maxY = scrubYear || G.maxYear;
+
+  // Era
+  const activeWorldEvs = (G.worldEvents || []).filter(we => we.startYear <= maxY);
+  const currentEra = activeWorldEvs[activeWorldEvs.length - 1];
+  document.getElementById('era-name').textContent = currentEra?.name || '初始纪元 Khởi Thủy';
+  document.getElementById('era-desc').textContent = currentEra?.desc || 'Thế giới đang hình thành…';
+
+  // Nations
+  const nationsDiv = document.getElementById('detail-nations');
+  let nHtml = '';
+  const countries = G.countries.slice(0, 6);
+  if (countries.length) {
+    for (const c of countries) {
+      const dd = G.dynastyData[c.id];
+      nHtml += `<div class="entity-card">
+        <div class="entity-card-name">${escHtml(c.name)} ${c.level >= 3 ? '🌏' : ''}</div>
+        <div class="entity-card-rows">
+          <div class="entity-row">👥 Pop: <span>${fmt(c.population)}</span></div>
+          <div class="entity-row">⚔️ Army: <span>${fmt(c.military || c.army)}</span></div>
+          ${dd ? `<div class="entity-row">👑 <span>${escHtml(dd.dynastyName || '')}</span></div>` : ''}
+        </div>
+      </div>`;
+    }
+  } else {
+    nHtml = '<div style="color:var(--white-dim);font-size:11px">No nations data.</div>';
+  }
+  nationsDiv.innerHTML = nHtml;
+
+  // Dynasties
+  const dynDiv = document.getElementById('detail-dynasties');
+  const dyns = Object.values(G.dynastyData || {}).slice(0, 5);
+  let dHtml = '';
+  for (const dd of dyns) {
+    if (dd.fallen) continue;
+    dHtml += `<div class="entity-card">
+      <div class="entity-card-name">👑 ${escHtml(dd.dynastyName)}</div>
+      <div class="entity-card-rows">
+        <div class="entity-row">🏛 <span>${escHtml(dd.countryName || '')}</span></div>
+        <div class="entity-row">📅 Founded: <span>Year ${dd.startYear}</span></div>
+        ${dd.emperor ? `<div class="entity-row">👤 <span>${escHtml(dd.emperor.name || '')}</span></div>` : ''}
+      </div>
+    </div>`;
+  }
+  dynDiv.innerHTML = dHtml || '<div style="color:var(--white-dim);font-size:11px">No dynasty data.</div>';
+
+  // Bosses
+  const bossDiv = document.getElementById('detail-bosses');
+  const activeBosses = (G.bosses || []).filter(b => b.alive || b.status === 'alive').slice(0, 4);
+  let bHtml = '';
+  for (const b of activeBosses) {
+    bHtml += `<div class="boss-card">
+      <div class="boss-card-name">🐉 ${escHtml(b.name)}</div>
+      <div style="font-size:11px;color:var(--white-dim)">HP: ${fmt(b.hp || 0)} / ${fmt(b.maxHp || 0)}</div>
+    </div>`;
+  }
+  bossDiv.innerHTML = bHtml || '<div style="color:var(--white-dim);font-size:11px">No active bosses.</div>';
+
+  // Religions
+  const relDiv = document.getElementById('detail-religions');
+  const activeRels = (G.religions || []).filter(r => r.active).slice(0, 4);
+  let rHtml = '';
+  for (const r of activeRels) {
+    rHtml += `<div class="entity-card">
+      <div class="entity-card-name">${r.icon || '⛩'} ${escHtml(r.name)}</div>
+      <div class="entity-card-rows">
+        <div class="entity-row">✝ Type: <span>${escHtml(r.faithType || '')}</span></div>
+        <div class="entity-row">👥 Followers: <span>${fmt(r.followerCount || 0)}</span></div>
+        <div class="entity-row">📅 Founded: <span>Year ${r.foundYear}</span></div>
+      </div>
+    </div>`;
+  }
+  relDiv.innerHTML = rHtml || '<div style="color:var(--white-dim);font-size:11px">No religions data.</div>';
+
+  // Legend
+  const legendDiv = document.getElementById('legend-list');
+  const legendItems = [
+    { color:'#f87171', label:'Sect Wars' },
+    { color:'#fb923c', label:'Nation Wars' },
+    { color:'#facc15', label:'Dynasty Events' },
+    { color:'#c084fc', label:'Empires' },
+    { color:'#22d3ee', label:'Boss Events' },
+    { color:'#f472b6', label:'Religions' },
+    { color:'#4ade80', label:'Creator God Actions' },
+    { color:'#60a5fa', label:'Heavenly Events' },
+  ];
+  legendDiv.innerHTML = legendItems.map(l => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${l.color}"></div>
+      <span>${l.label}</span>
+    </div>`).join('');
+
+  // Map
+  drawMap(maxY);
+}
+
+// ── TOPBAR STATS ──────────────────────────────────────────
+function updateStats() {
+  const allEvs = buildAllEvents();
+  document.getElementById('tb-year').textContent = G.year;
+  document.getElementById('stat-wars').textContent = (G.warStats?.totalWars || 0) + (G.warsActive?.length || 0);
+  document.getElementById('stat-dynasties').textContent = Object.keys(G.dynastyData || {}).length;
+  document.getElementById('stat-nations').textContent = G.countries.length;
+  document.getElementById('stat-bosses').textContent = G.bosses.length;
+  document.getElementById('stat-religions').textContent = G.religions.length;
+
+  // Era label in topbar
+  const worldEvts = G.worldEvents || [];
+  const latestEra = worldEvts[worldEvts.length - 1];
+  document.getElementById('tb-age-label').textContent = latestEra?.name || 'Kỷ Nguyên Khởi Thủy';
+}
+
+// ── SCRUBBER SETUP ────────────────────────────────────────
+function setupScrubber() {
+  const allEvs = buildAllEvents();
+  const maxY = Math.max(G.year, allEvs.reduce((m, e) => Math.max(m, e.year), 1));
+  G.maxYear = maxY;
+
+  const scrubEl = document.getElementById('scrubber');
+  scrubEl.min = 1;
+  scrubEl.max = maxY;
+  scrubEl.value = maxY;
+
+  document.getElementById('scrub-max').textContent = maxY;
+  document.getElementById('scrub-display').textContent = maxY;
+  scrubYear = maxY;
+
+  // Ticks at epoch boundaries
+  const ticksEl = document.getElementById('scrubber-ticks');
+  const ticks = EPOCHS.filter(e => e.yearMin <= maxY).map(e => {
+    const pct = ((e.yearMin - 1) / Math.max(maxY - 1, 1)) * 100;
+    return `<span class="scrubber-tick" style="position:absolute;left:calc(${pct}% - 10px)">${e.yearMin}</span>`;
+  });
+  ticksEl.style.position = 'relative';
+  ticksEl.innerHTML = ticks.join('');
+
+  // Set initial scrubber gradient
+  scrubEl.style.setProperty('--pct', '100%');
+}
+
+// ── MAP CANVAS ────────────────────────────────────────────
+function drawMap(maxYear) {
+  const canvas = document.getElementById('map-canvas');
+  const container = document.getElementById('world-map');
+  canvas.width  = container.offsetWidth;
+  canvas.height = container.offsetHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const W = canvas.width, H = canvas.height;
+
+  // Starfield background
+  ctx.fillStyle = 'rgba(5,7,9,0.5)';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw region blobs
+  const regions = [
+    { name:'🗻 Đông Vực', x: 0.72, y: 0.35, color:'#4ade80', size: 0.18 },
+    { name:'🌋 Tây Hoang', x: 0.18, y: 0.55, color:'#fb923c', size: 0.16 },
+    { name:'🌊 Nam Hải',   x: 0.55, y: 0.75, color:'#60a5fa', size: 0.15 },
+    { name:'❄️ Bắc Nguyên',x: 0.35, y: 0.15, color:'#c084fc', size: 0.14 },
+  ];
+
+  for (const r of regions) {
+    const cx = r.x * W, cy = r.y * H;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r.size * W);
+    grad.addColorStop(0,   r.color + '40');
+    grad.addColorStop(0.5, r.color + '18');
+    grad.addColorStop(1,   r.color + '00');
+    ctx.beginPath();
+    ctx.arc(cx, cy, r.size * W, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // Label
+    ctx.fillStyle = r.color + 'cc';
+    ctx.font = `bold ${Math.floor(W * 0.028)}px 'Noto Serif SC', serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(r.name, cx, cy + 4);
+  }
+
+  // Draw countries as dots
+  const colors = ['#facc15','#4ade80','#f87171','#60a5fa','#c084fc','#fb923c'];
+  const positions = [
+    { x: 0.72, y: 0.32 }, { x: 0.55, y: 0.72 },
+    { x: 0.18, y: 0.53 }, { x: 0.34, y: 0.13 },
+    { x: 0.50, y: 0.45 }, { x: 0.65, y: 0.58 },
+  ];
+
+  for (let i = 0; i < Math.min(G.countries.length, positions.length); i++) {
+    const c = G.countries[i];
+    const pos = positions[i];
+    const cx = pos.x * W, cy = pos.y * H;
+    const col = colors[i % colors.length];
+    // Glow
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 12);
+    grad.addColorStop(0, col + 'cc');
+    grad.addColorStop(1, col + '00');
+    ctx.beginPath();
+    ctx.arc(cx, cy, 12, 0, Math.PI*2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // Dot
+    ctx.beginPath();
+    ctx.arc(cx, cy, 4, 0, Math.PI*2);
+    ctx.fillStyle = col;
+    ctx.fill();
+    // Name
+    ctx.fillStyle = col + 'ee';
+    ctx.font = `${Math.floor(W * 0.022)}px 'Noto Serif SC', serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(c.name.slice(0, 6), cx, cy - 10);
+  }
+
+  // Active war lines
+  for (const w of (G.warsActive || []).slice(0, 3)) {
+    const ai = G.countries.findIndex(c => c.name === w.attacker);
+    const di = G.countries.findIndex(c => c.name === w.defender);
+    if (ai < 0 || di < 0 || !positions[ai] || !positions[di]) continue;
+    const ax = positions[ai].x * W, ay = positions[ai].y * H;
+    const dx = positions[di].x * W, dy = positions[di].y * H;
+    ctx.beginPath();
+    ctx.moveTo(ax, ay); ctx.lineTo(dx, dy);
+    ctx.strokeStyle = '#f87171aa';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // War icon at midpoint
+    ctx.font = '12px serif';
+    ctx.fillStyle = '#f87171';
+    ctx.fillText('⚔️', (ax + dx) / 2 - 6, (ay + dy) / 2 + 4);
+  }
+
+  // Year watermark
+  ctx.fillStyle = 'rgba(250,204,21,0.06)';
+  ctx.font = `bold ${Math.floor(W * 0.12)}px 'Cinzel', serif`;
+  ctx.textAlign = 'center';
+  ctx.fillText(maxYear, W / 2, H / 2 + 20);
+}
+
+// ── EXPORT ────────────────────────────────────────────────
+function exportTimeline() {
+  const allEvs = buildAllEvents();
+  const payload = {
+    exportTime: new Date().toISOString(),
+    currentYear: G.year,
+    totalEvents: allEvs.length,
+    worldHistory: G.worldHistory,
+    warsHistory: G.warsHistory,
+    dynastyData: G.dynastyData,
+    religions: G.religions,
+    creatorGodHistory: G.creatorHistory,
+    countries: G.countries.map(c => ({ id: c.id, name: c.name, population: c.population, military: c.military })),
+    bosses: G.bosses.map(b => ({ id: b.id, name: b.name, alive: b.alive, hp: b.hp })),
+    storyChapters: G.storyChapters,
+    allEvents: allEvs,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url;
+  a.download = `cgv6_timeline_year${G.year}_${Date.now()}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✅ Timeline exported!');
+}
+
+// ── REFRESH ────────────────────────────────────────────────
+function refreshData() {
+  const ok = loadData();
+  if (!ok || (G.worldHistory.length === 0 && G.countries.length === 0 && G.creatorHistory.length === 0)) {
+    document.getElementById('no-save-msg').style.display = 'flex';
+    return;
+  }
+  document.getElementById('no-save-msg').style.display = 'none';
+  setupScrubber();
+  updateStats();
+  renderEpochs();
+  renderEvents();
+  updateRightPanel();
+  showToast('🔄 Data refreshed — Year ' + G.year);
+}
+
+// ── TOAST ─────────────────────────────────────────────────
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ── FORMAT ────────────────────────────────────────────────
+function fmt(n) {
+  if (!n) return '0';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+  return String(Math.floor(n));
+}
+
+// ── STARS ────────────────────────────────────────────────
+function initStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 1.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      opacity:${Math.random()*0.4+0.05};
+    `;
+    container.appendChild(s);
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  initStars();
+  refreshData();
+  // Auto-refresh every 30s to pick up new game state
+  setInterval(() => {
+    if (!document.hidden) refreshData();
+  }, 30000);
+});
+</script>
+</body>
+</html>
