@@ -1632,6 +1632,9 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-empires" onclick="showPanel('empires');if(typeof eeRenderPanel==='function')eeRenderPanel();" data-panel="empires">
         <span class="nav-icon">👑</span><span>Empires</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-naval-ocean" onclick="showPanel('naval-ocean');if(typeof oeRenderPanel==='function')oeRenderPanel();" data-panel="naval-ocean">
+        <span class="nav-icon">🌊</span><span>Đại Dương</span>
+      </button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-bloodlines" onclick="showPanel('bloodlines');if(typeof blRenderPanel==='function')blRenderPanel();" data-panel="bloodlines">
         <span class="nav-icon">🧬</span><span>Bloodlines</span>
       </button>
@@ -2436,6 +2439,10 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by meRenderPanel() in migrationEngine.js -->
       </div>
 
+      <div id="panel-naval-ocean" class="panel">
+        <!-- Rendered by oeRenderPanel() in navalOceanEngine.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2615,6 +2622,7 @@ window.addEventListener("load", function() {
 <script src="nobleHouseEngine.js"></script>
 <script src="bloodlineEngine.js"></script>
 <script src="hereditaryBloodlineEngine.js"></script>
+<script src="navalOceanEngine.js"></script>
 <script src="kingdomAI.js"></script>
 <script src="empireAI.js"></script>
 <script src="rankingsEngine.js"></script>
