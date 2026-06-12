@@ -1647,6 +1647,9 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-diplomacy" onclick="showPanel('diplomacy');if(typeof drRenderPanel==='function')drRenderPanel();" data-panel="diplomacy">
         <span class="nav-icon">🌐</span><span>Ngoại Giao</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-espionage" onclick="showPanel('espionage');if(typeof esRenderPanel==='function')esRenderPanel();" data-panel="espionage">
+        <span class="nav-icon">🕵️</span><span>Gián Điệp</span>
+      </button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2390,6 +2393,10 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by drRenderPanel() in diplomaticEngine.js -->
       </div>
 
+      <div id="panel-espionage" class="panel">
+        <!-- Rendered by esRenderPanel() in espionageEngine.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2556,11 +2563,12 @@ window.addEventListener("load", function() {
 <script src="empireAI.js"></script>
 <script src="rankingsEngine.js"></script>
 <script src="diplomaticEngine.js"></script>
+<script src="espionageEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }

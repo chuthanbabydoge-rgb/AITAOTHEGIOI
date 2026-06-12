@@ -70,6 +70,8 @@ const SAVE_ALL_KEYS = [
   "cgv6_historical_timeline",
   // V23 — Diplomatic Relations Engine
   "cgv6_diplomacy",
+  // V23 — Espionage Engine
+  "cgv6_espionage",
 ];
 
 // ============================================================
