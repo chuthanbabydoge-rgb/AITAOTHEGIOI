@@ -1616,6 +1616,7 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-npc-reputation" onclick="showPanel('npc-reputation');if(typeof renderNpcReputationPanel==='function')renderNpcReputationPanel();" data-panel="npc-reputation">
         <span>🌟</span><span>Danh Tiếng</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-event" onclick="showPanel('world-event');if(typeof weeRenderPanel==='function')weeRenderPanel();" data-panel="world-event">🌌 Thiên Hạ Đại Sự</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-mythology" onclick="showPanel('mythology');if(typeof mythologyEngine_renderPanel==='function')mythologyEngine_renderPanel();" data-panel="mythology">
         <span>📖</span><span>Thần Thoại</span>
       </button>
@@ -2358,6 +2359,9 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by renderNpcReputationPanel() in npcReputationEngine.js -->
       </div>
 
+      <div id="panel-world-event" class="panel">
+        <!-- Rendered by weeRenderPanel() in worldEventEngine.js -->
+      </div>
       <div id="panel-mythology" class="panel">
         <!-- Rendered by mythologyEngine_renderPanel() in mythologyEngine.js -->
       </div>
@@ -2564,6 +2568,7 @@ window.addEventListener("load", function() {
 <script src="npcReputationEngine.js"></script>
 <script src="legendaryArtifactEngine.js"></script>
 <script src="artifactEvolutionEngine.js"></script>
+<script src="worldEventEngine.js"></script>
 <script src="mythologyEngine.js"></script>
 <script src="technologyEngine.js"></script>
 <!-- ═══ V23 EMPIRE & KINGDOM ENGINE SCRIPTS ═══ -->
