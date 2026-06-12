@@ -1,0 +1,272 @@
+Xây dựng Hệ thống Thăng cấp Người chơi V28.
+
+Áp dụng CÁC QUY TẮC BẢO VỆ DỰ ÁN.
+
+Đọc:
+
+- AI_MEMORY.md
+
+- PROJECT_STATUS.md
+
+- PROJECT_ARCHITECTURE.md
+
+- PROJECT_CHANGELOG.md
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu các hệ thống tương tự đã tồn tại:
+
+nâng cấp và mở rộng chúng.
+
+==================================================
+MỤC TIÊU
+====================================================
+
+Cho phép người chơi thực tham gia vào thế giới.
+
+Người chơi trở thành một phần của mô phỏng.
+
+Người chơi có thể thăng tiến từ phàm nhân lên thần thánh.
+
+=================================================
+CƠ CẤU NGƯỜI CHƠI
+===================================================
+
+Tạo:
+
+- playerEngine.js
+
+- playerProfile.js
+
+- playerStats.js
+
+Mỗi người chơi có:
+
+- ID người chơi
+- Tên
+- Danh hiệu
+- Cấp độ
+- Danh tiếng
+- Tài sản
+- Ảnh hưởng
+- Tuổi
+- Phe phái
+- Vương quốc
+- Đế chế
+
+=====================================================
+THĂNG THIÊN HỆ THỐNG
+==================================================
+
+Tạo bởi:
+
+- ascensionEngine.js
+
+Cấp bậc:
+
+1. Người phàm
+2. Tu sĩ
+3. Thành chủ
+4. Lãnh chúa
+5. Vua
+6. Hoàng đế
+7. Bất tử
+8. Tiểu thần
+9. Đại thần
+10. Thần Sáng tạo
+
+Mỗi cấp bậc mở khóa các khả năng.
+
+=================================================
+KHO ĐỒ CỦA NGƯỜI CHƠI
+==================================================
+
+Tạo:
+
+- playerInventory.js
+
+Kho đồ chứa:
+
+- Vàng
+- Tài nguyên
+- Cổ vật
+- Di vật
+- Vật phẩm thần thánh
+- Danh hiệu
+
+===================================================
+ĐẤT CỦA NGƯỜI CHƠI QUYỀN SỞ HỮU
+==================================================
+
+Tạo:
+
+- playerTerritorySystem.js
+
+Người chơi có thể sở hữu:
+
+- Làng
+
+- Thị trấn
+- Thành phố
+- Lãnh thổ
+- Vương quốc
+- Đế chế
+
+===================================================
+NGOẠI GIAO NGƯỜI CHƠI
+==================================================
+
+Tích hợp với:
+
+- diplomacyEngine.js
+
+Người chơi có thể:
+
+- Thành lập liên minh
+- Ký kết hiệp ước
+- Tuyên chiến Chiến tranh
+- Trở thành chư hầu
+
+=================================================
+KINH TẾ NGƯỜI CHƠI
+===================================================
+
+Tích hợp với:
+
+- economyEngine.js
+
+- marketplaceSystem.js
+
+Người chơi có thể:
+
+- Giao dịch
+
+- Đầu tư
+- Thu thuế
+- Xây dựng doanh nghiệp
+
+===================================================
+NGƯỜI CHƠI TU LUYỆN
+=================================================
+
+Tạo:
+
+- cultivationPlayerEngine.js
+
+Các giai đoạn:
+
+- Luyện Khí
+- Thiết Lập Nền Tảng
+- Kim Đan
+- Nguyên Hồn
+- Chuyển Hóa Linh Hồn
+- Thăng Thiên
+
+====================================================
+DANH TIẾNG NGƯỜI CHƠI
+===================================================
+
+Tạo:
+
+- playerReputationEngine.js
+
+Nguồn:
+
+- Chiến thắng trong chiến tranh
+- Giao dịch Thành công
+- Ảnh hưởng tôn giáo
+- Những chiến công anh hùng
+
+==================================================
+NHIỆM VỤ CỦA NGƯỜI CHƠI
+===================================================
+
+Tạo:
+
+- playerQuestSystem.js
+
+Các loại nhiệm vụ:
+
+- Khám phá
+- Chinh phục
+- Thương mại
+- Ngoại giao
+- Sứ mệnh thần thánh
+
+===================================================
+NGƯỜI CHƠI LỊCH SỬ
+=================================================
+
+Tích hợp với:
+
+- historicalTimeline.js
+
+- worldMemoryEngine.js
+
+Ghi lại:
+
+- Sinh ra nhân vật
+- Thăng thiên
+- Thành lập Vương quốc
+- Thành lập Đế chế
+- Biến đổi thần thánh
+
+===================================================
+Giao diện người dùng
+===================================================
+
+Thêm các tab:
+
+👤 Người chơi
+
+🎒 Kho đồ
+
+⭐ Thăng cấp
+
+⚔ Chiến tranh giữa người chơi
+
+🏰 Vương quốc của tôi
+
+👑 Đế chế của tôi
+
+📜 Lịch sử của tôi
+
+==================================================
+HỆ THỐNG LƯU
+===================================================
+
+Lưu:
+
+- Người chơi
+- Kho đồ
+- Danh tiếng
+- Cấp bậc Thăng cấp
+- Lãnh thổ
+- Nhiệm vụ
+
+Phải tương thích với tất cả các bản lưu cũ.
+
+=================================================
+ĐẦU RA
+==================================================
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Chỉ sau đó mới tạo mã.
+
+CHỈ MỞ RỘNG.
+
+KHÔNG BAO GIỜ XÓA.
+
+KHÔNG BAO GIỜ THAY THẾ.
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI.
