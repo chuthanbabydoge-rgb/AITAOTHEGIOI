@@ -68,6 +68,8 @@ const SAVE_ALL_KEYS = [
   "cgv6_bloodlines",
   "cgv6_rankings",
   "cgv6_historical_timeline",
+  // V23 — Diplomatic Relations Engine
+  "cgv6_diplomacy",
 ];
 
 // ============================================================
