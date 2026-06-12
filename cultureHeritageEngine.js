@@ -97,6 +97,8 @@ let state = {
   festivals:      [],   // { id, host, styleId, name, year, attendees:[], bonuses, spreadBoost }
   festivalCooldown: {}, // powerName → year of last festival
   influence:      {},   // "powerA|powerB" → softPower score 0-100
+  culturalWars:   [],   // { id, aggressor, target, startYear, agPower, tgPower, phase, result }
+  manifestos:     [],   // { id, power, styleId, year, adherents:[] }
   culturalLog:    [],
   idCounter:      0,
   initialized:    false,
@@ -301,6 +303,192 @@ function chAssimilate(conqueror, conquered) {
   return { ok: true };
 }
 
+// ─── CULTURAL WAR SYSTEM ──────────────────────────────────────────
+function chLaunchCulturalWar(aggressor, target) {
+  if (!aggressor || !target || aggressor === target)
+    return { ok: false, msg: "Chọn hai thế lực khác nhau" };
+
+  const agPC = state.powerCultures[aggressor];
+  if (!agPC) return { ok: false, msg: `${aggressor} chưa có văn hóa` };
+  if (agPC.level < 2) return { ok: false, msg: "Cần cấp văn hóa 2+ để phát động chiến tranh văn hóa" };
+
+  const key = _pairKey(aggressor, target);
+  const inf  = state.influence[key] || 0;
+  if (inf < 40) return { ok: false, msg: `Ảnh hưởng lên ${target} chỉ đạt ${Math.round(inf)}% — cần 40%+ để tấn công` };
+
+  const existing = state.culturalWars.find(w => w.phase === "active" && w.aggressor === aggressor && w.target === target);
+  if (existing) return { ok: false, msg: "Đang có chiến tranh văn hóa với thế lực này rồi" };
+
+  const agStyle = CULTURE_STYLES[agPC.styleId] || {};
+  const tgPC    = state.powerCultures[target];
+  const tgStyle = tgPC ? (CULTURE_STYLES[tgPC.styleId] || {}) : {};
+
+  const war = {
+    id:        _newId(),
+    aggressor, target,
+    startYear: _year(),
+    agPower:   50 + agPC.points * 0.2 + inf * 0.3,
+    tgPower:   tgPC ? (40 + tgPC.points * 0.2) : 20,
+    phase:     "active",
+    result:    null,
+  };
+  state.culturalWars.unshift(war);
+  if (state.culturalWars.length > 30) state.culturalWars.length = 30;
+
+  _log(`⚔️🎨 ${aggressor} (${agStyle.icon||''} ${agStyle.label||''}) phát động Chiến Tranh Văn Hóa lên ${target} (${tgStyle.icon||''} ${tgStyle.label||''})! Ảnh hưởng hiện tại: ${Math.round(inf)}%`, "danger");
+  if (typeof toast === "function")
+    toast(`⚔️🎨 Chiến Tranh Văn Hóa! ${aggressor} tấn công ${target}`, "danger");
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year: _year(), text: `⚔️🎨 ${aggressor} phát động Chiến Tranh Văn Hóa lên ${target}`, tag: "war" });
+
+  chSave();
+  return { ok: true, war };
+}
+
+function chResistCulturalWar(target, aggressor) {
+  const war = state.culturalWars.find(w => w.phase === "active" && w.aggressor === aggressor && w.target === target);
+  if (!war) return { ok: false, msg: "Không tìm thấy cuộc chiến tranh văn hóa này" };
+
+  const tgPC = state.powerCultures[target];
+  const bonus = tgPC ? (20 + tgPC.points * 0.1) : 10;
+  war.tgPower += bonus;
+
+  _log(`🛡️🎨 ${target} kháng cự Chiến Tranh Văn Hóa của ${aggressor}! Sức kháng cự tăng +${Math.round(bonus)}`, "important");
+  if (typeof toast === "function")
+    toast(`🛡️ ${target} kháng cự văn hóa của ${aggressor}!`, "important");
+
+  // Develop own culture as resistance
+  if (tgPC) chDevelopCulture(target, 15);
+
+  chSave();
+  chRenderPanel();
+  return { ok: true };
+}
+
+function chDeclareManifesto(powerName) {
+  const pc = state.powerCultures[powerName];
+  if (!pc) return { ok: false, msg: `${powerName} chưa có văn hóa` };
+  if (pc.level < 3) return { ok: false, msg: "Cần đạt cấp văn hóa 3+ để tuyên ngôn" };
+
+  const alreadyHas = state.manifestos.find(m => m.power === powerName);
+  if (alreadyHas && (_year() - alreadyHas.year) < 15)
+    return { ok: false, msg: `Cần chờ thêm ${15 - (_year() - alreadyHas.year)} năm để tuyên bố lại` };
+
+  const style    = CULTURE_STYLES[pc.styleId] || {};
+  const powers   = _getPowers();
+  const adherents = powers
+    .filter(p => p.name !== powerName)
+    .filter(p => {
+      const k = _pairKey(powerName, p.name);
+      return (state.influence[k] || 0) >= 50;
+    })
+    .map(p => p.name);
+
+  const manifesto = {
+    id:        _newId(),
+    power:     powerName,
+    styleId:   pc.styleId,
+    year:      _year(),
+    adherents,
+  };
+  state.manifestos.unshift(manifesto);
+  if (state.manifestos.length > 20) state.manifestos.length = 20;
+
+  // Boost soft power vs all powers
+  powers.forEach(p => {
+    if (p.name === powerName) return;
+    const k = _pairKey(powerName, p.name);
+    state.influence[k] = Math.min(100, (state.influence[k] || 0) + 20);
+  });
+  chDevelopCulture(powerName, 30);
+
+  _log(`📜✨ ${powerName} tuyên bố Văn Hóa Tuyên Ngôn: "${style.icon||''} ${style.label||''} là đỉnh cao văn minh!" — ${adherents.length} thế lực công nhận`, "success");
+  if (typeof toast === "function")
+    toast(`📜 Tuyên Ngôn! ${powerName}: ${style.icon||''} ${style.label||''} dẫn đầu thế giới!`, "success");
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year: _year(), text: `📜 ${powerName} tuyên bố Văn Hóa Tuyên Ngôn — ${adherents.length} thế lực thần phục`, tag: "culture" });
+
+  chSave();
+  return { ok: true, manifesto };
+}
+
+function _tickCulturalWars() {
+  const activeWars = state.culturalWars.filter(w => w.phase === "active");
+  activeWars.forEach(war => {
+    const agPC = state.powerCultures[war.aggressor];
+    const tgPC = state.powerCultures[war.target];
+    const key  = _pairKey(war.aggressor, war.target);
+    const inf  = state.influence[key] || 0;
+
+    // Each tick: aggressor pushes, defender holds
+    const agRoll = (agPC ? agPC.points * 0.05 : 5) + inf * 0.15 + Math.random() * 20;
+    const tgRoll = (tgPC ? tgPC.points * 0.05 : 3) + Math.random() * 15;
+
+    war.agPower += agRoll;
+    war.tgPower += tgRoll;
+
+    const dur = _year() - war.startYear;
+
+    // Resolve after minimum 3 years
+    if (dur >= 3) {
+      const agWin = war.agPower > war.tgPower * 1.3;
+      const tgWin = war.tgPower > war.agPower * 1.4;
+
+      if (agWin || tgWin || dur >= 20) {
+        war.phase  = "ended";
+        war.result = agWin ? "aggressor" : (tgWin ? "target" : "stalemate");
+
+        if (agWin) {
+          // Aggressor wins: force culture adoption + steal cultural points
+          if (agPC) {
+            chAssimilate(war.aggressor, war.target);
+            chDevelopCulture(war.aggressor, 25);
+            // Boost influence further
+            state.influence[key] = Math.min(100, (state.influence[key]||0) + 25);
+          }
+          _log(`🏆🎨 ${war.aggressor} THẮNG Chiến Tranh Văn Hóa! ${war.target} bị đồng hóa văn hóa!`, "danger");
+          if (typeof toast === "function") toast(`🏆 ${war.aggressor} chinh phục văn hóa ${war.target}!`, "danger");
+          if (typeof htAddEvent === "function") htAddEvent({ year: _year(), text: `🏆🎨 ${war.aggressor} thắng Chiến Tranh Văn Hóa — ${war.target} bị đồng hóa!`, tag: "war" });
+        } else if (tgWin) {
+          // Defender wins: gain cultural pride, reduce influence
+          if (tgPC) chDevelopCulture(war.target, 30);
+          state.influence[key] = Math.max(0, (state.influence[key]||0) - 30);
+          _log(`🛡️🏆 ${war.target} KHÁNG CỰ thành công! Văn hóa ${war.target} vững chắc trước ${war.aggressor}!`, "success");
+          if (typeof toast === "function") toast(`🛡️ ${war.target} đã kháng cự chiến tranh văn hóa!`, "success");
+          if (typeof htAddEvent === "function") htAddEvent({ year: _year(), text: `🛡️ ${war.target} kháng cự Chiến Tranh Văn Hóa của ${war.aggressor} — độc lập văn hóa được bảo toàn!`, tag: "culture" });
+        } else {
+          _log(`🤝 Chiến Tranh Văn Hóa ${war.aggressor}↔${war.target} kết thúc bế tắc sau ${dur} năm.`);
+          if (typeof htAddEvent === "function") htAddEvent({ year: _year(), text: `🤝 Chiến Tranh Văn Hóa ${war.aggressor}↔${war.target} kết thúc bế tắc`, tag: "culture" });
+        }
+        chSave();
+      }
+    }
+  });
+
+  // AI: auto-launch cultural war if high influence & high culture
+  const powers = _getPowers();
+  if (Math.random() < 0.06 && powers.length >= 2) {
+    const highCulture = powers.filter(p => {
+      const pc = state.powerCultures[p.name];
+      return pc && pc.level >= 2;
+    });
+    if (highCulture.length >= 1) {
+      const aggressor = highCulture[Math.floor(Math.random() * highCulture.length)];
+      const targets = powers.filter(p => p.name !== aggressor.name);
+      if (targets.length > 0) {
+        const target = targets[Math.floor(Math.random() * targets.length)];
+        const already = state.culturalWars.find(w => w.phase === "active" && w.aggressor === aggressor.name && w.target === target.name);
+        if (!already) {
+          const key = _pairKey(aggressor.name, target.name);
+          if ((state.influence[key] || 0) >= 50) {
+            chLaunchCulturalWar(aggressor.name, target.name);
+          }
+        }
+      }
+    }
+  }
+}
+
 // ─── FESTIVAL SYSTEM ──────────────────────────────────────────────
 function chHostFestival(powerName) {
   const pc = state.powerCultures[powerName];
@@ -396,6 +584,9 @@ function chTick() {
     });
   }
 
+  // Process cultural wars
+  _tickCulturalWars();
+
   // AI: high-culture powers spontaneously host festivals
   if (Math.random() < 0.12) {
     const eligible = powers.filter(p => {
@@ -434,12 +625,12 @@ function chRenderPanel() {
     </p>
 
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-      ${["cultures","develop","heritage","wonders","influence","festival","log"].map((tab,i) => `
+      ${["cultures","develop","heritage","wonders","influence","festival","cultwar","log"].map((tab,i) => `
         <button onclick="chSwitchTab('${tab}')" id="ch-tab-${tab}"
-          style="flex:1;min-width:60px;padding:7px 4px;border-radius:8px;border:none;cursor:pointer;font-size:.78em;font-weight:700;
+          style="flex:1;min-width:55px;padding:7px 2px;border-radius:8px;border:none;cursor:pointer;font-size:.74em;font-weight:700;
           background:${i===0?'#4a1535':'#1a2535'};color:${i===0?'#f472b6':'#94a3b8'};
           border:1px solid ${i===0?'#db2777':'#2d3748'};">
-          ${{cultures:"🎨 Nền Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", festival:"🎪 Lễ Hội", log:"📜 Nhật Ký"}[tab]}
+          ${{cultures:"🎨 Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", festival:"🎪 Lễ Hội", cultwar:"⚔️ Chiến Tranh", log:"📜 Nhật Ký"}[tab]}
         </button>`).join('')}
     </div>
 
@@ -449,6 +640,7 @@ function chRenderPanel() {
     <div id="ch-content-wonders" style="display:none">${_renderWondersTab(wonders)}</div>
     <div id="ch-content-influence" style="display:none">${_renderInfluenceTab(powers)}</div>
     <div id="ch-content-festival" style="display:none">${_renderFestivalTab(powers)}</div>
+    <div id="ch-content-cultwar" style="display:none">${_renderCulturalWarTab(powers)}</div>
     <div id="ch-content-log" style="display:none">${_renderLogTab()}</div>
   </div>`;
 }
@@ -683,6 +875,137 @@ function _renderInfluenceTab(powers) {
   return html;
 }
 
+function _renderCulturalWarTab(powers) {
+  const pNames = powers.map(p => p.name);
+  const hasCulture = powers.filter(p => {
+    const pc = state.powerCultures[p.name];
+    return pc && (pc.level || 0) >= 2;
+  });
+  const canManifesto = powers.filter(p => {
+    const pc = state.powerCultures[p.name];
+    return pc && (pc.level || 0) >= 3;
+  });
+  const activeWars = state.culturalWars.filter(w => w.phase === "active");
+  const endedWars  = state.culturalWars.filter(w => w.phase === "ended").slice(0, 10);
+
+  // ── Tấn công ─────────────────────────────────────────────────────
+  let attackSection = `<div style="background:#0f172a;border:1px solid #7f1d1d44;border-radius:10px;padding:14px;margin-bottom:12px;">
+    <div style="color:#f87171;font-weight:700;margin-bottom:8px;font-size:.9em;">⚔️ Phát Động Chiến Tranh Văn Hóa</div>
+    <p style="color:#94a3b8;font-size:.8em;margin:0 0 10px;">Cần cấp văn hóa 2+ và ảnh hưởng ≥40% lên mục tiêu để tấn công.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+      <div>
+        <label style="color:#94a3b8;font-size:.8em;">Kẻ tấn công:</label>
+        <select id="cw-aggressor" style="width:100%;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:6px;padding:5px;font-size:.82em;">
+          ${hasCulture.length > 0
+            ? hasCulture.map(p => { const s=CULTURE_STYLES[state.powerCultures[p.name]?.styleId]||{}; return `<option value="${p.name}">${s.icon||''} ${p.name}</option>`; }).join('')
+            : `<option value="">— Chưa đủ cấp —</option>`}
+        </select>
+      </div>
+      <div>
+        <label style="color:#94a3b8;font-size:.8em;">Mục tiêu:</label>
+        <select id="cw-target" style="width:100%;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:6px;padding:5px;font-size:.82em;">
+          ${pNames.map((n,i) => `<option value="${n}"${i===1?' selected':''}>${n}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <button onclick="chActionLaunchWar()" style="width:100%;padding:9px;background:#450a0a;color:#f87171;border:1px solid #dc2626;border-radius:8px;cursor:pointer;font-size:.84em;font-weight:700;">
+      ⚔️ Xâm Lăng Văn Hóa!
+    </button>
+    <div id="cw-attack-msg" style="margin-top:8px;font-size:.82em;color:#94a3b8;text-align:center;"></div>
+  </div>`;
+
+  // ── Tuyên ngôn ────────────────────────────────────────────────────
+  let manifestoSection = `<div style="background:#0f172a;border:1px solid #78350f44;border-radius:10px;padding:14px;margin-bottom:12px;">
+    <div style="color:#fbbf24;font-weight:700;margin-bottom:8px;font-size:.9em;">📜 Tuyên Ngôn Văn Hóa Tối Thượng</div>
+    <p style="color:#94a3b8;font-size:.8em;margin:0 0 10px;">Tuyên bố văn hóa mình là đỉnh cao văn minh thế giới — cần cấp 3+. Tăng toàn bộ ảnh hưởng +20%, được các thế lực phụ thuộc công nhận.</p>
+    <div style="margin-bottom:8px;">
+      <select id="cw-manifesto-power" style="width:100%;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:6px;padding:5px;font-size:.82em;">
+        ${canManifesto.length > 0
+          ? canManifesto.map(p => { const s=CULTURE_STYLES[state.powerCultures[p.name]?.styleId]||{}; return `<option value="${p.name}">${s.icon||''} ${p.name} (Cấp ${state.powerCultures[p.name]?.level||0})</option>`; }).join('')
+          : `<option value="">— Chưa có thế lực đủ cấp 3 —</option>`}
+      </select>
+    </div>
+    <button onclick="chActionManifesto()" style="width:100%;padding:9px;background:#451a03;color:#fbbf24;border:1px solid #d97706;border-radius:8px;cursor:pointer;font-size:.84em;font-weight:700;">
+      📜 Ban Hành Tuyên Ngôn!
+    </button>
+    <div id="cw-manifesto-msg" style="margin-top:8px;font-size:.82em;color:#94a3b8;text-align:center;"></div>
+  </div>`;
+
+  // ── Chiến tranh đang diễn ra ──────────────────────────────────────
+  let activeSection = '';
+  if (activeWars.length === 0) {
+    activeSection = `<div style="color:#64748b;text-align:center;padding:16px 0;font-size:.85em;">Không có chiến tranh văn hóa nào đang diễn ra.</div>`;
+  } else {
+    activeSection = `<div style="color:#f87171;font-weight:700;margin-bottom:8px;font-size:.88em;">🔥 ${activeWars.length} Chiến Tranh Đang Diễn Ra</div>`;
+    activeSection += activeWars.map(w => {
+      const agPC  = state.powerCultures[w.aggressor];
+      const tgPC  = state.powerCultures[w.target];
+      const agS   = CULTURE_STYLES[agPC?.styleId] || {};
+      const tgS   = CULTURE_STYLES[tgPC?.styleId] || {};
+      const total = w.agPower + w.tgPower;
+      const agPct = Math.round(w.agPower / total * 100);
+      const tgPct = 100 - agPct;
+      const dur   = _year() - w.startYear;
+      const key   = _pairKey(w.aggressor, w.target);
+      const inf   = Math.round(state.influence[key] || 0);
+      return `<div style="background:#1a0a0a;border:1px solid #7f1d1d55;border-radius:10px;padding:12px;margin-bottom:8px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+          <span style="color:#f87171;font-size:.85em;font-weight:700;">⚔️ ${w.aggressor} → ${w.target}</span>
+          <span style="color:#64748b;font-size:.75em;">Năm ${w.startYear} · ${dur} năm</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.78em;margin-bottom:4px;">
+          <span style="color:${agS.color||'#f87171'};">${agS.icon||'⚔️'} Tấn Công: ${Math.round(w.agPower)}</span>
+          <span style="color:#64748b;">Ảnh hưởng: ${inf}%</span>
+          <span style="color:${tgS.color||'#60a5fa'};">${tgS.icon||'🛡️'} Kháng Cự: ${Math.round(w.tgPower)}</span>
+        </div>
+        <div style="height:8px;background:#1e2535;border-radius:4px;overflow:hidden;margin-bottom:8px;">
+          <div style="height:100%;width:${agPct}%;background:linear-gradient(90deg,#dc2626,#f87171);border-radius:4px 0 0 4px;display:inline-block;"></div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <button onclick="chActionResist('${w.target}','${w.aggressor}')"
+            style="flex:1;padding:5px;background:#1e3a5f;color:#60a5fa;border:1px solid #3b82f6;border-radius:6px;cursor:pointer;font-size:.78em;">
+            🛡️ ${w.target} Kháng Cự
+          </button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Lịch sử chiến tranh ───────────────────────────────────────────
+  let histSection = '';
+  if (endedWars.length > 0) {
+    histSection = `<div style="color:#94a3b8;font-weight:700;margin:12px 0 8px;font-size:.88em;">📜 Lịch Sử Chiến Tranh Văn Hóa</div>`;
+    histSection += endedWars.map(w => {
+      const resultColor = w.result === 'aggressor' ? '#f87171' : (w.result === 'target' ? '#4ade80' : '#94a3b8');
+      const resultText  = w.result === 'aggressor' ? `🏆 ${w.aggressor} thắng — ${w.target} bị đồng hóa`
+                        : w.result === 'target'    ? `🛡️ ${w.target} kháng cự thành công`
+                        : `🤝 Bế tắc sau ${_year() - w.startYear} năm`;
+      return `<div style="background:#0f172a;border-left:3px solid ${resultColor};border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:5px;">
+        <div style="color:#64748b;font-size:.75em;">Năm ${w.startYear} · ${w.aggressor} vs ${w.target}</div>
+        <div style="color:${resultColor};font-size:.82em;margin-top:2px;">${resultText}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Tuyên ngôn đã ban hành ────────────────────────────────────────
+  let manifSection = '';
+  if (state.manifestos.length > 0) {
+    manifSection = `<div style="color:#fbbf24;font-weight:700;margin:12px 0 8px;font-size:.88em;">📜 Các Tuyên Ngôn Đã Ban Hành</div>`;
+    manifSection += state.manifestos.slice(0,5).map(m => {
+      const s = CULTURE_STYLES[m.styleId] || {};
+      return `<div style="background:#0f172a;border:1px solid #78350f44;border-left:3px solid #d97706;border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:5px;">
+        <div style="display:flex;justify-content:space-between;">
+          <span style="color:#fbbf24;font-size:.83em;font-weight:700;">${s.icon||'📜'} ${m.power}</span>
+          <span style="color:#64748b;font-size:.75em;">Năm ${m.year}</span>
+        </div>
+        <div style="color:#94a3b8;font-size:.78em;margin-top:2px;">${s.label||''} · ${m.adherents.length} thế lực thừa nhận</div>
+      </div>`;
+    }).join('');
+  }
+
+  return attackSection + manifestoSection + activeSection + histSection + manifSection;
+}
+
 function _renderFestivalTab(powers) {
   const pNames = powers.map(p => p.name);
   const hasCulture = powers.filter(p => state.powerCultures[p.name] && (state.powerCultures[p.name].level || 0) >= 1);
@@ -767,15 +1090,20 @@ function _renderLogTab() {
 
 // ─── GLOBAL UI CALLBACKS ──────────────────────────────────────────
 window.chSwitchTab = function(tab) {
-  ["cultures","develop","heritage","wonders","influence","festival","log"].forEach(t => {
+  ["cultures","develop","heritage","wonders","influence","festival","cultwar","log"].forEach(t => {
     const c = document.getElementById("ch-content-"+t);
     const b = document.getElementById("ch-tab-"+t);
     if (c) c.style.display = (t===tab) ? "" : "none";
     if (b) {
-      const isFest = t === "festival";
-      b.style.background  = (t===tab) ? (isFest ? "#3b0764" : "#4a1535") : "#1a2535";
-      b.style.color       = (t===tab) ? (isFest ? "#c084fc" : "#f472b6") : "#94a3b8";
-      b.style.borderColor = (t===tab) ? (isFest ? "#7c3aed" : "#db2777") : "#2d3748";
+      const theme = {
+        festival: { bg:"#3b0764", color:"#c084fc", border:"#7c3aed" },
+        cultwar:  { bg:"#450a0a", color:"#f87171", border:"#dc2626" },
+        default:  { bg:"#4a1535", color:"#f472b6", border:"#db2777" },
+      };
+      const active = theme[t] || theme.default;
+      b.style.background  = (t===tab) ? active.bg    : "#1a2535";
+      b.style.color       = (t===tab) ? active.color : "#94a3b8";
+      b.style.borderColor = (t===tab) ? active.border: "#2d3748";
     }
   });
 };
@@ -840,6 +1168,42 @@ window.chActionSpread = function() {
   setTimeout(chRenderPanel, 200);
 };
 
+window.chActionLaunchWar = function() {
+  const aggressor = document.getElementById("cw-aggressor")?.value;
+  const target    = document.getElementById("cw-target")?.value;
+  const msg       = document.getElementById("cw-attack-msg");
+  if (!aggressor || !target) { if(msg){ msg.style.color="#f87171"; msg.textContent="⚠️ Chọn hai thế lực"; } return; }
+  const r = chLaunchCulturalWar(aggressor, target);
+  if (msg) {
+    msg.style.color = r.ok ? "#f87171" : "#94a3b8";
+    msg.textContent = r.ok
+      ? `⚔️ Chiến Tranh Văn Hóa bắt đầu! ${aggressor} tấn công ${target}.`
+      : "⚠️ " + r.msg;
+  }
+  setTimeout(() => { chRenderPanel(); chSwitchTab("cultwar"); }, 300);
+};
+
+window.chActionResist = function(target, aggressor) {
+  const r = chResistCulturalWar(target, aggressor);
+  if (typeof toast === "function")
+    toast(r.ok ? `🛡️ ${target} tăng cường kháng cự!` : "⚠️ " + r.msg, r.ok ? "important" : "danger");
+  setTimeout(() => { chRenderPanel(); chSwitchTab("cultwar"); }, 300);
+};
+
+window.chActionManifesto = function() {
+  const power = document.getElementById("cw-manifesto-power")?.value;
+  const msg   = document.getElementById("cw-manifesto-msg");
+  if (!power) { if(msg){ msg.style.color="#f87171"; msg.textContent="⚠️ Chọn thế lực"; } return; }
+  const r = chDeclareManifesto(power);
+  if (msg) {
+    msg.style.color = r.ok ? "#fbbf24" : "#94a3b8";
+    msg.textContent = r.ok
+      ? `📜 Tuyên Ngôn ban hành! ${r.manifesto.adherents.length} thế lực thần phục.`
+      : "⚠️ " + r.msg;
+  }
+  setTimeout(() => { chRenderPanel(); chSwitchTab("cultwar"); }, 300);
+};
+
 window.chActionFestival = function() {
   const power = document.getElementById("ch-fest-power")?.value;
   const msg   = document.getElementById("ch-fest-msg");
@@ -855,17 +1219,20 @@ window.chActionFestival = function() {
 };
 
 // ─── PUBLIC API ───────────────────────────────────────────────────
-window.chAdoptStyle     = chAdoptStyle;
-window.chDevelopCulture = chDevelopCulture;
-window.chCreateWonder   = chCreateWonder;
-window.chLeaveHeritage  = chLeaveHeritage;
-window.chAdoptHeritage  = chAdoptHeritage;
-window.chSpreadCulture  = chSpreadCulture;
-window.chAssimilate     = chAssimilate;
-window.chHostFestival   = chHostFestival;
-window.chRenderPanel    = chRenderPanel;
-window.chTick           = chTick;
-window.cultureState     = state;
+window.chAdoptStyle        = chAdoptStyle;
+window.chDevelopCulture    = chDevelopCulture;
+window.chCreateWonder      = chCreateWonder;
+window.chLeaveHeritage     = chLeaveHeritage;
+window.chAdoptHeritage     = chAdoptHeritage;
+window.chSpreadCulture     = chSpreadCulture;
+window.chAssimilate        = chAssimilate;
+window.chHostFestival      = chHostFestival;
+window.chLaunchCulturalWar = chLaunchCulturalWar;
+window.chResistCulturalWar = chResistCulturalWar;
+window.chDeclareManifesto  = chDeclareManifesto;
+window.chRenderPanel       = chRenderPanel;
+window.chTick              = chTick;
+window.cultureState        = state;
 
 // ─── INIT ─────────────────────────────────────────────────────────
 (function chInit() {
