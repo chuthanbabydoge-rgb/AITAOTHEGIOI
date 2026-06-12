@@ -1,0 +1,130 @@
+Create PROJECT_STATUS.md
+
+This file is the master memory file for the project.
+
+Include:
+
+- Project Name
+- Current Version
+- Build Date
+- Total Files
+- Total Systems
+
+Completed Systems:
+- List every completed engine
+
+Partially Completed Systems:
+- List unfinished systems
+
+Planned Systems:
+- Future roadmap
+
+Current UI Tabs:
+- List all tabs
+
+Current Dashboards:
+- List all dashboards
+
+Current Save Data Structure:
+- List all save objects
+
+Known Bugs:
+- List current bugs
+
+Next Recommended Version:
+- Suggested next build
+
+Update this file automatically whenever a new version is completed.
+
+Create PROJECT_ARCHITECTURE.md
+
+Document:
+
+- Folder structure
+- File structure
+- System dependencies
+- Event flow
+- Save/load flow
+- UI flow
+- World simulation flow
+
+For every engine include:
+
+- Purpose
+- Dependencies
+- Public methods
+- Data stored
+- Related UI
+
+Update automatically after each version.
+
+Create PROJECT_CHANGELOG.md
+
+For every version record:
+
+Version Number
+
+Release Date
+
+New Systems Added
+
+Files Added
+
+Files Modified
+
+UI Changes
+
+Save Data Changes
+
+Bug Fixes
+
+Compatibility Notes
+
+Do not overwrite previous entries.
+
+Append new versions only.
+
+Create AI_MEMORY.md
+
+Purpose:
+
+Allow any future AI assistant to instantly understand the project.
+
+Include:
+
+PROJECT SUMMARY
+
+CURRENT VERSION
+
+COMPLETED SYSTEMS
+
+CURRENT WORLD FEATURES
+
+CURRENT UI TABS
+
+CURRENT DASHBOARDS
+
+CURRENT SAVE STRUCTURE
+
+CURRENT DATABASE STRUCTURE
+
+CURRENT MULTIPLAYER STATUS
+
+CURRENT WORLD SIMULATION STATUS
+
+CURRENT AI SYSTEMS
+
+CURRENT ECONOMY SYSTEMS
+
+CURRENT WAR SYSTEMS
+
+CURRENT DIPLOMACY SYSTEMS
+
+CURRENT EMPIRE SYSTEMS
+
+NEXT RECOMMENDED BUILDS
+
+DO NOT DELETE THIS FILE.
+
+Update automatically after every version.
+
