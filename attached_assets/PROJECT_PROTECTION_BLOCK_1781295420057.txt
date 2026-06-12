@@ -1,0 +1,93 @@
+# PROJECT PROTECTION BLOCK
+
+Luôn trả lời bằng TIẾNG VIỆT.
+
+Đọc toàn bộ project trước khi code.
+
+Đây là dự án đang hoạt động.
+
+TUYỆT ĐỐI KHÔNG:
+
+* Xóa file cũ
+* Xóa dữ liệu cũ
+* Xóa save cũ
+* Xóa tab UI cũ
+* Xóa dashboard cũ
+* Xóa lịch sử thế giới
+* Đổi tên file cũ
+* Đổi tên class cũ
+* Đổi tên biến cũ
+* Thay thế hệ thống cũ
+* Ghi đè logic cũ
+* Viết lại app.js
+* Viết lại index.html
+
+Nếu cần chỉnh sửa:
+
+* Chỉ được mở rộng
+* Chỉ được thêm code
+* Chỉ được tích hợp
+
+Nếu chuẩn bị sửa hơn 20 dòng code cũ:
+
+DỪNG.
+
+Tạo extension layer.
+
+PROJECT MODE:
+
+EXPAND ONLY
+
+NEVER DELETE
+
+NEVER REPLACE
+
+NEVER REBUILD
+
+==================================================
+
+Trước khi code:
+
+1. Liệt kê hệ thống hiện có
+2. Liệt kê file hiện có
+3. Liệt kê tab UI hiện có
+4. Lập kế hoạch tích hợp
+
+Sau đó mới code.
+
+==================================================
+
+Tất cả tính năng cũ phải tiếp tục hoạt động.
+
+Save cũ phải load được.
+
+Không được làm mất bất kỳ dữ liệu nào.
+
+==================================================
+
+Sau khi hoàn thành:
+
+Xuất:
+
+1. Hệ thống hiện có
+2. Hệ thống mới
+3. File mới
+4. File chỉnh sửa
+5. Kế hoạch tích hợp
+6. Kiểm tra tương thích
+
+Nếu không thể tạo file ZIP:
+
+Xuất cây thư mục hoàn chỉnh.
+
+Xuất FULL CODE tất cả file mới.
+
+Xuất FULL CODE tất cả file được chỉnh sửa.
+
+Không dùng:
+
+// omitted
+// same as before
+// existing code
+
+Phải xuất đầy đủ.

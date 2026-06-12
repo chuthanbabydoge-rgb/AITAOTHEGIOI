@@ -1,0 +1,45 @@
+Xây dựng hệ thống ngoại giao V24.
+
+Tạo:
+
+- diplomacyEngine.js
+
+- allianceEngine.js
+
+- treatyEngine.js
+
+- sanctionEngine.js
+
+- worldCouncilEngine.js
+
+Tính năng:
+
+- Liên minh
+- Hiệp ước hòa bình
+- Hiệp ước thương mại
+- Hiệp ước quân sự
+- Hiệp ước không xâm lược
+- Trừng phạt kinh tế
+- Quốc gia chư hầu
+- Quốc gia bảo hộ
+- Hội đồng thế giới
+
+Tích hợp với:
+
+- Hệ thống Vương quốc
+- Hệ thống Đế chế
+
+- Hệ thống Chiến tranh
+- Hệ thống Kinh tế
+
+Thêm các tab giao diện người dùng:
+
+🤝 Ngoại giao
+
+📜 Hiệp ước
+
+🏛 Hội đồng thế giới
+
+🌍 Quan hệ quốc tế
+
+Giữ nguyên tất cả các hệ thống hiện có.

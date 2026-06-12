@@ -1665,6 +1665,19 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-culture-heritage" onclick="showPanel('culture-heritage');if(typeof chRenderPanel==='function')chRenderPanel();" data-panel="culture-heritage">
         <span class="nav-icon">🎨</span><span>Văn Hóa</span>
       </button>
+      <!-- ═══ V24 DIPLOMACY ENGINE TABS ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-diplomacy-v24" onclick="showPanel('diplomacy-v24');if(typeof window.de24RenderPanel==='function')window.de24RenderPanel();" data-panel="diplomacy-v24">
+        <span class="nav-icon">🤝</span><span>Ngoại Giao V24</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-treaties-v24" onclick="showPanel('treaties-v24');if(typeof window.teRenderPanel==='function')window.teRenderPanel();" data-panel="treaties-v24">
+        <span class="nav-icon">📜</span><span>Hiệp Ước</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-council" onclick="showPanel('world-council');if(typeof window.wcRenderPanel==='function')window.wcRenderPanel();" data-panel="world-council">
+        <span class="nav-icon">🏛</span><span>Hội Đồng</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-intl-relations" onclick="showPanel('intl-relations');if(typeof window.irRenderPanel==='function')window.irRenderPanel();" data-panel="intl-relations">
+        <span class="nav-icon">🌍</span><span>Quan Hệ Quốc Tế</span>
+      </button>
       <button class="nav-btn" id="btn-spirit-beast" onclick="showPanel('spirit-beast');if(typeof renderSpiritBeastPanel==='function')renderSpiritBeastPanel();" data-panel="spirit-beast">
         <span class="nav-icon">🐉</span><span>Linh Vật</span>
       </button>
@@ -2442,6 +2455,31 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by meRenderPanel() in migrationEngine.js -->
       </div>
 
+      <!-- ═══ V24 DIPLOMACY ENGINE PANELS ═══ -->
+      <div id="panel-diplomacy-v24" class="panel">
+        <!-- Rendered by de24RenderPanel() in diplomacyEngine.js -->
+      </div>
+
+      <div id="panel-alliance-v24" class="panel">
+        <!-- Rendered by aeRenderPanel() in allianceEngine.js -->
+      </div>
+
+      <div id="panel-treaties-v24" class="panel">
+        <!-- Rendered by teRenderPanel() in treatyEngine.js -->
+      </div>
+
+      <div id="panel-sanctions-v24" class="panel">
+        <!-- Rendered by seRenderPanel() in sanctionEngine.js -->
+      </div>
+
+      <div id="panel-world-council" class="panel">
+        <!-- Rendered by wcRenderPanel() in worldCouncilEngine.js -->
+      </div>
+
+      <div id="panel-intl-relations" class="panel">
+        <!-- Rendered by irRenderPanel() in diplomacyEngine.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2621,6 +2659,12 @@ window.addEventListener("load", function() {
 <script src="worldEventEngine.js"></script>
 <script src="mythologyEngine.js"></script>
 <script src="technologyEngine.js"></script>
+<!-- ═══ V24 DIPLOMACY ENGINE SCRIPTS ═══ -->
+<script src="allianceEngine.js"></script>
+<script src="treatyEngine.js"></script>
+<script src="sanctionEngine.js"></script>
+<script src="worldCouncilEngine.js"></script>
+<script src="diplomacyEngine.js"></script>
 <!-- ═══ V23 EMPIRE & KINGDOM ENGINE SCRIPTS ═══ -->
 <script src="historicalTimeline.js"></script>
 <script src="kingdomEngine.js"></script>
@@ -2642,7 +2686,7 @@ window.addEventListener("load", function() {
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
