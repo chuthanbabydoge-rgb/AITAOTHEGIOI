@@ -340,3 +340,167 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 11000);
   }, 2200);
 });
+
+// ============================================================
+// BLOODLINE ENGINE V23 — EXPANSION PACK
+// War-Glory Bonuses, Mutation System, Hero Rankings Integration
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Đảm bảo trường mở rộng ──
+function blEnsureExtended(bl) {
+  if (!bl.warGlory)      bl.warGlory      = 0;
+  if (!bl.mutations)     bl.mutations     = [];
+  if (!bl.heroTitles)    bl.heroTitles    = [];
+  if (!bl.legendScore)   bl.legendScore   = 0;
+  if (!bl.battleCount)   bl.battleCount   = 0;
+  if (!bl.dynastyKings)  bl.dynastyKings  = 0;
+  if (!bl.rarity)        bl.rarity        = "Thường";
+}
+
+// ── Bảng đột biến huyết mạch ──
+const BL_MUTATIONS = [
+  { id:"iron_body",    name:"Kim Cang Thể",       effect:"defense+30%",  emoji:"🛡️",  rarity:"hiếm"    },
+  { id:"dragon_blood", name:"Long Huyết",          effect:"power+50%",    emoji:"🐉",  rarity:"siêu hiếm"},
+  { id:"void_eyes",    name:"Hư Không Chi Nhãn",   effect:"vision+100%",  emoji:"👁️",  rarity:"hiếm"    },
+  { id:"thunder_soul", name:"Lôi Hồn",             effect:"speed+40%",    emoji:"⚡",  rarity:"hiếm"    },
+  { id:"undying",      name:"Bất Tử Chi Thể",      effect:"hp+200%",      emoji:"♾️",  rarity:"huyền thoại"},
+  { id:"phoenix_fire", name:"Phượng Hoàng Hỏa",    effect:"fire+80%",     emoji:"🔥",  rarity:"siêu hiếm"},
+  { id:"star_fate",    name:"Thiên Tinh Mệnh",     effect:"luck+60%",     emoji:"⭐",  rarity:"hiếm"    },
+  { id:"void_core",    name:"Hư Không Đan Điền",   effect:"qi+100%",      emoji:"🌀",  rarity:"huyền thoại"},
+  { id:"ancient_blood",name:"Thái Cổ Huyết",       effect:"all+25%",      emoji:"🩸",  rarity:"huyền thoại"},
+];
+
+// ── Xác suất đột biến theo rarity ──
+function blMutationChance(bl) {
+  const base = 0.002;
+  const warBonus = (bl.warGlory || 0) * 0.00005;
+  return Math.min(0.05, base + warBonus);
+}
+
+// ── Thêm đột biến mới ──
+function blTryMutate(bl) {
+  if (!bl || bl.isExtinct) return;
+  blEnsureExtended(bl);
+  if (Math.random() > blMutationChance(bl)) return;
+
+  const available = BL_MUTATIONS.filter(m => !bl.mutations.includes(m.id));
+  if (available.length === 0) return;
+
+  // Trọng số theo rarity
+  const weights = { "thường":50, "hiếm":30, "siêu hiếm":15, "huyền thoại":5 };
+  const pool = [];
+  available.forEach(m => {
+    const w = weights[m.rarity] || 30;
+    for (let i = 0; i < w; i++) pool.push(m);
+  });
+
+  const mutation = pool[Math.floor(Math.random() * pool.length)];
+  bl.mutations.push(mutation.id);
+  bl.legendScore += mutation.rarity === "huyền thoại" ? 100
+                  : mutation.rarity === "siêu hiếm"   ? 50
+                  : mutation.rarity === "hiếm"         ? 25 : 10;
+  bl.power = Math.floor((bl.power || 1000) * 1.15);
+
+  const year = window.year || 0;
+  const msg = `🧬✨ Huyết mạch ${bl.bloodlineName} đột biến: [${mutation.emoji} ${mutation.name}] (${mutation.rarity})!`;
+  if (typeof addLog === "function") addLog(msg, "important");
+  if (typeof htAddEvent === "function") htAddEvent({
+    year, type:"bloodline_mutation", text: msg,
+    importance: mutation.rarity === "huyền thoại" ? "high" : "medium"
+  });
+
+  // Tăng rank nếu đủ đột biến huyền thoại
+  const legendaryCount = bl.mutations.filter(id => {
+    const m = BL_MUTATIONS.find(x => x.id === id);
+    return m && m.rarity === "huyền thoại";
+  }).length;
+  if (legendaryCount >= 2 && bl.rarity !== "Huyền Thoại") {
+    bl.rarity = "Huyền Thoại";
+    const rMsg = `🌟🐉 Huyết mạch ${bl.bloodlineName} đạt cấp HUYỀN THOẠI!`;
+    if (typeof addLog === "function") addLog(rMsg, "important");
+    if (typeof htAddEvent === "function") htAddEvent({ year, type:"bloodline_hero", text: rMsg, importance:"high" });
+  }
+}
+
+// ── Ghi nhận vinh quang chiến tranh ──
+function blAddWarGlory(bloodlineId, gloryAmount) {
+  if (!window.bloodlineData || !window.bloodlineData.bloodlines) return;
+  const bl = window.bloodlineData.bloodlines[bloodlineId];
+  if (!bl || bl.isExtinct) return;
+  blEnsureExtended(bl);
+  bl.warGlory    += gloryAmount;
+  bl.battleCount += 1;
+  bl.legendScore += Math.floor(gloryAmount / 10);
+  bl.power        = Math.floor((bl.power || 1000) * (1 + gloryAmount * 0.0001));
+
+  // Mỗi 10 trận thắng tặng danh hiệu
+  if (bl.battleCount % 10 === 0) {
+    const HERO_TITLES = [
+      "Thiên Hạ Vô Song","Chiến Thần Bất Bại","Vạn Quân Chi Địch",
+      "Đệ Nhất Hào Kiệt","Long Hổ Chiến Thần","Hỏa Phụng Chí Tôn",
+      "Hắc Ám Diệt Thế","Thiên Kiếm Chí Tôn","Lôi Đình Thần Tướng"
+    ];
+    const title = HERO_TITLES[Math.floor(Math.random() * HERO_TITLES.length)];
+    if (!bl.heroTitles.includes(title)) {
+      bl.heroTitles.push(title);
+      const year = window.year || 0;
+      const msg = `🌟 Huyết mạch ${bl.bloodlineName} đạt danh hiệu: [${title}]!`;
+      if (typeof addLog === "function") addLog(msg, "important");
+      if (typeof htAddEvent === "function") htAddEvent({ year, type:"bloodline_hero", text: msg, importance:"high" });
+    }
+  }
+}
+
+// ── Tick huyết mạch mở rộng ──
+function blTick_v23() {
+  if (!window.bloodlineData) return;
+  Object.values(window.bloodlineData.bloodlines).forEach(bl => {
+    if (bl.isExtinct) return;
+    blEnsureExtended(bl);
+    blTryMutate(bl);
+
+    // Tự nhiên tăng legend score theo thời gian nếu power cao
+    if ((bl.power || 0) > 10000) {
+      bl.legendScore += 1;
+    }
+    // Nhân số người theo huyết mạch
+    if (bl.members && bl.members < 20) {
+      bl.dynastyKings += Math.random() < 0.1 ? 1 : 0;
+    }
+  });
+  if (typeof blSave === "function") blSave();
+}
+
+// ── Xếp hạng huyết mạch anh hùng ──
+function blGetHeroRankings() {
+  if (!window.bloodlineData) return [];
+  return Object.values(window.bloodlineData.bloodlines)
+    .filter(bl => !bl.isExtinct)
+    .sort((a, b) => (b.legendScore + b.warGlory + (b.power||0)/100) -
+                    (a.legendScore + a.warGlory + (a.power||0)/100))
+    .slice(0, 10);
+}
+
+// ── Lấy danh sách đột biến của huyết mạch ──
+function blGetMutationDetails(bl) {
+  if (!bl || !bl.mutations) return [];
+  return bl.mutations.map(id => BL_MUTATIONS.find(m => m.id === id)).filter(Boolean);
+}
+
+// ── Tích hợp auto tick ──
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    setInterval(function() {
+      if (window.world && window.bloodlineData) blTick_v23();
+    }, 11000);
+  }, 5000);
+});
+
+window.blTick_v23          = blTick_v23;
+window.blAddWarGlory       = blAddWarGlory;
+window.blGetHeroRankings   = blGetHeroRankings;
+window.blGetMutationDetails = blGetMutationDetails;
+window.blTryMutate         = blTryMutate;
+window.blEnsureExtended    = blEnsureExtended;
+window.BL_MUTATIONS        = BL_MUTATIONS;

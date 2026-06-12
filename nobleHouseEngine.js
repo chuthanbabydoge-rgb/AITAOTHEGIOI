@@ -333,3 +333,207 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 9000);
   }, 2000);
 });
+
+// ============================================================
+// NOBLE HOUSE ENGINE V23 — EXPANSION PACK
+// House Rivalries, Treasury Upkeep, War Triggers, Alliances
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Đảm bảo trường mở rộng tồn tại ──
+function nhEnsureExtended(h) {
+  if (!h.rivals)       h.rivals       = [];
+  if (!h.allies)       h.allies       = [];
+  if (!h.warCount)     h.warCount     = 0;
+  if (!h.upkeepCost)   h.upkeepCost   = Math.floor((h.wealth || 10000) * 0.02);
+  if (!h.gloryPoints)  h.gloryPoints  = 0;
+  if (!h.marriages)    h.marriages    = [];
+  if (!h.claimCount)   h.claimCount   = 0;
+}
+
+// ── Chi phí duy trì gia tộc ──
+function nhPayUpkeep(h) {
+  if (!h || h.isExtinct) return;
+  nhEnsureExtended(h);
+  const upkeep = Math.floor((h.wealth || 10000) * 0.015 + h.members * 200);
+  if (h.wealth >= upkeep) {
+    h.wealth    -= upkeep;
+    h.influence  = Math.min(100, (h.influence || 20) + 1);
+  } else {
+    // Không đủ tiền — mất ảnh hưởng
+    h.wealth     = Math.max(0, h.wealth - upkeep);
+    h.influence  = Math.max(0, (h.influence || 20) - 5);
+    h.prestige   = Math.max(0, (h.prestige || 50) - 3);
+    if ((h.influence || 0) <= 0 && (h.prestige || 0) <= 0) {
+      h.isExtinct = true;
+      const msg = `💀 Gia tộc ${h.houseName} sụp đổ vì kiệt quệ tài chính!`;
+      if (typeof addLog === "function") addLog(msg, "death");
+      if (typeof htAddEvent === "function") htAddEvent({ type:"house_extinct", text: msg });
+    }
+  }
+}
+
+// ── Cạnh tranh giữa các gia tộc ──
+function nhRivalryTick(h, allHouses) {
+  if (!h || h.isExtinct || !allHouses) return;
+  nhEnsureExtended(h);
+
+  // Kiếm kẻ thù tự nhiên nếu chưa có
+  if (h.rivals.length < 2) {
+    const others = allHouses.filter(o =>
+      !o.isExtinct &&
+      o.houseId !== h.houseId &&
+      !h.rivals.includes(o.houseId) &&
+      !h.allies.includes(o.houseId)
+    );
+    if (others.length > 0) {
+      // Gia tộc cùng phe chính trị có cơ hội thù địch
+      const rival = others.find(o => o.faction === h.faction && o.houseId !== h.houseId)
+                 || others[Math.floor(Math.random() * others.length)];
+      if (rival && Math.random() < 0.05) {
+        h.rivals.push(rival.houseId);
+        rival.rivals = rival.rivals || [];
+        rival.rivals.push(h.houseId);
+        const msg = `⚔️ Gia tộc ${h.houseName} và ${rival.houseName} trở thành kẻ thù!`;
+        if (typeof addLog === "function") addLog(msg, "info");
+        if (typeof htAddEvent === "function") htAddEvent({ type:"house_rivalry", text: msg });
+        if (typeof _we_setMutualRelation === "function") {
+          try { _we_setMutualRelation(h.houseId, rival.houseId, "hostile"); } catch(e2) {}
+        }
+      }
+    }
+  }
+
+  // Liên minh gia tộc
+  if (h.allies.length < 3 && Math.random() < 0.04) {
+    const freeHouses = allHouses.filter(o =>
+      !o.isExtinct &&
+      o.houseId !== h.houseId &&
+      !h.rivals.includes(o.houseId) &&
+      !h.allies.includes(o.houseId) &&
+      (o.prestige || 50) > 40
+    );
+    if (freeHouses.length > 0) {
+      const ally = freeHouses[Math.floor(Math.random() * freeHouses.length)];
+      h.allies.push(ally.houseId);
+      ally.allies = ally.allies || [];
+      ally.allies.push(h.houseId);
+      h.prestige  = Math.min(100, (h.prestige || 50) + 5);
+      ally.prestige = Math.min(100, (ally.prestige || 50) + 5);
+      const msg = `🤝 Gia tộc ${h.houseName} kết liên minh với ${ally.houseName}!`;
+      if (typeof addLog === "function") addLog(msg, "info");
+      if (typeof htAddEvent === "function") htAddEvent({ type:"house_alliance", text: msg });
+    }
+  }
+}
+
+// ── Gia tộc gây chiến ──
+function nhHouseWarTrigger(h, allHouses) {
+  if (!h || h.isExtinct) return;
+  nhEnsureExtended(h);
+  if ((h.prestige || 50) < 60 || (h.wealth || 10000) < 50000) return;
+  if (h.rivals.length === 0) return;
+
+  if (Math.random() < 0.02) {
+    const rivalId  = h.rivals[Math.floor(Math.random() * h.rivals.length)];
+    const rival    = allHouses.find(o => o.houseId === rivalId);
+    if (!rival || rival.isExtinct) {
+      // Xóa rival đã tuyệt
+      h.rivals = h.rivals.filter(id => id !== rivalId);
+      return;
+    }
+
+    // Chiến tranh gia tộc
+    h.wealth      -= 30000;
+    rival.wealth  = Math.max(0, (rival.wealth || 10000) - 20000);
+    h.warCount    += 1;
+    rival.warCount = (rival.warCount || 0) + 1;
+
+    const winnerHouse = (h.prestige || 50) > (rival.prestige || 50) ? h : rival;
+    const loserHouse  = winnerHouse === h ? rival : h;
+    winnerHouse.prestige   = Math.min(100, (winnerHouse.prestige || 50) + 15);
+    winnerHouse.gloryPoints = (winnerHouse.gloryPoints || 0) + 50;
+    loserHouse.prestige    = Math.max(0, (loserHouse.prestige || 50) - 20);
+    loserHouse.influence   = Math.max(0, (loserHouse.influence || 20) - 10);
+
+    const msg = `⚔️🏛️ CHIẾN TRANH GIA TỘC: ${h.houseName} vs ${rival.houseName}! Thắng: ${winnerHouse.houseName}`;
+    if (typeof addLog === "function") addLog(msg, "death");
+    if (typeof htAddEvent === "function") htAddEvent({ type:"house_war", text: msg, importance:"high" });
+    if (typeof warEngine_declareWar === "function") {
+      try { warEngine_declareWar(h.houseId, rival.houseId); } catch(e2) {}
+    }
+    if (typeof wmeRemember_war === "function") {
+      try { wmeRemember_war(winnerHouse.houseId, loserHouse.houseId); } catch(e2) {}
+    }
+  }
+}
+
+// ── Hôn nhân chính trị giữa gia tộc ──
+function nhPoliticalMarriage(h, allHouses) {
+  if (!h || h.isExtinct || h.marriages.length >= 3) return;
+  if ((h.prestige || 50) < 50 || Math.random() > 0.03) return;
+
+  const candidates = allHouses.filter(o =>
+    !o.isExtinct &&
+    o.houseId !== h.houseId &&
+    !h.marriages.includes(o.houseId) &&
+    !h.rivals.includes(o.houseId) &&
+    (o.prestige || 50) > 40
+  );
+  if (candidates.length === 0) return;
+
+  const partner = candidates[Math.floor(Math.random() * candidates.length)];
+  h.marriages.push(partner.houseId);
+  partner.marriages = partner.marriages || [];
+  partner.marriages.push(h.houseId);
+
+  // Lợi ích hôn nhân
+  h.prestige      = Math.min(100, (h.prestige || 50) + 8);
+  partner.prestige = Math.min(100, (partner.prestige || 50) + 8);
+  h.wealth        += 10000;
+  partner.wealth  = (partner.wealth || 10000) + 10000;
+
+  const msg = `💍 Hôn nhân chính trị: ${h.houseName} ↔ ${partner.houseName}`;
+  if (typeof addLog === "function") addLog(msg, "info");
+  if (typeof htAddEvent === "function") htAddEvent({ type:"house_marriage", text: msg });
+}
+
+// ── Noble House tick mở rộng ──
+function nhTick_v23() {
+  if (!window.nobleHouseData) return;
+  const allHouses = Object.values(window.nobleHouseData.houses);
+  allHouses.forEach(h => {
+    if (h.isExtinct) return;
+    nhEnsureExtended(h);
+    nhPayUpkeep(h);
+    nhRivalryTick(h, allHouses);
+    nhHouseWarTrigger(h, allHouses);
+    nhPoliticalMarriage(h, allHouses);
+    // Tự nhiên phục hồi prestige nhẹ
+    if ((h.prestige || 50) < 100) h.prestige = Math.min(100, (h.prestige || 50) + 0.5);
+  });
+  if (typeof nhSave === "function") nhSave();
+}
+
+// ── Lấy xếp hạng gia tộc ──
+function nhGetRankings() {
+  if (!window.nobleHouseData) return [];
+  return Object.values(window.nobleHouseData.houses)
+    .filter(h => !h.isExtinct)
+    .sort((a, b) => (b.prestige + b.wealth/10000 + b.gloryPoints) - (a.prestige + a.wealth/10000 + a.gloryPoints))
+    .slice(0, 10);
+}
+
+// ── Tích hợp auto tick ──
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    setInterval(function() {
+      if (window.world && window.nobleHouseData) nhTick_v23();
+    }, 9000);
+  }, 4500);
+});
+
+window.nhTick_v23       = nhTick_v23;
+window.nhGetRankings    = nhGetRankings;
+window.nhEnsureExtended = nhEnsureExtended;
+window.nhPayUpkeep      = nhPayUpkeep;

@@ -403,3 +403,212 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 10000);
   }, 1500);
 });
+
+// ============================================================
+// EMPIRE ENGINE V23 — EXPANSION PACK
+// Vassal Tribute, Rebellion mechanics, WarEngine Integration
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Đảm bảo vassalKingdoms tồn tại ──
+function eeEnsureVassals(emp) {
+  if (!emp.vassalKingdoms) emp.vassalKingdoms = [];
+  if (!emp.vassalTribute)  emp.vassalTribute  = {};
+  if (!emp.vassalRebellionRisk) emp.vassalRebellionRisk = {};
+}
+
+// ── Thu Cống Từ Chư Hầu ──
+function eeTributeVassals(emp) {
+  if (!emp || emp.isCollapsed || !window.kingdomData) return;
+  eeEnsureVassals(emp);
+
+  let totalTribute = 0;
+  const toRemove = [];
+
+  emp.vassalKingdoms.forEach(vid => {
+    const vassal = window.kingdomData.kingdoms[vid];
+    if (!vassal || vassal.isCollapsed) { toRemove.push(vid); return; }
+
+    // Cống phẩm: 8% kho bạc vassal mỗi tick
+    const tribute = Math.floor(vassal.treasury * 0.08);
+    if (tribute > 0 && vassal.treasury >= tribute) {
+      vassal.treasury  -= tribute;
+      emp.totalWealth  += tribute;
+      totalTribute     += tribute;
+      emp.vassalTribute[vid] = (emp.vassalTribute[vid] || 0) + tribute;
+    }
+
+    // Tính rủi ro nổi loạn chư hầu
+    const loyaltyFactor = vassal.stability || 50;
+    const riskDelta = loyaltyFactor < 30 ? 5 : loyaltyFactor > 70 ? -2 : 1;
+    emp.vassalRebellionRisk[vid] = Math.max(0, Math.min(100,
+      (emp.vassalRebellionRisk[vid] || 20) + riskDelta + Math.floor(Math.random() * 3 - 1)
+    ));
+
+    // Chư hầu nổi loạn nếu risk > 85
+    if (emp.vassalRebellionRisk[vid] >= 85) {
+      emp.vassalRebellionRisk[vid] = 0;
+      emp.rebellionRisk = Math.min(100, emp.rebellionRisk + 15);
+      emp.stability     = Math.max(0, emp.stability - 10);
+      vassal.empireId   = null;
+      toRemove.push(vid);
+
+      const msg = `🔥 Chư hầu ${vassal.kingdomName} NỔI LOẠN thoát khỏi ${emp.empireName}!`;
+      if (typeof addLog === "function") addLog(msg, "death");
+      if (typeof htAddEvent === "function") htAddEvent({ type:"vassal_rebellion", text: msg, empireId: emp.empireId, importance:"high" });
+      if (typeof _we_setMutualRelation === "function") {
+        try { _we_setMutualRelation(emp.empireId, vid, "hostile"); } catch(e2) {}
+      }
+      if (typeof wmeRemember_war === "function") {
+        try { wmeRemember_war(vid, emp.empireId); } catch(e2) {}
+      }
+    }
+  });
+
+  // Xóa các vassal đã mất
+  toRemove.forEach(vid => {
+    const idx = emp.vassalKingdoms.indexOf(vid);
+    if (idx >= 0) emp.vassalKingdoms.splice(idx, 1);
+  });
+
+  if (totalTribute > 0) {
+    emp.influence += Math.floor(totalTribute / 5000);
+  }
+}
+
+// ── Quản lý thành viên chính thức ──
+function eeManageMembers(emp) {
+  if (!emp || emp.isCollapsed || !window.kingdomData) return;
+  const toRemove = [];
+  emp.memberKingdoms.forEach(kid => {
+    const kingdom = window.kingdomData.kingdoms[kid];
+    if (!kingdom || kingdom.isCollapsed) {
+      toRemove.push(kid);
+      return;
+    }
+    // Vương quốc thành viên đóng góp vào đế quốc mỗi tick
+    const contrib = Math.floor(kingdom.population * 0.001 + kingdom.treasury * 0.002);
+    emp.totalWealth     += contrib;
+    emp.totalPopulation  = emp.memberKingdoms.reduce((s, mid) => {
+      const mk = window.kingdomData.kingdoms[mid];
+      return s + (mk && !mk.isCollapsed ? mk.population : 0);
+    }, 0);
+    // Tăng nguy cơ ly khai nếu ổn định thấp
+    if ((kingdom.stability || 50) < 25) {
+      kingdom.collapseRisk = (kingdom.collapseRisk || 0) + 3;
+      emp.rebellionRisk    = Math.min(100, emp.rebellionRisk + 2);
+    }
+  });
+  toRemove.forEach(kid => {
+    const idx = emp.memberKingdoms.indexOf(kid);
+    if (idx >= 0) emp.memberKingdoms.splice(idx, 1);
+  });
+}
+
+// ── Đế quốc chinh phục bằng chiến tranh ──
+function eeConquestWar(emp) {
+  if (!emp || emp.isCollapsed || !window.kingdomData) return;
+  if (emp.memberKingdoms.length >= 10) return; // đã đủ lớn
+  if (emp.totalWealth < 120000 || emp.totalArmy < 25000) return;
+
+  const targets = Object.values(window.kingdomData.kingdoms).filter(k =>
+    !k.isCollapsed &&
+    !k.empireId &&
+    k.militaryPower < emp.totalArmy * 0.25 &&
+    (k.stability || 50) < 40
+  );
+  if (targets.length === 0) return;
+
+  const target = targets[Math.floor(Math.random() * targets.length)];
+  const year = window.year || 0;
+
+  emp.totalWealth -= 120000;
+  emp.totalArmy   -= 15000;
+  target.empireId  = emp.empireId;
+  target.stability = Math.max(0, (target.stability || 50) - 25);
+  emp.memberKingdoms.push(target.kingdomId);
+  emp.totalPopulation += target.population;
+  emp.totalWealth     += target.treasury * 0.4;
+  emp.influence       += 80;
+
+  const msg = `⚔️👑 ${emp.empireName} CHINH PHỤC ${target.kingdomName} qua chiến tranh! (+${emp.memberKingdoms.length} kingdoms)`;
+  if (typeof addLog === "function") addLog(msg, "death");
+  if (typeof htAddEvent === "function") htAddEvent({ year, type:"empire_conquest", text: msg, empireId: emp.empireId, importance:"high" });
+  emp.history.push({ year, event: msg });
+
+  if (typeof _we_setMutualRelation === "function") {
+    try { _we_setMutualRelation(emp.empireId, target.kingdomId, "conquered"); } catch(e2) {}
+  }
+  if (typeof wmeRemember_war === "function") {
+    try { wmeRemember_war(emp.empireId, target.kingdomId); } catch(e2) {}
+  }
+  if (typeof keSave === "function") keSave();
+}
+
+// ── Kiểm tra sụp đổ đế quốc ──
+function eeCheckCollapse_v23(emp) {
+  if (!emp || emp.isCollapsed) return;
+  // Sụp đổ khi không còn thành viên hoặc rebellion risk cực cao
+  if (emp.memberKingdoms.length === 0 && (emp.vassalKingdoms || []).length === 0) {
+    emp.stability      = Math.max(0, emp.stability - 5);
+    emp.rebellionRisk  = Math.min(100, emp.rebellionRisk + 10);
+  }
+  if (emp.rebellionRisk >= 95 && emp.stability < 10) {
+    emp.isCollapsed = true;
+    const year = window.year || 0;
+    const msg  = `💀 Đế Quốc ${emp.empireName} SỤPĐỔ sau nổi loạn toàn diện!`;
+    if (typeof addLog === "function") addLog(msg, "death");
+    if (typeof htAddEvent === "function") htAddEvent({ year, type:"empire_collapsed", text: msg, empireId: emp.empireId, importance:"high" });
+    // Giải phóng các thành viên
+    if (window.kingdomData) {
+      [...(emp.memberKingdoms || []), ...(emp.vassalKingdoms || [])].forEach(kid => {
+        const k = window.kingdomData.kingdoms[kid];
+        if (k) k.empireId = null;
+      });
+    }
+  }
+}
+
+// ── Tick mở rộng Empire V23 ──
+function eeTick_v23_expansion() {
+  if (!window.empireData) return;
+  Object.values(window.empireData.empires).forEach(emp => {
+    if (emp.isCollapsed) return;
+    eeEnsureVassals(emp);
+    eeTributeVassals(emp);
+    eeManageMembers(emp);
+    // 20% cơ hội thực hiện chiến tranh chinh phục mỗi tick
+    if (Math.random() < 0.2) eeConquestWar(emp);
+    eeCheckCollapse_v23(emp);
+  });
+  if (typeof eeSave === "function") eeSave();
+}
+
+// ── Patch vào eeTick ──
+const _eeTick_orig = typeof eeTick === "function" ? eeTick : null;
+function eeTick_patched() {
+  if (_eeTick_orig) _eeTick_orig();
+  eeTick_v23_expansion();
+}
+if (typeof eeTick === "function") window.eeTick = eeTick_patched;
+
+// ── Lấy thông tin vassal ──
+function eeGetVassalInfo(emp) {
+  if (!emp || !window.kingdomData) return [];
+  eeEnsureVassals(emp);
+  return emp.vassalKingdoms.map(vid => {
+    const v = window.kingdomData.kingdoms[vid];
+    return {
+      id:        vid,
+      name:      v ? v.kingdomName : vid,
+      tribute:   emp.vassalTribute[vid] || 0,
+      rebellion: emp.vassalRebellionRisk[vid] || 0,
+      stability: v ? v.stability : 0,
+    };
+  });
+}
+
+window.eeTributeVassals    = eeTributeVassals;
+window.eeConquestWar       = eeConquestWar;
+window.eeGetVassalInfo     = eeGetVassalInfo;
+window.eeTick_v23_expansion = eeTick_v23_expansion;

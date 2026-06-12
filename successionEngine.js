@@ -295,3 +295,198 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 12000);
   }, 1800);
 });
+
+// ============================================================
+// SUCCESSION ENGINE V23 — EXPANSION PACK
+// WarEngine Integration, Bloodline Succession, Richer Events
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Tên danh hiệu kế thừa ──
+const SE_SUCCESSION_TITLES = [
+  "Thừa Kế Hợp Pháp","Kế Vị Chinh Chiến","Ngai Vàng Tranh Đoạt",
+  "Thiên Mệnh Kế Vị","Long Mạch Truyền Thừa","Huyết Thống Chính Thống"
+];
+
+// ── Đánh giá sức mạnh ứng cử viên kế vị ──
+function seEvalCandidate(heir, kingdom) {
+  let score = 50;
+  if (heir.ambition > 70)    score += 20;
+  if (heir.intelligence > 70) score += 15;
+  if (heir.charisma > 60)    score += 10;
+  if ((kingdom.stability||50) > 70)  score += 10; // ngôi ổn định dễ kế thừa
+  if ((kingdom.stability||50) < 30)  score -= 20; // khủng hoảng tăng rủi ro
+  if ((kingdom.militaryPower||0) > 50000) score += 5; // quân mạnh hỗ trợ
+  return Math.max(0, Math.min(100, score));
+}
+
+// ── Kế vị mạnh mẽ hơn với hook bloodline ──
+function seDoSuccession_v23(k) {
+  if (!k || k.isCollapsed) return null;
+  const year = window.year || 0;
+
+  // Tạo người kế thừa mới
+  const firstName = SE_HEIR_FIRST[Math.floor(Math.random() * SE_HEIR_FIRST.length)];
+  const lastName  = SE_HEIR_LAST [Math.floor(Math.random() * SE_HEIR_LAST.length)];
+  const heirName  = firstName + " " + lastName;
+
+  const oldRuler = k.ruler ? { ...k.ruler } : null;
+
+  // Thống kê heir
+  const heir = {
+    name:         heirName,
+    age:          18 + Math.floor(Math.random() * 15),
+    ambition:     20 + Math.floor(Math.random() * 80),
+    intelligence: 20 + Math.floor(Math.random() * 80),
+    charisma:     20 + Math.floor(Math.random() * 80),
+    wisdom:       10 + Math.floor(Math.random() * 60),
+    cruelty:      Math.floor(Math.random() * 70),
+  };
+
+  const candidateScore = seEvalCandidate(heir, k);
+  const rand = Math.random() * 100;
+
+  // Xác định kết quả dựa trên điểm kế vị
+  let outcome;
+  if (rand < candidateScore * 0.5) {
+    outcome = { effect:"peaceful", label:"Truyền Ngôi Hòa Bình", emoji:"✅" };
+  } else if (rand < 60) {
+    outcome = { effect:"contest",  label:"Tranh Giành Ngai Vàng", emoji:"⚔️" };
+  } else if (rand < 78) {
+    outcome = { effect:"civil_war",label:"Nội Chiến Kế Vị",       emoji:"🔥" };
+  } else if (rand < 88) {
+    outcome = { effect:"split",    label:"Chia Cắt Vương Quốc",   emoji:"💔" };
+  } else {
+    outcome = { effect:"collapse", label:"Sụp Đổ Triều Đại",      emoji:"💀" };
+  }
+
+  // Ghi log người cũ qua đời
+  if (oldRuler) {
+    const deathMsg = `☠️ ${oldRuler.name || "Quốc Vương"} của ${k.kingdomName} băng hà sau ${Math.floor(Math.random() * 30 + 10)} năm trị vì.`;
+    if (typeof addLog === "function") addLog(deathMsg, "info");
+    if (typeof htAddEvent === "function") htAddEvent({ year, type:"ruler_death", text: deathMsg, kingdomId: k.kingdomId });
+    // Lưu lịch sử kế vị
+    if (!k.rulerHistory) k.rulerHistory = [];
+    k.rulerHistory.push({ ...oldRuler, deathYear: year });
+  }
+
+  // Áp dụng kết quả
+  switch (outcome.effect) {
+    case "peaceful":
+      k.ruler     = heir;
+      k.stability = Math.min(100, (k.stability || 50) + 5);
+      k.dynasty   = k.dynasty; // giữ nguyên triều đại
+      break;
+
+    case "contest":
+      k.ruler         = heir;
+      k.stability     = Math.max(0, (k.stability || 50) - 15);
+      k.militaryPower = Math.floor(k.militaryPower * 0.92);
+      k.treasury      = Math.floor(k.treasury * 0.9);
+      break;
+
+    case "civil_war":
+      k.ruler         = heir;
+      k.stability     = Math.max(0, (k.stability || 50) - 30);
+      k.militaryPower = Math.floor(k.militaryPower * 0.7);
+      k.treasury      = Math.floor(k.treasury * 0.7);
+      k.population    = Math.floor(k.population * 0.92);
+      k.collapseRisk  = (k.collapseRisk || 0) + 25;
+      // Kích hoạt warEngine nội chiến
+      if (typeof warEngine_declareWar === "function") {
+        try { warEngine_declareWar(k.kingdomId + "_rebel", k.kingdomId); } catch(e2) {}
+      }
+      if (typeof wmeRemember_war === "function") {
+        try { wmeRemember_war(k.kingdomId, k.kingdomId + "_rebel"); } catch(e2) {}
+      }
+      break;
+
+    case "split":
+      k.ruler          = heir;
+      k.stability      = Math.max(0, (k.stability || 50) - 25);
+      k.territoryCount = Math.max(1, Math.floor(k.territoryCount / 2));
+      k.population     = Math.floor(k.population * 0.6);
+      k.militaryPower  = Math.floor(k.militaryPower * 0.6);
+      k.treasury       = Math.floor(k.treasury * 0.5);
+      // Sinh quốc gia mới nếu có foundNation
+      if (typeof foundNation === "function") {
+        try { foundNation({ name: heirName, origin: k.kingdomId }); } catch(e2) {}
+      }
+      break;
+
+    case "collapse":
+      if (typeof keCollapseKingdom === "function") {
+        keCollapseKingdom(k.kingdomId);
+      } else {
+        k.isCollapsed = true;
+      }
+      break;
+  }
+
+  const succMsg = `${outcome.emoji} ${outcome.label}: ${k.kingdomName} — ${heirName} lên ngôi (${outcome.effect})`;
+  if (typeof addLog === "function") addLog(succMsg, outcome.effect === "collapse" ? "death" : "info");
+  if (typeof htAddEvent === "function") {
+    htAddEvent({
+      year,
+      type:       "succession_" + outcome.effect,
+      text:       succMsg,
+      kingdomId:  k.kingdomId,
+      importance: ["civil_war","collapse","split"].includes(outcome.effect) ? "high" : "medium",
+    });
+  }
+
+  // Cập nhật successionData
+  if (!window.successionData) seInit();
+  window.successionData.history.push({
+    year,
+    kingdomId:   k.kingdomId,
+    kingdomName: k.kingdomName,
+    from:        oldRuler ? oldRuler.name : "—",
+    to:          heirName,
+    outcome:     outcome.effect,
+    label:       outcome.label,
+  });
+  if (typeof seSave === "function") seSave();
+
+  return { heir, outcome };
+}
+
+// ── Auto succession: khi vua già / random death ──
+function seAutoTick() {
+  if (!window.kingdomData) return;
+  Object.values(window.kingdomData.kingdoms).forEach(k => {
+    if (k.isCollapsed) return;
+    // Random chance mỗi tick để vua qua đời (0.5%)
+    if (Math.random() < 0.005) {
+      seDoSuccession_v23(k);
+    }
+    // Ruler già: tăng xác suất nếu tuổi > 60
+    if (k.ruler && k.ruler.age && k.ruler.age > 60 && Math.random() < 0.01) {
+      seDoSuccession_v23(k);
+    }
+    // Tăng tuổi ruler mỗi tick
+    if (k.ruler && k.ruler.age !== undefined) {
+      k.ruler.age += 0.05;
+    }
+  });
+}
+
+// ── Lấy lịch sử kế vị của một vương quốc ──
+function seGetKingdomHistory(kingdomId) {
+  if (!window.successionData) return [];
+  return (window.successionData.history || []).filter(h => h.kingdomId === kingdomId);
+}
+
+// ── Tích hợp auto tick vào DOMContentLoaded ──
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    setInterval(function() {
+      if (window.world && window.kingdomData) seAutoTick();
+    }, 12000);
+  }, 4000);
+});
+
+window.seDoSuccession_v23   = seDoSuccession_v23;
+window.seAutoTick           = seAutoTick;
+window.seGetKingdomHistory  = seGetKingdomHistory;
+window.seEvalCandidate      = seEvalCandidate;

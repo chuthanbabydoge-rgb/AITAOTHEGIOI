@@ -190,3 +190,198 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 15000);
   }, 3000);
 });
+
+// ============================================================
+// KINGDOM AI V23 — EXPANSION PACK
+// Religion Decisions, War Diplomacy, Economy V2 Sync
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Quyết định tôn giáo ──
+function kaiReligionDecide(k) {
+  if (!k || k.isCollapsed) return null;
+  const fervor = k.religiousFervor || 50;
+  const holyRisk = k.holyWarRisk || 0;
+
+  const decisions = [];
+
+  // Truyền giáo nếu fervor cao
+  if (fervor > 65 && (k.treasury || 0) > 25000) {
+    decisions.push({ action:"spread_faith",  priority: 72 + Math.random() * 15 });
+  }
+  // Thánh chiến nếu risk cao
+  if (holyRisk > 60 && (k.militaryPower || 0) > 15000) {
+    decisions.push({ action:"holy_war",      priority: 85 + Math.random() * 10 });
+  }
+  // Đàn áp tôn giáo nếu ổn định thấp do bất đồng
+  if (fervor < 30 && (k.stability || 50) < 40) {
+    decisions.push({ action:"religious_tolerance", priority: 68 + Math.random() * 10 });
+  }
+  // Xây chùa / đền thờ nếu có tiền
+  if (fervor < 60 && (k.treasury || 0) > 40000) {
+    decisions.push({ action:"build_temple",  priority: 55 + Math.random() * 15 });
+  }
+
+  return decisions.length > 0
+    ? decisions.sort((a,b) => b.priority - a.priority)[0]
+    : null;
+}
+
+// ── Áp dụng quyết định tôn giáo ──
+function kaiApplyReligionDecision(k, decision) {
+  if (!decision || !k || k.isCollapsed) return;
+  const year = window.year || 0;
+  let msg = "";
+
+  switch (decision.action) {
+    case "spread_faith":
+      k.treasury = Math.max(0, (k.treasury || 0) - 15000);
+      k.missionaryCount = (k.missionaryCount || 0) + 1;
+      k.religiousFervor = Math.min(100, (k.religiousFervor || 50) + 5);
+      k.influence += 8;
+      if (typeof keSpreadReligion === "function") keSpreadReligion(k);
+      msg = `🙏 ${k.kingdomName} phái truyền giáo sĩ truyền bá ${k.religionName || k.religion}!`;
+      if (typeof addLog === "function") addLog(msg, "info");
+      if (typeof htAddEvent === "function") htAddEvent({ year, type:"faith_spread", text: msg });
+      break;
+
+    case "holy_war":
+      // Thánh chiến được kích hoạt qua keUpdateHolyWarRisk
+      k.holyWarRisk = Math.min(100, (k.holyWarRisk || 0) + 20);
+      k.religiousFervor = Math.min(100, (k.religiousFervor || 50) + 8);
+      msg = `⚔️🔥 ${k.kingdomName} chuẩn bị phát động THÁNH CHIẾN (fervor: ${k.religiousFervor})!`;
+      if (typeof addLog === "function") addLog(msg, "important");
+      break;
+
+    case "religious_tolerance":
+      k.treasury = Math.max(0, (k.treasury || 0) - 10000);
+      k.stability = Math.min(100, (k.stability || 50) + 8);
+      k.religiousFervor = Math.min(100, (k.religiousFervor || 50) + 10);
+      msg = `☮️ ${k.kingdomName} ban chính sách khoan dung tôn giáo → ổn định +8`;
+      if (typeof addLog === "function") addLog(msg, "info");
+      break;
+
+    case "build_temple":
+      k.treasury = Math.max(0, (k.treasury || 0) - 20000);
+      k.religiousFervor = Math.min(100, (k.religiousFervor || 50) + 12);
+      k.stability = Math.min(100, (k.stability || 50) + 5);
+      k.influence += 15;
+      msg = `🏯 ${k.kingdomName} xây đền thờ vĩ đại! Fervor: ${k.religiousFervor}`;
+      if (typeof addLog === "function") addLog(msg, "info");
+      if (typeof htAddEvent === "function") htAddEvent({ year, type:"temple_built", text: msg });
+      break;
+  }
+}
+
+// ── Quyết định ngoại giao với warEngine ──
+function kaiDiplomacyDecide(k) {
+  if (!k || k.isCollapsed || !window.kingdomData) return null;
+
+  // Tìm mục tiêu tấn công hợp lý
+  const enemies = Object.values(window.kingdomData.kingdoms).filter(o =>
+    !o.isCollapsed &&
+    o.kingdomId !== k.kingdomId &&
+    !k.allies.includes(o.kingdomId) &&
+    o.militaryPower < k.militaryPower * 0.5 &&
+    (o.stability || 50) < 35
+  );
+
+  if (enemies.length > 0 && (k.militaryPower || 0) > 20000 && (k.treasury || 0) > 40000) {
+    return { action:"declare_war_diplomatic", target: enemies[0], priority: 78 };
+  }
+
+  // Đề xuất hòa bình với kẻ thù nếu yếu
+  if (k.militaryPower < 5000 && k.allies.length < 2) {
+    return { action:"seek_peace", priority: 70 };
+  }
+
+  return null;
+}
+
+// ── Áp dụng quyết định ngoại giao ──
+function kaiApplyDiplomacyDecision(k, decision) {
+  if (!decision || !k || k.isCollapsed) return;
+  const year = window.year || 0;
+
+  switch (decision.action) {
+    case "declare_war_diplomatic":
+      if (!decision.target) break;
+      const target = decision.target;
+      k.treasury = Math.max(0, (k.treasury || 0) - 30000);
+      k.militaryPower -= Math.floor(k.militaryPower * 0.1);
+      target.stability = Math.max(0, (target.stability || 50) - 20);
+      target.collapseRisk = (target.collapseRisk || 0) + 20;
+
+      if (typeof _we_setMutualRelation === "function") {
+        try { _we_setMutualRelation(k.kingdomId, target.kingdomId, "war"); } catch(e2) {}
+      }
+      if (typeof warEngine_declareWar === "function") {
+        try { warEngine_declareWar(k.kingdomId, target.kingdomId); } catch(e2) {}
+      }
+      if (typeof wmeRemember_war === "function") {
+        try { wmeRemember_war(k.kingdomId, target.kingdomId); } catch(e2) {}
+      }
+      const warMsg = `⚔️ ${k.kingdomName} TUYÊN CHIẾN với ${target.kingdomName}!`;
+      if (typeof addLog === "function") addLog(warMsg, "death");
+      if (typeof htAddEvent === "function") htAddEvent({ year, type:"kingdom_war", text: warMsg, importance:"high" });
+      break;
+
+    case "seek_peace":
+      k.stability = Math.min(100, (k.stability || 50) + 5);
+      k.influence += 5;
+      break;
+  }
+}
+
+// ── Sync economyV2 treasury ──
+function kaiV2EconomySync(k) {
+  if (!k || k.isCollapsed) return;
+  if (!window.ev2Banks || !window.ev2Banks[k.kingdomId]) return;
+  const bank = window.ev2Banks[k.kingdomId];
+  // Lấy thu nhập hàng năm từ ngân hàng
+  if (bank.annualIncome) {
+    k.treasury += Math.floor(bank.annualIncome * 0.1);
+    bank.annualIncome = Math.max(0, bank.annualIncome - Math.floor(bank.annualIncome * 0.1));
+  }
+}
+
+// ── Patch kaiTick để thêm quyết định tôn giáo và ngoại giao ──
+const _kaiTick_original = typeof kaiTick === "function" ? kaiTick : null;
+function kaiTick_v23() {
+  if (_kaiTick_original) _kaiTick_original();
+  if (!window.kingdomData) return;
+
+  Object.values(window.kingdomData.kingdoms).forEach(k => {
+    if (k.isCollapsed) return;
+
+    // Quyết định tôn giáo
+    const relDecision = kaiReligionDecide(k);
+    if (relDecision) {
+      kaiApplyReligionDecision(k, relDecision);
+      k.lastReligionDecision = relDecision.action;
+    }
+
+    // Quyết định ngoại giao / chiến tranh
+    const dipDecision = kaiDiplomacyDecide(k);
+    if (dipDecision) {
+      kaiApplyDiplomacyDecision(k, dipDecision);
+    }
+
+    // Đồng bộ kinh tế
+    kaiV2EconomySync(k);
+  });
+}
+
+// Gắn vào interval riêng (15s)
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    setInterval(function() {
+      if (window.world && window.kingdomData) kaiTick_v23();
+    }, 15000);
+  }, 5500);
+});
+
+window.kaiTick_v23              = kaiTick_v23;
+window.kaiReligionDecide        = kaiReligionDecide;
+window.kaiApplyReligionDecision = kaiApplyReligionDecision;
+window.kaiDiplomacyDecide       = kaiDiplomacyDecide;

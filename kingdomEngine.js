@@ -385,3 +385,192 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 8000);
   }, 1200);
 });
+
+// ============================================================
+// KINGDOM ENGINE V23 — EXPANSION PACK
+// Tôn Giáo (Spread/Conversion), EconomyV2 Sync, Rebellion Hook
+// EXPAND ONLY — không xóa dữ liệu cũ
+// ============================================================
+
+// ── Danh sách tôn giáo ──
+const KE_RELIGIONS = [
+  { id:"tien_dao",  name:"Tiên Đạo",   color:"#60a5fa", emoji:"🌀" },
+  { id:"ma_dao",    name:"Ma Đạo",      color:"#f87171", emoji:"🔥" },
+  { id:"phat_giao", name:"Phật Giáo",   color:"#facc15", emoji:"☸️"  },
+  { id:"vo_than",   name:"Vô Thần",     color:"#94a3b8", emoji:"⚫" },
+  { id:"than_giao", name:"Thần Giáo",   color:"#4ade80", emoji:"⚡" },
+  { id:"long_giao", name:"Long Giáo",   color:"#c084fc", emoji:"🐉" },
+];
+
+// ── Khởi tạo religion cho kingdom ──
+function keInitReligion(k) {
+  if (!k.religion) {
+    const r = KE_RELIGIONS[Math.floor(Math.random() * KE_RELIGIONS.length)];
+    k.religion          = r.id;
+    k.religionName      = r.name;
+    k.religiousFervor   = 30 + Math.floor(Math.random() * 40); // 30-70
+    k.holyWarRisk       = 0;
+    k.missionaryCount   = 0;
+    k.convertedProvinces = 0;
+  }
+  if (k.religiousFervor === undefined) k.religiousFervor = 50;
+  if (k.holyWarRisk     === undefined) k.holyWarRisk     = 0;
+  if (k.missionaryCount === undefined) k.missionaryCount = 0;
+  if (k.convertedProvinces === undefined) k.convertedProvinces = 0;
+}
+
+// ── Lan truyền tôn giáo: kingdom cố gắng chuyển đổi láng giềng ──
+function keSpreadReligion(k) {
+  if (!window.kingdomData) return;
+  if (!k || k.isCollapsed || !k.religion) return;
+
+  const fervor = k.religiousFervor || 50;
+  if (fervor < 40) return; // không đủ nhiệt tình tôn giáo
+
+  const others = Object.values(window.kingdomData.kingdoms).filter(o =>
+    !o.isCollapsed &&
+    o.kingdomId !== k.kingdomId &&
+    o.religion !== k.religion &&
+    o.religiousFervor < 70
+  );
+  if (others.length === 0) return;
+
+  const target = others[Math.floor(Math.random() * others.length)];
+  const spreadChance = (fervor - 30) / 100; // 0.1 → 0.7
+  if (Math.random() < spreadChance * 0.3) {
+    const oldReligion = target.religionName || target.religion;
+    target.religion     = k.religion;
+    target.religionName = k.religionName;
+    target.religiousFervor = Math.max(20, (target.religiousFervor || 50) - 10);
+    k.convertedProvinces = (k.convertedProvinces || 0) + 1;
+    k.influence += 15;
+    k.religiousFervor = Math.min(100, k.religiousFervor + 2);
+
+    const msg = `✝️ ${k.kingdomName} truyền bá ${k.religionName} → ${target.kingdomName} (cũ: ${oldReligion})`;
+    if (typeof addLog === "function") addLog(msg, "info");
+    if (typeof htAddEvent === "function") htAddEvent({ type:"faith_spread", text: msg, kingdomId: k.kingdomId });
+  }
+}
+
+// ── Đánh giá nguy cơ thánh chiến ──
+function keUpdateHolyWarRisk(k) {
+  if (!k || !k.religion || !window.kingdomData) return;
+  const neighbors = Object.values(window.kingdomData.kingdoms).filter(o =>
+    !o.isCollapsed && o.kingdomId !== k.kingdomId && o.religion !== k.religion
+  );
+  const fervor = k.religiousFervor || 50;
+  // Tăng nguy cơ thánh chiến nếu fervor cao và có kẻ thù dị giáo
+  if (fervor > 70 && neighbors.length > 0) {
+    k.holyWarRisk = Math.min(100, (k.holyWarRisk || 0) + Math.floor(Math.random() * 5 + 1));
+  } else {
+    k.holyWarRisk = Math.max(0, (k.holyWarRisk || 0) - 1);
+  }
+
+  // Thánh chiến khi risk > 80
+  if ((k.holyWarRisk || 0) >= 80 && neighbors.length > 0) {
+    const enemy = neighbors.sort((a,b) => (b.religiousFervor||0) - (a.religiousFervor||0))[0];
+    k.holyWarRisk = 0;
+    k.religiousFervor = Math.max(20, k.religiousFervor - 20);
+    enemy.stability   = Math.max(0, (enemy.stability || 50) - 15);
+    enemy.collapseRisk = (enemy.collapseRisk || 0) + 15;
+    k.militaryPower  -= Math.floor(k.militaryPower * 0.08);
+    k.influence      += 40;
+    const msg = `⚔️🔥 THÁNH CHIẾN: ${k.kingdomName} (${k.religionName}) tấn công ${enemy.kingdomName} (${enemy.religionName || enemy.religion})!`;
+    if (typeof addLog === "function") addLog(msg, "death");
+    if (typeof htAddEvent === "function") htAddEvent({ type:"holy_war", text: msg, kingdomId: k.kingdomId, importance:"high" });
+    // Hook warEngine nếu có
+    if (typeof warEngine_declareWar === "function") {
+      try { warEngine_declareWar(k.kingdomId, enemy.kingdomId); } catch(e) {}
+    }
+    if (typeof _we_setMutualRelation === "function") {
+      try { _we_setMutualRelation(k.kingdomId, enemy.kingdomId, "war"); } catch(e) {}
+    }
+  }
+}
+
+// ── Sync kho bạc với economyEngineV2 ──
+function keV2SyncTreasury(k) {
+  if (!k || !window.ev2Banks) return;
+  const bank = window.ev2Banks[k.kingdomId];
+  if (bank && typeof bank.treasury === "number") {
+    // Nhập thu nhập từ ngân hàng vào kho bạc kingdom (10% mỗi tick)
+    const income = Math.floor(bank.treasury * 0.001);
+    k.treasury += income;
+    bank.treasury = Math.max(0, bank.treasury - income);
+  }
+}
+
+// ── Hook LWE rebellions ──
+function keCheckRebellions(k) {
+  if (!k || k.isCollapsed || !window.LWE) return;
+  if (!window.LWE.rebellions || !Array.isArray(window.LWE.rebellions)) return;
+
+  const rebelsHere = window.LWE.rebellions.filter(r =>
+    r.nation === k.kingdomId || r.nation === k.kingdomName
+  );
+  if (rebelsHere.length > 0) {
+    k.stability    = Math.max(0, (k.stability || 50) - rebelsHere.length * 5);
+    k.collapseRisk = (k.collapseRisk || 0) + rebelsHere.length * 8;
+    k.militaryPower = Math.floor(k.militaryPower * (1 - rebelsHere.length * 0.02));
+  }
+}
+
+// ── Tick tôn giáo (được gọi trong keTick) ──
+function keReligionTick(k) {
+  if (!k || k.isCollapsed) return;
+  keInitReligion(k);
+  // Tự nhiên tăng fervor theo thời gian nếu triều đình ổn định
+  if ((k.stability || 50) > 60) {
+    k.religiousFervor = Math.min(100, k.religiousFervor + 1);
+  } else if ((k.stability || 50) < 30) {
+    k.religiousFervor = Math.max(10, k.religiousFervor - 2);
+  }
+  keSpreadReligion(k);
+  keUpdateHolyWarRisk(k);
+  keV2SyncTreasury(k);
+  keCheckRebellions(k);
+}
+
+// ── Patch keTick để gọi keReligionTick ──
+const _keTick_original = typeof keTick === "function" ? keTick : null;
+function keTick_v23_religion() {
+  if (_keTick_original) _keTick_original();
+  if (!window.kingdomData) return;
+  Object.values(window.kingdomData.kingdoms).forEach(k => keReligionTick(k));
+}
+// Override keTick nếu đã load
+if (typeof keTick === "function") {
+  window.keTick = keTick_v23_religion;
+}
+
+// ── Religion stats cho kingdom info ──
+function keGetReligionInfo(k) {
+  if (!k || !k.religion) return null;
+  const r = KE_RELIGIONS.find(x => x.id === k.religion) || { emoji:"📿", color:"#94a3b8" };
+  return {
+    id:     k.religion,
+    name:   k.religionName || k.religion,
+    emoji:  r.emoji,
+    color:  r.color,
+    fervor: k.religiousFervor || 50,
+    holyWarRisk: k.holyWarRisk || 0,
+    converted: k.convertedProvinces || 0,
+  };
+}
+
+// ── Thống kê tôn giáo toàn server ──
+function keGetReligionStats() {
+  if (!window.kingdomData) return {};
+  const stats = {};
+  Object.values(window.kingdomData.kingdoms).forEach(k => {
+    if (k.isCollapsed || !k.religion) return;
+    stats[k.religion] = (stats[k.religion] || 0) + 1;
+  });
+  return stats;
+}
+
+// Expose
+window.keReligionTick     = keReligionTick;
+window.keGetReligionInfo  = keGetReligionInfo;
+window.keGetReligionStats = keGetReligionStats;
+window.keSpreadReligion   = keSpreadReligion;
