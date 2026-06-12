@@ -1662,6 +1662,7 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn" id="btn-spirit-beast" onclick="showPanel('spirit-beast');if(typeof renderSpiritBeastPanel==='function')renderSpiritBeastPanel();" data-panel="spirit-beast">
         <span class="nav-icon">🐉</span><span>Linh Vật</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-migration" onclick="showPanel('migration');if(typeof meRenderPanel==='function')meRenderPanel();" data-panel="migration">🚶 Di Dân</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2431,6 +2432,10 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by renderSpiritBeastPanel() in spiritBeastSystem.js -->
       </div>
 
+      <div id="panel-migration" class="panel">
+        <!-- Rendered by meRenderPanel() in migrationEngine.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2461,6 +2466,7 @@ onclick="showPanel('dashboard')">
 <script src="autoPlayerAI.js"></script>
 <script src="living-world-engine.js"></script>
 <script src="spiritBeastSystem.js"></script>
+<script src="migrationEngine.js"></script>
 
 <script>
 // ============================
@@ -2513,6 +2519,17 @@ onclick="showPanel('dashboard')">
     }
   }, 3000);
 })();
+
+// ── MIGRATION ENGINE — SIDEBAR UNLOCK ─────────────────────────
+setInterval(function() {
+  if (window.world && window.world.name) {
+    const btn = document.getElementById('btn-migration');
+    if (btn && btn.style.display === 'none') {
+      btn.style.display = '';
+      btn.classList.remove('ec-hidden');
+    }
+  }
+}, 2500);
 const TEMPLATE_META = {
   cultivation: { genre: "Tu Tiên",     desc: "☯️ Tu Tiên — Thế giới tu tiên, luyện khí thành tiên, vạn đạo tranh phong." },
   fantasy:     { genre: "Huyền Huyễn", desc: "🧙 Fantasy — Phép thuật và kiếm sĩ, vương quốc và rồng lửa." },
