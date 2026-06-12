@@ -1653,6 +1653,9 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-political-religion" onclick="showPanel('political-religion');if(typeof prRenderPanel==='function')prRenderPanel();" data-panel="political-religion">
         <span class="nav-icon">⛪</span><span>Tôn Giáo</span>
       </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-culture-heritage" onclick="showPanel('culture-heritage');if(typeof chRenderPanel==='function')chRenderPanel();" data-panel="culture-heritage">
+        <span class="nav-icon">🎨</span><span>Văn Hóa</span>
+      </button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2404,6 +2407,10 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by prRenderPanel() in politicalReligionEngine.js -->
       </div>
 
+      <div id="panel-culture-heritage" class="panel">
+        <!-- Rendered by chRenderPanel() in cultureHeritageEngine.js -->
+      </div>
+
     </div>
   </main>
 </div>
@@ -2572,11 +2579,12 @@ window.addEventListener("load", function() {
 <script src="diplomaticEngine.js"></script>
 <script src="espionageEngine.js"></script>
 <script src="politicalReligionEngine.js"></script>
+<script src="cultureHeritageEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }

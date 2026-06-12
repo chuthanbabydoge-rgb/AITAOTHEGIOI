@@ -74,6 +74,8 @@ const SAVE_ALL_KEYS = [
   "cgv6_espionage",
   // V23 — Political Religion Engine
   "cgv6_political_religion",
+  // V23 — Culture & Heritage Engine
+  "cgv6_culture_heritage",
 ];
 
 // ============================================================
