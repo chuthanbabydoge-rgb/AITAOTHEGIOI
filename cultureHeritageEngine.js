@@ -78,11 +78,24 @@ const HERITAGE_EPITHETS = [
   "Huy Hoàng","Bất Diệt","Thần Thánh","Truyền Kỳ","Cổ Đại","Huyền Bí","Vĩ Đại","Cao Quý",
 ];
 
+const FESTIVAL_TYPES = {
+  GRAND_ARCH:  { name: "Lễ Khánh Thành Cung Điện",    icon: "🏛️", desc: "Mở cửa cung điện đón dân chúng bốn phương.", bonuses: { softPower: 20, stability: 12 }, spreadBoost: 15 },
+  FINE_ARTS:   { name: "Đại Hội Nghệ Thuật Hoàng Kim", icon: "🎨", desc: "Triển lãm kiệt tác, nhạc hội, tranh thi.",    bonuses: { softPower: 28, tech: 8 },       spreadBoost: 22 },
+  LITERATURE:  { name: "Hội Sách & Triết Học",         icon: "📚", desc: "Học giả khắp nơi hội tụ tranh biện.",         bonuses: { tech: 20, softPower: 12 },      spreadBoost: 18 },
+  WARRIOR:     { name: "Võ Đài Thiên Hạ Đệ Nhất",     icon: "⚔️", desc: "Đấu sĩ tứ phương tề tựu tranh tài.",         bonuses: { softPower: 15, military: 18 },  spreadBoost: 12 },
+  MARITIME:    { name: "Lễ Hội Biển Lớn",              icon: "🚢", desc: "Đoàn thuyền diễu hành, giao thương mở rộng.", bonuses: { economy: 20, softPower: 14 },   spreadBoost: 20 },
+  MYSTICAL:    { name: "Đêm Huyền Bí Ngàn Sao",        icon: "🔮", desc: "Lễ tiên tri, triển lãm phép thuật kỳ bí.",   bonuses: { softPower: 18, stability: 10 }, spreadBoost: 14 },
+  PERFORMING:  { name: "Đại Nhạc Hội Hoàng Gia",       icon: "🎭", desc: "Ca vũ kịch trình diễn suốt bảy ngày bảy đêm.", bonuses: { stability: 20, softPower: 24 }, spreadBoost: 26 },
+  AGRARIAN:    { name: "Lễ Hội Mùa Màng Bội Thu",      icon: "🌾", desc: "Cúng tế Thổ Thần, chia sẻ sản vật với láng giềng.", bonuses: { population: 18, stability: 14 }, spreadBoost: 16 },
+};
+
 // ─── STATE ────────────────────────────────────────────────────────
 let state = {
   powerCultures:  {},   // powerName → { styleId, points, level, wonders:[], softPowerMap:{} }
   heritages:      [],   // { id, fromPower, styleId, name, year, adopted:[] }
   wonders:        [],   // { id, owner, styleId, name, year, effect }
+  festivals:      [],   // { id, host, styleId, name, year, attendees:[], bonuses, spreadBoost }
+  festivalCooldown: {}, // powerName → year of last festival
   influence:      {},   // "powerA|powerB" → softPower score 0-100
   culturalLog:    [],
   idCounter:      0,
@@ -288,6 +301,65 @@ function chAssimilate(conqueror, conquered) {
   return { ok: true };
 }
 
+// ─── FESTIVAL SYSTEM ──────────────────────────────────────────────
+function chHostFestival(powerName) {
+  const pc = state.powerCultures[powerName];
+  if (!pc) return { ok: false, msg: `${powerName} chưa có văn hóa` };
+  if (pc.level < 1) return { ok: false, msg: "Cần đạt ít nhất cấp văn hóa 1" };
+
+  const curYear = _year();
+  const cooldown = state.festivalCooldown[powerName] || 0;
+  if (curYear - cooldown < 5) {
+    return { ok: false, msg: `Cần chờ thêm ${5 - (curYear - cooldown)} năm để tổ chức lễ hội tiếp theo` };
+  }
+
+  const festDef = FESTIVAL_TYPES[pc.styleId] || FESTIVAL_TYPES.PERFORMING;
+  const style   = CULTURE_STYLES[pc.styleId] || {};
+
+  // Gather attendees from other powers (those with culture or adjacent influence)
+  const powers = _getPowers();
+  const attendees = powers
+    .filter(p => p.name !== powerName)
+    .filter(() => Math.random() < 0.55)
+    .map(p => p.name)
+    .slice(0, 6);
+
+  const festival = {
+    id:         _newId(),
+    host:       powerName,
+    styleId:    pc.styleId,
+    name:       `${festDef.icon} ${festDef.name} của ${powerName}`,
+    year:       curYear,
+    attendees,
+    bonuses:    festDef.bonuses,
+    spreadBoost: festDef.spreadBoost,
+  };
+
+  state.festivals.unshift(festival);
+  if (state.festivals.length > 40) state.festivals.length = 40;
+  state.festivalCooldown[powerName] = curYear;
+
+  // Apply bonuses: host gains cultural development
+  chDevelopCulture(powerName, 15 + Math.floor(Math.random() * 10));
+
+  // Spread culture to all attendees
+  attendees.forEach(name => {
+    chSpreadCulture(powerName, name);
+  });
+
+  const bonusText = Object.entries(festDef.bonuses).map(([k,v]) => `+${v} ${k}`).join(', ');
+  _log(`🎪 ${powerName} tổ chức "${festDef.name}"! Khách mời: ${attendees.length > 0 ? attendees.join(', ') : 'không ai'} · ${bonusText}`, "success");
+
+  if (typeof toast === "function")
+    toast(`🎪 Lễ Hội! ${powerName}: "${festDef.name}" — ${attendees.length} thế lực tham dự`, "success");
+
+  if (typeof htAddEvent === "function")
+    htAddEvent({ year: curYear, text: `🎪 ${powerName} tổ chức ${festDef.name} — ${attendees.length} thế lực tham dự`, tag: "culture" });
+
+  chSave();
+  return { ok: true, festival };
+}
+
 // ─── TICK ─────────────────────────────────────────────────────────
 function chTick() {
   const powers = _getPowers();
@@ -324,6 +396,21 @@ function chTick() {
     });
   }
 
+  // AI: high-culture powers spontaneously host festivals
+  if (Math.random() < 0.12) {
+    const eligible = powers.filter(p => {
+      const pc = state.powerCultures[p.name];
+      if (!pc || pc.level < 1) return false;
+      const curYear = _year();
+      const cooldown = state.festivalCooldown[p.name] || 0;
+      return curYear - cooldown >= 8;
+    });
+    if (eligible.length > 0) {
+      const host = eligible[Math.floor(Math.random() * eligible.length)];
+      chHostFestival(host.name);
+    }
+  }
+
   chSave();
 }
 
@@ -347,12 +434,12 @@ function chRenderPanel() {
     </p>
 
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
-      ${["cultures","develop","heritage","wonders","influence","log"].map((tab,i) => `
+      ${["cultures","develop","heritage","wonders","influence","festival","log"].map((tab,i) => `
         <button onclick="chSwitchTab('${tab}')" id="ch-tab-${tab}"
-          style="flex:1;min-width:70px;padding:7px 4px;border-radius:8px;border:none;cursor:pointer;font-size:.78em;font-weight:700;
+          style="flex:1;min-width:60px;padding:7px 4px;border-radius:8px;border:none;cursor:pointer;font-size:.78em;font-weight:700;
           background:${i===0?'#4a1535':'#1a2535'};color:${i===0?'#f472b6':'#94a3b8'};
           border:1px solid ${i===0?'#db2777':'#2d3748'};">
-          ${{cultures:"🎨 Nền Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", log:"📜 Nhật Ký"}[tab]}
+          ${{cultures:"🎨 Nền Văn Hóa", develop:"⬆️ Phát Triển", heritage:"🏺 Di Sản", wonders:"✨ Kỳ Quan", influence:"🌐 Đế Quốc Mềm", festival:"🎪 Lễ Hội", log:"📜 Nhật Ký"}[tab]}
         </button>`).join('')}
     </div>
 
@@ -361,6 +448,7 @@ function chRenderPanel() {
     <div id="ch-content-heritage" style="display:none">${_renderHeritageTab(powers)}</div>
     <div id="ch-content-wonders" style="display:none">${_renderWondersTab(wonders)}</div>
     <div id="ch-content-influence" style="display:none">${_renderInfluenceTab(powers)}</div>
+    <div id="ch-content-festival" style="display:none">${_renderFestivalTab(powers)}</div>
     <div id="ch-content-log" style="display:none">${_renderLogTab()}</div>
   </div>`;
 }
@@ -595,6 +683,76 @@ function _renderInfluenceTab(powers) {
   return html;
 }
 
+function _renderFestivalTab(powers) {
+  const pNames = powers.map(p => p.name);
+  const hasCulture = powers.filter(p => state.powerCultures[p.name] && (state.powerCultures[p.name].level || 0) >= 1);
+  const curYear = _year();
+
+  let hostSection = `<div style="background:#0f172a;border:1px solid #7c3aed44;border-radius:10px;padding:14px;margin-bottom:14px;">
+    <div style="color:#c084fc;font-weight:700;margin-bottom:10px;font-size:.9em;">🎪 Tổ Chức Lễ Hội</div>
+    <p style="color:#94a3b8;font-size:.8em;margin:0 0 10px;">Mỗi nền văn minh cần tích lũy ít nhất cấp 1 và chờ 5 năm giữa các lần tổ chức.</p>
+    <div style="margin-bottom:10px;">
+      <label style="color:#94a3b8;font-size:.8em;">Thế lực tổ chức lễ hội:</label>
+      <select id="ch-fest-power" style="width:100%;background:#1a2535;color:#e2e8f0;border:1px solid #2d3748;border-radius:6px;padding:6px;font-size:.82em;margin-top:4px;">
+        ${hasCulture.length > 0
+          ? hasCulture.map(p => {
+              const cd = state.festivalCooldown[p.name] || 0;
+              const wait = Math.max(0, 5 - (curYear - cd));
+              const festDef = FESTIVAL_TYPES[state.powerCultures[p.name].styleId] || FESTIVAL_TYPES.PERFORMING;
+              return `<option value="${p.name}">${festDef.icon} ${p.name}${wait > 0 ? ` (chờ ${wait} năm)` : ' ✅'}</option>`;
+            }).join('')
+          : `<option value="">— Chưa có văn minh đủ cấp —</option>`}
+      </select>
+    </div>
+    ${hasCulture.length > 0 ? `
+    <button onclick="chActionFestival()" style="width:100%;padding:9px;background:#3b0764;color:#c084fc;border:1px solid #7c3aed;border-radius:8px;cursor:pointer;font-size:.84em;font-weight:700;">
+      🎪 Khai Mạc Lễ Hội!
+    </button>
+    <div id="ch-fest-msg" style="margin-top:8px;font-size:.82em;color:#94a3b8;text-align:center;"></div>` : ''}
+  </div>`;
+
+  let allFestHtml = '';
+  if (state.festivals.length === 0) {
+    allFestHtml = `<div style="color:#64748b;text-align:center;padding:30px 0;">
+      <div style="font-size:2em;margin-bottom:8px;">🎪</div>
+      Chưa có lễ hội nào. Khai mạc lễ hội để lan tỏa văn hóa!
+    </div>`;
+  } else {
+    allFestHtml = `<div style="color:#c084fc;font-weight:700;margin-bottom:10px;font-size:.88em;">🎪 ${state.festivals.length} Lễ Hội Đã Tổ Chức</div>`;
+    allFestHtml += state.festivals.map(f => {
+      const style = CULTURE_STYLES[f.styleId] || {};
+      const bonusStr = Object.entries(f.bonuses || {}).map(([k,v]) => `<span style="color:#4ade80;font-size:.75em;">+${v} ${k}</span>`).join(' ');
+      const attendeeStr = f.attendees && f.attendees.length > 0
+        ? f.attendees.map(a => `<span style="background:#1e2535;color:#94a3b8;border-radius:4px;padding:1px 5px;font-size:.73em;">${a}</span>`).join(' ')
+        : `<span style="color:#475569;font-size:.73em;">Không có khách mời</span>`;
+      return `<div style="background:#0f172a;border:1px solid ${style.color||'#7c3aed'}33;border-left:4px solid ${style.color||'#7c3aed'};border-radius:10px;padding:12px;margin-bottom:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;">
+          <span style="color:#e2e8f0;font-weight:700;font-size:.88em;">${f.name}</span>
+          <span style="color:#64748b;font-size:.75em;white-space:nowrap;margin-left:8px;">Năm ${f.year}</span>
+        </div>
+        <div style="margin-bottom:5px;">${bonusStr} <span style="color:#a78bfa;font-size:.75em;">+${f.spreadBoost||0}% lan truyền</span></div>
+        <div style="color:#64748b;font-size:.75em;margin-bottom:4px;">👥 Khách tham dự:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:3px;">${attendeeStr}</div>
+      </div>`;
+    }).join('');
+  }
+
+  // Festival type reference
+  let festRefHtml = `<div style="color:#c084fc;font-weight:700;margin:12px 0 8px;font-size:.88em;">🎭 Loại Lễ Hội Theo Văn Hóa</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+    ${Object.entries(FESTIVAL_TYPES).map(([sid, fd]) => {
+      const s = CULTURE_STYLES[sid] || {};
+      return `<div style="background:#0f172a;border:1px solid ${s.color||'#7c3aed'}22;border-radius:8px;padding:8px;">
+        <div style="color:${s.color||'#c084fc'};font-size:.78em;font-weight:700;">${fd.icon} ${fd.name}</div>
+        <div style="color:#64748b;font-size:.72em;margin-top:2px;">${fd.desc.substring(0,45)}…</div>
+        <div style="color:#4ade80;font-size:.72em;margin-top:3px;">+${fd.spreadBoost}% lan truyền</div>
+      </div>`;
+    }).join('')}
+  </div>`;
+
+  return hostSection + allFestHtml + festRefHtml;
+}
+
 function _renderLogTab() {
   if (state.culturalLog.length === 0)
     return `<div style="color:#64748b;text-align:center;padding:40px 0;">Nhật ký chưa có sự kiện.</div>`;
@@ -609,14 +767,15 @@ function _renderLogTab() {
 
 // ─── GLOBAL UI CALLBACKS ──────────────────────────────────────────
 window.chSwitchTab = function(tab) {
-  ["cultures","develop","heritage","wonders","influence","log"].forEach(t => {
+  ["cultures","develop","heritage","wonders","influence","festival","log"].forEach(t => {
     const c = document.getElementById("ch-content-"+t);
     const b = document.getElementById("ch-tab-"+t);
     if (c) c.style.display = (t===tab) ? "" : "none";
     if (b) {
-      b.style.background  = (t===tab) ? "#4a1535" : "#1a2535";
-      b.style.color       = (t===tab) ? "#f472b6" : "#94a3b8";
-      b.style.borderColor = (t===tab) ? "#db2777" : "#2d3748";
+      const isFest = t === "festival";
+      b.style.background  = (t===tab) ? (isFest ? "#3b0764" : "#4a1535") : "#1a2535";
+      b.style.color       = (t===tab) ? (isFest ? "#c084fc" : "#f472b6") : "#94a3b8";
+      b.style.borderColor = (t===tab) ? (isFest ? "#7c3aed" : "#db2777") : "#2d3748";
     }
   });
 };
@@ -681,6 +840,20 @@ window.chActionSpread = function() {
   setTimeout(chRenderPanel, 200);
 };
 
+window.chActionFestival = function() {
+  const power = document.getElementById("ch-fest-power")?.value;
+  const msg   = document.getElementById("ch-fest-msg");
+  if (!power) { if(msg) { msg.style.color="#f87171"; msg.textContent="⚠️ Chọn thế lực tổ chức lễ hội"; } return; }
+  const r = chHostFestival(power);
+  if (msg) {
+    msg.style.color = r.ok ? "#c084fc" : "#f87171";
+    msg.textContent = r.ok
+      ? `🎪 Lễ hội "${r.festival.name}" đã khai mạc! ${r.festival.attendees.length} thế lực tham dự.`
+      : "⚠️ " + r.msg;
+  }
+  setTimeout(() => { chRenderPanel(); chSwitchTab("festival"); }, 300);
+};
+
 // ─── PUBLIC API ───────────────────────────────────────────────────
 window.chAdoptStyle     = chAdoptStyle;
 window.chDevelopCulture = chDevelopCulture;
@@ -689,6 +862,7 @@ window.chLeaveHeritage  = chLeaveHeritage;
 window.chAdoptHeritage  = chAdoptHeritage;
 window.chSpreadCulture  = chSpreadCulture;
 window.chAssimilate     = chAssimilate;
+window.chHostFestival   = chHostFestival;
 window.chRenderPanel    = chRenderPanel;
 window.chTick           = chTick;
 window.cultureState     = state;
