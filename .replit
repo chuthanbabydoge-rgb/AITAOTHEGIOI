@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "nix", "python-3.11"]
+modules = ["nodejs-20", "web", "nix"]
 [nix]
 channel = "stable-25_05"
 
@@ -28,7 +28,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python3 -m http.server 5000"
+args = "node serve.js"
 waitForPort = 5000
 
 [[ports]]
