@@ -1,10 +1,11 @@
-modules = ["nodejs-20", "web", "nix"]
+modules = ["nodejs-20", "web", "nix", "python-3.11"]
 [nix]
 channel = "stable-25_05"
 
 [agent]
 expertMode = true
 stack = "BEST_EFFORT_FALLBACK"
+integrations = ["javascript_anthropic_ai_integrations:2.0.0"]
 
 [workflows]
 runButton = "Project"
@@ -27,7 +28,7 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "serve . -p 5000 -n"
+args = "python3 -m http.server 5000"
 waitForPort = 5000
 
 [[ports]]
