@@ -1,0 +1,527 @@
+# CREATOR GOD WORLD SIMULATOR
+
+# VERSION 23
+
+# EMPIRE & KINGDOM ENGINE
+
+# EXPANSION MODE
+
+==================================================
+CLAUDE SYSTEM INSTRUCTIONS
+==========================
+
+Luôn trả lời bằng TIẾNG VIỆT.
+
+Đọc toàn bộ project trước khi code.
+
+KHÔNG được suy đoán cấu trúc dự án.
+
+Phải quét toàn bộ source code hiện có.
+
+Phải xác định chính xác các hệ thống đã tồn tại.
+
+==================================================
+PROJECT PROTECTION RULES
+========================
+
+Đây là dự án đang hoạt động.
+
+Tuyệt đối:
+
+* KHÔNG xóa file cũ.
+* KHÔNG thay thế hệ thống cũ.
+* KHÔNG ghi đè logic cũ.
+* KHÔNG đổi tên file cũ.
+* KHÔNG đổi tên class cũ.
+* KHÔNG đổi tên biến cũ.
+* KHÔNG đổi tên id cũ.
+* KHÔNG reset dữ liệu thế giới.
+* KHÔNG làm mất save cũ.
+* KHÔNG làm mất tab UI cũ.
+* KHÔNG làm mất dashboard cũ.
+* KHÔNG làm mất lịch sử thế giới.
+
+Nếu cần sửa file cũ:
+
+Chỉ được thêm code.
+
+Không được phá logic hiện có.
+
+Nếu sắp sửa hơn 20 dòng code hiện có:
+
+DỪNG.
+
+Tạo extension layer thay thế.
+
+==================================================
+CURRENT PROJECT VERSION
+=======================
+
+Dự án hiện tại là:
+
+V22 ECONOMY TRADE ENGINE
+
+Các hệ thống đã tồn tại:
+
+* World Simulation
+* Living World Engine
+* NPC System
+* Cultivation System
+* Territory System
+* Territory War System
+* World Map Engine
+* Economy Engine
+* Economy Engine V2
+* Economy Audit System
+* Marketplace System
+* Trade Route System
+* War Engine
+* Dynasty Engine
+* Dynasty System
+* Religion Engine
+* Technology Engine
+* Hero Legend Engine
+* Artifact System
+* Legendary Artifact Engine
+* Artifact Evolution Engine
+* Mythology Engine
+* World Story Engine
+* AI Story Engine
+* World Memory Engine
+* Auto Player AI
+* Creator God Engine
+* Heavenly Court System
+* Multi World System
+* WebXR System
+* World Viewer 3D
+
+Tất cả các hệ thống trên phải tiếp tục hoạt động.
+
+==================================================
+BUILD TARGET
+============
+
+Nâng cấp V22 lên:
+
+V23 EMPIRE & KINGDOM ENGINE
+
+Mục tiêu:
+
+Biến thế giới từ cấp thành phố và lãnh thổ thành các quốc gia và đế quốc sống động.
+
+==================================================
+KINGDOM ENGINE
+==============
+
+Tạo file:
+
+kingdomEngine.js
+
+Mỗi Kingdom có:
+
+* kingdomId
+* kingdomName
+* kingdomTitle
+* capitalCity
+* ruler
+* dynasty
+* treasury
+* population
+* territoryCount
+* militaryPower
+* influence
+* religion
+* technologyLevel
+* stability
+* age
+
+Khả năng:
+
+* Thu thuế
+* Tuyển quân
+* Mở rộng lãnh thổ
+* Xây dựng thành phố
+* Nghiên cứu công nghệ
+* Truyền bá tôn giáo
+* Thương mại
+* Liên minh
+* Chiến tranh
+
+Chu kỳ phát triển:
+
+Village
+→ Town
+→ City
+→ Kingdom
+
+==================================================
+EMPIRE ENGINE
+=============
+
+Tạo file:
+
+empireEngine.js
+
+Empire được hình thành khi:
+
+* Nhiều Kingdom liên minh
+  hoặc
+* Một Kingdom chinh phục nhiều Kingdom
+
+Empire có:
+
+* empireId
+* empireName
+* emperor
+* imperialDynasty
+* capital
+* memberKingdoms
+* totalPopulation
+* totalArmy
+* totalWealth
+* influence
+* age
+* stability
+
+Empire bonus:
+
+* Tăng thu nhập thương mại
+* Tăng nghiên cứu
+* Tăng quân sự
+* Tăng ảnh hưởng văn hóa
+
+Empire có thể sụp đổ nếu:
+
+* Nội chiến
+* Khủng hoảng kinh tế
+* Xung đột tôn giáo
+* Mất ổn định
+
+==================================================
+ROYAL SUCCESSION ENGINE
+=======================
+
+Tạo file:
+
+successionEngine.js
+
+Khi vua chết:
+
+Sinh ra người thừa kế.
+
+Thuộc tính:
+
+* name
+* age
+* talent
+* reputation
+* ambition
+* bloodlineStrength
+
+Kết quả:
+
+* Truyền ngôi hòa bình
+* Tranh giành ngai vàng
+* Nội chiến
+* Chia cắt quốc gia
+* Sụp đổ đế quốc
+
+==================================================
+NOBLE HOUSE ENGINE
+==================
+
+Tạo file:
+
+nobleHouseEngine.js
+
+Sinh các gia tộc:
+
+* House Dragon
+* House Phoenix
+* House Tiger
+* House Azure
+* House Wolf
+* House Crimson
+
+Thuộc tính:
+
+* land
+* wealth
+* military
+* influence
+* reputation
+
+Có thể:
+
+* Ủng hộ vua
+* Tạo phản loạn
+* Tạo liên minh
+* Tạo anh hùng
+* Gây chiến tranh kế vị
+
+==================================================
+BLOODLINE ENGINE
+================
+
+Tạo file:
+
+bloodlineEngine.js
+
+Theo dõi:
+
+* Founder
+* Descendants
+* Family Tree
+* Bloodline Prestige
+* Genetic Traits
+
+Huyết mạch mạnh sẽ có bonus.
+
+==================================================
+KINGDOM AI
+==========
+
+Tạo file:
+
+kingdomAI.js
+
+Mỗi chu kỳ đánh giá:
+
+* Economy
+* Population
+* Military
+* Religion
+* Technology
+* Territory
+
+Quyết định:
+
+* Trade
+* Expand
+* Defend
+* Ally
+* Conquer
+* Research
+
+==================================================
+EMPIRE AI
+=========
+
+Tạo file:
+
+empireAI.js
+
+Đánh giá:
+
+* Border Security
+* Economy
+* Stability
+* Religion
+* Loyalty
+
+Quyết định:
+
+* Expand Empire
+* Crush Rebellion
+* Build Wonders
+* Invest Technology
+* Create Vassals
+
+==================================================
+WORLD RANKINGS
+==============
+
+Tạo file:
+
+rankingsEngine.js
+
+Bảng xếp hạng:
+
+* Richest Kingdom
+* Strongest Kingdom
+* Largest Kingdom
+* Highest Technology
+* Oldest Dynasty
+* Strongest Empire
+* Richest Empire
+* Largest Empire
+* Most Influential Empire
+
+Realtime update.
+
+==================================================
+WORLD TIMELINE
+==============
+
+Tạo file:
+
+historicalTimeline.js
+
+Lưu lịch sử:
+
+Year 521:
+Kingdom Founded
+
+Year 612:
+Great Civil War
+
+Year 701:
+First Emperor Crowned
+
+Year 925:
+Empire Collapse
+
+Lưu vĩnh viễn.
+
+==================================================
+WORLD MEMORY INTEGRATION
+========================
+
+Kết nối với:
+
+worldMemoryEngine.js
+
+Lưu:
+
+* Kingdom Founded
+* Kingdom Destroyed
+* Empire Founded
+* Empire Destroyed
+* Dynasty Rise
+* Dynasty Fall
+* Succession War
+* Noble Rebellion
+* Civil War
+* Emperor Crowned
+
+==================================================
+UI
+==
+
+KHÔNG được xóa tab cũ.
+
+Thêm tab mới:
+
+🏰 Kingdoms
+
+👑 Empires
+
+🧬 Bloodlines
+
+🏛 Noble Houses
+
+⚔ Succession Wars
+
+📜 Timeline
+
+🏆 Rankings
+
+Realtime update.
+
+==================================================
+WORLD DASHBOARD
+===============
+
+Thêm thống kê:
+
+* Total Kingdoms
+* Total Empires
+* Largest Empire
+* Most Powerful Kingdom
+* Current Emperor
+* Oldest Dynasty
+* Total Noble Houses
+* World Stability
+
+==================================================
+SAVE SYSTEM
+===========
+
+Tích hợp vào save hiện có.
+
+Lưu:
+
+* Kingdoms
+* Empires
+* Noble Houses
+* Bloodlines
+* Rankings
+* Timeline
+
+Save cũ vẫn phải load được.
+
+Không được phá save cũ.
+
+==================================================
+FINAL OUTPUT REQUIREMENTS
+=========================
+
+Trước khi code:
+
+Xuất:
+
+1. HỆ THỐNG HIỆN CÓ
+2. HỆ THỐNG MỚI
+3. FILE MỚI
+4. FILE CẦN CHỈNH SỬA
+5. KẾ HOẠCH TÍCH HỢP
+6. KIỂM TRA TƯƠNG THÍCH
+
+Sau đó mới code.
+
+==================================================
+CODE EXPORT RULES
+=================
+
+Không dùng:
+
+// same as before
+// existing code
+// omitted
+// ...
+
+Phải xuất đầy đủ.
+
+==================================================
+PROJECT DELIVERY
+================
+
+Sau khi hoàn thành:
+
+Tạo:
+
+PROJECT_V23_EMPIRE_KINGDOM_ENGINE.zip
+
+Bao gồm:
+
+* Toàn bộ file cũ
+* Toàn bộ file mới
+* Toàn bộ dữ liệu cũ
+* Toàn bộ hệ thống cũ
+* Toàn bộ hệ thống mới
+
+Nếu không thể tạo ZIP thực tế:
+
+Xuất:
+
+1. Cây thư mục hoàn chỉnh
+2. Full code tất cả file mới
+3. Full code tất cả file chỉnh sửa
+
+==================================================
+MISSION
+=======
+
+Mở rộng V22 thành V23.
+
+100% tính năng cũ giữ nguyên.
+
+100% tính năng mới được thêm vào.
+
+EXPAND ONLY.
+
+NEVER DELETE.
+
+NEVER REPLACE.
+
+NEVER REBUILD.

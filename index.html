@@ -1565,7 +1565,7 @@ html, body { height: 100%; overflow: hidden; }
       <button class="nav-btn ec-hidden" style="display:none" onclick="showPanel('dynasty')" data-panel="dynasty">
         <span class="nav-icon">🏰</span><span>Vương Triều</span>
       </button>
-	  <button
+          <button
 class="nav-btn ec-hidden" style="display:none"
 data-panel="dashboard"
 onclick="showPanel('dashboard')">
@@ -1622,13 +1622,35 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-technology" onclick="showPanel('technology');if(typeof renderTechnologyPanel==='function')renderTechnologyPanel();" data-panel="technology">
         <span>⚙️</span><span>Công Nghệ</span>
       </button>
+      <!-- ═══ V23 EMPIRE & KINGDOM ENGINE TABS ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-kingdoms" onclick="showPanel('kingdoms');if(typeof keRenderPanel==='function')keRenderPanel();" data-panel="kingdoms">
+        <span class="nav-icon">🏰</span><span>Kingdoms</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-empires" onclick="showPanel('empires');if(typeof eeRenderPanel==='function')eeRenderPanel();" data-panel="empires">
+        <span class="nav-icon">👑</span><span>Empires</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-bloodlines" onclick="showPanel('bloodlines');if(typeof blRenderPanel==='function')blRenderPanel();" data-panel="bloodlines">
+        <span class="nav-icon">🧬</span><span>Bloodlines</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-noble-houses" onclick="showPanel('noble-houses');if(typeof nhRenderPanel==='function')nhRenderPanel();" data-panel="noble-houses">
+        <span class="nav-icon">🏛</span><span>Noble Houses</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-succession" onclick="showPanel('succession');if(typeof seRenderPanel==='function')seRenderPanel();" data-panel="succession">
+        <span class="nav-icon">⚔</span><span>Succession Wars</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-historical-timeline" onclick="showPanel('historical-timeline');if(typeof htRenderPanel==='function')htRenderPanel();" data-panel="historical-timeline">
+        <span class="nav-icon">📜</span><span>Timeline</span>
+      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-rankings" onclick="showPanel('rankings');if(typeof rkRenderPanel==='function')rkRenderPanel();" data-panel="rankings">
+        <span class="nav-icon">🏆</span><span>Rankings</span>
+      </button>
     </nav>
 
     <div class="sidebar-heaven">
       <div class="heaven-label">⚡ THIÊN ĐẠO ĐIỂM</div>
       <div class="heaven-points" id="heavenPoints">1000</div>
       <div class="heaven-actions">
-	  <div id="heavenModePanel" class="heaven-mode-panel">
+          <div id="heavenModePanel" class="heaven-mode-panel">
     <div class="heaven-mode-title">
         ☯ Heaven Mode
     </div>
@@ -2332,6 +2354,34 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by renderTechnologyPanel() in technologyEngine.js -->
       </div>
 
+      <!-- ═══ V23 EMPIRE & KINGDOM ENGINE PANELS ═══ -->
+      <div id="panel-kingdoms" class="panel">
+        <!-- Rendered by keRenderPanel() in kingdomEngine.js -->
+      </div>
+
+      <div id="panel-empires" class="panel">
+        <!-- Rendered by eeRenderPanel() in empireEngine.js -->
+      </div>
+
+      <div id="panel-bloodlines" class="panel">
+        <!-- Rendered by blRenderPanel() in bloodlineEngine.js -->
+      </div>
+
+      <div id="panel-noble-houses" class="panel">
+        <!-- Rendered by nhRenderPanel() in nobleHouseEngine.js -->
+      </div>
+
+      <div id="panel-succession" class="panel">
+        <!-- Rendered by seRenderPanel() in successionEngine.js -->
+      </div>
+
+      <div id="panel-historical-timeline" class="panel">
+        <!-- Rendered by htRenderPanel() in historicalTimeline.js -->
+      </div>
+
+      <div id="panel-rankings" class="panel">
+        <!-- Rendered by rkRenderPanel() in rankingsEngine.js -->
+      </div>
 
     </div>
   </main>
@@ -2488,5 +2538,48 @@ window.addEventListener("load", function() {
 <script src="artifactEvolutionEngine.js"></script>
 <script src="mythologyEngine.js"></script>
 <script src="technologyEngine.js"></script>
+<!-- ═══ V23 EMPIRE & KINGDOM ENGINE SCRIPTS ═══ -->
+<script src="historicalTimeline.js"></script>
+<script src="kingdomEngine.js"></script>
+<script src="empireEngine.js"></script>
+<script src="successionEngine.js"></script>
+<script src="nobleHouseEngine.js"></script>
+<script src="bloodlineEngine.js"></script>
+<script src="kingdomAI.js"></script>
+<script src="empireAI.js"></script>
+<script src="rankingsEngine.js"></script>
+<script>
+// ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
+(function v23UnlockTabs() {
+  function _showV23Tabs() {
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings"];
+    v23Panels.forEach(function(p) {
+      var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
+      if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
+    });
+  }
+
+  // Chờ world load xong
+  function _checkAndShow() {
+    if (typeof world !== "undefined" && world && world.name) {
+      _showV23Tabs();
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function() { setTimeout(_checkAndShow, 1000); });
+  } else {
+    setTimeout(_checkAndShow, 1000);
+  }
+
+  // Backup: kiểm tra định kỳ mỗi 3 giây
+  var _v23Interval = setInterval(function() {
+    if (typeof world !== "undefined" && world && world.name) {
+      _showV23Tabs();
+      clearInterval(_v23Interval);
+    }
+  }, 3000);
+})();
+</script>
 </body>
 </html>

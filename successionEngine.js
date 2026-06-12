@@ -1,0 +1,297 @@
+// ============================================================
+// SUCCESSION ENGINE V23
+// CREATOR GOD — V23 EMPIRE & KINGDOM ENGINE
+// Hệ thống Kế Vị — Truyền Ngôi, Tranh Quyền, Nội Chiến
+// Tương thích 100% save cũ — KHÔNG xóa dữ liệu
+// ============================================================
+
+const SE_SAVE_KEY = "cgv6_succession";
+const SE_VERSION  = 23;
+
+const SE_HEIR_FIRST  = ["Long","Thiên","Hắc","Bạch","Kim","Ngọc","Minh","Huyền","Thanh","Tử","Phượng","Lôi"];
+const SE_HEIR_LAST   = ["Vũ","Hoàng","Kiếm","Đế","Tôn","Vương","Quân","Bá","Thiên","Long"];
+
+const SE_WAR_OUTCOMES = [
+  { label:"Truyền Ngôi Hòa Bình",    weight: 40, effect: "peaceful",    emoji:"✅" },
+  { label:"Tranh Giành Ngai Vàng",   weight: 25, effect: "contest",     emoji:"⚔️" },
+  { label:"Nội Chiến Vương Quốc",    weight: 15, effect: "civil_war",   emoji:"🔥" },
+  { label:"Chia Cắt Quốc Gia",       weight: 12, effect: "split",       emoji:"💔" },
+  { label:"Sụp Đổ Vương Triều",      weight: 8,  effect: "collapse",    emoji:"💀" },
+];
+
+// ── INIT ──
+function seInit() {
+  if (!window.successionData) {
+    const saved = localStorage.getItem(SE_SAVE_KEY);
+    window.successionData = saved ? JSON.parse(saved) : {
+      wars: [],
+      history: [],
+      idCounter: 0,
+      version: SE_VERSION
+    };
+  }
+  if (!window.successionData.wars)      window.successionData.wars      = [];
+  if (!window.successionData.history)   window.successionData.history   = [];
+  if (!window.successionData.idCounter) window.successionData.idCounter = 0;
+}
+
+function seSave() {
+  try { localStorage.setItem(SE_SAVE_KEY, JSON.stringify(window.successionData)); } catch(e) {}
+}
+
+// ── Sinh người thừa kế ──
+function seGenerateHeir(kingdom) {
+  const firstName = _seRandItem(SE_HEIR_FIRST);
+  const lastName  = kingdom ? (kingdom.dynasty || "").split(" ")[0] || _seRandItem(SE_HEIR_LAST) : _seRandItem(SE_HEIR_LAST);
+  return {
+    name:             firstName + " " + lastName,
+    age:              Math.floor(Math.random() * 25 + 15),
+    gender:           Math.random() > 0.3 ? "Nam" : "Nữ",
+    talent:           Math.floor(Math.random() * 100),
+    reputation:       Math.floor(Math.random() * 80),
+    ambition:         Math.floor(Math.random() * 100),
+    bloodlineStrength:Math.floor(Math.random() * 100),
+    legitimacy:       Math.floor(Math.random() * 100),
+    supporterCount:   Math.floor(Math.random() * 50),
+  };
+}
+
+// ── Kích hoạt sự kiện kế vị ──
+function seTriggersuccession(kingdom) {
+  if (!window.successionData) seInit();
+  const year    = window.year || 0;
+  const outcome = _seWeightedRandom(SE_WAR_OUTCOMES);
+  const heir    = seGenerateHeir(kingdom);
+  const warId   = "sw" + (++window.successionData.idCounter);
+
+  const event = {
+    warId,
+    kingdomId:   kingdom ? kingdom.kingdomId : "unknown",
+    kingdomName: kingdom ? kingdom.kingdomName : "Vương Quốc Ẩn",
+    year,
+    outcome:     outcome.effect,
+    outcomeLabel:outcome.label,
+    emoji:       outcome.emoji,
+    heir,
+    resolved:    false,
+    resolvedYear:null,
+  };
+
+  window.successionData.wars.push(event);
+  _seApplyOutcome(event, kingdom);
+  seSave();
+  return event;
+}
+
+function _seApplyOutcome(event, kingdom) {
+  const year   = window.year || 0;
+  const kName  = event.kingdomName;
+  let msg = "";
+
+  switch (event.outcome) {
+    case "peaceful":
+      msg = `✅ ${kName}: ${event.heir.name} kế thừa ngai vàng hòa bình.`;
+      if (kingdom) {
+        kingdom.ruler = {
+          name:       event.heir.name,
+          age:        event.heir.age,
+          gender:     event.heir.gender,
+          rulerType:  event.heir.talent > 70 ? "Minh Quân" : event.heir.talent > 40 ? "Bình Quân" : "Hôn Quân",
+          crownedYear:year,
+          ambition:   event.heir.ambition,
+          legitimacy: event.heir.legitimacy,
+        };
+        kingdom.stability = Math.min(100, kingdom.stability + 5);
+      }
+      break;
+
+    case "contest":
+      msg = `⚔️ ${kName}: Tranh giành ngai vàng bùng nổ! ${event.heir.name} đối đầu với các đối thủ khác.`;
+      if (kingdom) {
+        kingdom.stability = Math.max(0, kingdom.stability - 20);
+        kingdom.militaryPower = Math.floor(kingdom.militaryPower * 0.85);
+        kingdom.treasury -= 10000;
+        kingdom.collapseRisk = (kingdom.collapseRisk || 0) + 20;
+      }
+      break;
+
+    case "civil_war":
+      msg = `🔥 ${kName}: Nội chiến kế vị bùng phát! Đất nước chìm trong lửa binh.`;
+      if (kingdom) {
+        kingdom.stability = Math.max(0, kingdom.stability - 40);
+        kingdom.militaryPower = Math.floor(kingdom.militaryPower * 0.65);
+        kingdom.population    = Math.floor(kingdom.population * 0.9);
+        kingdom.treasury     -= 30000;
+        kingdom.collapseRisk  = (kingdom.collapseRisk || 0) + 40;
+      }
+      break;
+
+    case "split":
+      msg = `💔 ${kName}: Quốc gia bị chia cắt do tranh giành kế vị!`;
+      if (kingdom) {
+        kingdom.stability     = Math.max(0, kingdom.stability - 30);
+        kingdom.territoryCount = Math.max(1, Math.floor(kingdom.territoryCount / 2));
+        kingdom.population    = Math.floor(kingdom.population * 0.6);
+        kingdom.militaryPower = Math.floor(kingdom.militaryPower * 0.5);
+        kingdom.influence     = Math.floor(kingdom.influence * 0.5);
+      }
+      break;
+
+    case "collapse":
+      msg = `💀 ${kName}: Vương triều sụp đổ hoàn toàn sau cuộc chiến kế vị!`;
+      if (kingdom) {
+        kingdom.isCollapsed = true;
+        kingdom.collapseRisk = 100;
+      }
+      break;
+  }
+
+  event.resolved    = true;
+  event.resolvedYear = year;
+  if (msg) {
+    if (typeof addLog === "function") addLog(msg, event.outcome === "peaceful" ? "info" : "death");
+    if (typeof htAddEvent === "function") htAddEvent({ year, type: "succession_" + event.outcome, text: msg });
+  }
+  window.successionData.history.push({ year, text: msg, outcome: event.outcome, emoji: event.emoji });
+}
+
+// ── TICK ──
+function seTick() {
+  if (!window.successionData || !window.kingdomData) return;
+  const year = window.year || 0;
+
+  // Kiểm tra ruler già chết (mỗi 5 năm)
+  if (year % 5 !== 0) return;
+
+  Object.values(window.kingdomData.kingdoms).forEach(k => {
+    if (k.isCollapsed || !k.ruler) return;
+
+    k.ruler.age = (k.ruler.age || 30) + 5;
+
+    // Xác suất chết theo tuổi
+    let deathChance = 0;
+    if (k.ruler.age > 80)      deathChance = 0.5;
+    else if (k.ruler.age > 65) deathChance = 0.25;
+    else if (k.ruler.age > 50) deathChance = 0.10;
+    else if (k.ruler.age > 40) deathChance = 0.03;
+
+    if (Math.random() < deathChance) {
+      const deathMsg = `☠️ ${k.ruler.name}, ${k.kingdomTitle} ${k.kingdomName}, băng hà! Thọ ${k.ruler.age} tuổi.`;
+      if (typeof addLog === "function") addLog(deathMsg, "death");
+      if (typeof htAddEvent === "function") htAddEvent({ year, type: "ruler_death", text: deathMsg, kingdomId: k.kingdomId });
+      seTriggersuccession(k);
+    }
+  });
+  seSave();
+}
+
+// ── RENDER PANEL ──
+function seRenderPanel() {
+  const panel = document.getElementById("panel-succession");
+  if (!panel) return;
+  if (!window.successionData) seInit();
+
+  const wars    = window.successionData.wars || [];
+  const history = window.successionData.history || [];
+  const activeWars = wars.filter(w => !w.resolved);
+
+  panel.innerHTML = `
+    <div class="panel-toolbar">
+      <button class="btn-primary" onclick="seForceTrigger();seRenderPanel()">⚔️ Kích Hoạt Kế Vị</button>
+      <button class="btn-secondary" onclick="seRenderPanel()">🔄 Làm Mới</button>
+      <span style="margin-left:auto;font-size:12px;color:var(--white-dim)">${wars.length} sự kiện kế vị · ${activeWars.length} đang diễn ra</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="card">
+        <div class="card-title">⚔️ Chiến Tranh Kế Vị Gần Đây</div>
+        ${wars.length === 0 ? `<div style="color:var(--white-dim);font-size:12px;text-align:center;padding:20px">Chưa có sự kiện kế vị nào.</div>` : `
+          <div style="display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto">
+            ${wars.slice(-15).reverse().map(w => `
+              <div style="padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid ${_seOutcomeColor(w.outcome)}">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                  <span style="font-size:12px;font-weight:700;color:var(--white-main)">${w.emoji} ${w.kingdomName}</span>
+                  <span style="font-size:10px;color:var(--white-dim)">Năm ${w.year}</span>
+                </div>
+                <div style="font-size:11px;color:var(--white-dim)">Người thừa kế: <span style="color:var(--white-main)">${w.heir.name}</span></div>
+                <div style="font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:4px;background:${_seOutcomeBg(w.outcome)};color:${_seOutcomeColor(w.outcome)}">${w.outcomeLabel}</div>
+              </div>
+            `).join("")}
+          </div>
+        `}
+      </div>
+
+      <div class="card">
+        <div class="card-title">📜 Lịch Sử Kế Vị</div>
+        ${history.length === 0 ? `<div style="color:var(--white-dim);font-size:12px;text-align:center;padding:20px">Chưa có lịch sử kế vị.</div>` : `
+          <div style="display:flex;flex-direction:column;gap:6px;max-height:400px;overflow-y:auto">
+            ${history.slice(-20).reverse().map(h => `
+              <div style="display:flex;gap:8px;font-size:11px;padding:4px 8px;border-left:2px solid rgba(255,255,255,0.1)">
+                <span style="color:var(--gold-dim);flex-shrink:0;font-size:10px">Năm ${h.year}</span>
+                <span style="color:var(--white-dim)">${h.emoji} ${h.text}</span>
+              </div>
+            `).join("")}
+          </div>
+        `}
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">📊 Thống Kê Kế Vị</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        ${SE_WAR_OUTCOMES.map(o => {
+          const count = wars.filter(w => w.outcome === o.effect).length;
+          return `
+            <div style="padding:8px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;text-align:center;min-width:100px">
+              <div style="font-size:16px;margin-bottom:4px">${o.emoji}</div>
+              <div style="font-size:16px;font-weight:800;color:${_seOutcomeColor(o.effect)}">${count}</div>
+              <div style="font-size:9px;color:var(--white-dim)">${o.label}</div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function seForceTrigger() {
+  if (!window.kingdomData) return;
+  const kingdoms = Object.values(window.kingdomData.kingdoms).filter(k => !k.isCollapsed);
+  if (kingdoms.length === 0) { if (typeof toast === "function") toast("⚠️ Chưa có vương quốc nào!"); return; }
+  const k = kingdoms[Math.floor(Math.random() * kingdoms.length)];
+  seTriggersuccession(k);
+  if (typeof keSave === "function") keSave();
+}
+
+function _seOutcomeColor(outcome) {
+  return { peaceful:"#4ade80", contest:"#facc15", civil_war:"#f87171", split:"#c084fc", collapse:"#ef4444" }[outcome] || "#94a3b8";
+}
+function _seOutcomeBg(outcome) {
+  return { peaceful:"rgba(74,222,128,0.1)", contest:"rgba(250,204,21,0.1)", civil_war:"rgba(248,113,113,0.1)", split:"rgba(192,132,252,0.1)", collapse:"rgba(239,68,68,0.1)" }[outcome] || "rgba(255,255,255,0.05)";
+}
+function _seRandItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function _seWeightedRandom(items) {
+  const total = items.reduce((s, i) => s + i.weight, 0);
+  let r = Math.random() * total;
+  for (const item of items) { r -= item.weight; if (r <= 0) return item; }
+  return items[0];
+}
+
+function seShowNavBtn() {
+  const btn = document.querySelector('.nav-btn[data-panel="succession"]');
+  if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    seInit();
+    seShowNavBtn();
+    setInterval(function() {
+      if (window.world) {
+        seTick();
+        const active = document.querySelector('.nav-btn.active[data-panel="succession"]');
+        if (active) seRenderPanel();
+      }
+    }, 12000);
+  }, 1800);
+});

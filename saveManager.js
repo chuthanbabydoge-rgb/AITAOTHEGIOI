@@ -60,6 +60,14 @@ const SAVE_ALL_KEYS = [
   "cgv6_currentWorldId", "cgv6_worlds",
   // Technology Engine
   "cgv6_technologyEngine",
+  // V23 — Empire & Kingdom Engine
+  "cgv6_kingdoms",
+  "cgv6_empires",
+  "cgv6_succession",
+  "cgv6_noble_houses",
+  "cgv6_bloodlines",
+  "cgv6_rankings",
+  "cgv6_historical_timeline",
 ];
 
 // ============================================================
