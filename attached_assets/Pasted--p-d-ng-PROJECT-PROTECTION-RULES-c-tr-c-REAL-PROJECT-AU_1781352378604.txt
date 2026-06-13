@@ -1,0 +1,224 @@
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel
+- dashboard
+- modal
+
+Không tạo thêm tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V42 - THƯ VIỆN THẦN THOẠI TOÀN CẦU
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Xây dựng hệ thống lưu trữ và quản lý:
+
+- Thần thoại Việt Nam
+- Thần thoại Hy Lạp
+- Thần thoại Bắc Âu
+- Thần thoại Ai Cập
+- Thần thoại Trung Hoa
+- Thần thoại Nhật Bản
+- Thần thoại Ấn Độ
+- Thần thoại Maya
+- Thần thoại Celtic
+- Thần thoại tùy chỉnh
+
+==================================================
+MYTHOLOGY CORE
+==================================================
+
+Tạo:
+
+- mythologyEngine.js
+- mythologyDatabase.js
+- mythologyRegistry.js
+
+==================================================
+THẦN LINH
+==================================================
+
+Tạo:
+
+- mythologyGodSystem.js
+
+Quản lý:
+
+- Tên thần
+- Lĩnh vực
+- Sức mạnh
+- Huyền thoại
+- Tín đồ
+
+==================================================
+SINH VẬT HUYỀN THOẠI
+==================================================
+
+Tạo:
+
+- mythologyCreatureSystem.js
+
+Quản lý:
+
+- Rồng
+- Phượng
+- Kraken
+- Griffin
+- Kỳ Lân
+- Yêu Thú
+- Sinh vật tùy chỉnh
+
+==================================================
+THÁNH VẬT
+==================================================
+
+Tạo:
+
+- mythologyArtifactSystem.js
+
+Quản lý:
+
+- Vũ khí thần thoại
+- Bảo vật
+- Di vật cổ đại
+- Thần khí
+
+==================================================
+TRUYỀN THUYẾT
+==================================================
+
+Tạo:
+
+- mythologyLoreSystem.js
+
+Lưu:
+
+- Truyện kể
+- Sử thi
+- Huyền thoại
+- Biên niên sử
+
+==================================================
+TÍCH HỢP AI
+==================================================
+
+AI Creator Assistant có thể:
+
+- Đề xuất thần mới
+- Đề xuất sinh vật mới
+- Đề xuất thần thoại mới
+- Sinh lore mới
+
+==================================================
+TÍCH HỢP HỆ THỐNG HIỆN CÓ
+==================================================
+
+Kết nối với:
+
+- Creator Marketplace
+- Multiverse
+- Timeline
+- Civilization
+- Divine Realm
+- Jarvis
+- Creator AI
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- Thần Thoại
+- Thần Linh
+- Sinh Vật
+- Thánh Vật
+- Truyền Thuyết
+- Cơ Sở Dữ Liệu
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Thần thoại
+- Thần linh
+- Sinh vật
+- Thánh vật
+- Lore
+
+Tương thích với toàn bộ save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành cập nhật:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V42
+
+Recommended Next Version = V43 Hệ Thống Kỷ Nguyên Thế Giới
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI

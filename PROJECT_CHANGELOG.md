@@ -4,6 +4,36 @@
 
 ---
 
+## [V42] — 2026-06-13 — Thư Viện Thần Thoại Toàn Cầu
+
+### New Systems Added (6 files)
+- `mythologyDatabase.js` — Core database 10 hệ thần thoại (Việt Nam/Hy Lạp/Bắc Âu/Ai Cập/Trung Hoa/Nhật Bản/Ấn Độ/Maya/Celtic/Tùy Chỉnh) · `mdbGetPantheons()` · `mdbUpdateStats()` · SAVE: cgv6_myth_db_v42
+- `mythologyGodSystem.js` — 30 thần linh mặc định · CRUD · filter theo pantheon · Form thêm thần mới · `mgsAddGod()` · `mgsFilterByPantheon()` · SAVE: cgv6_myth_gods_v42
+- `mythologyCreatureSystem.js` — 20 sinh vật huyền thoại (Rồng/Phượng/Kraken/Griffin/Kỳ Lân/Yêu Thú...) · threat level color · CRUD · SAVE: cgv6_myth_creatures_v42
+- `mythologyArtifactSystem.js` — 20 thánh vật/thần khí · owner tracking · effect desc · CRUD · SAVE: cgv6_myth_artifacts_v42
+- `mythologyLoreSystem.js` — 15 truyền thuyết/sử thi mặc định · moral tracking · CRUD + lưu vào wmeAddMemory · SAVE: cgv6_myth_lore_v42
+- `mythologyRegistry.js` — Hub UI tổng hợp · Quick nav 5 tab · Pantheon overview stats · AI Suggest 4 loại · Passive (no save/gameTick)
+
+### index.html Updates
+- Thêm 6 panel divs V42: panel-myth-overview-v42 → panel-myth-database-v42
+- Thêm 6 script tags nhóm V42 (sau creatorReports.js, trước V40)
+
+### hubEngine.js Update
+- creator-hub-v32: 16 → 22 tabs (+6 dòng V42)
+- Tabs mới: 📖 Thần Thoại · ✨ Thần Linh · 🐉 Sinh Vật · ⚔️ Thánh Vật · 📜 Truyền Thuyết · 🗄️ Database
+
+### Save Keys Mới
+- `cgv6_myth_db_v42` · `cgv6_myth_gods_v42` · `cgv6_myth_creatures_v42` · `cgv6_myth_artifacts_v42` · `cgv6_myth_lore_v42`
+
+### Integration Points
+- `mdbUpdateStats()` ← được gọi bởi Gods/Creatures/Artifacts/Lore systems để sync stats
+- `mgsFilterByPantheon(id)` ← được gọi từ Database panel để quick-filter
+- `mlsAddLore()` → gọi `wmeAddMemory()` (World Memory) + `htAddEvent()` (Historical Timeline)
+- `mgsAddGod()` / `mcsAddCreature()` / `masAddArtifact()` → gọi `htAddEvent()`
+- `mregAISuggestGod/Creature/Artifact/Lore()` — AI suggestion pool 15+ gợi ý
+
+---
+
 ## [V41] — 2026-06-13 — AI Creator Assistant
 
 ### New Systems Added (7 systems)

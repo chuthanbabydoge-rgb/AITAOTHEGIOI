@@ -121,7 +121,13 @@
         { id: "creator-sugg-v41",      icon: "💡", label: "Đề Xuất",         fn: "cseRenderPanel" },
         { id: "creator-lore-v41",      icon: "📜", label: "Lore",             fn: "lgRenderPanel" },
         { id: "creator-event-v41",     icon: "⚡", label: "Sự Kiện",         fn: "egRenderPanel" },
-        { id: "creator-reports-v41",   icon: "📊", label: "Báo Cáo",         fn: "crpRenderPanel" }
+        { id: "creator-reports-v41",   icon: "📊", label: "Báo Cáo",         fn: "crpRenderPanel" },
+        { id: "myth-overview-v42",     icon: "📖", label: "Thần Thoại",       fn: "mregRenderPanel" },
+        { id: "myth-gods-v42",         icon: "✨", label: "Thần Linh",        fn: "mgsRenderPanel" },
+        { id: "myth-creatures-v42",    icon: "🐉", label: "Sinh Vật",         fn: "mcsRenderPanel" },
+        { id: "myth-artifacts-v42",    icon: "⚔️", label: "Thánh Vật",        fn: "masRenderPanel" },
+        { id: "myth-lore-v42",         icon: "📜", label: "Truyền Thuyết",    fn: "mlsRenderPanel" },
+        { id: "myth-database-v42",     icon: "🗄️", label: "Database",         fn: "mdbRenderPanel" }
       ]
     },
     "guardian-hub-v33": {

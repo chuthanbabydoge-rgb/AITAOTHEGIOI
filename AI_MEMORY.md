@@ -24,13 +24,23 @@
 
 ## 🔢 CURRENT VERSION
 
-**V41 — AI Creator Assistant** (2026-06-13)
+**V42 — Thư Viện Thần Thoại Toàn Cầu** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (91+ systems)
+## ✅ COMPLETED SYSTEMS (97+ systems)
 
-### AI Creator Assistant V41 (7 systems) ← NEWEST
+### Thư Viện Thần Thoại Toàn Cầu V42 (6 systems) ← NEWEST
+- `mythologyDatabase.js` — Core DB 10 hệ thần thoại · `mdbGetPantheons()` · `mdbUpdateStats()` · SAVE: cgv6_myth_db_v42
+- `mythologyGodSystem.js` — 30 thần linh mặc định · CRUD · filter pantheon · `mgsAddGod()` · `mgsFilterByPantheon()` · SAVE: cgv6_myth_gods_v42
+- `mythologyCreatureSystem.js` — 20 sinh vật (Rồng/Phượng/Kraken/Kỳ Lân/Yêu Thú...) · threat level · SAVE: cgv6_myth_creatures_v42
+- `mythologyArtifactSystem.js` — 20 thánh vật/thần khí · owner+effect · SAVE: cgv6_myth_artifacts_v42
+- `mythologyLoreSystem.js` — 15 truyền thuyết/sử thi · moral · wmeAddMemory · SAVE: cgv6_myth_lore_v42
+- `mythologyRegistry.js` — Hub UI tổng hợp · AI Suggest 4 loại · Quick nav · Passive
+- **UI**: 6 tabs mới trong 👁 Creator God hub (creator-hub-v32 = 22 tabs tổng) · KHÔNG tạo tab sidebar mới
+- **hubEngine.js**: creator-hub-v32 mở rộng 16→22 tabs (+6 dòng V42)
+
+### AI Creator Assistant V41 (7 systems)
 - `creatorBrain.js` — Core world analysis · `cbrnAnalyzeWorld()` trả về 10 chiều (population/warfare/economy/religion/technology/divine/multiverse/races/bosses/v40creations) · Passive (no save, no tick)
 - `creatorAI.js` — AI Cố Vấn chính · `caiRunAnalysis()` · `caiApplySuggestion()` · gameTick mỗi 20 ticks · Điểm sức khỏe thế giới 0-100 · SAVE: cgv6_creator_ai_v41
 - `creatorSuggestionEngine.js` — 12 mẫu đề xuất · Priority 1-5 · One-click thực hiện · `cseApply()` · `cseDismiss()` · SAVE: cgv6_creator_sugg_v41
