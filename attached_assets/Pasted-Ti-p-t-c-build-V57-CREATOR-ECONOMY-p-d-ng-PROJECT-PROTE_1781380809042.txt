@@ -1,0 +1,270 @@
+Tiếp tục build V57 — CREATOR ECONOMY.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- INTEGRATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V57 - CREATOR ECONOMY
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Cho phép:
+
+- Creator tạo nội dung
+- Người chơi tạo nội dung
+- Chia sẻ nội dung giữa các thế giới
+- Hệ thống phần thưởng
+- Hệ thống doanh thu nội bộ
+
+==================================================
+CREATOR CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- creatorEconomyEngine.js
+- creatorProfileSystem.js
+- creatorRewardSystem.js
+
+==================================================
+CREATOR PROFILE
+==================================================
+
+Mỗi creator có:
+
+- Creator ID
+- Danh hiệu
+- Điểm uy tín
+- Tổng nội dung
+- Tổng lượt sử dụng
+
+==================================================
+CONTENT SYSTEM
+==================================================
+
+Cho phép tạo:
+
+- Chủng tộc
+- Tôn giáo
+- Anh hùng
+- Thành phố
+- Vật phẩm
+- Sự kiện
+- Thế giới
+
+==================================================
+CONTENT REGISTRY
+==================================================
+
+Tạo:
+
+- contentRegistry.js
+
+Theo dõi:
+
+- Nội dung được tạo
+- Người tạo
+- Phiên bản
+- Lịch sử chỉnh sửa
+
+==================================================
+CONTENT SHARING
+==================================================
+
+Cho phép:
+
+- Chia sẻ giữa các thế giới
+- Import
+- Export
+- Clone Template
+
+==================================================
+CREATOR REPUTATION
+==================================================
+
+Tạo:
+
+- creatorReputationSystem.js
+
+Theo dõi:
+
+- Lượt sử dụng
+- Đánh giá
+- Điểm uy tín
+- Creator Rank
+
+==================================================
+REWARD SYSTEM
+==================================================
+
+Tạo:
+
+- creatorRewardEngine.js
+
+Hỗ trợ:
+
+- Achievement
+- Creator Points
+- Milestone Rewards
+
+==================================================
+PLAYER GENERATED CONTENT
+==================================================
+
+Cho phép người chơi:
+
+- Tạo nhiệm vụ
+- Tạo sự kiện
+- Tạo bang hội
+- Tạo vùng đất
+- Tạo câu chuyện
+
+==================================================
+UNIVERSE TEMPLATE SYSTEM
+==================================================
+
+Tạo:
+
+- universeTemplateSystem.js
+
+Cho phép:
+
+- Lưu mẫu thế giới
+- Tạo thế giới mới từ template
+- Chia sẻ template
+
+==================================================
+JARVIS CREATOR MODE
+==================================================
+
+Jarvis có thể:
+
+- Gợi ý nội dung mới
+- Phân tích xu hướng
+- Kiểm tra xung đột dữ liệu
+- Gợi ý cân bằng hệ thống
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- Creator Hub
+- Nội Dung
+- Template
+- Chia Sẻ
+- Phần Thưởng
+- Thống Kê
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Creator Data
+- Content Registry
+- Templates
+- Rewards
+- Reputation
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V57
+
+Recommended Next Version = V58 Player Civilization
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+QUAN TRỌNG:
+
+Chỉ để tab chính ở sidebar.
+Mọi tính năng mới phải nằm trong tab nội bộ.
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
+Generate INTEGRATION_REPORT.md.
+Generate PERFORMANCE_REPORT.md.
+
+Đánh giá:
+
+- Độ kết nối hệ thống
+- Hiệu năng
+- Dữ liệu save
+- Các điểm nghẽn kiến trúc
