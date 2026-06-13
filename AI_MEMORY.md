@@ -24,13 +24,21 @@
 
 ## 🔢 CURRENT VERSION
 
-**V49 — Hệ Thống Chính Trị AI** (2026-06-13)
+**V50 — Kỷ Nguyên Người Chơi** (2026-06-13)
 
 ---
 
 ## ✅ COMPLETED SYSTEMS (120+ systems)
 
-### Chính Trị AI V49 (4 systems) ← NEWEST
+### Kỷ Nguyên Người Chơi V50 (4 systems) ← NEWEST
+- `playerCoreV50.js` — 10 Career Paths (Thường Dân→Chúa Tể Đa Vũ Trụ) · Affiliation System 7 loại (nation/empire/sect/religion/faction/guild/alliance) · World Impact 10 metrics · Multiverse Rep Tiers 7 cấp · Auto-detect world events · pv50JoinAffiliation() · pv50FoundEntity() · pv50AddImpact() · pv50GetMvRepTier() · pv50GetCareer() · SAVE: cgv6_player_core_v50 · init: 5800ms
+- `professionSystemV50.js` — 7 Nghề (Chiến Binh/Pháp Sư/Học Giả/Thương Nhân/Thợ Rèn/Tu Sĩ/Thần Quan) · 4 kỹ năng/nghề với XP unlock · 3 actions/nghề với cooldowns & wealth cost · Passive bonus mỗi 50 tick · prof50Choose() · prof50DoAction() · prof50GetAll() · prof50GetCurrent() · SAVE: cgv6_profession_v50 · init: 5900ms
+- `playerAchievementV50.js` — 40 thành tựu · 7 danh mục · Auto-check mỗi 25 tick · Reward XP+Fame via playerAddXP/playerAddFame · pv50AddImpact("titles_earned") · ach50GetAll() · ach50GetUnlocked() · ach50GetStats() · ach50GetByCategory() · SAVE: cgv6_achievement_v50 · init: 6000ms
+- `playerRegistryV50.js` — Wraps hubRenderPanel() để inject 7 tab buttons vào player-hub-v28 · 7 render funcs: preg50RenderCareer/Profession/Achievement/Reputation/Affiliation/WorldImpact/Jarvis · Passive · init: 6100ms
+- **Không trùng với:** playerEngine.js V28 (extends — thêm career/multiverse layer) · playerReputationEngine.js V28 (extends — thêm multiverse scale) · playerQuestSystem.js (extends — thêm profession actions) · cultivationPlayerEngine.js (extends — thêm career paths)
+- **UI**: Patches player-hub-v28 tabs · 7 panel divs: panel-career/profession/achievement/reputation/affiliation/world-impact/jarvis-v50
+
+### Chính Trị AI V49 (4 systems)
 - `governmentSystemV49.js` — 8 chế độ chính trị (Quân Chủ/Đế Chế/Cộng Hòa/Thần Quyền/Quý Tộc/Liên Bang/Hội Đồng/Tùy Chỉnh) · Leaders 6 stats (ambition/diplomacy/militancy/corruption/prestige/age) · 8 personality traits · Succession · Gov transitions · auto-sync kingdomData/empireData/countries · Public API: `govV49AssignGovernment()` · `govV49TriggerTransition()` · `govV49TriggerSuccession()` · `govV49GetAll()` · `govV49GetLeader()` · SAVE: cgv6_government_v49 · init: 5400ms
 - `politicalFactionV49.js` — 5 phe phái (Bảo Thủ/Cải Cách/Quân Sự/Tôn Giáo/Thương Mại) · Power struggle · Coalition formation · Legislation passing · 4 policies per faction · auto-sync entities · Public API: `facV49GetEntity()` · `facV49GetAll()` · `facV49TriggerStruggle()` · SAVE: cgv6_faction_v49 · init: 5500ms
 - `politicalCrisisV49.js` — 5 loại khủng hoảng (Đảo Chính/Nội Chiến/Biểu Tình/Kế Vị/Ly Khai) · 4 cấp độ severity · auto-trigger từ stability < 30 & lão hóa lãnh đạo & disaster · crisis resolution 4 loại · Kết nối V48/govV49/facV49 · Public API: `criV49Trigger()` · `criV49Resolve()` · `criV49GetActive()` · SAVE: cgv6_crisis_v49 · init: 5600ms

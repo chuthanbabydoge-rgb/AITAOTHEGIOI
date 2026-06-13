@@ -4,6 +4,31 @@
 
 ---
 
+## [V50] — 2026-06-13 — Kỷ Nguyên Người Chơi
+
+### New Systems Added (4 files)
+- `playerCoreV50.js` — 10 Career Paths (Thường Dân/Nhà Thám Hiểm/Thương Nhân/Anh Hùng/Lãnh Chúa/Vua/Hoàng Đế/Giáo Chủ/Thần Linh/Chúa Tể Đa Vũ Trụ) · Affiliation System 7 loại (nation/empire/sect/religion/faction/guild/alliance) · pv50JoinAffiliation() · pv50LeaveAffiliation() · pv50FoundEntity() · World Impact tracking 10 metrics (wars_started/wars_ended/govs_changed/crises_resolved/disasters_aided/npcs_helped/alliances_formed/universes_visited/titles_earned/gold_circulated) · Multiverse Rep Tiers 7 cấp · Auto-sync V28/V49 · SAVE: cgv6_player_core_v50 · init: 5800ms
+- `professionSystemV50.js` — 7 Nghề (Chiến Binh/Pháp Sư/Học Giả/Thương Nhân/Thợ Rèn/Tu Sĩ/Thần Quan) · Mỗi nghề: 4 kỹ năng unlock theo XP + 3 actions có cooldowns + stat bonus · Passive XP 1/10tick + passive bonus 50tick · prof50Choose() · prof50DoAction() · SAVE: cgv6_profession_v50 · init: 5900ms
+- `playerAchievementV50.js` — 40 thành tựu · 7 danh mục (Khởi Đầu/Khám Phá/Chinh Phục/Kinh Tế/Chính Trị/Thần Thánh/Đa Vũ Trụ) · Auto-check mỗi 25 tick · Apply reward qua playerAddXP/playerAddFame · htAddEvent + wmeAddMemory khi unlock · ach50GetAll/Unlocked/Stats/ByCategory() · SAVE: cgv6_achievement_v50 · init: 6000ms
+- `playerRegistryV50.js` — Wraps window.hubRenderPanel để inject 7 tab buttons vào player-hub-v28 sau khi render · 7 render functions (preg50RenderCareer/Profession/Achievement/Reputation/Affiliation/WorldImpact/Jarvis) · Jarvis AI đề xuất actions · Passive · init: 6100ms
+
+### index.html Changes (add only)
+- 7 panel divs sau V49 panels: panel-career-v50 · panel-profession-v50 · panel-achievement-v50 · panel-reputation-v50 · panel-affiliation-v50 · panel-world-impact-v50 · panel-jarvis-v50
+- 4 script tags V50 sau V49 scripts
+
+### Integrations
+- Extends playerEngine.js V28 — reads playerV28Data (name/fame/wealth/rankLevel) · playerAddXP() · playerAddFame() · playerAddWealth()
+- Extends playerReputationEngine.js V28 — reads playerRepData (reputation/fame/titles/heroicDeeds)
+- Extends playerTerritorySystem.js V28 — reads playerTerritoryData (playerKingdom/playerEmpire)
+- Reads govV49Data, facV49GetEntity() từ V49 để auto-sync faction affiliation
+- Reads warsActive (chiến tranh V23), criV49GetActive() (khủng hoảng V49)
+- playerAchievementV50: reads professionV50Data + playerCoreV50Data trong check functions
+
+### Save Keys
+- cgv6_player_core_v50 · cgv6_profession_v50 · cgv6_achievement_v50
+
+---
+
 ## [V49] — 2026-06-13 — Hệ Thống Chính Trị AI
 
 ### New Systems Added (4 files)

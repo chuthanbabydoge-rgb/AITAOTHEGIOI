@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V49 — Hệ Thống Chính Trị AI |
+| **Current Version** | V50 — Kỷ Nguyên Người Chơi |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 202 |
-| **Total Systems** | 127+ |
+| **Total JS Files** | 206 |
+| **Total Systems** | 131+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,13 @@
 
 ## ✅ Completed Systems
 
-### Chính Trị AI V49 ← NEWEST
+### Kỷ Nguyên Người Chơi V50 ← NEWEST
+- `playerCoreV50.js` — 10 Career Paths (Thường Dân→Chúa Tể Đa Vũ Trụ) · Affiliation System (7 loại) · World Impact Tracking (10 metrics) · Multiverse Reputation Tiers (7 cấp) · Auto-sync V49/V47/V28 · SAVE: cgv6_player_core_v50 · init: 5800ms
+- `professionSystemV50.js` — 7 Nghề Nghiệp (Chiến Binh/Pháp Sư/Học Giả/Thương Nhân/Thợ Rèn/Tu Sĩ/Thần Quan) · Skill Trees (4 kỹ năng/nghề) · Profession Actions với cooldowns · Passive bonus effects · SAVE: cgv6_profession_v50 · init: 5900ms
+- `playerAchievementV50.js` — 40 Thành Tựu V2 · 7 Danh Mục (Khởi Đầu/Khám Phá/Chinh Phục/Kinh Tế/Chính Trị/Thần Thánh/Đa Vũ Trụ) · Auto-check mỗi 25 tick · Reward XP+Fame · SAVE: cgv6_achievement_v50 · init: 6000ms
+- `playerRegistryV50.js` — Patches player-hub-v28 với 7 tabs mới (Hành Trình/Nghề Nghiệp/Thành Tựu/Danh Vọng/Liên Kết/Ảnh Hưởng/Jarvis) · 7 render functions · Passive · init: 6100ms
+
+### Chính Trị AI V49
 - `governmentSystemV49.js` — 8 chế độ · Leaders 6 stats · Succession · Transitions · SAVE: cgv6_government_v49
 - `politicalFactionV49.js` — 5 phe phái · Power struggle · Coalition · Legislation · SAVE: cgv6_faction_v49
 - `politicalCrisisV49.js` — 5 khủng hoảng · 4 cấp độ · auto-trigger · Crisis resolution · SAVE: cgv6_crisis_v49

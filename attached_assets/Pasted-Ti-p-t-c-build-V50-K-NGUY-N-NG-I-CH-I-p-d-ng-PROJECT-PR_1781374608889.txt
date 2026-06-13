@@ -1,0 +1,292 @@
+Tiếp tục build V50 — KỶ NGUYÊN NGƯỜI CHƠI.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V50 - KỶ NGUYÊN NGƯỜI CHƠI
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Biến World Engine từ:
+
+AI World Simulator
+
+thành
+
+Living Online Universe
+
+==================================================
+PLAYER CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- playerCore.js
+- playerProfileSystem.js
+- playerProgressionSystem.js
+
+Mỗi người chơi có:
+
+- ID
+- Danh hiệu
+- Chủng tộc
+- Nghề nghiệp
+- Danh vọng
+- Uy tín
+- Lịch sử
+
+==================================================
+CON ĐƯỜNG PHÁT TRIỂN
+==================================================
+
+Người chơi có thể trở thành:
+
+- Thường Dân
+- Nhà Thám Hiểm
+- Thương Nhân
+- Anh Hùng
+- Lãnh Chúa
+- Vua
+- Hoàng Đế
+- Giáo Chủ
+- Thần Linh
+- Chúa Tể Đa Vũ Trụ
+
+==================================================
+GIA NHẬP THẾ GIỚI
+==================================================
+
+Người chơi có thể:
+
+- Gia nhập quốc gia
+- Gia nhập đế quốc
+- Gia nhập tông môn
+- Gia nhập tôn giáo
+- Gia nhập phe phái
+
+==================================================
+THÀNH LẬP THẾ LỰC
+==================================================
+
+Người chơi có thể:
+
+- Lập quốc gia
+- Lập đế quốc
+- Lập tông môn
+- Lập giáo hội
+- Lập liên minh
+
+==================================================
+DANH VỌNG
+==================================================
+
+Tạo:
+
+- playerReputationV2.js
+
+Theo dõi:
+
+- Danh vọng địa phương
+- Danh vọng thế giới
+- Danh vọng đa vũ trụ
+
+==================================================
+NGHỀ NGHIỆP
+==================================================
+
+Tạo:
+
+- professionSystem.js
+
+Ví dụ:
+
+- Chiến Binh
+- Pháp Sư
+- Học Giả
+- Thương Nhân
+- Thợ Rèn
+- Tu Sĩ
+- Thần Quan
+
+==================================================
+THÀNH TỰU
+==================================================
+
+Tạo:
+
+- playerAchievementV2.js
+
+Ví dụ:
+
+- Sáng lập quốc gia
+- Tiêu diệt Ma Vương
+- Khám phá vũ trụ
+- Trở thành thần
+
+==================================================
+PLAYER VS WORLD
+==================================================
+
+Người chơi có thể:
+
+- Thay đổi lịch sử
+- Thay đổi chiến tranh
+- Thay đổi chính trị
+- Thay đổi tôn giáo
+
+==================================================
+PLAYER VS PLAYER
+==================================================
+
+Hỗ trợ:
+
+- PvP
+- Guild War
+- Empire War
+- Arena
+
+==================================================
+PLAYER & AI
+==================================================
+
+Tương tác với:
+
+- AI Leaders
+- AI Heroes
+- AI Kingdoms
+- AI Religions
+- AI Civilizations
+
+==================================================
+JARVIS
+==================================================
+
+Jarvis hỗ trợ:
+
+- Hướng dẫn người chơi mới
+- Gợi ý nhiệm vụ
+- Gợi ý nghề nghiệp
+- Phân tích hành trình
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👤 Người Chơi
+
+Tab nội bộ:
+
+- Hồ Sơ
+- Nghề Nghiệp
+- Thành Tựu
+- Danh Vọng
+- Quốc Gia
+- Tông Môn
+- Lịch Sử
+
+==================================================
+MULTIPLAYER READY
+==================================================
+
+Chuẩn bị kiến trúc cho:
+
+- Nhiều người chơi
+- Đồng bộ dữ liệu
+- Sự kiện thời gian thực
+- Thế giới tồn tại liên tục
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Hồ sơ người chơi
+- Thành tựu
+- Danh vọng
+- Lịch sử
+- Tài sản
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V50
+
+Recommended Next Version = V51 Creator God Online
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
