@@ -4,6 +4,58 @@
 
 ---
 
+## [V31] — 2026-06-13 — World Boss & Dungeon System
+
+### New Systems Added
+- World Boss Engine V31 (`worldBossEngineV31.js`) — 6 tiers boss · Auto-spawn · Auto-kill · Boss evolution trigger
+- Dungeon Engine V31 (`dungeonEngineV31.js`) — 6 loại dungeon · Floor layout · Auto-explore NPC
+- Raid Engine V31 (`raidEngineV31.js`) — 6 loại raid: Solo/Party/Guild/Sect/Kingdom/Empire
+- Invasion Engine V31 (`invasionEngineV31.js`) — 5 loại xâm lược · Auto-defense · Wave system
+- Boss Evolution Engine V31 (`bossEvolutionEngineV31.js`) — Regional→Continental→World→Realm threat
+- Legendary Hunt Engine V31 (`legendaryHuntEngineV31.js`) — First Kill · Fastest · Rankings · Dungeon records
+- Loot Engine V31 (`lootEngineV31.js`) — 6 loại loot · Drop tables per boss tier · Apply loot to NPC/Player
+
+### Files Added
+- `lootEngineV31.js` — Gold/Spirit Stones/Artifacts/Divine Relics/Techniques/Rare Materials
+- `worldBossEngineV31.js` — Rare/Epic/Legendary/Mythic/Divine/Creator tiers · 15 boss templates
+- `dungeonEngineV31.js` — Ancient Ruins/Demon Cave/Spirit Forest/Divine Temple/Heavenly Palace/Void Labyrinth
+- `raidEngineV31.js` — 6 raid types · Power calculation · Casualty system
+- `invasionEngineV31.js` — Demon/Undead/Divine/Void/Titan invasions · Effect system
+- `bossEvolutionEngineV31.js` — 4 threat levels · Tick-based evolution
+- `legendaryHuntEngineV31.js` — Kill records · First Kill · Fastest Kill · Hunter leaderboard
+
+### Files Modified
+- `index.html` — Added 7 script tags, 6 nav buttons, 6 panel divs, updated v23Panels unlock array
+
+### UI Tabs Added
+- 👹 World Boss (`panel-worldboss-v31`) — worldBossEngineV31.js
+- 🏛 Dungeon V31 (`panel-dungeon-v31`) — dungeonEngineV31.js
+- ⚔️ Raid V31 (`panel-raid-v31`) — raidEngineV31.js
+- 🌋 Xâm Lược (`panel-invasion-v31`) — invasionEngineV31.js
+- 🏆 Săn Boss (`panel-hunt-v31`) — legendaryHuntEngineV31.js
+- 🎁 Loot V31 (`panel-loot-v31`) — lootEngineV31.js
+
+### Integration
+- worldBossEngine → lootEngine (auto generate loot on kill)
+- worldBossEngine → legendaryHuntEngine (record first kill, fastest kill)
+- worldBossEngine → bossEvolutionEngine (trigger evolution, on kill hook)
+- dungeonEngine → legendaryHuntEngine (record dungeon clears)
+- invasionEngine → worldBossEngine (spawn boss on invasion)
+- raidEngine → worldBossEngine (attack/kill boss via raid)
+- All engines → historicalTimeline + worldMemoryEngine (addWorldHistory hook)
+- All engines → gameTick (chained wrap pattern)
+
+### Save Keys (localStorage)
+- `cgv6_worldboss_v31` — World Boss state
+- `cgv6_dungeon_v31` — Dungeon V31 state
+- `cgv6_raid_v31` — Raid history
+- `cgv6_invasion_v31` — Invasion state
+- `cgv6_bossevo_v31` — Boss evolution log
+- `cgv6_hunt_v31` — Hunt records & rankings
+- `cgv6_loot_v31` — Loot history
+
+---
+
 ## [V24] — 2026-06-12 — Diplomacy Engine
 
 ### New Systems Added

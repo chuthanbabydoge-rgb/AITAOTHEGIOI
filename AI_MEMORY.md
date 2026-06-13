@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V26 — Continental Engine** (2026-06-12)
+**V31 — World Boss & Dungeon System** (2026-06-13)
 
 ---
 
@@ -50,7 +50,16 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### Continental V26 (3 systems) ← NEWEST
+### World Boss & Dungeon V31 (7 systems) ← NEWEST
+- `worldBossEngineV31.js` — 6 boss tiers (Rare→Creator) · 15 templates · Auto-spawn mỗi 80 ticks
+- `dungeonEngineV31.js` — 6 dungeon types · Floor layout · Auto NPC explore
+- `raidEngineV31.js` — Solo/Party/Guild/Sect/Kingdom/Empire raids · Power calc
+- `invasionEngineV31.js` — 5 invasion types · Wave system · Auto-defense
+- `bossEvolutionEngineV31.js` — Regional/Continental/World/Realm threat · Tick-based
+- `legendaryHuntEngineV31.js` — First Kill · Fastest · Hunter rankings · Dungeon records
+- `lootEngineV31.js` — 6 loot categories · Tier-weighted drop tables
+
+### Continental V26 (3 systems)
 - `continentEngineV26.js` — Phân cấp TG→LC→VK→LT→TP · Dân số · Tài nguyên · Khí hậu · Ảnh hưởng · Công nghệ · Chiến tranh LC · Xếp hạng
 - `migrationEngineV26.js` — Di cư liên lục địa · 8 nguyên nhân · Sóng lớn · Thống kê chi tiết
 - `continentalPoliticsEngine.js` — Bá quyền · Liên minh LC · Hội nghị · Sự cố chính trị · Uy danh

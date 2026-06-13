@@ -1,0 +1,254 @@
+Apply PROJECT PROTECTION RULES.
+
+Read:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Analyze current project first.
+
+Do not create duplicate systems.
+
+If similar systems already exist:
+upgrade and extend them.
+
+==================================================
+BUILD TARGET
+==================================================
+
+V31 WORLD BOSS & DUNGEON SYSTEM
+
+==================================================
+WORLD BOSS ENGINE
+==================================================
+
+Create:
+
+- worldBossEngine.js
+
+Boss tiers:
+
+- Rare Boss
+- Epic Boss
+- Legendary Boss
+- Mythic Boss
+- Divine Boss
+- Creator Boss
+
+Each boss has:
+
+- bossId
+- name
+- title
+- level
+- realm
+- hp
+- abilities
+- drops
+- location
+
+==================================================
+DUNGEON ENGINE
+==================================================
+
+Create:
+
+- dungeonEngine.js
+
+Dungeon types:
+
+- Ancient Ruins
+- Demon Cave
+- Spirit Forest
+- Divine Temple
+- Heavenly Palace
+- Void Labyrinth
+
+==================================================
+DUNGEON GENERATION
+==================================================
+
+Create:
+
+- dungeonGenerator.js
+
+Generate:
+
+- Layout
+- Floors
+- Enemies
+- Traps
+- Rewards
+- Bosses
+
+==================================================
+RAID SYSTEM
+==================================================
+
+Create:
+
+- raidEngine.js
+
+Allow:
+
+- Solo Raid
+- Party Raid
+- Guild Raid
+- Sect Raid
+- Kingdom Raid
+- Empire Raid
+
+==================================================
+LOOT SYSTEM
+==================================================
+
+Create:
+
+- lootEngine.js
+
+Drops:
+
+- Gold
+- Spirit Stones
+- Artifacts
+- Divine Relics
+- Techniques
+- Rare Materials
+
+==================================================
+WORLD INVASION EVENTS
+==================================================
+
+Create:
+
+- invasionEngine.js
+
+Events:
+
+- Demon Invasion
+- Undead Invasion
+- Divine Invasion
+- Void Invasion
+- Titan Awakening
+
+==================================================
+BOSS EVOLUTION
+==================================================
+
+Create:
+
+- bossEvolutionEngine.js
+
+Bosses evolve over time.
+
+Can become:
+
+- Regional Threat
+- Continental Threat
+- World Threat
+- Realm Threat
+
+==================================================
+LEGENDARY HUNTS
+==================================================
+
+Create:
+
+- legendaryHuntEngine.js
+
+Track:
+
+- First Kill
+- Fastest Kill
+- Most Damage
+- Guild Contribution
+
+==================================================
+INTEGRATION
+==================================================
+
+Connect with:
+
+- Player System
+- Guild System
+- Sect System
+- Kingdom System
+- Empire System
+- Divine Realm System
+- Artifact System
+- Timeline System
+
+==================================================
+HISTORY
+==================================================
+
+Record:
+
+- Boss Spawn
+- Boss Kill
+- Dungeon Discovery
+- World Invasion
+- Legendary Hunt
+
+Store in:
+
+- historicalTimeline.js
+- worldMemoryEngine.js
+
+==================================================
+UI
+==================================================
+
+Add tabs:
+
+👹 World Bosses
+
+🏛 Dungeons
+
+⚔ Raids
+
+🎁 Loot
+
+🌋 Invasions
+
+🏆 Legendary Hunts
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Save:
+
+- Bosses
+- Dungeons
+- Loot
+- Raids
+- Invasions
+- Rankings
+
+Remain compatible with all old saves.
+
+==================================================
+OUTPUT
+==================================================
+
+Before coding:
+
+1. Existing systems
+2. New systems
+3. Files to create
+4. Files to modify
+5. Integration plan
+6. Compatibility check
+
+Only then generate code.
+
+EXPAND ONLY.
+
+NEVER DELETE.
+
+NEVER REPLACE.
+
+NEVER REBUILD.

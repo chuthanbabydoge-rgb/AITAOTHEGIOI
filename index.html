@@ -1718,6 +1718,12 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-portal-v30" onclick="showPanel('portal-v30');if(typeof portalV30RenderPanel==='function')portalV30RenderPanel();" data-panel="portal-v30">🌀 Cổng DChuyển</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-divinewar-v30" onclick="showPanel('divinewar-v30');if(typeof dwV30RenderPanel==='function')dwV30RenderPanel();" data-panel="divinewar-v30">⚔️ CT Thần Thánh</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-history-v30" onclick="showPanel('divine-history-v30');if(typeof divineV30RenderHistoryPanel==='function')divineV30RenderHistoryPanel();" data-panel="divine-history-v30">📜 Sử Thần Thánh</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-worldboss-v31" onclick="showPanel('worldboss-v31');if(typeof wbv31RenderPanel==='function')wbv31RenderPanel();" data-panel="worldboss-v31">👹 World Boss</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-dungeon-v31" onclick="showPanel('dungeon-v31');if(typeof dev31RenderPanel==='function')dev31RenderPanel();" data-panel="dungeon-v31">🏛 Dungeon V31</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-raid-v31" onclick="showPanel('raid-v31');if(typeof rev31RenderPanel==='function')rev31RenderPanel();" data-panel="raid-v31">⚔️ Raid V31</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-invasion-v31" onclick="showPanel('invasion-v31');if(typeof iev31RenderPanel==='function')iev31RenderPanel();" data-panel="invasion-v31">🌋 Xâm Lược</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-hunt-v31" onclick="showPanel('hunt-v31');if(typeof lhv31RenderPanel==='function')lhv31RenderPanel();" data-panel="hunt-v31">🏆 Săn Boss</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-loot-v31" onclick="showPanel('loot-v31');if(typeof lev31RenderPanel==='function')lev31RenderPanel();" data-panel="loot-v31">🎁 Loot V31</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2606,6 +2612,30 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by divineV30RenderHistoryPanel() in divineBeingEngine.js -->
       </div>
 
+      <div id="panel-worldboss-v31" class="panel">
+        <!-- Rendered by wbv31RenderPanel() in worldBossEngineV31.js -->
+      </div>
+
+      <div id="panel-dungeon-v31" class="panel">
+        <!-- Rendered by dev31RenderPanel() in dungeonEngineV31.js -->
+      </div>
+
+      <div id="panel-raid-v31" class="panel">
+        <!-- Rendered by rev31RenderPanel() in raidEngineV31.js -->
+      </div>
+
+      <div id="panel-invasion-v31" class="panel">
+        <!-- Rendered by iev31RenderPanel() in invasionEngineV31.js -->
+      </div>
+
+      <div id="panel-hunt-v31" class="panel">
+        <!-- Rendered by lhv31RenderPanel() in legendaryHuntEngineV31.js -->
+      </div>
+
+      <div id="panel-loot-v31" class="panel">
+        <!-- Rendered by lev31RenderPanel() in lootEngineV31.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2851,11 +2881,18 @@ window.addEventListener("load", function() {
 <script src="divineWarEngine.js"></script>
 <script src="pantheonEngineV30.js"></script>
 <script src="portalEngineV30.js"></script>
+<script src="lootEngineV31.js"></script>
+<script src="worldBossEngineV31.js"></script>
+<script src="dungeonEngineV31.js"></script>
+<script src="raidEngineV31.js"></script>
+<script src="invasionEngineV31.js"></script>
+<script src="bossEvolutionEngineV31.js"></script>
+<script src="legendaryHuntEngineV31.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
