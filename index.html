@@ -1724,6 +1724,14 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-invasion-v31" onclick="showPanel('invasion-v31');if(typeof iev31RenderPanel==='function')iev31RenderPanel();" data-panel="invasion-v31">🌋 Xâm Lược</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-hunt-v31" onclick="showPanel('hunt-v31');if(typeof lhv31RenderPanel==='function')lhv31RenderPanel();" data-panel="hunt-v31">🏆 Săn Boss</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-loot-v31" onclick="showPanel('loot-v31');if(typeof lev31RenderPanel==='function')lev31RenderPanel();" data-panel="loot-v31">🎁 Loot V31</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-story" onclick="showPanel('story');if(typeof renderStoryPanel==='function')renderStoryPanel();" data-panel="story">📖 Kịch Bản</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-v28" onclick="showPanel('player-v28');if(typeof window.peRenderPanel==='function')window.peRenderPanel();" data-panel="player-v28">👤 Nhân Vật V28</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-inventory-v28" onclick="showPanel('inventory-v28');if(typeof window.invRenderPanel==='function')window.invRenderPanel();" data-panel="inventory-v28">🎒 Kho Đồ</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-history" onclick="showPanel('my-history');if(typeof window.prRenderPanel==='function')window.prRenderPanel();" data-panel="my-history">📜 Danh Tiếng Ta</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-kingdom" onclick="showPanel('my-kingdom');if(typeof window.ptRenderMyKingdom==='function')window.ptRenderMyKingdom();" data-panel="my-kingdom">🏰 Lãnh Thổ Ta</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-empire" onclick="showPanel('my-empire');if(typeof window.ptRenderMyEmpire==='function')window.ptRenderMyEmpire();" data-panel="my-empire">👑 Đế Chế Ta</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-war" onclick="showPanel('player-war');if(typeof window.ptRenderPlayerWar==='function')window.ptRenderPlayerWar();" data-panel="player-war">⚔️ Chiến Tranh Ta</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-ascension-v28" onclick="showPanel('ascension-v28');if(typeof window.ascRenderPanel==='function')window.ascRenderPanel();" data-panel="ascension-v28">⭐ Thăng Cấp</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2636,6 +2644,100 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by lev31RenderPanel() in lootEngineV31.js -->
       </div>
 
+      <!-- ═══ V32 DORMANT ACTIVATION — World Story + Player V28 Systems ═══ -->
+
+      <div id="panel-story" class="panel">
+        <div style="padding:16px;font-family:'Noto Serif SC',serif;color:#e2e8f0">
+          <div id="storyWorldHeader" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <span style="color:#fbbf24;font-size:1.3em;font-weight:bold">📖 Kịch Bản Thế Giới</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+            <select id="storyFilterType" onchange="if(typeof renderStoryPanel==='function')renderStoryPanel()" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:5px 10px;border-radius:6px;font-size:0.85em">
+              <option value="">Tất cả loại</option>
+              <option value="breakthrough">✨ Đột Phá</option>
+              <option value="war">⚔️ Tông Chiến</option>
+              <option value="marriage">💑 Kết Đạo Lữ</option>
+              <option value="death">☠️ Tử Vong</option>
+              <option value="sect">🏯 Lập Tông Môn</option>
+              <option value="boss">🐉 Boss Chiến</option>
+              <option value="era">🌐 Kỷ Nguyên</option>
+              <option value="nation_war">🏴 Quốc Chiến</option>
+              <option value="ascend">🌠 Phi Thăng</option>
+            </select>
+            <input id="storyFilterSearch" type="text" placeholder="🔍 Tìm kiếm..." onkeyup="if(typeof renderStoryPanel==='function')renderStoryPanel()" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:5px 10px;border-radius:6px;font-size:0.85em;min-width:140px">
+            <input id="storyFilterYear" type="text" placeholder="Năm..." onkeyup="if(typeof renderStoryPanel==='function')renderStoryPanel()" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:5px 10px;border-radius:6px;font-size:0.85em;width:80px">
+            <span id="storyTimelineCount" style="color:#64748b;font-size:0.82em;align-self:center"></span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <button onclick="if(typeof renderStoryPanel==='function')renderStoryPanel()" style="background:#1e293b;color:#60a5fa;border:1px solid #334155;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.82em">🔄 Làm Mới</button>
+            <button onclick="if(typeof openManualChapterModal==='function')openManualChapterModal()" style="background:#1e293b;color:#4ade80;border:1px solid #334155;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.82em">📖 Tạo Chương</button>
+            <button onclick="if(typeof generateAIWorldSummary==='function')generateAIWorldSummary()" style="background:#1e293b;color:#fbbf24;border:1px solid #334155;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.82em">🤖 AI Tóm Tắt</button>
+            <button onclick="if(typeof exportStoryAsTxt==='function')exportStoryAsTxt()" style="background:#1e293b;color:#c084fc;border:1px solid #334155;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.82em">📄 Xuất TXT</button>
+          </div>
+          <div id="storyWorldSummaryAI" style="margin-bottom:14px"></div>
+          <!-- TIMELINE -->
+          <div style="color:#38bdf8;font-weight:bold;margin-bottom:8px">⏳ Dòng Thời Gian</div>
+          <div id="storyTimelineList" style="max-height:320px;overflow-y:auto;margin-bottom:16px"></div>
+          <!-- CHAPTERS -->
+          <div style="color:#fbbf24;font-weight:bold;margin-bottom:8px">📖 Các Chương</div>
+          <div id="storyChapterList" style="max-height:260px;overflow-y:auto;margin-bottom:16px"></div>
+          <!-- BIOGRAPHIES -->
+          <div style="color:#f0abfc;font-weight:bold;margin-bottom:8px">👤 Tiểu Sử Nhân Vật</div>
+          <input id="storyBioSearch" type="text" placeholder="🔍 Tìm nhân vật..." onkeyup="if(typeof renderStoryBiographies==='function')renderStoryBiographies()" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:5px 10px;border-radius:6px;font-size:0.85em;width:200px;margin-bottom:8px">
+          <div id="storyBioList" style="max-height:240px;overflow-y:auto;margin-bottom:16px"></div>
+          <!-- SECT HISTORY -->
+          <div style="color:#fb923c;font-weight:bold;margin-bottom:8px">🏯 Lịch Sử Tông Môn</div>
+          <div id="storySectHistoryList" style="max-height:200px;overflow-y:auto;margin-bottom:16px"></div>
+          <!-- COUNTRY OVERVIEW -->
+          <div style="color:#4ade80;font-weight:bold;margin-bottom:8px">🌍 Tổng Quan Quốc Gia</div>
+          <div id="storyCountryList" style="max-height:200px;overflow-y:auto"></div>
+        </div>
+        <!-- MANUAL CHAPTER MODAL -->
+        <div id="storyChapterModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center">
+          <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;max-width:480px;width:90%">
+            <div style="font-size:1.2em;color:#fbbf24;font-weight:bold;margin-bottom:16px">📖 Tạo Chương Thủ Công</div>
+            <div style="margin-bottom:10px"><label style="color:#94a3b8;font-size:0.85em">Tiêu đề chương</label><br><input id="scmTitle" type="text" placeholder="VD: Thời Đại Hỗn Loạn" style="width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;box-sizing:border-box;margin-top:4px"></div>
+            <div style="display:flex;gap:10px;margin-bottom:10px">
+              <div style="flex:1"><label style="color:#94a3b8;font-size:0.85em">Năm bắt đầu</label><br><input id="scmYearStart" type="number" style="width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;box-sizing:border-box;margin-top:4px"></div>
+              <div style="flex:1"><label style="color:#94a3b8;font-size:0.85em">Năm kết thúc</label><br><input id="scmYearEnd" type="number" style="width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;box-sizing:border-box;margin-top:4px"></div>
+            </div>
+            <div style="margin-bottom:16px"><label style="color:#94a3b8;font-size:0.85em">Tóm tắt (tùy chọn)</label><br><textarea id="scmSummary" placeholder="Mô tả ngắn về chương này..." style="width:100%;background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;box-sizing:border-box;min-height:80px;margin-top:4px"></textarea></div>
+            <div style="display:flex;gap:8px;justify-content:flex-end">
+              <button onclick="if(typeof closeChapterModal==='function')closeChapterModal()" style="background:#334155;color:#e2e8f0;border:none;padding:8px 16px;border-radius:6px;cursor:pointer">Hủy</button>
+              <button onclick="if(typeof saveManualChapter==='function')saveManualChapter()" style="background:#fbbf24;color:#000;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-weight:bold">💾 Lưu Chương</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-player-v28" class="panel">
+        <!-- Rendered by peRenderPanel() + pqRenderPanel() in playerEngine.js / playerQuestSystem.js -->
+      </div>
+
+      <div id="panel-inventory-v28" class="panel">
+        <!-- Rendered by invRenderPanel() in playerInventory.js -->
+      </div>
+
+      <div id="panel-my-history" class="panel">
+        <!-- Rendered by prRenderPanel() in playerReputationEngine.js -->
+      </div>
+
+      <div id="panel-my-kingdom" class="panel">
+        <!-- Rendered by ptRenderMyKingdom() in playerTerritorySystem.js -->
+      </div>
+
+      <div id="panel-my-empire" class="panel">
+        <!-- Rendered by ptRenderMyEmpire() in playerTerritorySystem.js -->
+      </div>
+
+      <div id="panel-player-war" class="panel">
+        <!-- Rendered by ptRenderPlayerWar() in playerTerritorySystem.js -->
+      </div>
+
+      <div id="panel-ascension-v28" class="panel">
+        <!-- Rendered by ascRenderPanel() in ascensionEngine.js + culRenderPanel() in cultivationPlayerEngine.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2888,11 +2990,22 @@ window.addEventListener("load", function() {
 <script src="invasionEngineV31.js"></script>
 <script src="bossEvolutionEngineV31.js"></script>
 <script src="legendaryHuntEngineV31.js"></script>
+<script src="timeControlSystem.js"></script>
+<script src="worldStorySystem.js"></script>
+<script src="progressionSystem.js"></script>
+<script src="playerEngine.js"></script>
+<script src="playerInventory.js"></script>
+<script src="playerQuestSystem.js"></script>
+<script src="playerReputationEngine.js"></script>
+<script src="playerTerritorySystem.js"></script>
+<script src="ascensionEngine.js"></script>
+<script src="cultivationPlayerEngine.js"></script>
+<script src="saveManager.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
