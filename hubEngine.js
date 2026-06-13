@@ -1,6 +1,23 @@
 (function() {
   "use strict";
 
+  // ─── ALIAS FIX: prRenderPanel → prRenderHistory ────────────────────────────
+  // playerReputationEngine.js export window.prRenderHistory (không phải prRenderPanel)
+  window.prRenderPanel = function() {
+    if (typeof window.prRenderHistory === 'function') window.prRenderHistory();
+  };
+
+  // ─── ALIAS: culRenderPanelHub — ghi vào panel-cultivation-v28 riêng biệt ───
+  window.culRenderPanelHub = function() {
+    if (typeof window.culRenderSection === 'function') window.culRenderSection('panel-cultivation-v28');
+    else if (typeof window.culRenderPanel === 'function') window.culRenderPanel();
+  };
+
+  // ─── ALIAS: pqRenderPanelHub — ghi vào panel-player-quest-v28 riêng biệt ──
+  window.pqRenderPanelHub = function() {
+    if (typeof window.pqRenderPanel === 'function') window.pqRenderPanel('panel-player-quest-v28');
+  };
+
   const HUB_CONFIGS = {
     "diplomacy-hub-v24": {
       icon: "🤝", title: "Ngoại Giao V24", color: "#60a5fa",
@@ -75,8 +92,10 @@
     "player-hub-v28": {
       icon: "👤", title: "Nhân Vật V28", color: "#6366f1",
       tabs: [
-        { id: "player-v28",      icon: "👤", label: "Nhân Vật",       fn: "peRenderPanel" },
+        { id: "player-v28",        icon: "👤", label: "Nhân Vật",       fn: "peRenderPanel" },
         { id: "inventory-v28",   icon: "🎒", label: "Kho Đồ",          fn: "invRenderPanel" },
+        { id: "cultivation-v28", icon: "🌀", label: "Tu Luyện",        fn: "culRenderPanelHub" },
+        { id: "player-quest-v28",icon: "📋", label: "Nhiệm Vụ",        fn: "pqRenderPanelHub" },
         { id: "my-history",      icon: "📜", label: "Danh Tiếng",      fn: "prRenderPanel" },
         { id: "my-kingdom",      icon: "🏰", label: "Lãnh Thổ",        fn: "ptRenderMyKingdom" },
         { id: "my-empire",       icon: "👑", label: "Đế Chế",          fn: "ptRenderMyEmpire" },

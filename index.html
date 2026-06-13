@@ -1668,6 +1668,8 @@ onclick="showPanel('dashboard')">
       </button>
       <!-- ═══ V24 DIPLOMACY ENGINE TABS ═══ -->
       <button class="nav-btn ec-hidden" style="display:none" id="btn-diplomacy-hub-v24" onclick="showPanel('diplomacy-hub-v24');if(typeof hubRenderPanel==='function')hubRenderPanel('diplomacy-hub-v24');" data-panel="diplomacy-hub-v24">🤝 Ngoại Giao V24</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-alliance-v24" onclick="showPanel('alliance-v24');if(typeof aeRenderPanel==='function')aeRenderPanel();" data-panel="alliance-v24">🤝 Liên Minh V24</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-sanctions-v24" onclick="showPanel('sanctions-v24');if(typeof sanctionEngine_renderPanel==='function')sanctionEngine_renderPanel();" data-panel="sanctions-v24">⚖️ Trừng Phạt V24</button>
       <button class="nav-btn" id="btn-spirit-beast" onclick="showPanel('spirit-beast');if(typeof renderSpiritBeastPanel==='function')renderSpiritBeastPanel();" data-panel="spirit-beast">
         <span class="nav-icon">🐉</span><span>Linh Vật</span>
       </button>
@@ -1688,6 +1690,7 @@ onclick="showPanel('dashboard')">
       <!-- ═══ V33 THỦ HỘ THẦN BUTTONS ═══ -->
       <button class="nav-btn ec-hidden" style="display:none" id="btn-guardian-hub-v33" onclick="showPanel('guardian-hub-v33');if(typeof hubRenderPanel==='function')hubRenderPanel('guardian-hub-v33');" data-panel="guardian-hub-v33">🤖 Thủ Hộ Thần V33</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-multiplayer" onclick="showPanel('multiplayer');if(typeof mpRenderPanel==='function')mpRenderPanel();" data-panel="multiplayer">🌐 Đa Người Chơi</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-performance" onclick="showPanel('performance');if(typeof renderPerformancePanel==='function')renderPerformancePanel();" data-panel="performance">⚡ Hiệu Suất</button>
       <!-- ═══ V35 MULTIVERSE PORTAL NETWORK BUTTONS ═══ -->
       <button class="nav-btn ec-hidden" style="display:none" id="btn-multiverse-hub-v35" onclick="showPanel('multiverse-hub-v35');if(typeof mvHubRenderPanel==='function')mvHubRenderPanel();" data-panel="multiverse-hub-v35">🌌 Đa Vũ Trụ V35</button>
     </nav>
@@ -2693,7 +2696,21 @@ onclick="showPanel('dashboard')">
       </div>
 
       <div id="panel-ascension-v28" class="panel">
-        <!-- Rendered by ascRenderPanel() in ascensionEngine.js + culRenderPanel() in cultivationPlayerEngine.js -->
+        <!-- Rendered by ascRenderPanel() in ascensionEngine.js -->
+      </div>
+
+      <!-- ═══ PLAYER V28 EXTRA SUB-PANELS ═══ -->
+      <div id="panel-cultivation-v28" class="panel">
+        <!-- Rendered by culRenderSection('panel-cultivation-v28') in cultivationPlayerEngine.js via culRenderPanelHub() -->
+      </div>
+
+      <div id="panel-player-quest-v28" class="panel">
+        <!-- Rendered by pqRenderPanel('panel-player-quest-v28') in playerQuestSystem.js via pqRenderPanelHub() -->
+      </div>
+
+      <!-- ═══ LOD PERFORMANCE PANEL ═══ -->
+      <div id="panel-performance" class="panel">
+        <!-- Rendered by renderPerformancePanel() in lodPerformanceSystem.js -->
       </div>
 
       <!-- ═══ V32 CREATOR GOD CONTROL PANELS ═══ -->
@@ -3039,6 +3056,8 @@ window.addEventListener("load", function() {
 <script src="invasionEngineV31.js"></script>
 <script src="bossEvolutionEngineV31.js"></script>
 <script src="legendaryHuntEngineV31.js"></script>
+<script src="lodPerformanceSystem.js"></script>
+<script src="populationLimitSystem.js"></script>
 <script src="timeControlSystem.js"></script>
 <script src="worldStorySystem.js"></script>
 <script src="progressionSystem.js"></script>
@@ -3154,7 +3173,7 @@ window.mvHubRenderPanel = function() {
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","project-status","next-version","story","diplomacy-hub-v24","event-hub-v25","continent-hub-v26","ocean-hub-v27","cultivation-hub-v29","divine-hub-v30","combat-hub-v31","player-hub-v28","creator-hub-v32","guardian-hub-v33","multiplayer","multiverse-hub-v35"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","project-status","next-version","story","diplomacy-hub-v24","alliance-v24","sanctions-v24","event-hub-v25","continent-hub-v26","ocean-hub-v27","cultivation-hub-v29","divine-hub-v30","combat-hub-v31","player-hub-v28","creator-hub-v32","guardian-hub-v33","multiplayer","performance","multiverse-hub-v35"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
