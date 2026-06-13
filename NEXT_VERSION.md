@@ -2,8 +2,8 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V36 — Alternate Timeline System** ✅
-> **Phiên bản tiếp theo đề xuất: V37 — Infinite Universe Generator**
+> **Phiên bản hiện tại: V37 — Infinite Universe Generator** ✅
+> **Phiên bản tiếp theo đề xuất: V38 — Civilization Ascension System**
 
 ---
 

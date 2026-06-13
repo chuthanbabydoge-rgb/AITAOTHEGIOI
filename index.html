@@ -2767,6 +2767,9 @@ onclick="showPanel('dashboard')">
       <div id="panel-timeline-wars-v36" class="panel" style="padding:0;overflow-y:auto"></div>
       <div id="panel-timeline-travel-v36" class="panel" style="padding:0;overflow-y:auto"></div>
       <div id="panel-timeline-analytics-v36" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-generator-v37" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-laws-v37" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-observatory-v37" class="panel" style="padding:0;overflow-y:auto"></div>
 
       <!-- ═══ HUB PANELS ═══ -->
       <div id="panel-diplomacy-hub-v24" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
@@ -3075,6 +3078,11 @@ window.addEventListener("load", function() {
 <script src="multiverseMapEngine.js"></script>
 <script src="multiverseWarEngine.js"></script>
 <script src="multiverseEconomy.js"></script>
+<!-- ═══ V37 INFINITE UNIVERSE GENERATOR ═══ -->
+<script src="universeGeneratorEngine.js"></script>
+<script src="universeLawEngine.js"></script>
+<script src="universeLifecycleEngine.js"></script>
+<script src="universeObservatoryEngine.js"></script>
 <!-- ═══ V36 ALTERNATE TIMELINE SYSTEM ═══ -->
 <script src="timelineEngine.js"></script>
 <script src="timelineManager.js"></script>
@@ -3126,6 +3134,17 @@ window.mvHubRenderPanel = function() {
     +'<button onclick="showPanel(\'panel-timeline-wars-v36\');twRenderPanel&&twRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #ef4444;border-radius:10px;color:#f87171;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚔️ <strong>Chiến Tranh TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xâm lược · Chinh phục</div></button>'
     +'<button onclick="showPanel(\'panel-timeline-travel-v36\');ttvRenderPanel&&ttvRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">✈️ <strong>Du Hành TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Player · Thần · Tạo Hóa</div></button>'
     +'<button onclick="showPanel(\'panel-timeline-analytics-v36\');taRenderPanel&&taRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #06b6d4;border-radius:10px;color:#06b6d4;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Phân Tích TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Thống kê & xếp hạng</div></button>'
+    +'</div>'
+    +'</div>'
+    +'<div style="margin-top:28px;padding-top:20px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
+    +'<h3 style="margin:0;font-size:18px;color:#8b5cf6;font-family:Cinzel,serif">♾️ Infinite Universe Generator V37</h3>'
+    +'</div>'
+    +(function(){var ug=window.ugData||{totalGenerated:0};var ulc=window.ulcData||{heatDeaths:0};var univs=window.mvData?window.mvData.universes.filter(function(u){return u.status==="active";}):[];var withLaw=univs.filter(function(u){return u.physicsLaw;}).length;return '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px">'+'<div style="background:#0f172a;border:1px solid #8b5cf644;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#8b5cf6">'+ug.totalGenerated+'</div><div style="font-size:10px;color:#64748b">Đã Sinh</div></div>'+'<div style="background:#0f172a;border:1px solid #06b6d444;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#06b6d4">'+withLaw+'</div><div style="font-size:10px;color:#64748b">Có Quy Luật</div></div>'+'<div style="background:#0f172a;border:1px solid #47556944;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#94a3b8">'+ulc.heatDeaths+'</div><div style="font-size:10px;color:#64748b">Nhiệt Chết</div></div>'+'</div>';})()
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">'
+    +'<button onclick="showPanel(\'panel-universe-generator-v37\');ugRenderPanel&&ugRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#8b5cf6;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">♾️ <strong>Máy Sinh Vũ Trụ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Sinh vô hạn · Seed-based · Preset</div></button>'
+    +'<button onclick="showPanel(\'panel-universe-laws-v37\');ulRenderPanel&&ulRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #06b6d4;border-radius:10px;color:#06b6d4;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚖️ <strong>Quy Luật Vật Lý</strong><div style="font-size:11px;color:#64748b;margin-top:4px">8 quy luật · Gán · Tác động</div></button>'
+    +'<button onclick="showPanel(\'panel-universe-observatory-v37\');uobRenderPanel&&uobRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🔭 <strong>Đài Quan Sát</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Vòng đời · Bất thường · So sánh</div></button>'
     +'</div>'
     +'</div>'
     +'</div>';

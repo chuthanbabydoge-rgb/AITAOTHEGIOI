@@ -4,6 +4,32 @@
 
 ---
 
+## [V37] — 2026-06-13 — Infinite Universe Generator
+
+### New Systems Added
+- Universe Generator Engine (`universeGeneratorEngine.js`) — Seed-based procedural generation · Batch · 5 Presets · Tích hợp V35 mvCreateUniverse · Tích hợp V36 tlCreateTimeline · panel-universe-generator-v37
+- Universe Law Engine (`universeLawEngine.js`) — 8 quy luật vật lý (lingqi/gravity/slow_time/chaos/neg_entropy/mechanical/divine_dom/dark_qi) · Per-tick effects · Sự kiện đặc biệt ngẫu nhiên · panel-universe-laws-v37
+- Universe Lifecycle Engine (`universeLifecycleEngine.js`) — 7 giai đoạn (BigBang→Lạm Phát→Hình Thành Sao→Kỷ Nguyên Vàng→Suy Thoái→Hấp Hối→Nhiệt Chết) · Auto-tick · Heat Death trigger · ulcAccelerate/ulcRestore
+- Universe Observatory Engine (`universeObservatoryEngine.js`) — Đài quan sát · Bất thường detection · Kỷ lục vũ trụ · So sánh · Vũ trụ nguy hiểm alert · panel-universe-observatory-v37
+
+### index.html Updates
+- Added 4 `<script>` tags (V37 scripts — đặt TRƯỚC V36 scripts)
+- Added 3 panel divs (panel-universe-generator-v37, panel-universe-laws-v37, panel-universe-observatory-v37)
+- Extended `mvHubRenderPanel()` with V37 section (3 internal tab buttons + live stats) — NO new sidebar tab
+
+### Integration
+- Kết nối V35 Multiverse: gọi `window.mvCreateUniverse()` — KHÔNG sửa multiverseEngine.js
+- Kết nối V36 Timeline: tự động `window.tlCreateTimeline()` cho mỗi vũ trụ mới
+- Kết nối Historical Timeline: `window.htAddEvent()` cho mọi sự kiện vũ trụ
+- Gắn physics law (.physicsLaw, .physicsLawName, .physicsLawColor) vào universe object của V35
+- Gắn lifecycle (.lifecyclePhase, .lifecycleAge, .heatDeathRisk) vào universe object của V35
+- gameTick chain: 4 hooks mới (ugData, ulData, ulcData, uobData)
+
+### Save Keys
+- cgv6_universe_generator_v37, cgv6_universe_laws_v37, cgv6_universe_lifecycle_v37, cgv6_universe_observatory_v37
+
+---
+
 ## [V36] — 2026-06-13 — Alternate Timeline System
 
 ### New Systems Added
