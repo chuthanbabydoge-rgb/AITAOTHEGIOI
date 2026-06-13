@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V61 — Integration Bridges |
+| **Current Version** | V63 — World Cinematic Engine |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 266 |
-| **Total Systems** | 193+ |
+| **Total JS Files** | 270 |
+| **Total Systems** | 197+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,13 @@
 
 ## ✅ Completed Systems
 
-### World Creation Pass V62 ← NEWEST
+### World Cinematic Engine V63 ← NEWEST
+- `worldCinematicV63.js` — Fullscreen cinematic intro khi khai sinh thế giới · Canvas particle system (burst + passive) · Genre-specific creation text 4 dòng hiện dần · World Name glow + pulse animation · DNA code reveal · Creator title · First Hero/Myth · "Bước Vào Thế Giới" button · Auto-dismiss 8s · Skip button · Progress bar · wce63ShowCinematic(config)/Toggle/IsEnabled() · SAVE: cgv6_world_cinematic_v63 · init: 12500ms
+- **6 Genre color themes**: cultivation(gold) · fantasy(blue) · scifi(green) · mythology(purple) · zombie(red) · custom(gold+purple)
+- **Animation Timeline**: fade-in → text lines (+0.9s each) → particle burst → world name scale-in → DNA slide → creator title → hero/myth → enter button → auto-dismiss
+- Tích hợp: wizard gọi `wce63ShowCinematic(cfg)` sau creation pipeline, dismiss → `wcw62ShowTab("preview")`
+
+### World Creation Pass V62
 - `worldDNAEngine.js` — World ID · World Seed · World DNA (format `CGV6-GC-SC-RxxNxx-8HEX`) · mulberry32 seeded RNG · Genome Map 8 chiều · History 10 worlds · wdna62GenerateDNA/GetDNA/GetSeed/GetWorldId/GetCreator/GetHistory/RenderPanel() · SAVE: cgv6_world_dna_v62 · init: 12200ms
 - `originStoryEngine.js` — 5 genre story banks (cultivation/fantasy/scifi/mythology/zombie) · Myth/Events/FirstRace/FirstEmpire/FirstHero/Prophecy · Writes htAddEvent()+wmeAddMemory()+addLog()+addTimeline() · ose62GenerateOriginStory/GetStory/GetMythology/GetFirstHero/GetProphecy/RenderPanel() · SAVE: cgv6_origin_story_v62 · init: 12300ms
 - `worldCreationWizard.js` — 5-step wizard · 4 sub-tabs trong creator-hub-v32 (🌐 Tạo Thế Giới/🧬 World DNA/📖 Origin Story/👁️ Preview) · Hub patch pattern · Auto-gen: createWorld()+generateNPCs()+wdna62GenerateDNA()+ose62GenerateOriginStory() · Chaos modifiers · Jarvis tips · wcw62ShowTab/SetStep/NextStep/SelectType/SelectScale/SelectChaos/Create() · SAVE: cgv6_world_wizard_v62 · init: 12400ms

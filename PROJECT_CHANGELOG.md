@@ -4,6 +4,35 @@
 
 ---
 
+## [V63] — 2026-06-13 — World Cinematic Engine
+
+### Triết Lý V63
+EXPAND ONLY. Tạo màn hình intro điện ảnh khi khai sinh thế giới — canvas particles, chữ hiện dần theo genre, World Name hiệu ứng glow + pulse, DNA reveal, Creator Title. Không tạo sidebar tab mới. Patch `worldCreationWizard.js` minimal (3 dòng thêm vào).
+
+### New Files (1 file)
+- `worldCinematicV63.js` — Fullscreen canvas cinematic · 6 genre color themes · mulberry32 particle system (burst+passive) · CSS keyframe animations · wce63ShowCinematic(config)/Toggle/IsEnabled() · SAVE: cgv6_world_cinematic_v63 · init: 12500ms
+
+### Files Modified (2 files)
+- `worldCreationWizard.js` — thêm 4 dòng: sau creation pipeline gọi `wce63ShowCinematic(cfg)` nếu enabled, fallback `wcw62ShowTab("preview")`
+- `index.html` — thêm `<script src="worldCinematicV63.js">` sau V62 scripts
+
+### Cinematic Phases
+1. 0ms: Dark overlay fade-in
+2. 600ms → +900ms/line: Genre creation text hiện dần (4 lines)
+3. lastText+300ms: Particle burst (gold + genre color)
+4. lastText+1000ms: World Name scale-in + glow pulse animation
+5. lastText+1800ms: DNA code slide-in từ trái
+6. lastText+2400ms: Creator Title fade-in
+7. lastText+2900ms: First Hero + Myth fade-in
+8. lastText+3400ms: "✨ Bước Vào Thế Giới" button + progress bar (8s auto-dismiss)
+
+### API
+- `window.wce63ShowCinematic(config)` — show cinematic với config từ wizard
+- `window.wce63Toggle()` — bật/tắt cinematic
+- `window.wce63IsEnabled()` → boolean
+
+---
+
 ## [V62] — 2026-06-13 — World Creation Pass
 
 ### Triết Lý V62

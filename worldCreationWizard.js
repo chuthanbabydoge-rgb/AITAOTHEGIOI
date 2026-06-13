@@ -630,8 +630,14 @@
         window.addLog("👑 Creator Title: " + (dnaResult.creatorTitle||"World Founder"), "important");
       }
 
-      // Switch to Preview tab to show result
-      setTimeout(function() { window.wcw62ShowTab("preview"); }, 400);
+      // Show cinematic intro if available, else switch to Preview tab
+      setTimeout(function() {
+        if (typeof window.wce63ShowCinematic === "function" && window.wce63IsEnabled && window.wce63IsEnabled()) {
+          window.wce63ShowCinematic(cfg);
+        } else {
+          window.wcw62ShowTab("preview");
+        }
+      }, 400);
 
     }, 2600);
   };
