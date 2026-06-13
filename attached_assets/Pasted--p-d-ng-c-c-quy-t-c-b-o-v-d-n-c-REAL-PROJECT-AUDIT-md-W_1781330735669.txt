@@ -1,0 +1,249 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+* REAL_PROJECT_AUDIT.md
+
+* WORLD_AUDIT_REPORT.md
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_ARCHITECTURE.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn thông tin chính xác.
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu đã có các hệ thống tương tự:
+
+nâng cấp và mở rộng chúng.
+
+=================================================
+MỤC TIÊU XÂY DỰNG
+============
+
+BẢNG ĐIỀU KHIỂN CỦA ĐẤNG SÁNG TẠO V32
+
+==================================================
+MỤC TIÊU
+====
+
+Cho phép Đấng Sáng Tạo trực tiếp kiểm soát và ảnh hưởng đến thế giới.
+
+Hệ thống này trở thành lớp quản trị chính của toàn bộ vũ trụ.
+
+==================================================
+CƠ CỨU THẦN SÁNG TẠO
+==================
+
+Tạo:
+
+* creatorGodControl.js
+
+* divineAdministration.js
+
+==================================================
+KIỂM SOÁT THẾ GIỚI
+=============
+
+Cho phép Thần Sáng Tạo:
+
+* Tạo Thế Giới
+* Phá Hủy Thế Giới
+* Tạm Dừng Thế Giới
+* Tiếp Tục Thế Giới
+* Tăng Tốc Thời Gian
+* Đảo Ngược Thời Gian
+* Sao Chép Thế Giới
+* Lưu Trữ Thế giới
+
+=================================================
+KIỂM SOÁT VƯƠNG QUỐC
+===============
+
+Cho phép Thần Sáng Tạo:
+
+* Tạo lập Vương quốc
+* Phá hủy Vương quốc
+* Nâng tầm Vương quốc
+* Sụp đổ Vương quốc
+* Thay đổi Người cai trị
+* Thay đổi Triều đại
+
+====================================================
+KIỂM SOÁT ĐẾ CHẾ
+==============
+
+Cho phép Thần Sáng Tạo:
+
+* Tạo lập Đế chế
+* Phá hủy Đế chế
+* Sáp nhập Đế chế
+* Chia tách Đế chế
+* Lên ngôi Hoàng đế
+
+=================================================
+KIỂM SOÁT THẦN THÁNH
+==============
+
+Cho phép Thần Sáng Tạo:
+
+* Tạo ra Thần
+* Loại bỏ Thần
+* Phân định Lãnh địa
+* Tạo ra Thần điện
+* Khởi đầu Chiến tranh Thần thánh
+
+====================================================
+KIỂM SOÁT THẢM HỌA
+================
+
+Cho phép Thần Sáng Tạo kích hoạt:
+
+* Động đất
+* Núi lửa
+* Sóng thần
+* Đại dịch
+* Nạn đói
+* Thiên thạch rơi
+* Thế giới Xâm Lược
+
+=================================================
+KIỂM SOÁT CỔ VẬT
+================
+
+Cho phép Thần Sáng Tạo:
+
+* Tạo Cổ Vật
+* Nâng Cấp Cổ Vật
+* Chỉ Định Cổ Vật
+* Triệu Hồi Di Vật
+
+====================================================
+KIỂM SOÁT TRÙM
+============
+
+Cho phép Thần Sáng Tạo:
+
+* Triệu Hồi Trùm
+* Biến Mất Trùm
+* Nâng Cấp Trùm
+* Kích Hoạt Xâm lược
+
+=================================================
+KIỂM SOÁT NGƯỜI CHƠI
+==============
+
+Cho phép Thần Sáng Tạo:
+
+* Thăng cấp Người chơi
+* Giáng cấp Người chơi
+* Ban tặng Danh hiệu
+* Ban tặng Tài nguyên
+* Ban tặng Sức mạnh Thần thánh
+
+===================================================
+PHÂN TÍCH THẾ GIỚI
+===============
+
+Tạo:
+
+* creatorAnalytics.js
+
+Hiển thị:
+
+* Dân số
+* Kinh tế
+* Quân sự
+* Tôn giáo
+* Công nghệ
+* Ổn định
+* Chiến tranh đang diễn ra
+* Các vị thần đang hoạt động
+* Đang hoạt động Các Trùm
+
+=================================================
+KIỂM SOÁT DÒNG THỜI GIAN
+================
+
+Cho phép:
+
+* Xem Lịch sử
+* Khôi phục Ảnh chụp nhanh
+* Tạo Ảnh chụp nhanh
+* Phát lại Dòng thời gian
+
+===================================================
+Giao diện người dùng
+==
+
+Thêm các tab:
+
+👁 Bảng điều khiển Người sáng tạo
+
+⚡ Hành động Thần thánh
+
+🌍 Kiểm soát Thế giới
+
+👑 Kiểm soát Vương quốc
+
+🏛 Kiểm soát Đế chế
+
+👼 Kiểm soát Thần
+
+👹 Kiểm soát Trùm
+
+📊 Phân tích Thế giới
+
+⏳ Dòng thời gian Điều khiển
+
+=================================================
+HỆ THỐNG LƯU
+===========
+
+Lưu:
+
+* Hành động của người tạo
+* Ảnh chụp nhanh
+* Trạng thái thế giới
+* Phân tích
+
+Duy trì khả năng tương thích với tất cả các bản lưu cũ.
+
+=================================================
+ĐẦU RA
+======
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Sau khi cập nhật hoàn tất:
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Thiết lập:
+
+Phiên bản hiện tại = V32
+
+Phiên bản tiếp theo được đề xuất = V33 AI Companion Jarvis
+
+CHỈ MỞ RỘNG
+
+KHÔNG BAO GIỜ XÓA
+
+KHÔNG BAO GIỜ THAY THẾ
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI
