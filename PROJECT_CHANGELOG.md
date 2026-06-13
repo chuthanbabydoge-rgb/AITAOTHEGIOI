@@ -4,6 +4,39 @@
 
 ---
 
+## [V62] — 2026-06-13 — World Creation Pass
+
+### Triết Lý V62
+EXPAND ONLY. Tạo trải nghiệm "Tôi là Thần Sáng Thế" hoàn chỉnh cho người dùng mới — wizard 5 bước tạo thế giới trong dưới 60 giây. Tích hợp toàn bộ engine hiện có (createWorld, generateNPCs, worldTemplates, htAddEvent, wmeAddMemory). Không tạo sidebar tab mới — 4 sub-tabs trong creator-hub-v32.
+
+### New Files (3 files)
+- `worldDNAEngine.js` — DNA duy nhất cho mỗi thế giới · mulberry32 seeded RNG · format: CGV6-[GC]-[SC][CC]-R[RC]N[NC]-[8HEX] · Genome Map 8 chiều · 7 creator titles · History 10 worlds · SAVE: cgv6_world_dna_v62 · init: 12200ms
+- `originStoryEngine.js` — 5 genre story banks · Myth + 3-4 origin events + First Race/Empire/Hero/Prophecy · Seeded RNG từ worldDNA · Writes vào htAddEvent()+wmeAddMemory()+addLog()+addTimeline() · SAVE: cgv6_origin_story_v62 · init: 12300ms
+- `worldCreationWizard.js` — 5-step wizard UI · 4 sub-tabs trong creator-hub-v32 · Hub patch (hubRenderPanel) · Auto-generation pipeline · Chaos modifiers · Jarvis tips · SAVE: cgv6_world_wizard_v62 · init: 12400ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 3 script tags `<script src="worldDNAEngine.js">` `<script src="originStoryEngine.js">` `<script src="worldCreationWizard.js">` sau V61 script
+
+### World Creation Pipeline (khi user nhấn "KHAI SINH")
+1. Set DOM values: #worldName, #genre, #worldTemplateKey, #territoryCount, #npcCount
+2. createWorld() — khai sinh thế giới + territories
+3. generateNPCs(false) × scale.npc + generateNPCs(true) × genius count
+4. wdna62GenerateDNA(config) — sinh DNA + Creator Title
+5. ose62GenerateOriginStory(config) — sinh thần thoại → htAddEvent + wmeAddMemory
+6. _applyChaosModifiers(chaos) — áp dụng stability modifiers
+7. Switch to Preview tab — hiển thị kết quả
+
+### 7 World Types → Template Keys
+- Tu Tiên → cultivation | Fantasy → fantasy | Sci-Fi → scifi
+- Thần Thoại → mythology | Apocalypse → zombie | Cyberpunk → scifi | Custom → cultivation
+
+### Save Keys V62
+- cgv6_world_dna_v62
+- cgv6_origin_story_v62
+- cgv6_world_wizard_v62
+
+---
+
 ## [V61] — 2026-06-13 — Integration Bridges
 
 ### Triết Lý V61

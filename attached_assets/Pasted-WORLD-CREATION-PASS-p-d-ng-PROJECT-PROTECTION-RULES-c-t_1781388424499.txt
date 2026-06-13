@@ -1,0 +1,309 @@
+WORLD CREATION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+- INTEGRATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC
+==================================================
+
+CHỈ EXPAND.
+
+KHÔNG XÓA FILE CŨ.
+
+KHÔNG ĐỔI TÊN FILE CŨ.
+
+KHÔNG THAY THẾ HỆ THỐNG CŨ.
+
+KHÔNG BUILD LẠI DỰ ÁN.
+
+NÂNG CẤP TỪ HỆ THỐNG HIỆN CÓ.
+
+Chỉ để tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel con
+- modal
+- dashboard con
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Đây là dự án:
+
+PERSONAL LIVING UNIVERSE PLATFORM
+
+Mỗi người dùng có:
+
+- Thế giới riêng
+- Vũ trụ riêng
+- AI riêng
+
+Người dùng là:
+
+THE CREATOR GOD
+
+==================================================
+WORLD CREATION PASS
+==================================================
+
+Mục tiêu:
+
+User mới có thể tạo một thế giới hoàn chỉnh
+trong dưới 60 giây.
+
+==================================================
+WORLD CREATION WIZARD
+==================================================
+
+Tạo:
+
+worldCreationWizard.js
+
+Flow:
+
+Bước 1:
+
+Chọn loại thế giới
+
+- Fantasy
+- Sci-Fi
+- Mythology
+- Cultivation
+- Apocalypse
+- Cyberpunk
+- Custom
+
+Bước 2:
+
+Chọn quy mô
+
+- Tiny
+- Small
+- Medium
+- Large
+- Massive
+
+Bước 3:
+
+Chọn số lượng:
+
+- Chủng tộc
+- Quốc gia
+- Tôn giáo
+- Thành phố
+
+Bước 4:
+
+Chọn độ hỗn loạn
+
+- Peaceful
+- Balanced
+- Chaotic
+- Extreme
+
+Bước 5:
+
+Tạo thế giới
+
+==================================================
+AUTO GENERATION
+==================================================
+
+Sử dụng các engine hiện có.
+
+Tự động sinh:
+
+- Bản đồ
+- Chủng tộc
+- Quốc gia
+- Đế quốc
+- Tôn giáo
+- Anh hùng
+- Kinh tế
+- Thành phố
+- Lịch sử khởi nguyên
+
+==================================================
+WORLD DNA SYSTEM
+==================================================
+
+Tạo:
+
+worldDNAEngine.js
+
+Mỗi thế giới có:
+
+- World ID
+- World Seed
+- World DNA
+
+Đảm bảo:
+
+Không có 2 thế giới giống nhau.
+
+==================================================
+ORIGIN STORY SYSTEM
+==================================================
+
+Tạo:
+
+originStoryEngine.js
+
+Tự động tạo:
+
+- Thần thoại khai thiên
+- Sự kiện khởi nguyên
+- Chủng tộc đầu tiên
+- Đế quốc đầu tiên
+- Anh hùng đầu tiên
+
+==================================================
+CREATOR PROFILE
+==================================================
+
+Khi tạo thế giới:
+
+Ghi nhận:
+
+- Creator ID
+- Creation Date
+- World DNA
+- Creator Title
+
+Ví dụ:
+
+World Founder
+
+Supreme Creator
+
+First God
+
+==================================================
+FIRST LOGIN EXPERIENCE
+==================================================
+
+Người dùng mới vào:
+
+1. Chọn thế giới
+
+2. Tạo thế giới
+
+3. Xem cinematic khởi nguyên
+
+4. Bước vào thế giới
+
+5. Kích hoạt God Mode
+
+==================================================
+WORLD PREVIEW
+==================================================
+
+Trước khi tạo:
+
+Hiển thị:
+
+- Bản đồ preview
+- Chủng tộc preview
+- Quốc gia preview
+- Chỉ số thế giới
+
+==================================================
+JARVIS CREATION MODE
+==================================================
+
+Jarvis hỗ trợ:
+
+- Gợi ý cấu hình
+- Giải thích lựa chọn
+- Dự đoán độ khó
+- Tóm tắt thế giới sắp tạo
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+Creator Panel
+
+Tab nội bộ:
+
+- Create World
+- World DNA
+- Origin Story
+- World Preview
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- World DNA
+- Creator Data
+- Origin Story
+- World Configuration
+- Generation History
+
+Tương thích 100% save cũ.
+
+==================================================
+PHÂN TÍCH TRƯỚC KHI CODE
+==================================================
+
+1. Liệt kê file cần tạo
+
+2. Liệt kê file cần sửa
+
+3. Kế hoạch tích hợp
+
+4. Kiểm tra hệ thống trùng lặp
+
+5. Tận dụng engine hiện có
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+Generate:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- WORLD_CREATION_REPORT.md
+
+WORLD_CREATION_REPORT phải trả lời:
+
+1. User tạo thế giới trong bao nhiêu bước
+2. Bao nhiêu hệ thống được sử dụng
+3. World DNA hoạt động thế nào
+4. Thế giới có thực sự độc nhất không
+5. Creator Experience Score
+6. Các bước tiếp theo nên làm
+
+KHÔNG BUILD HỆ THỐNG MỚI KHÔNG CẦN THIẾT.
+
+TẬP TRUNG VÀO TRẢI NGHIỆM:
+"TÔI LÀ THẦN SÁNG THẾ CỦA THẾ GIỚI NÀY."

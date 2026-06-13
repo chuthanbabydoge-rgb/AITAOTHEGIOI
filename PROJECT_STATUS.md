@@ -20,7 +20,17 @@
 
 ## ✅ Completed Systems
 
-### Integration Bridges V61 ← NEWEST
+### World Creation Pass V62 ← NEWEST
+- `worldDNAEngine.js` — World ID · World Seed · World DNA (format `CGV6-GC-SC-RxxNxx-8HEX`) · mulberry32 seeded RNG · Genome Map 8 chiều · History 10 worlds · wdna62GenerateDNA/GetDNA/GetSeed/GetWorldId/GetCreator/GetHistory/RenderPanel() · SAVE: cgv6_world_dna_v62 · init: 12200ms
+- `originStoryEngine.js` — 5 genre story banks (cultivation/fantasy/scifi/mythology/zombie) · Myth/Events/FirstRace/FirstEmpire/FirstHero/Prophecy · Writes htAddEvent()+wmeAddMemory()+addLog()+addTimeline() · ose62GenerateOriginStory/GetStory/GetMythology/GetFirstHero/GetProphecy/RenderPanel() · SAVE: cgv6_origin_story_v62 · init: 12300ms
+- `worldCreationWizard.js` — 5-step wizard · 4 sub-tabs trong creator-hub-v32 (🌐 Tạo Thế Giới/🧬 World DNA/📖 Origin Story/👁️ Preview) · Hub patch pattern · Auto-gen: createWorld()+generateNPCs()+wdna62GenerateDNA()+ose62GenerateOriginStory() · Chaos modifiers · Jarvis tips · wcw62ShowTab/SetStep/NextStep/SelectType/SelectScale/SelectChaos/Create() · SAVE: cgv6_world_wizard_v62 · init: 12400ms
+- **Scale mapping**: Tiny(5tc/10npc) · Small(10tc/15npc) · Medium(20tc/20npc) · Large(40tc/35npc) · Massive(80tc/60npc)
+- **7 World Types**: Tu Tiên(cultivation) · Fantasy(fantasy) · Sci-Fi(scifi) · Thần Thoại(mythology) · Apocalypse(zombie) · Cyberpunk(scifi) · Custom(cultivation)
+- **4 Chaos Levels**: Peaceful · Balanced · Chaotic · Extreme (áp dụng vào country stability)
+- **Creator Profile**: CreatorId · CreatorTitle (7 danh hiệu: World Founder/Supreme Creator/First God/...) · World DNA link
+- **UI**: 4 tabs append vào creator-hub-v32 sau V60/V61 wrapper divs · KHÔNG tạo sidebar tab mới
+
+### Integration Bridges V61
 - `integrationBridgesV61.js` — 10 cầu nối giữa các hệ thống cô lập · gameTick hook mỗi 50 tick · ib61GetLog/GetStats/GetBridges/ForceRun() · SAVE: cgv6_integration_bridges_v61 · init: 12100ms
 - **10 Bridges**: Boss→Fame (V59→V47) · Event→Guild (V59→V53) · CauseEffect→CivHistory (V60→V58) · Season→Profession (V59→V50) · Boss→Achievement (V59→V50) · Trade↔War suspension (V54↔warsActive) · Event→WorldCouncil emergency session (V59→V24) · Boss+Narrative→HistoricalReplay (V59/V60→V55) · UniverseHealth Enhanced (V55+V53/V54/V59 inject) · Guild→PlayerCore affiliation sync (V53→V50)
 

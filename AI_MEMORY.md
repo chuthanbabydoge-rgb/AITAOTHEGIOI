@@ -24,13 +24,21 @@
 
 ## 🔢 CURRENT VERSION
 
-**V61 — Integration Bridges** (2026-06-13)
+**V62 — World Creation Pass** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (192+ systems)
+## ✅ COMPLETED SYSTEMS (196+ systems)
 
-### Living Universe V60 (6 systems) ← NEWEST
+### World Creation Pass V62 (3 systems) ← NEWEST
+- `worldDNAEngine.js` — World ID + Seed + DNA (format CGV6-GC-SC-RxxNxx-8HEX) · mulberry32 seeded RNG (window.wdna62Rng) · Genome Map 8 chiều sinh từ seed · 7 creator titles · History 10 worlds · wdna62GenerateDNA(config) · wdna62GetDNA/Seed/WorldId/Creator/History() · wdna62RenderPanel() · SAVE: cgv6_world_dna_v62 · init: 12200ms
+- `originStoryEngine.js` — 5 genre banks (cultivation/fantasy/scifi/mythology/zombie) · Myth · 3-4 origin events · FirstRace/FirstEmpire/FirstHero/Prophecy · Seeded pick từ worldDNA seed · Writes htAddEvent()+wmeAddMemory()+addLog()+addTimeline() sau 500ms delay · ose62GenerateOriginStory(config) · ose62GetStory/Mythology/FirstHero/Prophecy() · ose62RenderPanel() · SAVE: cgv6_origin_story_v62 · init: 12300ms
+- `worldCreationWizard.js` — 5-step wizard + 4 sub-tabs trong creator-hub-v32 (🌐 Tạo TG / 🧬 DNA / 📖 Origin / 👁️ Preview) · Hub patch (wcw62-section-wrapper) · Auto pipeline 2.6s: createWorld→NPCs→DNA→Story→ChaosModifiers→Preview · 7 world types · 5 scales (Tiny5/Small10/Medium20/Large40/Massive80 territories) · 4 chaos levels → stability modifiers · Jarvis tips per step · wcw62ShowTab/SetStep/NextStep/SelectType/SelectScale/SelectChaos/Create() · SAVE: cgv6_world_wizard_v62 · init: 12400ms
+- **UI**: wrapper div ID `wcw62-section-wrapper` append vào panel-creator-hub-v32 · Không tạo sidebar tab mới
+- **Save keys**: cgv6_world_dna_v62 · cgv6_origin_story_v62 · cgv6_world_wizard_v62
+- **Tích hợp**: createWorld() + generateNPCs() + worldTemplates + territorySystem + economyEngine_init + htAddEvent + wmeAddMemory
+
+### Living Universe V60 (6 systems)
 - `livingUniverseOrchestrator.js` — 12 domain (Politics/Economy/Religion/Civilization/Heroes/Disasters/Trade/Guilds/Empires/Players/Events/Multiverse) · 16 liên kết · Integration score real-time · Alert system · luo60GetState() · luo60GetDomainScore(id) · luo60GetIntegrationScore() · luo60GetDomains() · luo60GetStats() · SAVE: cgv6_universe_orchestrator_v60 · init: 11500ms
 - `causeEffectEngine.js` — 6 chuỗi nhân quả (disaster→war · war→hero · economy_collapse→revolution · religion_rise→holy_war · prosperity→golden_age · multiverse→invasion) · Auto-trigger theo điều kiện · Effect function thực · cee60GetActiveChains() · cee60GetHistory() · cee60TriggerChain(id) · cee60GetChainDefs() · SAVE: cgv6_cause_effect_v60 · init: 11600ms
 - `worldNarrativeEngine.js` — 5 template biên niên · Auto-chronicle mỗi 20 năm · Legend từ boss kills · TurningPoint từ chuỗi nhân quả · EpochSummary mỗi 500 tick · wne60GenerateChronicle() · wne60GenerateLegend(boss) · wne60GenerateTurningPoint(cause) · wne60GenerateEpochSummary() · wne60GetAll() · wne60GetJarvisStory() · SAVE: cgv6_world_narrative_v60 · init: 11700ms
