@@ -493,7 +493,7 @@ function tcInjectDOM() {
     <!-- Replay -->
     <div id="tc-replay">
       <span id="tc-replay-label">Replay:</span>
-      <button class="tc-replay-btn" onclick="tcReplayYear(0)">Đầu</button>
+      <button class="tc-replay-btn" onclick="tcJumpReplayYear(0)">Đầu</button>
       <button class="tc-replay-btn" id="tc-rb-1"   onclick="tcReplayToYear('q1')">Năm ¼</button>
       <button class="tc-replay-btn" id="tc-rb-2"   onclick="tcReplayToYear('half')">½</button>
       <button class="tc-replay-btn" id="tc-rb-3"   onclick="tcReplayToYear('q3')">¾</button>
@@ -935,7 +935,7 @@ function tcCloseFocus() {
 
 let _tcHistorySnapshot = []; // full snapshot before replay
 
-function tcReplayYear(yearVal) {
+function tcJumpReplayYear(yearVal) {
   // Show start of world history
   const yr = window.year || 0;
   _tcHistorySnapshot = (window.worldHistory || []).slice();
@@ -1229,9 +1229,9 @@ window.tcOpenInspector    = tcOpenInspector;
 // ================================================================
 
 // We add a "🔍 Chi Tiết" button inside the existing openNPCModal
-const _origOpenNPCModal = window.openNPCModal;
+const _tcOrigOpenNPCModal = window.openNPCModal;
 window.openNPCModal = function(id) {
-  if (typeof _origOpenNPCModal === 'function') _origOpenNPCModal(id);
+  if (typeof _tcOrigOpenNPCModal === 'function') _tcOrigOpenNPCModal(id);
   // Inject a small "Inspect" button into modal header
   setTimeout(() => {
     const header = document.querySelector('.modal-header');
@@ -1324,6 +1324,7 @@ window.tcSetSpeed          = tcSetSpeed;
 window.tcToggleTimelineMode = tcToggleTimelineMode;
 window.tcToggleAutoFocus   = tcToggleAutoFocus;
 window.tcReplayYear        = tcReplayYear;
+window.tcJumpReplayYear    = tcJumpReplayYear;
 window.tcReplayToYear      = tcReplayToYear;
 window.tcReplayLive        = tcReplayLive;
 window.tcShowFocus         = tcShowFocus;
