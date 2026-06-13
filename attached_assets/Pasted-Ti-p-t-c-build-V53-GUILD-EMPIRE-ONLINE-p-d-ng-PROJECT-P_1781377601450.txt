@@ -1,0 +1,269 @@
+Tiếp tục build V53 — GUILD & EMPIRE ONLINE.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V53 - GUILD & EMPIRE ONLINE
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Cho phép người chơi:
+
+- Thành lập bang hội
+- Thành lập liên minh
+- Thành lập đế quốc
+- Quản lý lãnh thổ
+- Chiến tranh giữa các thế lực
+
+==================================================
+GUILD CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- guildSystem.js
+- guildManagement.js
+- guildRegistry.js
+
+==================================================
+BANG HỘI
+==================================================
+
+Mỗi bang hội có:
+
+- Tên
+- Biểu tượng
+- Người sáng lập
+- Thành viên
+- Kho quỹ
+- Cấp độ
+
+==================================================
+CẤP BẬC BANG HỘI
+==================================================
+
+Hỗ trợ:
+
+- Guild Master
+- Vice Master
+- Elder
+- Officer
+- Member
+
+==================================================
+GUILD BASE
+==================================================
+
+Tạo:
+
+- guildHeadquarters.js
+
+Cho phép:
+
+- Xây tổng bộ
+- Kho vật phẩm
+- Kho tài nguyên
+- Công trình bang hội
+
+==================================================
+LIÊN MINH
+==================================================
+
+Tạo:
+
+- allianceSystem.js
+
+Cho phép:
+
+- Nhiều guild liên kết
+- Hiệp ước phòng thủ
+- Hiệp ước thương mại
+- Hiệp ước quân sự
+
+==================================================
+ĐẾ QUỐC NGƯỜI CHƠI
+==================================================
+
+Tạo:
+
+- playerEmpireSystem.js
+
+Cho phép:
+
+- Chiếm lãnh thổ
+- Thành lập đế quốc
+- Bổ nhiệm quan chức
+- Quản lý thuế
+- Quản lý quân đội
+
+==================================================
+GUILD WAR
+==================================================
+
+Tạo:
+
+- guildWarSystem.js
+
+Hỗ trợ:
+
+- Guild vs Guild
+- Alliance vs Alliance
+- Territory War
+
+==================================================
+LÃNH THỔ
+==================================================
+
+Tạo:
+
+- territoryControlSystem.js
+
+Theo dõi:
+
+- Thành phố
+- Vùng đất
+- Căn cứ
+- Tài nguyên
+
+==================================================
+KINH TẾ BANG HỘI
+==================================================
+
+Tích hợp với:
+
+- Marketplace
+- Economy Engine
+- Taxation System
+
+==================================================
+AI INTERACTION
+==================================================
+
+Guild và Empire có thể:
+
+- Hợp tác với AI Nation
+- Chiến tranh với AI Empire
+- Ký hiệp ước với AI
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Guild mới
+- Empire mới
+- Chiến tranh lãnh thổ
+- Liên minh mới
+- Bang hội mạnh nhất
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👤 Người Chơi
+
+Tab nội bộ:
+
+- Bang Hội
+- Liên Minh
+- Đế Quốc
+- Lãnh Thổ
+- Chiến Tranh
+- Bảng Xếp Hạng
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Guild
+- Alliance
+- Empire
+- Territory
+- War History
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V53
+
+Recommended Next Version = V54 Marketplace Expansion & Trading Network
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.

@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V52 — Player Economy & Marketplace |
+| **Current Version** | V53 — Guild & Empire Online |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 217 |
-| **Total Systems** | 142+ |
+| **Total JS Files** | 222 |
+| **Total Systems** | 147+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,14 @@
 
 ## ✅ Completed Systems
 
-### Player Economy & Marketplace V52 ← NEWEST
+### Guild & Empire Online V53 ← NEWEST
+- `guildCoreV53.js` — Extends guildEngineV29 · 5 cấp bậc (GM/Vice/Elder/Officer/Member) · 8 công trình HQ · 10 nhiệm vụ nâng cao · AI guild fluctuation · SAVE: cgv6_guild_core_v53 · init: 7300ms
+- `guildAllianceV53.js` — Guild-to-Guild pacts (Defense/Trade/Military/Grand) · Đại Bang Liên · Bonus system · Khác V24 · SAVE: cgv6_guild_alliance_v53 · init: 7400ms
+- `playerEmpireV53.js` — Extends V28 Territory · 6 loại quan chức · 6 loại quân · 4 tương tác AI · Thuế lãnh thổ · Cống phẩm · SAVE: cgv6_player_empire_v53 · init: 7500ms
+- `guildWarV53.js` — 4 loại chiến tranh · Auto-resolve battle · Loot system · War history · BXH chiến tích · SAVE: cgv6_guild_war_v53 · init: 7600ms
+- `guildRegistryV53.js` — Patches player-hub-v28 · 6 tabs (Bang Hội/Liên Minh/Đế Quốc/Lãnh Thổ/Chiến Tranh/BXH) · Passive · init: 7700ms
+
+### Player Economy & Marketplace V52
 - `playerEconomyCoreV52.js` — Ví 5 tiền tệ · Thu nhập thụ động · Exchange · Net Worth · SAVE: cgv6_player_economy_v52 · init: 6800ms
 - `playerMarketplaceV52.js` — 18 vật phẩm · Listing · Auction · Price History · NPC Sellers · SAVE: cgv6_player_marketplace_v52 · init: 6900ms
 - `businessSystemV52.js` — 4 loại DN · Level 1-5 · AI Competition · Revenue · SAVE: cgv6_business_v52 · init: 7000ms

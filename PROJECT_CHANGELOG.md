@@ -791,6 +791,28 @@
 
 ---
 
+## [V53] — Guild & Empire Online (2026-06-13)
+
+### Files Tạo Mới
+- `guildCoreV53.js` — Extends guildEngineV29 · 5 cấp bậc thành viên · 8 công trình HQ · 10 nhiệm vụ guild nâng cao · 7 AI guilds · Chiêu mộ NPC · SAVE: cgv6_guild_core_v53 · init: 7300ms
+- `guildAllianceV53.js` — Guild-to-Guild alliances (Defense/Trade/Military/Grand) · Đại Bang Liên multi-guild · Bonus accumulation · SAVE: cgv6_guild_alliance_v53 · init: 7400ms
+- `playerEmpireV53.js` — Extends V28 Territory · 6 loại quan chức · 6 loại quân đội · 4 loại tương tác AI · Thuế lãnh thổ auto-collect · Cống phẩm · SAVE: cgv6_player_empire_v53 · init: 7500ms
+- `guildWarV53.js` — 4 loại chiến tranh (Guild/Alliance/Territory/Annihilation) · Auto-resolve tỷ lệ theo power · Loot system · War history · BXH chiến tích · SAVE: cgv6_guild_war_v53 · init: 7600ms
+- `guildRegistryV53.js` — Patches player-hub-v28 · 6 tabs nội bộ (Bang Hội/Liên Minh/Đế Quốc/Lãnh Thổ/Chiến Tranh/BXH) · Hub widget · Passive · init: 7700ms
+
+### index.html
+- 6 panel divs (panel-guild/alliance/empire/territory/guildwar/ranking-v53) · 5 script tags sau V52
+
+### Hệ Thống Extends (KHÔNG ghi đè)
+- `guildEngineV29.js` — V29 guild system giữ nguyên, V53 extends qua g53LinkGuild()
+- `playerTerritorySystem.js` — V28 territory giữ nguyên, V53 reads ptAcquireTerritory()
+- `allianceEngine.js` — V24 nation alliances giữ nguyên, V53 là guild-level alliances độc lập
+
+### Compatibility
+- 100% backward compatible. Save cũ (cgv6_guild_v29, cgv6_territory_v28) không bị ảnh hưởng.
+
+---
+
 ## [V52] — Player Economy & Marketplace (2026-06-13)
 
 ### Files Tạo Mới

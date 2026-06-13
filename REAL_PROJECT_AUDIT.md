@@ -1,28 +1,44 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V52 — Player Economy & Marketplace)
+> Ngày audit: 2026-06-13 (cập nhật sau V53 — Guild & Empire Online)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V51 | V52 (Mới) |
+| Chỉ Số | V52 | V53 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 212 | **217** |
-| **Tổng file được load trong index.html** | 211 | **216** |
+| **Tổng file .js trên disk** | 217 | **222** |
+| **Tổng file được load trong index.html** | 216 | **221** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 210 | **216** |
+| **Tổng panel divs trong HTML** | 216 | **222** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 134+ | **138+** |
-| **Engine hook vào gameTick** | 93 | **96** |
-| **Phiên bản hiện tại** | V51 | **V52 — Player Economy & Marketplace** |
+| **Tổng localStorage save keys (unique)** | 138+ | **142+** |
+| **Engine hook vào gameTick** | 96 | **98** |
+| **Phiên bản hiện tại** | V52 | **V53 — Guild & Empire Online** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 💰 Player Economy & Marketplace V52 ← NEWEST (5 files)
+### ⚔️ Guild & Empire Online V53 ← NEWEST (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `guildCoreV53.js` | Extends guildEngineV29 · 5 cấp bậc (GM/Vice/Elder/Officer/Member) · 8 công trình HQ · 10 nhiệm vụ · 7 AI guilds · Chiêu mộ NPC · g53CreateGuild/AddMember/RecruitNpc/PromoteMember/BuildHQ/AssignQuest | `cgv6_guild_core_v53` | 7300ms |
+| `guildAllianceV53.js` | Guild-to-Guild alliances (khác V24) · 4 pact types (defense/trade/military/grand) · Đại Bang Liên · ga53FormAlliance/SignPact/BreakPact/GetEffectiveBonuses | `cgv6_guild_alliance_v53` | 7400ms |
+| `playerEmpireV53.js` | Extends V28 Territory · 6 loại quan chức · 6 loại quân đội · 4 AI interactions · Thuế auto · Cống phẩm · emp53SetImperialName/AppointOfficial/RecruitArmy/InteractAI | `cgv6_player_empire_v53` | 7500ms |
+| `guildWarV53.js` | 4 loại chiến tranh (Guild/Alliance/Territory/Annihilation) · Auto-resolve · Loot · BXH · gw53DeclareWar/BoostAttack/SurrenderWar/GetRankings | `cgv6_guild_war_v53` | 7600ms |
+| `guildRegistryV53.js` | Patches player-hub-v28 · 6 tabs (Bang Hội/Liên Minh/Đế Quốc/Lãnh Thổ/Chiến Tranh/BXH) · gr53Render* · guildV53HubRenderPanel() | Passive | 7700ms |
+
+**Global Objects:** `window.guildV53Data` · `window.guildAllianceV53Data` · `window.playerEmpireV53Data` · `window.guildWarV53Data`
+**Không trùng với:** `guildEngineV29.js` (V29 cơ bản, V53 extends) · `allianceEngine.js` (V24 nation alliances) · `playerTerritorySystem.js` (V28 territory, V53 reads) · `territoryWarSystem.js` (world wars)
+**UI:** 6 tabs trong player-hub-v28 · 6 panel divs (panel-guild/alliance/empire/territory/guildwar/ranking-v53)
+**GameTick hooks:** guildCoreV53 (tick — complete quests/market income) · playerEmpireV53 (tick — army upkeep/tax collect) · guildWarV53 (tick — battle rounds/auto-resolve)
+
+---
+
+### 💰 Player Economy & Marketplace V52 (5 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `playerEconomyCoreV52.js` | Ví 5 tiền tệ · Thu nhập thụ động 11 nghề · Exchange 5% fee · Net Worth | `cgv6_player_economy_v52` | 6800ms |

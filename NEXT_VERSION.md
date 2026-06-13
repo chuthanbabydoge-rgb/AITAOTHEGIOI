@@ -2,8 +2,49 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V52 — Player Economy & Marketplace** ✅
-> **Phiên bản tiếp theo đề xuất: V53 — Guild & Empire Online**
+> **Phiên bản hiện tại: V53 — Guild & Empire Online** ✅
+> **Phiên bản tiếp theo đề xuất: V54 — Marketplace Expansion & Trading Network**
+
+---
+
+## ✅ V53 — Guild & Empire Online *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `guildCoreV53.js` — Extends guildEngineV29 · 5 cấp bậc (GM/Vice/Elder/Officer/Member) · 8 công trình HQ · 10 nhiệm vụ nâng cao · 7 AI guilds · SAVE: cgv6_guild_core_v53
+- `guildAllianceV53.js` — Guild-to-Guild pacts (Defense/Trade/Military/Grand) · Đại Bang Liên · Effective bonuses · SAVE: cgv6_guild_alliance_v53
+- `playerEmpireV53.js` — Extends V28 Territory · 6 loại quan chức · 6 loại quân · 4 tương tác AI · Thuế tự động · SAVE: cgv6_player_empire_v53
+- `guildWarV53.js` — 4 loại chiến tranh · Auto-resolve · Loot · BXH · SAVE: cgv6_guild_war_v53
+- `guildRegistryV53.js` — Patches player-hub-v28 · 6 tabs (Bang Hội/Liên Minh/Đế Quốc/Lãnh Thổ/Chiến Tranh/BXH) · Passive
+
+### index.html
+- 6 panel divs (panel-guild/alliance/empire/territory/guildwar/ranking-v53) · 5 script tags sau V52
+
+---
+
+## 🏆 V54 — Marketplace Expansion & Trading Network *(Đề Xuất Tiếp Theo)*
+
+### Mục Tiêu
+Mở rộng hệ thống marketplace V52 với mạng lưới thương mại liên vùng, crafting system, và hệ thống supply chain.
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Trade Network Core | `tradeNetworkCoreV54.js` | Mạng lưới thương mại liên vùng · Tuyến đường trade routes |
+| Crafting System | `craftingSystemV54.js` | 5 nghề thủ công · Recipe system · Material gathering |
+| Supply Chain | `supplyChainV54.js` | Chuỗi cung ứng · Resource flow · Bottleneck detection |
+| Guild Economy | `guildEconomyV54.js` | Kinh tế bang hội · Guild marketplace · Trade guild wars |
+| Economy Registry V54 | `economyRegistryV54.js` | UI patches · 6 tabs mới trong player-hub-v28 |
+
+### Save Keys
+- `cgv6_trade_network_v54` · `cgv6_crafting_v54` · `cgv6_supply_chain_v54` · `cgv6_guild_economy_v54`
+
+### Tích Hợp
+- Extends `playerMarketplaceV52.js` (marketplace) → thêm bulk trading
+- Extends `businessSystemV52.js` (DN) → thêm supply chain management
+- Extends `guildCoreV53.js` (guild treasury) → thêm guild trading
+- Reads `ecoResourceEngine.js` (scarcity affects prices)
+
+### UI
+- 6 tabs mới trong player-hub-v28 (tiếp tục pattern V52/V53)
 
 ---
 

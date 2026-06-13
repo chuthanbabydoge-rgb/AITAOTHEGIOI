@@ -24,13 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V52 — Player Economy & Marketplace** (2026-06-13)
+**V53 — Guild & Empire Online** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (131+ systems)
+## ✅ COMPLETED SYSTEMS (136+ systems)
 
-### Player Economy & Marketplace V52 (5 systems) ← NEWEST
+### Guild & Empire Online V53 (5 systems) ← NEWEST
+- `guildCoreV53.js` — Extends guildEngineV29 (KHÔNG ghi đè V29) · 5 cấp bậc (guildMaster/viceMaster/elder/officer/member) · 8 công trình HQ (hall/vault/barracks/market/library/shrine/fortress/palace) · 10 nhiệm vụ nâng cao · 7 AI guilds tự động · Chiêu mộ NPC · g53CreateGuild() · g53AddMember() · g53RecruitNpc() · g53PromoteMember() · g53KickMember() · g53BuildHQ() · g53AssignQuest() · g53GetStats() · g53GetJarvisReport() · SAVE: cgv6_guild_core_v53 · init: 7300ms
+- `guildAllianceV53.js` — Guild-to-Guild alliances (KHÔNG phải V24 nation alliances) · 4 pact types (defense/trade/military/grand) · Đại Bang Liên multi-guild · ga53FormAlliance() · ga53SignPact() · ga53BreakPact() · ga53GetEffectiveBonuses() · ga53GetJarvisReport() · SAVE: cgv6_guild_alliance_v53 · init: 7400ms
+- `playerEmpireV53.js` — Extends playerTerritorySystem.js V28 · 6 loại quan chức · 6 loại quân đội · 4 AI interactions (trade/tribute/ally/war) · Thuế lãnh thổ auto-collect · Cống phẩm hàng năm · emp53SetImperialName() · emp53AppointOfficial() · emp53RecruitArmy() · emp53InteractAI() · emp53GetStats() · SAVE: cgv6_player_empire_v53 · init: 7500ms
+- `guildWarV53.js` — 4 loại chiến tranh (guildVsGuild/allianceWar/territoryWar/annihilation) · Auto-resolve theo tỷ lệ power · Loot system (thắng +500-1500 bạc) · Battle rounds mỗi 5 tick · gw53DeclareWar() · gw53BoostAttack() · gw53SurrenderWar() · gw53GetStats() · SAVE: cgv6_guild_war_v53 · init: 7600ms
+- `guildRegistryV53.js` — Patches player-hub-v28 (KHÔNG phải mvHub) · 6 tabs (Bang Hội/Liên Minh/Đế Quốc/Lãnh Thổ/Chiến Tranh/BXH) · gr53RenderGuild/Alliance/Empire/Territory/War/Ranking · guildV53HubRenderPanel() · Passive · init: 7700ms
+- **Không trùng với:** guildEngineV29.js (cơ bản, V53 extends) · allianceEngine.js (nation alliances V24, V53 là guild-level) · playerTerritorySystem.js V28 (V53 reads/extends) · territoryWarSystem.js (world-level wars)
+- **UI**: 6 tabs trong player-hub-v28 (KHÔNG tạo sidebar tab mới) · 6 panel divs V53
+
+### Player Economy & Marketplace V52 (5 systems)
 - `playerEconomyCoreV52.js` — Ví đa tiền tệ (5 loại: Đồng/Bạc/Vàng/Tinh Thạch/Thần Thạch) · Custom currency per world · Thu nhập thụ động theo nghề (11 nghề) · Exchange rate 5% fee · Net Worth tracking · pec52GetWallet() · pec52AddCurrency() · pec52SpendCurrency() · pec52Exchange() · pec52GetNetWorthInDong() · SAVE: cgv6_player_economy_v52 · init: 6800ms
 - `playerMarketplaceV52.js` — 18 loại vật phẩm (5 danh mục · tier 1-5) · Listing (pm52ListItem) · Buy (pm52BuyItem) · Auction (pm52CreateAuction/pm52PlaceBid/pm52SettleAuctions) · Price history · Demand score 0-100 · NPC AI sellers tự động · Hot items tracking · SAVE: cgv6_player_marketplace_v52 · init: 6900ms
 - `businessSystemV52.js` — 4 loại DN (Cửa Hàng/Công Ty/Học Viện/Ngân Hàng) · Max level 5 · Employees · Thu nhập tự động theo interval · 5 AI competitor companies · biz52Found() · biz52Upgrade() · biz52Close() · biz52GetTotalValue() · biz52ProcessIncome() · SAVE: cgv6_business_v52 · init: 7000ms
@@ -510,4 +519,4 @@ PROJECT MODE: EXPAND ONLY · NEVER DELETE · NEVER REPLACE · NEVER REBUILD
 
 ---
 
-*Last updated: V32 — 2026-06-13*
+*Last updated: V53 — 2026-06-13*
