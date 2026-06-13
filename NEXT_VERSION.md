@@ -2,8 +2,8 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V42 — Thư Viện Thần Thoại Toàn Cầu** ✅
-> **Phiên bản tiếp theo đề xuất: V43 — Hệ Thống Kỷ Nguyên Thế Giới (World Era System)**
+> **Phiên bản hiện tại: V43 — Hệ Thống Kỷ Nguyên Thế Giới** ✅
+> **Phiên bản tiếp theo đề xuất: V44 — Hệ Thống Chủng Tộc Tiến Hóa (Race Evolution System)**
 
 ---
 

@@ -1,0 +1,244 @@
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel
+- dashboard
+- modal
+
+Không tạo thêm tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V43 - HỆ THỐNG KỶ NGUYÊN THẾ GIỚI
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép thế giới tiến hóa qua nhiều kỷ nguyên.
+
+Mỗi kỷ nguyên ảnh hưởng đến:
+
+- Công nghệ
+- Văn hóa
+- Kinh tế
+- Chiến tranh
+- Thần linh
+- Đế quốc
+- Đa vũ trụ
+
+==================================================
+AGE CORE SYSTEM
+==================================================
+
+Tạo:
+
+- worldAgeEngine.js
+- ageProgressionEngine.js
+- ageRegistry.js
+
+==================================================
+CÁC KỶ NGUYÊN
+==================================================
+
+Hỗ trợ:
+
+1. Thời Đại Hỗn Mang
+
+2. Thời Đại Thần Thoại
+
+3. Thời Đại Anh Hùng
+
+4. Thời Đại Cổ Đại
+
+5. Thời Đại Đế Quốc
+
+6. Thời Đại Trung Hưng
+
+7. Thời Đại Công Nghiệp
+
+8. Thời Đại Công Nghệ
+
+9. Thời Đại Không Gian
+
+10. Thời Đại Liên Vũ Trụ
+
+11. Thời Đại Đa Vũ Trụ
+
+12. Thời Đại Sáng Thế
+
+==================================================
+ĐIỀU KIỆN CHUYỂN KỶ NGUYÊN
+==================================================
+
+Dựa trên:
+
+- Dân số
+- Công nghệ
+- Số lượng quốc gia
+- Số lượng đế quốc
+- Mức độ chiến tranh
+- Mức độ phát triển AI
+- Mức độ khám phá đa vũ trụ
+
+==================================================
+ẢNH HƯỞNG KỶ NGUYÊN
+==================================================
+
+Mỗi kỷ nguyên thay đổi:
+
+- Tốc độ phát triển
+- Công nghệ khả dụng
+- Loại chiến tranh
+- Loại thần linh
+- Loại boss
+- Loại sự kiện
+
+==================================================
+SỰ KIỆN KỶ NGUYÊN
+==================================================
+
+Tạo:
+
+- ageEventEngine.js
+
+Ví dụ:
+
+- Khai sinh thần linh
+- Đại hồng thủy
+- Sụp đổ đế quốc
+- Kỷ nguyên AI
+- Khám phá đa vũ trụ
+- Đại chiến sáng thế
+
+==================================================
+AI CIVILIZATION INTEGRATION
+==================================================
+
+Tích hợp với:
+
+- Civilization Evolution
+- Multiverse
+- Timeline
+- Jarvis
+- Creator System
+
+==================================================
+JARVIS
+==================================================
+
+Jarvis phải thông báo:
+
+- Chuyển kỷ nguyên
+- Sự kiện lịch sử lớn
+- Dự đoán kỷ nguyên tiếp theo
+- Mức độ ổn định của kỷ nguyên hiện tại
+
+==================================================
+THỐNG KÊ
+==================================================
+
+Tạo:
+
+- ageAnalytics.js
+
+Hiển thị:
+
+- Kỷ nguyên hiện tại
+- Thời gian tồn tại
+- Tỷ lệ tiến hóa
+- Dự báo tương lai
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Kỷ Nguyên
+- Lịch Sử
+- Chuyển Đổi
+- Sự Kiện
+- Phân Tích
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Kỷ nguyên hiện tại
+- Lịch sử chuyển đổi
+- Sự kiện kỷ nguyên
+- Dữ liệu phân tích
+
+Tương thích toàn bộ save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành cập nhật:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V43
+
+Recommended Next Version = V44 Hệ Thống Chủng Tộc Tiến Hóa
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI

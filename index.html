@@ -2756,6 +2756,12 @@ onclick="showPanel('dashboard')">
       <div id="panel-creator-lore-v41" class="panel"></div>
       <div id="panel-creator-event-v41" class="panel"></div>
       <div id="panel-creator-reports-v41" class="panel"></div>
+      <!-- V43 — Hệ Thống Kỷ Nguyên Thế Giới -->
+      <div id="panel-age-current-v43" class="panel"></div>
+      <div id="panel-age-history-v43" class="panel"></div>
+      <div id="panel-age-transition-v43" class="panel"></div>
+      <div id="panel-age-events-v43" class="panel"></div>
+      <div id="panel-age-analytics-v43" class="panel"></div>
       <!-- V42 — Thư Viện Thần Thoại Toàn Cầu -->
       <div id="panel-myth-overview-v42" class="panel"></div>
       <div id="panel-myth-gods-v42" class="panel"></div>
@@ -3108,6 +3114,12 @@ window.addEventListener("load", function() {
 <script src="loreGenerator.js"></script>
 <script src="eventGenerator.js"></script>
 <script src="creatorReports.js"></script>
+<!-- V43 — Hệ Thống Kỷ Nguyên Thế Giới -->
+<script src="worldAgeEngine.js"></script>
+<script src="ageProgressionEngine.js"></script>
+<script src="ageEventEngine.js"></script>
+<script src="ageAnalytics.js"></script>
+<script src="ageRegistry.js"></script>
 <!-- V42 — Thư Viện Thần Thoại Toàn Cầu -->
 <script src="mythologyDatabase.js"></script>
 <script src="mythologyGodSystem.js"></script>
@@ -3285,6 +3297,17 @@ window.mvHubRenderPanel = function() {
     +'<button onclick="showPanel(\'panel-mv-warmap-v39\');window.mv39RenderWarMapPanel&&window.mv39RenderWarMapPanel()" style="padding:14px;background:#0f172a;border:1px solid #dc262688;border-radius:10px;color:#dc2626;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🗺️ <strong>Bản Đồ Chiến Tranh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">SVG động · Lãnh thổ</div></button>'
     +'<button onclick="showPanel(\'panel-mv-warstats-v39\');window.mv39StatsRenderPanel&&window.mv39StatsRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf2488;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Thống Kê</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Rankings · 4 loại</div></button>'
     +'</div>'
+    +'</div>'
+
+    // ─── V43 WORLD AGE SYSTEM ──────────────────────────────────────────────
+    +'<div style="margin-top:28px;padding-top:22px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#a78bfa;font-family:Cinzel,serif">🌀 Hệ Thống Kỷ Nguyên Thế Giới V43</h3>'
+    +'<div style="font-size:11px;color:#475569">12 Kỷ Nguyên · Hỗn Mang → Sáng Thế · Chuyển Đổi Tự Động</div>'
+    +'</div>'
+    +'</div>'
+    +(typeof window.waeHubRenderPanel === "function" ? window.waeHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống kỷ nguyên...</div>')
     +'</div>'
 
     +'</div>';

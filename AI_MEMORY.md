@@ -24,13 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V42 — Thư Viện Thần Thoại Toàn Cầu** (2026-06-13)
+**V43 — Hệ Thống Kỷ Nguyên Thế Giới** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (97+ systems)
+## ✅ COMPLETED SYSTEMS (102+ systems)
 
-### Thư Viện Thần Thoại Toàn Cầu V42 (6 systems) ← NEWEST
+### Hệ Thống Kỷ Nguyên Thế Giới V43 (5 systems) ← NEWEST
+- `worldAgeEngine.js` — Core 12 kỷ nguyên · auto-transition check · `waeGetCurrentAge()` · `waeForceAge()` · SAVE: cgv6_world_age_v43
+- `ageProgressionEngine.js` — Điểm sẵn sàng 7 điều kiện · `apeGetProgress(id)` · `apeGetConditionDetail(id)` · SAVE: cgv6_age_prog_v43
+- `ageEventEngine.js` — 50+ sự kiện theo 12 kỷ nguyên · `aeeFireEvent(id)` · SAVE: cgv6_age_events_v43
+- `ageAnalytics.js` — Ổn định · Snapshot · Dự báo · `aanGetStats()` · `aanGetForecast()` · SAVE: cgv6_age_analytics_v43
+- `ageRegistry.js` — 5 panel renders + `waeHubRenderPanel()` widget cho mvHub · Passive
+- **UI**: Tích hợp trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) · KHÔNG tạo tab sidebar mới
+- **KHÔNG trùng** với ageEngineV25.js (V25=5 era khác: Hoàng Kim/Đen Tối/Khám Phá/Công Nghệ/Ma Thuật)
+
+### Thư Viện Thần Thoại Toàn Cầu V42 (6 systems)
 - `mythologyDatabase.js` — Core DB 10 hệ thần thoại · `mdbGetPantheons()` · `mdbUpdateStats()` · SAVE: cgv6_myth_db_v42
 - `mythologyGodSystem.js` — 30 thần linh mặc định · CRUD · filter pantheon · `mgsAddGod()` · `mgsFilterByPantheon()` · SAVE: cgv6_myth_gods_v42
 - `mythologyCreatureSystem.js` — 20 sinh vật (Rồng/Phượng/Kraken/Kỳ Lân/Yêu Thú...) · threat level · SAVE: cgv6_myth_creatures_v42

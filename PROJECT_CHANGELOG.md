@@ -4,6 +4,38 @@
 
 ---
 
+## [V43] — 2026-06-13 — Hệ Thống Kỷ Nguyên Thế Giới
+
+### New Systems Added (5 files)
+- `worldAgeEngine.js` — Core 12 kỷ nguyên (Hỗn Mang→Sáng Thế) · Điều kiện chuyển đổi tự động · `waeGetCurrentAge()` · `waeForceAge()` · `waeGetHistory()` · gameTick mỗi 10 ticks · htAddEvent + wmeAddMemory khi chuyển · SAVE: cgv6_world_age_v43
+- `ageProgressionEngine.js` — Điểm sẵn sàng 12 kỷ nguyên · 7 điều kiện (dân số/quốc gia/đế quốc/vũ trụ/cổng/thần/văn minh) · `apeGetProgress(id)` · `apeGetConditionDetail(id)` · gameTick mỗi 5 ticks · SAVE: cgv6_age_prog_v43
+- `ageEventEngine.js` — Pool sự kiện theo từng kỷ nguyên (12 × 3-5 sự kiện = 50+ mẫu) · `aeeFireEvent(ageId)` · `aeeGetRecentEvents()` · 15% chance mỗi 20 ticks · SAVE: cgv6_age_events_v43
+- `ageAnalytics.js` — Ổn định thế giới · Snapshot định kỳ · `aanGetStats()` · `aanGetForecast()` · Dự báo kỷ nguyên tiếp theo · SAVE: cgv6_age_analytics_v43
+- `ageRegistry.js` — 5 panel renders: Kỷ Nguyên/Lịch Sử/Chuyển Đổi/Sự Kiện/Phân Tích · `waeHubRenderPanel()` (widget cho mvHub) · Passive (no save/tick)
+
+### index.html Updates
+- Thêm 5 panel divs V43: panel-age-current-v43 → panel-age-analytics-v43
+- Thêm 5 script tags nhóm V43 (trước V42)
+- Thêm section V43 vào `mvHubRenderPanel` (trong 🌌 Đa Vũ Trụ hub)
+
+### UI Integration
+- Tích hợp bên trong 🌌 Đa Vũ Trụ V35 hub — KHÔNG tạo tab sidebar mới
+- 5 sub-panels: 🌀 Kỷ Nguyên · 📜 Lịch Sử · ⚡ Chuyển Đổi · 🗓️ Sự Kiện · 📊 Phân Tích
+- Quick-navigate từ mvHub widget
+
+### Save Keys Mới
+- `cgv6_world_age_v43` · `cgv6_age_prog_v43` · `cgv6_age_events_v43` · `cgv6_age_analytics_v43`
+
+### Integration Points
+- `waeForceAge()` → can thiệp thủ công chuyển kỷ nguyên (UI button)
+- `waeV43Tick()` → auto-check điều kiện mỗi 10 gameTicks
+- htAddEvent + wmeAddMemory khi chuyển kỷ nguyên
+- `apeGetConditionDetail()` đọc: world.population · countries · empireData · warsActive · mvData.universes · pnGetOpenPortals · civEvoData
+- `aeeFireCurrentAgeEvent()` gọi được từ UI Sự Kiện
+- KHÔNG trùng với ageEngineV25.js (V25 có 5 loại era khác: Hoàng Kim/Đen Tối/Khám Phá/Công Nghệ/Ma Thuật)
+
+---
+
 ## [V42] — 2026-06-13 — Thư Viện Thần Thoại Toàn Cầu
 
 ### New Systems Added (6 files)

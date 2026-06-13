@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V42 — Thư Viện Thần Thoại Toàn Cầu |
+| **Current Version** | V43 — Hệ Thống Kỷ Nguyên Thế Giới |
 | **Build Date** | 2026-06-13 |
 | **Total JS Files** | 134+ |
-| **Total Systems** | 105+ |
+| **Total Systems** | 110+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
