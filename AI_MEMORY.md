@@ -24,13 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V38 — Tiến Hóa Nền Văn Minh AI** (2026-06-13)
+**V39 — Chiến Tranh Đa Vũ Trụ** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (72+ systems)
+## ✅ COMPLETED SYSTEMS (77+ systems)
 
-### Civilization Evolution Engine V38 (1 system) ← NEWEST
+### Multiverse War System V39 (5 systems) ← NEWEST
+- `multiverseWarSystemV39.js` — 5 loại chiến tranh (universe/divine/timeline/empire/sect) · `mv39DeclareWar()` · `mv39AutoWar()` · gameTick 8 ticks · Victory board · Hậu quả thực tế → stability/power decay · SAVE_KEY: cgv6_mv_war_v39
+- `multiverseInvasionSystemV39.js` — Xâm lược 5 giai đoạn (Portal/Landing/Conquest/Occupation/Assimilation) · Resource absorption · Territory tracking · `mv39StartInvasion()` · Outcomes (great_victory/stalemate/crushed) · SAVE_KEY: cgv6_mv_invasion_v39
+- `conquestSystemV39.js` — Lãnh thổ chiếm đóng · Kháng cự tăng dần · Cống nạp · Phản loạn khi resistance≥95 · `mv39RecordConquest()` · SVG bản đồ động · SAVE_KEY: cgv6_mv_conquest_v39
+- `multiverseAllianceSystemV39.js` — 5 loại liên minh (mutual_defense/military_pact/trade_treaty/protectorate/grand_coalition) · `mvaFormAlliance()` · AI auto-alliance · Sức mạnh giảm theo thời gian · SAVE_KEY: cgv6_mv_alliance_v39
+- `multiverseWarAnalyticsV39.js` — Rankings: vũ trụ/đế quốc/thần linh/tông môn · Tổng hợp stats từ mwData+mv39WarData+mv39InvData+mvaData · Passive (no gameTick)
+- **UI**: Section V39 trong 🌌 Đa Vũ Trụ hub — 5 buttons: Chiến Tranh/Liên Minh/Xâm Lược/Bản Đồ/Thống Kê · KHÔNG tạo tab sidebar mới
+- **Jarvis**: Tất cả 5 system → htAddEvent + waeAddAlert + wmeAddMemory
+
+### Civilization Evolution Engine V38 (1 system)
 - `civEvolutionEngineV38.js` — 6 Trụ Cột (Khoa Học, Văn Hóa, Quân Sự, Tôn Giáo, Công Nghệ, Phép Thuật) · 8 tầng tier · Tích hợp Kingdom/Empire/Sect/Divine/Multiverse/Timeline · gameTick mỗi 5 ticks · Breakthrough events → htAddEvent + wmeAddMemory + waeAddAlert · SAVE_KEY: cgv6_civ_evolution_v38
 - **UI**: Section V38 trong 🌌 Đa Vũ Trụ hub — 6 tabs: Nền Văn Minh, Tiến Hóa, Công Nghệ, Văn Hóa, Tôn Giáo, Thống Kê · Không tạo tab sidebar mới
 

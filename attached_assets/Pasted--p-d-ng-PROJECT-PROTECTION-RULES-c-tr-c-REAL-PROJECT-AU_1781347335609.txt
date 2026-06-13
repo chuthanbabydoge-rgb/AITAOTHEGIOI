@@ -1,0 +1,178 @@
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel
+- dashboard
+- modal
+
+Không tạo thêm tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V39 - HỆ THỐNG CHIẾN TRANH ĐA VŨ TRỤ
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép:
+
+- Vũ trụ xâm lược vũ trụ
+- Đế quốc xuyên vũ trụ
+- Thần giới xuyên vũ trụ
+- Tông môn xuyên vũ trụ
+- Liên minh đa vũ trụ
+
+==================================================
+HỆ THỐNG CHIẾN TRANH
+==================================================
+
+Tạo hoặc mở rộng:
+
+- multiverseWarSystem.js
+- invasionSystem.js
+- conquestSystem.js
+
+Các loại chiến tranh:
+
+- Chiến tranh vũ trụ
+- Chiến tranh thần giới
+- Chiến tranh dòng thời gian
+- Chiến tranh đế quốc
+- Chiến tranh tông môn
+
+==================================================
+LIÊN MINH ĐA VŨ TRỤ
+==================================================
+
+Tạo:
+
+- multiverseAllianceSystem.js
+
+Cho phép:
+
+- Liên minh
+- Hiệp ước
+- Bảo hộ
+- Liên quân
+
+==================================================
+XÂM LƯỢC VŨ TRỤ
+==================================================
+
+Cho phép:
+
+- Mở cổng xâm lược
+- Chiếm lãnh thổ
+- Đồng hóa văn minh
+- Hấp thụ tài nguyên
+
+==================================================
+THỐNG KÊ CHIẾN TRANH
+==================================================
+
+Tạo:
+
+- multiverseWarAnalytics.js
+
+Theo dõi:
+
+- Số cuộc chiến
+- Vũ trụ mạnh nhất
+- Đế quốc mạnh nhất
+- Thần mạnh nhất
+- Tông môn mạnh nhất
+
+==================================================
+JARVIS
+==================================================
+
+Jarvis phải thông báo:
+
+- Chiến tranh mới
+- Vũ trụ sụp đổ
+- Liên minh mới
+- Thần giới bị xâm lược
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Chiến Tranh
+- Liên Minh
+- Xâm Lược
+- Bản Đồ Chiến Tranh
+- Thống Kê
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Chiến tranh
+- Liên minh
+- Xâm lược
+- Nhật ký chiến tranh
+
+Tương thích toàn bộ save cũ.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+
+Sau khi hoàn thành cập nhật:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V39
+
+Recommended Next Version = V40 Chợ Sáng Thế Chủ
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI

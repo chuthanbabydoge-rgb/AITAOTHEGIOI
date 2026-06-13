@@ -2721,6 +2721,13 @@ onclick="showPanel('dashboard')">
       <div id="panel-civ-religion-v38"  class="panel"></div>
       <div id="panel-civ-stats-v38"     class="panel"></div>
 
+      <!-- ═══ V39 MULTIVERSE WAR SYSTEM PANELS ═══ -->
+      <div id="panel-mv-war-v39"      class="panel"></div>
+      <div id="panel-mv-invasion-v39" class="panel"></div>
+      <div id="panel-mv-warmap-v39"   class="panel"></div>
+      <div id="panel-mv-alliance-v39" class="panel"></div>
+      <div id="panel-mv-warstats-v39" class="panel"></div>
+
       <!-- ═══ V32 CREATOR GOD CONTROL PANELS ═══ -->
       <div id="panel-creator-control" class="panel">
         <!-- Rendered by creatorControlRenderPanel() in creatorGodControl.js -->
@@ -3065,6 +3072,11 @@ window.addEventListener("load", function() {
 <script src="bossEvolutionEngineV31.js"></script>
 <script src="legendaryHuntEngineV31.js"></script>
 <script src="civEvolutionEngineV38.js"></script>
+<script src="multiverseWarSystemV39.js"></script>
+<script src="multiverseInvasionSystemV39.js"></script>
+<script src="conquestSystemV39.js"></script>
+<script src="multiverseAllianceSystemV39.js"></script>
+<script src="multiverseWarAnalyticsV39.js"></script>
 <script src="lodPerformanceSystem.js"></script>
 <script src="populationLimitSystem.js"></script>
 <script src="timeControlSystem.js"></script>
@@ -3199,6 +3211,36 @@ window.mvHubRenderPanel = function() {
     +'<button onclick="showPanel(\'panel-civ-stats-v38\');window.civEvoRenderStats&&window.civEvoRenderStats()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Thống Kê</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Tổng hợp & Top 10</div></button>'
     +'</div>'
     +'</div>'
+
+    // ─── V39 MULTIVERSE WAR SYSTEM ─────────────────────────────────────────
+    +'<div style="margin-top:28px;padding-top:22px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#ef4444;font-family:Cinzel,serif">⚔️ Chiến Tranh Đa Vũ Trụ V39</h3>'
+    +'<div style="font-size:11px;color:#475569">5 loại chiến tranh · Xâm lược · Chinh phạt · Liên minh</div>'
+    +'</div>'
+    +(function(){
+        var activeW  = typeof window.mv39GetActiveWars      === "function" ? window.mv39GetActiveWars().length      : 0;
+        var activeI  = typeof window.mv39GetActiveInvasions === "function" ? window.mv39GetActiveInvasions().length : 0;
+        var activeA  = typeof window.mvaGetActive           === "function" ? window.mvaGetActive().length           : 0;
+        var occupied = typeof window.mv39GetOccupied        === "function" ? window.mv39GetOccupied().length        : 0;
+        return '<div style="display:flex;gap:10px;flex-wrap:wrap">'
+          +'<div style="background:#ef444422;border:1px solid #ef444444;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#ef4444">'+activeW+'</div><div style="font-size:9px;color:#64748b">Chiến Tranh</div></div>'
+          +'<div style="background:#f9741622;border:1px solid #f9741644;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#f97316">'+activeI+'</div><div style="font-size:9px;color:#64748b">Xâm Lược</div></div>'
+          +'<div style="background:#3b82f622;border:1px solid #3b82f644;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#3b82f6">'+activeA+'</div><div style="font-size:9px;color:#64748b">Liên Minh</div></div>'
+          +'<div style="background:#dc262622;border:1px solid #dc262644;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:700;color:#dc2626">'+occupied+'</div><div style="font-size:9px;color:#64748b">Bị Chiếm</div></div>'
+          +'</div>';
+      })()
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px">'
+    +'<button onclick="showPanel(\'panel-mv-war-v39\');window.mv39RenderPanel&&window.mv39RenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #ef444488;border-radius:10px;color:#ef4444;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚔️ <strong>Chiến Tranh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">5 loại · Auto-resolve</div></button>'
+    +'<button onclick="showPanel(\'panel-mv-alliance-v39\');window.mvaRenderPanel&&window.mvaRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #3b82f688;border-radius:10px;color:#3b82f6;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🤝 <strong>Liên Minh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">5 loại hiệp ước</div></button>'
+    +'<button onclick="showPanel(\'panel-mv-invasion-v39\');window.mv39RenderInvasionPanel&&window.mv39RenderInvasionPanel()" style="padding:14px;background:#0f172a;border:1px solid #f9741688;border-radius:10px;color:#f97316;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🚀 <strong>Xâm Lược</strong><div style="font-size:11px;color:#64748b;margin-top:4px">5 giai đoạn</div></button>'
+    +'<button onclick="showPanel(\'panel-mv-warmap-v39\');window.mv39RenderWarMapPanel&&window.mv39RenderWarMapPanel()" style="padding:14px;background:#0f172a;border:1px solid #dc262688;border-radius:10px;color:#dc2626;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🗺️ <strong>Bản Đồ Chiến Tranh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">SVG động · Lãnh thổ</div></button>'
+    +'<button onclick="showPanel(\'panel-mv-warstats-v39\');window.mv39StatsRenderPanel&&window.mv39StatsRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf2488;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Thống Kê</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Rankings · 4 loại</div></button>'
+    +'</div>'
+    +'</div>'
+
     +'</div>';
 };
 </script>

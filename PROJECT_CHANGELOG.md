@@ -4,6 +4,31 @@
 
 ---
 
+## [V39] — 2026-06-13 — Chiến Tranh Đa Vũ Trụ
+
+### New Systems Added (5 systems)
+- `multiverseWarSystemV39.js` — 5 loại chiến tranh (Vũ Trụ/Thần Giới/Dòng Thời Gian/Đế Quốc/Tông Môn) · `mv39DeclareWar()` · `mv39AutoWar()` · Victory board · Hậu quả thực tế lên universe.stability/power · gameTick mỗi 8 ticks · Save: cgv6_mv_war_v39
+- `multiverseInvasionSystemV39.js` — Xâm lược 5 giai đoạn (Mở Cổng/Đổ Bộ/Chinh Phạt/Chiếm Đóng/Đồng Hóa) · Hấp thụ tài nguyên vũ trụ bị xâm lược · 5 kết quả (Đại Thắng→Bị Tiêu Diệt) · Kích hoạt mv39RecordConquest khi thắng · Save: cgv6_mv_invasion_v39
+- `conquestSystemV39.js` — Lãnh thổ chiếm đóng · Kháng cự tăng dần (0.5/tick) · Cống nạp · Phản loạn khi resistance≥95 · SVG bản đồ động hiển thị nodes+edges chiến tranh · Save: cgv6_mv_conquest_v39
+- `multiverseAllianceSystemV39.js` — 5 loại liên minh (Phòng Thủ Chung/Quân Sự/Thương Mại/Bảo Hộ/Đại Liên Minh) · AI auto-detect shared enemies · `mvaIsAllied()` bonus trong chiến tranh/xâm lược · Sức mạnh giảm dần → tan rã · Save: cgv6_mv_alliance_v39
+- `multiverseWarAnalyticsV39.js` — Rankings 4 loại: Vũ Trụ/Đế Quốc/Thần Linh/Tông Môn · Tổng hợp từ mwData(V35)+mv39WarData+mv39InvData+mvaData · Stats cards: Chiến Tranh/Xâm Lược/Liên Minh/Bị Chiếm · Passive engine (no gameTick)
+
+### index.html Updates
+- Thêm 5 script tags: multiverseWarSystemV39.js, multiverseInvasionSystemV39.js, conquestSystemV39.js, multiverseAllianceSystemV39.js, multiverseWarAnalyticsV39.js
+- Thêm 5 panel divs: panel-mv-war-v39, panel-mv-invasion-v39, panel-mv-warmap-v39, panel-mv-alliance-v39, panel-mv-warstats-v39
+- Extend mvHubRenderPanel() — thêm V39 section với stats counter + 5 navigation buttons (KHÔNG tạo tab sidebar mới)
+
+### Integration Points
+- `window.mv39RecordConquest()` được gọi từ cả warSystemV39 lẫn invasionSystemV39 khi thắng trận
+- `window.mvaData.alliances` được tham chiếu bởi warSystemV39 và invasionSystemV39 để tính alliance bonus
+- Jarvis (waeAddAlert + htAddEvent + wmeAddMemory): tất cả 5 systems đều notify
+- Array safety V33 pattern: kingdomData/empireData dùng Array.isArray + Object.values
+
+### Save Keys
+- `cgv6_mv_war_v39`, `cgv6_mv_invasion_v39`, `cgv6_mv_conquest_v39`, `cgv6_mv_alliance_v39`
+
+---
+
 ## [V38] — 2026-06-13 — Tiến Hóa Nền Văn Minh AI
 
 ### New Systems Added

@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V38 — Tiến Hóa Nền Văn Minh AI |
+| **Current Version** | V39 — Chiến Tranh Đa Vũ Trụ |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 115+ |
-| **Total Systems** | 80+ |
+| **Total JS Files** | 120+ |
+| **Total Systems** | 85+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,14 @@
 
 ## ✅ Completed Systems
 
-### Civilization Evolution V38 ← NEWEST
+### Multiverse War System V39 ← NEWEST
+- `multiverseWarSystemV39.js` — 5 loại chiến tranh · Victory board · gameTick · Save: cgv6_mv_war_v39
+- `multiverseInvasionSystemV39.js` — 5 giai đoạn xâm lược · Resource absorption · Save: cgv6_mv_invasion_v39
+- `conquestSystemV39.js` — Lãnh thổ chiếm đóng · SVG bản đồ · Phản loạn · Save: cgv6_mv_conquest_v39
+- `multiverseAllianceSystemV39.js` — 5 loại liên minh · AI auto-alliance · Save: cgv6_mv_alliance_v39
+- `multiverseWarAnalyticsV39.js` — Rankings 4 loại (Vũ Trụ/Đế Quốc/Thần/Tông Môn) · Passive
+
+### Civilization Evolution V38
 - `civEvolutionEngineV38.js` — 6 Trụ Cột · 8 Tier · 7 nguồn dữ liệu · UI trong Đa Vũ Trụ hub (6 tabs) · Save: cgv6_civ_evolution_v38
 
 ### Core Engine
