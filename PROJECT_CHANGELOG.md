@@ -4,6 +4,40 @@
 
 ---
 
+## [V51] — 2026-06-13 — Creator God Online
+
+### New Systems Added (6 files)
+- `creatorAuthorityEngineV51.js` — Thiên Ý Engine: Sắc Lệnh Thiên Ý (5 loại: peace_decree/prosperity_decree/purge_decree/divine_law/ascension_call) · Ban Phước (5 loại: divine_blessing/holy_rain/golden_harvest/divine_shield/great_birth) · Trừng Phạt (4 loại: divine_curse/thunder_judgment/plague_of_wrath/eternal_night) · Thiên Năng system: regen mỗi tick + cost tracking · cgv51IssueDecree() · cgv51BlessEntity() · cgv51CurseEntity() · cgv51GetEnergy() · cgv51GetMaxEnergy() · cgv51GetStats() · SAVE: cgv6_creator_authority_v51 · init: 6200ms
+- `miracleSystemV51.js` — Thần Tích System: 8 loại phép màu (resource_rain/divine_rain/golden_harvest/mass_healing/divine_insight/thunder_strike/earthquake/divine_shield) · Cooldown tracking · Effect persistence (expiresYear) · cgv51CastMiracle() · cgv51GetActiveEffects() · cgv51GetMiracleHistory() · cgv51GetMiracleStats() · cgv51GetMiracleTypes() · SAVE: cgv6_miracle_v51 · init: 6300ms
+- `prophecySystemV51.js` — Thiên Khải System: 4 loại tiên tri (great_hero/catastrophe/golden_age/divine_war) · Tự động sinh subject từ kingdoms/empires/npcs · Auto-fulfill theo year · wmeAddMemory integration · cgv51CreateProphecy() · cgv51AutoGenerateProphecy() · cgv51FulfillProphecy() · cgv51GetActiveProphecies() · cgv51GetFulfilledProphecies() · cgv51GetProphecyStats() · cgv51GetProphecyTypes() · SAVE: cgv6_prophecy_v51 · init: 6400ms
+- `globalEventControlV51.js` — Sự Kiện Toàn Cầu V51: 7 loại (festival/plague_cleanse/golden_age/celestial_tournament/divine_invasion/world_reset_partial/era_shift) · Effect + Duration tracking · htAddEvent integration · cgv51TriggerGlobalEvent() · cgv51GetActiveGlobalEvents() · cgv51GetEventHistory() · cgv51GetGlobalEventStats() · cgv51GetGlobalEventTypes() · SAVE: cgv6_global_event_v51 · init: 6500ms
+- `godAuditPanelV51.js` — Audit Panel: Theo dõi 58 hệ thống đã biết · Save Inspector (scan tất cả cgv6_* keys + size) · Jarvis God Mode (cảnh báo tự động: wars/disasters/energy/population + đề xuất actions) · cgv51GetAuditSystems() · cgv51GetAuditStats() · cgv51GetSaveReport() · cgv51GetJarvisReport() · Passive · init: 6600ms
+- `creatorDashboardV51.js` — Creator Dashboard: Patches creator-hub-v32 qua hubRenderPanel wrap · Inject 6 tab buttons (God Mode/Thiên Ý/Thần Tích/Thiên Khải/Sự Kiện TG/Audit) · 6 render functions (v51RenderGodMode/DivineWill/Miracles/Prophecies/WorldEvents/Audit) · v51QuickMiracle() · v51QuickEvent() · v51QuickProphecy() · Passive · init: 6700ms
+
+### index.html Changes (add only)
+- 6 panel divs sau V50 panels: panel-god-mode-v51 · panel-divine-will-v51 · panel-miracles-v51 · panel-prophecies-v51 · panel-world-events-v51 · panel-god-audit-v51
+- 6 script tags V51 sau V50 scripts (<!-- V51 — Creator God Online -->)
+
+### Global Objects
+- `window.creatorAuthorityV51Data` — divineEnergy · decrees · blessings · curses · stats
+- `window.miracleV51Data` — miracles · activeEffects · history · stats
+- `window.prophecyV51Data` — prophecies · activeCount · fulfilledCount
+- `window.globalEventV51Data` — activeEvents · eventHistory · stats
+
+### Save Keys
+- cgv6_creator_authority_v51 · cgv6_miracle_v51 · cgv6_prophecy_v51 · cgv6_global_event_v51
+
+### UI Integration
+- 6 tabs mới bên trong creator-hub-v32 (KHÔNG tạo sidebar tab mới)
+- God Mode Dashboard: World stats + Jarvis realtime + Quick Actions
+- Thiên Ý: Decree/Bless/Curse với energy cost
+- Thần Tích: 8 miracles với cooldown + active effects display
+- Thiên Khải: Create/Auto-generate/Fulfill prophecies
+- Sự Kiện TG: 7 global events với activation buttons
+- Audit: System health · Save size · Jarvis warnings/suggestions
+
+---
+
 ## [V50] — 2026-06-13 — Kỷ Nguyên Người Chơi
 
 ### New Systems Added (4 files)

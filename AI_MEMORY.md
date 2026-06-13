@@ -24,13 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V50 — Kỷ Nguyên Người Chơi** (2026-06-13)
+**V51 — Creator God Online** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (120+ systems)
+## ✅ COMPLETED SYSTEMS (126+ systems)
 
-### Kỷ Nguyên Người Chơi V50 (4 systems) ← NEWEST
+### Creator God Online V51 (6 systems) ← NEWEST
+- `creatorAuthorityEngineV51.js` — Sắc Lệnh Thiên Ý (5 loại) · Ban Phước (5 loại) · Trừng Phạt (4 loại) · Thiên Năng regen/cost · cgv51IssueDecree() · cgv51BlessEntity() · cgv51CurseEntity() · cgv51GetEnergy() · cgv51GetStats() · SAVE: cgv6_creator_authority_v51 · init: 6200ms
+- `miracleSystemV51.js` — 8 phép màu (resource_rain/divine_rain/golden_harvest/mass_healing/divine_insight/thunder_strike/earthquake/divine_shield) · Cooldown · Effect persistence · cgv51CastMiracle() · cgv51GetActiveEffects() · cgv51GetMiracleTypes() · SAVE: cgv6_miracle_v51 · init: 6300ms
+- `prophecySystemV51.js` — 4 loại tiên tri · Auto-subject từ kingdoms/npcs · Auto-fulfill theo year · cgv51CreateProphecy() · cgv51AutoGenerateProphecy() · cgv51FulfillProphecy() · cgv51GetActiveProphecies() · SAVE: cgv6_prophecy_v51 · init: 6400ms
+- `globalEventControlV51.js` — 7 global events (festival/plague_cleanse/golden_age/celestial_tournament/divine_invasion/world_reset_partial/era_shift) · Effect + Duration · cgv51TriggerGlobalEvent() · cgv51GetActiveGlobalEvents() · SAVE: cgv6_global_event_v51 · init: 6500ms
+- `godAuditPanelV51.js` — Theo dõi 58 hệ thống · Save Inspector (cgv6_* keys) · Jarvis God Mode tự động cảnh báo · cgv51GetAuditStats() · cgv51GetJarvisReport() · Passive · init: 6600ms
+- `creatorDashboardV51.js` — Patches creator-hub-v32 · 6 tabs (God Mode/Thiên Ý/Thần Tích/Thiên Khải/Sự Kiện TG/Audit) · v51RenderGodMode/DivineWill/Miracles/Prophecies/WorldEvents/Audit · Passive · init: 6700ms
+- **UI**: 6 tabs trong creator-hub-v32 (KHÔNG tạo sidebar tab mới) · 6 panel divs V51
+
+### Kỷ Nguyên Người Chơi V50 (4 systems)
 - `playerCoreV50.js` — 10 Career Paths (Thường Dân→Chúa Tể Đa Vũ Trụ) · Affiliation System 7 loại (nation/empire/sect/religion/faction/guild/alliance) · World Impact 10 metrics · Multiverse Rep Tiers 7 cấp · Auto-detect world events · pv50JoinAffiliation() · pv50FoundEntity() · pv50AddImpact() · pv50GetMvRepTier() · pv50GetCareer() · SAVE: cgv6_player_core_v50 · init: 5800ms
 - `professionSystemV50.js` — 7 Nghề (Chiến Binh/Pháp Sư/Học Giả/Thương Nhân/Thợ Rèn/Tu Sĩ/Thần Quan) · 4 kỹ năng/nghề với XP unlock · 3 actions/nghề với cooldowns & wealth cost · Passive bonus mỗi 50 tick · prof50Choose() · prof50DoAction() · prof50GetAll() · prof50GetCurrent() · SAVE: cgv6_profession_v50 · init: 5900ms
 - `playerAchievementV50.js` — 40 thành tựu · 7 danh mục · Auto-check mỗi 25 tick · Reward XP+Fame via playerAddXP/playerAddFame · pv50AddImpact("titles_earned") · ach50GetAll() · ach50GetUnlocked() · ach50GetStats() · ach50GetByCategory() · SAVE: cgv6_achievement_v50 · init: 6000ms

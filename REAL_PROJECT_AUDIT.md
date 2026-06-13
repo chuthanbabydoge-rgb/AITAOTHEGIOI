@@ -1,28 +1,51 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V49 — Hệ Thống Chính Trị AI)
+> Ngày audit: 2026-06-13 (cập nhật sau V51 — Creator God Online)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V48 | V49 (Mới) |
+| Chỉ Số | V50 | V51 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 202 | **206** |
-| **Tổng file được load trong index.html** | 201 | **205** |
+| **Tổng file .js trên disk** | 206 | **212** |
+| **Tổng file được load trong index.html** | 205 | **211** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 198 | **204** |
+| **Tổng panel divs trong HTML** | 204 | **210** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 127+ | **130+** |
-| **Engine hook vào gameTick** | 87 | **90** |
-| **Phiên bản hiện tại** | V48 | **V49 — Hệ Thống Chính Trị AI** |
+| **Tổng localStorage save keys (unique)** | 130+ | **134+** |
+| **Engine hook vào gameTick** | 90 | **93** |
+| **Phiên bản hiện tại** | V50 | **V51 — Creator God Online** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🏛️ Chính Trị AI V49 ← NEWEST (4 files)
+### 👁️ Creator God Online V51 ← NEWEST (6 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `creatorAuthorityEngineV51.js` | 5 Sắc Lệnh · 5 Ban Phước · 4 Trừng Phạt · Thiên Năng system | `cgv6_creator_authority_v51` | 6200ms |
+| `miracleSystemV51.js` | 8 Phép Màu · Cooldown · Effect persistence (expiresYear) | `cgv6_miracle_v51` | 6300ms |
+| `prophecySystemV51.js` | 4 loại Tiên Tri · Auto-subject · Auto-fulfill theo year | `cgv6_prophecy_v51` | 6400ms |
+| `globalEventControlV51.js` | 7 Sự Kiện Toàn Cầu · Duration · htAddEvent integration | `cgv6_global_event_v51` | 6500ms |
+| `godAuditPanelV51.js` | Audit 58 hệ thống · Save Inspector · Jarvis God Mode | Passive | 6600ms |
+| `creatorDashboardV51.js` | Patches creator-hub-v32 · 6 tabs | Passive | 6700ms |
+
+**Global Objects:** `window.creatorAuthorityV51Data` · `window.miracleV51Data` · `window.prophecyV51Data` · `window.globalEventV51Data`
+**Public API:**
+- Authority: `cgv51IssueDecree(typeId, target)` · `cgv51BlessEntity(typeId, target)` · `cgv51CurseEntity(typeId, target)` · `cgv51GetEnergy()` · `cgv51GetMaxEnergy()` · `cgv51GetDecreeTypes()` · `cgv51GetBlessingTypes()` · `cgv51GetCurseTypes()` · `cgv51GetStats()`
+- Miracle: `cgv51CastMiracle(typeId, target)` · `cgv51GetActiveEffects()` · `cgv51GetMiracleHistory()` · `cgv51GetMiracleStats()` · `cgv51GetMiracleTypes()`
+- Prophecy: `cgv51CreateProphecy(typeId, subject, text)` · `cgv51AutoGenerateProphecy()` · `cgv51FulfillProphecy(id)` · `cgv51GetActiveProphecies()` · `cgv51GetFulfilledProphecies()` · `cgv51GetProphecyStats()` · `cgv51GetProphecyTypes()`
+- Global Events: `cgv51TriggerGlobalEvent(typeId)` · `cgv51GetActiveGlobalEvents()` · `cgv51GetEventHistory()` · `cgv51GetGlobalEventStats()` · `cgv51GetGlobalEventTypes()`
+- Audit: `cgv51GetAuditSystems()` · `cgv51GetAuditStats()` · `cgv51GetSaveReport()` · `cgv51GetJarvisReport()`
+- Dashboard Quick: `v51QuickMiracle(typeId)` · `v51QuickEvent(typeId)` · `v51QuickProphecy()`
+
+**UI:** 6 tabs trong creator-hub-v32 · 6 panel divs (panel-god-mode/divine-will/miracles/prophecies/world-events/god-audit-v51)
+
+---
+
+### 🏛️ Chính Trị AI V49 (4 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `governmentSystemV49.js` | 8 chế độ · Leaders 6 stats · 8 personality traits · Succession · Gov Transitions | `cgv6_government_v49` | 5400ms |

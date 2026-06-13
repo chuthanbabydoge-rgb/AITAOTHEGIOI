@@ -2,8 +2,59 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V49 — Hệ Thống Chính Trị AI** ✅
-> **Phiên bản tiếp theo đề xuất: V50 — Kỷ Nguyên Người Chơi**
+> **Phiên bản hiện tại: V51 — Creator God Online** ✅
+> **Phiên bản tiếp theo đề xuất: V52 — Player Economy & Marketplace**
+
+---
+
+## ✅ V51 — Creator God Online *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `creatorAuthorityEngineV51.js` — 5 Sắc Lệnh Thiên Ý · 5 Ban Phước · 4 Trừng Phạt · Thiên Năng · SAVE: cgv6_creator_authority_v51
+- `miracleSystemV51.js` — 8 Phép Màu · Cooldown · Effect persistence · SAVE: cgv6_miracle_v51
+- `prophecySystemV51.js` — 4 loại Tiên Tri · Auto-fulfill · SAVE: cgv6_prophecy_v51
+- `globalEventControlV51.js` — 7 Sự Kiện Toàn Cầu · Duration tracking · SAVE: cgv6_global_event_v51
+- `godAuditPanelV51.js` — 58 hệ thống audit · Save Inspector · Jarvis God Mode · Passive
+- `creatorDashboardV51.js` — Patches creator-hub-v32 · 6 tabs God Mode/Thiên Ý/Thần Tích/Thiên Khải/Sự Kiện TG/Audit · Passive
+
+### index.html
+- 6 panel divs (panel-god-mode/divine-will/miracles/prophecies/world-events/god-audit-v51) · 6 script tags
+
+---
+
+## 🏆 V52 — Player Economy & Marketplace *(Đề Xuất Tiếp Theo)*
+
+### Mục Tiêu
+Xây dựng nền kinh tế người chơi với marketplace trao đổi, crafting system và currency thứ cấp, tích hợp sâu với professionSystemV50 và playerCoreV50.
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Player Economy Core | `playerEconomyCoreV52.js` | Tài sản · Thu nhập thụ động theo nghề · Thuế · Thị trường giá cả biến động |
+| Marketplace Engine | `playerMarketplaceV52.js` | Buy/Sell items · Auction system · Player-to-Player trade · Price history |
+| Crafting System | `craftingSystemV52.js` — | 5 nghề thủ công · Recipe system · Material gathering · Legendary items |
+| Economy Registry | `economyRegistryV52.js` | Hub widget: Economy/Marketplace/Crafting/Portfolio/Leaderboard |
+
+### Save Keys
+- `cgv6_player_economy_v52` · `cgv6_marketplace_v52` · `cgv6_crafting_v52`
+
+### Tích Hợp
+- Extends `professionSystemV50.js` (nghề → passive income)
+- Extends `playerCoreV50.js` (career paths → economy bonuses)
+- Reads `worldMarketplace.js` (world economy state)
+- Reads `ecoResourceEngine.js` (resource scarcity)
+
+---
+
+## ✅ V50 — Kỷ Nguyên Người Chơi *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `playerCoreV50.js` — 10 Career Paths · Affiliation System · World Impact · Multiverse Rep · SAVE: cgv6_player_core_v50
+- `professionSystemV50.js` — 7 Nghề · Skill Trees · Actions · SAVE: cgv6_profession_v50
+- `playerAchievementV50.js` — 40 thành tựu · 7 danh mục · SAVE: cgv6_achievement_v50
+- `playerRegistryV50.js` — Hub widget 7 panels · Passive
+
+### index.html
+- 7 panel divs · 4 script tags · V50 section
 
 ---
 
