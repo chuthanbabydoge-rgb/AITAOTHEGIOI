@@ -2,8 +2,56 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V54 — Marketplace Expansion & Trading Network** ✅
-> **Phiên bản tiếp theo đề xuất: V55 — Persistent Universe**
+> **Phiên bản hiện tại: V59 — Global Events Online** ✅
+> **Phiên bản tiếp theo đề xuất: V60 — Living Universe**
+
+---
+
+## ✅ V59 — Global Events Online *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới (8 files)
+- `globalEventSchedulerV59.js` — 10 loại sự kiện auto-scheduled · Priority queue · Cooldowns · SAVE: cgv6_event_scheduler_v59 · init: 10700ms
+- `eventImpactSystemV59.js` — 8 loại tác động thực · Countries/Politics/Economy/Religion · SAVE: cgv6_event_impact_v59 · init: 10800ms
+- `multiverseEventSystemV59.js` — 7 sự kiện ĐVT · Rarity tiers · SAVE: cgv6_mv_event_v59 · init: 10900ms
+- `communityEventSystemV59.js` — 4 mùa · 5 AI · 5 Creator events · SAVE: cgv6_community_event_v59 · init: 11000ms
+- `worldBossSystemV59.js` — 5 mega-boss · AI Alliance · SAVE: cgv6_world_boss_v59 · init: 11100ms
+- `eventRewardEngineV59.js` — 10 danh hiệu · CP/Fame · Rankings · SAVE: cgv6_event_rewards_v59 · init: 11200ms
+- `eventArchiveSystemV59.js` — Archive events + boss kills · Jarvis report · SAVE: cgv6_event_archive_v59 · init: 11300ms
+- `eventRegistryV59.js` — 7 tabs trong mvHub+playerHub+creatorHub · Passive · init: 11400ms
+
+### index.html
+- 8 script tags sau V58 (KHÔNG thêm panel divs — dùng hubs hiện có)
+
+### Save Keys
+- cgv6_event_scheduler_v59 · cgv6_event_impact_v59 · cgv6_mv_event_v59 · cgv6_community_event_v59 · cgv6_world_boss_v59 · cgv6_event_rewards_v59 · cgv6_event_archive_v59
+
+---
+
+## 🏆 V60 — Living Universe *(Đề Xuất Tiếp Theo)*
+
+### Mục Tiêu
+Xây dựng hệ thống "Vũ Trụ Sống Động" — nơi mọi thực thể, vũ trụ, và văn minh có AI consciousness riêng, tự tiến hóa độc lập và phản ứng với sự kiện V59.
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Universe Consciousness | `universeConsciousnessV60.js` | Mỗi vũ trụ có "ý thức" riêng · Phản ứng với event V59 · Cá tính vũ trụ |
+| Living NPC Network | `livingNPCNetworkV60.js` | NPC tự hình thành mạng lưới xã hội · Gossip · Rumors · Alliance |
+| Dynamic Story Generator | `dynamicStoryV60.js` | AI tự tạo storyline từ events V59 · Major/Minor arcs · Epic tales |
+| Universe Evolution Engine | `universeEvolutionV60.js` | Vũ trụ tiến hóa dựa theo event history · Era transitions · Universe aging |
+| Living Universe Registry | `livingUniverseRegistryV60.js` | UI trong multiverse-hub-v35 · 6 tabs (Consciousness/Network/Stories/Evolution/Timeline/Jarvis) |
+
+### Save Keys dự kiến
+- cgv6_universe_consciousness_v60 · cgv6_living_npc_v60 · cgv6_dynamic_story_v60 · cgv6_universe_evo_v60
+
+### Tích Hợp
+- Reads `eventSchedulerV59Data` (V59 events → consciousness reactions)
+- Reads `eventArchiveV59Data` (event history → story generation)
+- Reads `worldBossV59Data` (boss kills → legendary stories)
+- Reads `civHistoryInfluenceV58Data` (civ history → universe character)
+- UI: 6 tabs mới trong multiverse-hub-v35
+
+### Init Timing
+- init từ 11500ms (tiếp nối V59 = 11400ms)
 
 ---
 

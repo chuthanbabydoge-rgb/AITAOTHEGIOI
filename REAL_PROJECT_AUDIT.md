@@ -1,28 +1,47 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V54 — Marketplace Expansion & Trading Network)
+> Ngày audit: 2026-06-13 (cập nhật sau V59 — Global Events Online)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V56 | V57 (Mới) |
+| Chỉ Số | V58 | V59 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 239 | **246** |
-| **Tổng file được load trong index.html** | 238 | **245** |
+| **Tổng file .js trên disk** | 251 | **259** |
+| **Tổng file được load trong index.html** | 250 | **258** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V57 dùng hub cũ) |
+| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V59 dùng hub cũ) |
 | **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 156+ | **162+** |
-| **Engine hook vào gameTick** | 111 | **113** |
-| **Phiên bản hiện tại** | V56 | **V57 — Creator Economy** |
+| **Tổng localStorage save keys (unique)** | 162+ | **169+** |
+| **Engine hook vào gameTick** | 113 | **117** |
+| **Phiên bản hiện tại** | V58 | **V59 — Global Events Online** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 💰 Creator Economy V57 ← NEWEST (7 files)
+### 🌍 Global Events Online V59 ← NEWEST (8 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `globalEventSchedulerV59.js` | 10 loại sự kiện · Auto-trigger · Cooldowns · Priority · ges59ManualFire/GetActive/GetStats() | `cgv6_event_scheduler_v59` | 10700ms |
+| `eventImpactSystemV59.js` | 8 tác động thực · countries/plagueData/V48/V49 · eis59GetLog/Stats/Map() | `cgv6_event_impact_v59` | 10800ms |
+| `multiverseEventSystemV59.js` | 7 sự kiện ĐVT · Rarity tiers · mves59GetActive/ManualFire() | `cgv6_mv_event_v59` | 10900ms |
+| `communityEventSystemV59.js` | 4 mùa · 5 AI · 5 Creator events · cev59TriggerCreatorEvent() | `cgv6_community_event_v59` | 11000ms |
+| `worldBossSystemV59.js` | 5 mega-boss · AI Alliance · wb59SpawnBoss/AttackBoss/GetActive() | `cgv6_world_boss_v59` | 11100ms |
+| `eventRewardEngineV59.js` | 10 danh hiệu · CP/Fame · Rankings · ere59GrantReward/GetTitles/GetRankings() | `cgv6_event_rewards_v59` | 11200ms |
+| `eventArchiveSystemV59.js` | Archive events + boss kills · Jarvis · eas59GetArchive/BossKills/JarvisReport() | `cgv6_event_archive_v59` | 11300ms |
+| `eventRegistryV59.js` | Patches mvHub+playerHub+creatorHub · 7 tabs · evReg59ShowTab() | — | 11400ms |
+
+**Global Objects:** `window.eventSchedulerV59Data` · `window.eventImpactV59Data` · `window.mvEventV59Data` · `window.communityEventV59Data` · `window.worldBossV59Data` · `window.eventRewardV59Data` · `window.eventArchiveV59Data`
+**Không trùng với:** `globalEventControlV51.js` (Creator manual) · `worldBossEngineV31.js` (V31 single) · `eventGenerator.js` (text-only) · `multiverseWarSystemV39.js` (NPC wars)
+**UI:** 7 tabs nội bộ trong multiverse-hub-v35 + widget player-hub-v28 + Jarvis creator-hub-v32
+**GameTick hooks:** globalEventSchedulerV59Tick · multiverseEventSystemV59Tick · communityEventSystemV59Tick · worldBossSystemV59Tick (4 hooks mới)
+
+---
+
+### 💰 Creator Economy V57 (7 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `creatorEconomyEngine.js` | 12 loại nội dung · CP system · Passive income · Auto-detect V40 creations · ce57RecordCreation/SpendCP/GetStats() | `cgv6_creator_economy_v57` | 9500ms |

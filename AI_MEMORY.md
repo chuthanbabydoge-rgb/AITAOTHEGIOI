@@ -24,13 +24,26 @@
 
 ## 🔢 CURRENT VERSION
 
-**V58 — Player Civilization** (2026-06-13)
+**V59 — Global Events Online** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (141+ systems)
+## ✅ COMPLETED SYSTEMS (184+ systems)
 
-### Player Civilization V58 (5 systems) ← NEWEST
+### Global Events Online V59 (8 systems) ← NEWEST
+- `globalEventSchedulerV59.js` — 10 loại sự kiện · Auto-trigger (chance/tick) · Priority queue · Cooldown tracking · ges59ManualFire(defId) · ges59GetActive() · ges59GetCompleted() · ges59IsActive(defId) · ges59OnEventFire(ev) callback · SAVE: cgv6_event_scheduler_v59 · init: 10700ms
+- `eventImpactSystemV59.js` — 8 loại tác động thực · Maps event defId → applyFn · Kết nối countries[].stability/economy/population · Hook vào plagueData · criV49Trigger · gdV48TriggerGlobal · mvdV48Trigger · eis59GetLog() · eis59GetStats() · eis59GetMap() · SAVE: cgv6_event_impact_v59 · init: 10800ms
+- `multiverseEventSystemV59.js` — 7 loại sự kiện ĐVT (universe_collision/conference/time_crisis/void_storm/creator_tournament/mv_plague/dimensional_ascension) · Rarity tiers (rare/epic/legendary) · mves59GetActive() · mves59ManualFire(defId) · mvevt59OnFire(ev) callback · SAVE: cgv6_mv_event_v59 · init: 10900ms
+- `communityEventSystemV59.js` — 4 mùa (spring/summer/autumn/winter) auto-trigger · 5 AI event templates · 5 Creator event types · cev59TriggerCreatorEvent(typeId) · cev59GetCurrentSeason() · cev59GetSeasonalDefs() · cev59GetCreatorTypes() · SAVE: cgv6_community_event_v59 · init: 11000ms
+- `worldBossSystemV59.js` — 5 mega-boss (apocalypse_dragon/void_overlord/chaos_titan/death_emperor/plague_mother) · Tiers: epic/divine/legendary/multiverse · AI Alliance formation · wb59SpawnBoss(templateId) · wb59AttackBoss(uid,dmg) · wb59GetActive() · wb59GetDefeated() · SAVE: cgv6_world_boss_v59 · init: 11100ms
+- `eventRewardEngineV59.js` — 10 danh hiệu · Rarity (common→legendary) · ere59GrantReward(source,id,{cp,fame,title}) · ere59GetTitles() · ere59GetRankings() · ere59GetPlayerStats() · Patches ges59OnEventEnd · SAVE: cgv6_event_rewards_v59 · init: 11200ms
+- `eventArchiveSystemV59.js` — Archive toàn bộ events · Boss kill records · Category stats · eas59GetArchive(cat?) · eas59GetBossKills() · eas59GetJarvisReport() · eas59GetBiggest() · SAVE: cgv6_event_archive_v59 · init: 11300ms
+- `eventRegistryV59.js` — Patches mvHubRenderPanel() + hubRenderPanel('player-hub-v28') + hubRenderPanel('creator-hub-v32') · 7 tabs nội bộ · evReg59ShowTab(tabId) · evReg59HubRenderPanel() · Passive · init: 11400ms
+- **Không trùng với:** globalEventControlV51.js (Creator-triggered thủ công) · worldBossEngineV31.js (single boss V31) · eventGenerator.js V41 (text-only, no impact) · multiverseWarSystemV39.js (NPC wars)
+- **UI**: 7 tabs inject vào multiverse-hub-v35 (📅 Toàn Cầu · 🌌 ĐVT · 👹 Boss · 📚 Lịch Sử · 🏆 Phần Thưởng · 📊 BXH · 🎊 Cộng Đồng) · Widget nhỏ trong player-hub-v28 · Jarvis panel trong creator-hub-v32
+- **Save keys**: cgv6_event_scheduler_v59 · cgv6_event_impact_v59 · cgv6_mv_event_v59 · cgv6_community_event_v59 · cgv6_world_boss_v59 · cgv6_event_rewards_v59 · cgv6_event_archive_v59
+
+### Player Civilization V58 (5 systems)
 - `playerCivCoreV58.js` — 8 chủng tộc (Human/Elf/Dwarf/Dragonian/Celestial/Demon/Undead/Hybrid) · 8 văn hóa · Prestige (0-100) · Population tracking · AI Relations system (4 loại: trade/alliance/culture/war) · Founding story · pc58FoundCivilization(name,symbol,motto,raceId,cultureId) · pc58InteractWithAI(entity,type) · pc58GetJarvisAnalysis() · pc58SetFoundingStory() · pc58GetStats() · pc58GetRaces() · pc58GetCultures() · pc58GetRaceName() · pc58GetCultureName() · pc58GetInteractTypes() · SAVE: cgv6_player_civ_core_v58 · init: 10200ms
 - `civCultureLanguageV58.js` — 8 giá trị xã hội (Honor/Wisdom/Trade/War/Peace/Art/Nature/Magic) · Custom traditions (cc58AddCustom) · Festivals 6 mùa (cc58AddFestival — bonus effects) · Triết học (cc58SetPhilosophy) · Phong cách nghệ thuật (cc58SetArtStyle) · Ngôn ngữ riêng (cc58SetLanguage + alphabet) · Greetings pool · Danh xưng (cc58SetTitle) · cc58GetStats() · SAVE: cgv6_civ_culture_lang_v58 · init: 10300ms
 - `civLawIdeologyV58.js` — 6 hệ tư tưởng (monarchy/democracy/theocracy/meritocracy/militarist/custom) · cl58SetIdeology(id, customName?, customDesc?) → updates bonuses · cl58EnactLaw(name,cat,desc,effect) · cl58RepealLaw(lawId) · cl58AddRight(name,desc) · cl58SetPunishment(crime,punishment) · 6 law categories (war/civil/economic/religious/social/criminal) · Default rights list · cl58GetDefaultRights() · cl58GetCategories() · cl58GetIdeologies() · cl58GetCurrentIdeology() · cl58GetStats() · SAVE: cgv6_civ_law_ideology_v58 · init: 10400ms

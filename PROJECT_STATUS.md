@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V58 — Player Civilization |
+| **Current Version** | V59 — Global Events Online |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 251 |
-| **Total Systems** | 176+ |
+| **Total JS Files** | 259 |
+| **Total Systems** | 184+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,20 @@
 
 ## ✅ Completed Systems
 
-### Player Civilization V58 ← NEWEST
+### Global Events Online V59 ← NEWEST
+- `globalEventSchedulerV59.js` — 10 sự kiện toàn cầu · Auto-trigger · Cooldowns · ges59ManualFire() · ges59GetActive() · SAVE: cgv6_event_scheduler_v59 · init: 10700ms
+- `eventImpactSystemV59.js` — 8 loại tác động thực · Countries/Politics/Economy/Religion · eis59GetLog() · SAVE: cgv6_event_impact_v59 · init: 10800ms
+- `multiverseEventSystemV59.js` — 7 loại sự kiện ĐVT · Rarity tiers · mves59ManualFire() · SAVE: cgv6_mv_event_v59 · init: 10900ms
+- `communityEventSystemV59.js` — 4 mùa · 5 AI events · 5 Creator events · cev59TriggerCreatorEvent() · SAVE: cgv6_community_event_v59 · init: 11000ms
+- `worldBossSystemV59.js` — 5 mega-boss tier đa vũ trụ · AI Alliance · wb59SpawnBoss() · wb59AttackBoss() · SAVE: cgv6_world_boss_v59 · init: 11100ms
+- `eventRewardEngineV59.js` — 10 danh hiệu · CP/Fame · Rankings · ere59GrantReward() · SAVE: cgv6_event_rewards_v59 · init: 11200ms
+- `eventArchiveSystemV59.js` — Lưu toàn bộ events · Boss kills · Jarvis report · eas59GetArchive() · SAVE: cgv6_event_archive_v59 · init: 11300ms
+- `eventRegistryV59.js` — Patches mvHub+playerHub+creatorHub · 7 tabs nội bộ · evReg59ShowTab() · Passive · init: 11400ms
+- **Không trùng với:** globalEventControlV51 (Creator manual) · worldBossEngineV31 (V31 boss) · eventGenerator.js (text-only)
+- **UI**: 7 tabs trong multiverse-hub-v35 + widget player-hub-v28 + Jarvis creator-hub-v32
+- **Save keys**: cgv6_event_scheduler_v59 · cgv6_event_impact_v59 · cgv6_mv_event_v59 · cgv6_community_event_v59 · cgv6_world_boss_v59 · cgv6_event_rewards_v59 · cgv6_event_archive_v59
+
+### Player Civilization V58
 - `playerCivCoreV58.js` — 8 chủng tộc · 8 văn hóa · pc58FoundCivilization() · pc58InteractWithAI() · pc58GetJarvisAnalysis() · Prestige/Population tracking · AI Relations · SAVE: cgv6_player_civ_core_v58 · init: 10200ms
 - `civCultureLanguageV58.js` — 8 giá trị xã hội · cc58AddCustom() · cc58AddFestival() · cc58SetLanguage() · cc58SetTitle() · cc58SetPhilosophy() · cc58SetArtStyle() · Greetings system · SAVE: cgv6_civ_culture_lang_v58 · init: 10300ms
 - `civLawIdeologyV58.js` — 6 hệ tư tưởng (Quân Chủ/Dân Chủ/Thần Quyền/Học Viện/Chinh Phạt/Custom) · cl58SetIdeology() · cl58EnactLaw() · cl58RepealLaw() · cl58AddRight() · cl58SetPunishment() · 6 law categories · Rights system · SAVE: cgv6_civ_law_ideology_v58 · init: 10400ms

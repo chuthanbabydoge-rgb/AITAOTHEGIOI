@@ -4,6 +4,58 @@
 
 ---
 
+## [V59] — 2026-06-13 — Global Events Online
+
+### New Systems Added (8 files)
+- `globalEventSchedulerV59.js` — Lịch Sự Kiện: 10 loại auto-scheduled (world_war/world_boss_appear/great_plague/golden_era/dark_era/great_disaster/great_discovery/divine_awakening/multiverse_rift/era_festival) · Cooldown per event · Priority system · ges59ManualFire/GetActive/GetCompleted/IsActive/GetStats() · SAVE: cgv6_event_scheduler_v59 · init: 10700ms
+- `eventImpactSystemV59.js` — Tác Động Thực: 8 applyFn maps (world_war→stability-20/economy-15 · plague→pop*0.88 · golden_era→economy+15/culture+20 · dark_era→stability-25 · great_disaster→pop*0.92 + V48 trigger · discovery→tech+15 · divine_awakening→divineInfluence+20 · multiverse_rift→V48 trigger) · eis59GetLog/Stats/Map() · SAVE: cgv6_event_impact_v59 · init: 10800ms
+- `multiverseEventSystemV59.js` — Sự Kiện ĐVT: 7 loại (universe_collision/interdimensional_conference/time_crisis/void_storm/creator_tournament/multiverse_plague/dimensional_ascension) · Rarity tiers · mvevt59OnFire callback · mves59GetActive/Completed/Types/Stats/ManualFire() · SAVE: cgv6_mv_event_v59 · init: 10900ms
+- `communityEventSystemV59.js` — Cộng Đồng: 4 seasonal events auto-rotate · 5 AI event templates (rebellion/discovery/war/alliance/oracle) · 5 Creator event types (festival/war/golden/purge/summon) · cev59TriggerCreatorEvent/GetCurrentSeason/GetSeasonalDefs/GetCreatorTypes/GetStats() · SAVE: cgv6_community_event_v59 · init: 11000ms
+- `worldBossSystemV59.js` — Boss ĐVT: 5 mega-boss (apocalypse_dragon/void_overlord/chaos_titan/death_emperor/plague_mother) · Tiers multiverse→common · AI Alliance tự động 5 quốc gia · HP reduction mỗi 10 tick · wb59SpawnBoss/AttackBoss/GetActive/GetDefeated/GetAlliances/GetTemplates/GetStats() · SAVE: cgv6_world_boss_v59 · init: 11100ms
+- `eventRewardEngineV59.js` — Phần Thưởng: 10 danh hiệu (common→legendary) · Rarity colors · CP/Fame trao trực tiếp · Kết nối pec52AddCurrency + playerAddFame · Rankings tích lũy · ere59GrantReward/GetTitles/GetTitlesPool/GetHistory/GetRankings/GetPlayerStats/ManualGrant() · SAVE: cgv6_event_rewards_v59 · init: 11200ms
+- `eventArchiveSystemV59.js` — Lưu Trữ: Archive tất cả events · Boss kill records · Category stats map · Biggest events list · Patches ges59OnEventEnd + mvevt59OnFire · eas59GetArchive(cat?)/GetBossKills/GetStats/GetBiggest/GetJarvisReport/ManualArchive() · SAVE: cgv6_event_archive_v59 · init: 11300ms
+- `eventRegistryV59.js` — UI Hub V59: Patches mvHubRenderPanel() (const _orig) + hubRenderPanel('player-hub-v28') + hubRenderPanel('creator-hub-v32') · 7 tabs (📅 Toàn Cầu/🌌 ĐVT/👹 Boss/📚 Lịch Sử/🏆 Phần Thưởng/📊 BXH/🎊 Cộng Đồng) · evReg59ShowTab(tabId) · Passive · init: 11400ms
+
+### index.html Changes (add only)
+- 8 script tags sau V58 scripts (KHÔNG thêm panel divs — inject vào hubs hiện có)
+
+### Global Objects
+- `window.eventSchedulerV59Data` — queue · active[] · completed[] · cooldowns{} · totalFired
+- `window.eventImpactV59Data` — impactLog[] · totalImpacts
+- `window.mvEventV59Data` — activeEvents[] · completedEvents[] · cooldowns{} · totalFired
+- `window.communityEventV59Data` — activeEvents[] · creatorEvents[] · aiEvents[] · currentSeason · totalCreatorEvents
+- `window.worldBossV59Data` — activeBosses[] · defeatedBosses[] · allianceGroups[] · totalSpawned · totalDefeated
+- `window.eventRewardV59Data` — earnedTitles[] · rewardHistory[] · playerCP · playerFame · rankings[]
+- `window.eventArchiveV59Data` — archive[] · bossKillRecords[] · categoryStats{} · biggestEvents[]
+
+### Save Keys
+- cgv6_event_scheduler_v59 · cgv6_event_impact_v59 · cgv6_mv_event_v59 · cgv6_community_event_v59 · cgv6_world_boss_v59 · cgv6_event_rewards_v59 · cgv6_event_archive_v59
+
+### UI Integration
+- 7 tabs nội bộ trong multiverse-hub-v35 (KHÔNG tạo sidebar tab mới)
+- Widget Phần Thưởng & BXH trong player-hub-v28
+- Jarvis Event Mode trong creator-hub-v32
+
+### Không Trùng Với
+- `globalEventControlV51.js` — Creator-triggered thủ công (V59 = auto-scheduled + community)
+- `worldBossEngineV31.js` — Single world boss V31 (V59 extends với multi-universe mega-boss)
+- `eventGenerator.js` V41 — Text-only, no real impact (V59 = real impact trực tiếp vào counties/diplomacy)
+- `multiverseWarSystemV39.js` — NPC inter-universe wars (V59 = player-facing events + rewards)
+- `multiverseDisasterV48.js` — Disaster chain V48 (V59 triggers V48 as downstream effect)
+
+### GameTick hooks (4 mới)
+- globalEventSchedulerV59Tick (mỗi 30 tick — auto-trigger check)
+- multiverseEventSystemV59Tick (mỗi 50 tick — MV event check)
+- communityEventSystemV59Tick (mỗi 25/80 tick — seasonal/AI events)
+- worldBossSystemV59Tick (mỗi 10/200 tick — boss HP + spawn)
+
+### Jarvis Integration
+- Jarvis Event Mode trong creator-hub-v32: Phân tích toàn bộ event activity
+- eas59GetJarvisReport() — tóm tắt tổng events, top categories, boss records
+- Archive auto-records mọi event với context + impact notes
+
+---
+
 ## [V57] — 2026-06-14 — Creator Economy
 
 ### New Systems Added (7 files)
