@@ -4,6 +4,38 @@
 
 ---
 
+## [V48] — 2026-06-13 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu
+
+### New Systems Added (4 files)
+- `globalDisasterCoreV48.js` — 2 loại thiên tai mới (☄️ Thiên Thạch, 🧊 Băng Hà) · Chain reaction system 9 loại · Global scale affects all countries · AI phản ứng 6 loại (mass_migration/emergency_alliance/defense_construct/emergency_state/plague_containment/divine_prayer) · Warning prediction system · Public API: `gdV48TriggerNewDisaster()` · `gdV48TriggerGlobal()` · `gdV48GetStats()` · `gdV48GetWarnings()` · `gdV48GetAIResponses()` · `gdV48GetChainQueue()` · gameTick mỗi 35 tick · SAVE: cgv6_global_disaster_v48 · init: 5000ms
+- `anomalyEngineV48.js` — 6 Dị Tượng Thần Bí: 🌀 Cổng Không Gian · ✨ Mưa Thần Lực · 👾 Dị Giới Xâm Nhập · ☀️ Thần Linh Thức Tỉnh · 🌑 Ma Giới Mở Cửa · ⌛ Biến Dạng Thời Gian · auto-expire theo duration · bonus effects per type · thống kê divine/demon/portal · Public API: `anomV48Trigger()` · `anomV48GetActive()` · `anomV48GetHistory()` · `anomV48GetStats()` · gameTick mỗi 45 tick · SAVE: cgv6_anomaly_v48 · init: 5100ms
+- `multiverseDisasterV48.js` — 4 Thảm Họa Đa Vũ Trụ: 💥 Sụp Đổ Vũ Trụ · 🌌 Va Chạm Vũ Trụ (tạo crossworld links) · ⏳ Nứt Dòng Thời Gian (trigger tlCreateBranch) · 🌪️ Bão Không-Thời Gian (trigger time_distortion anomaly) · kết nối mvData.universes · Public API: `mvdV48Trigger()` · `mvdV48GetActive()` · `mvdV48GetHistory()` · `mvdV48GetStats()` · gameTick mỗi 50 tick · SAVE: cgv6_mv_disaster_v48 · init: 5200ms
+- `disasterRegistryV48.js` — Hub widget `disasterV48HubRenderPanel()` trong mvHub · `disasterV48RenderPanel(tab)` với 6 tab: Thiên Tai · Đại Dịch · Dị Tượng · Khủng Hoảng · Cảnh Báo · Thống Kê · panel-disaster-v48 + 5 sub-panels · reads V25 data (disasterData/plagueData/econCrisisData) · Passive · init: 5300ms
+
+### index.html Changes (add only)
+- 6 panel divs thêm TRƯỚC V47 panels: panel-disaster-v48 · panel-plague-v48 · panel-anomaly-v48 · panel-crisis-v48 · panel-warnings-v48 · panel-disaster-stats-v48
+- 4 script tags V48 thêm trước V47 scripts
+- Section V48 trong mvHubRenderPanel: 🌋 Thiên Tai & Thảm Họa Toàn Cầu V48
+
+### Chain Reaction Map
+- EARTHQUAKE → TSUNAMI (45%) delay 1yr · EARTHQUAKE → VOLCANO (30%) delay 2yr
+- VOLCANO → DROUGHT (55%) delay 5yr · VOLCANO → FLOOD (35%) delay 3yr
+- FLOOD → PLAGUE (40%) delay 2yr · DROUGHT → RECESSION (35%) delay 3yr
+- METEORITE → EARTHQUAKE (70%) delay 0yr · METEORITE → ICE_AGE (50%) delay 10yr
+- ICE_AGE → RECESSION (30%) delay 5yr
+
+### Integrations
+- Extends disasterEngine.js V25 (không sửa) — triggers deTriggerDisaster(), reads disasterData
+- Extends plagueEngine.js V25 (không sửa) — triggers plTriggerPlague(), reads plagueData
+- Extends economicCrisisEngine.js V25 (không sửa) — triggers ecTriggerEvent(), reads econCrisisData
+- Extends multiverseDisasterV48.js → trigger anomV48Trigger() (time_distortion)
+- htAddEvent · wmeAddMemory · waeAddAlert · addLog notifications
+
+### Save Keys
+- `cgv6_global_disaster_v48` · `cgv6_anomaly_v48` · `cgv6_mv_disaster_v48`
+
+---
+
 ## [V47] — 2026-06-13 — Hệ Thống Anh Hùng & Huyền Thoại
 
 ### New Systems Added (3 files)

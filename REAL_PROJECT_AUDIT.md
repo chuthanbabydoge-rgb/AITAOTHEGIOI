@@ -1,28 +1,42 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V47 — Hệ Thống Anh Hùng & Huyền Thoại)
+> Ngày audit: 2026-06-13 (cập nhật sau V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V45 | V47 (Mới) |
+| Chỉ Số | V47 | V48 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 195 | **198** |
-| **Tổng file được load trong index.html** | 194 | **197** |
+| **Tổng file .js trên disk** | 198 | **202** |
+| **Tổng file được load trong index.html** | 197 | **201** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 186 | **192** |
+| **Tổng panel divs trong HTML** | 192 | **198** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 122+ | **124+** |
-| **Engine hook vào gameTick** | 82 | **84** |
-| **Phiên bản hiện tại** | V45 | **V47 — Hệ Thống Anh Hùng & Huyền Thoại** |
+| **Tổng localStorage save keys (unique)** | 124+ | **127+** |
+| **Engine hook vào gameTick** | 84 | **87** |
+| **Phiên bản hiện tại** | V47 | **V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### ⚔️ Anh Hùng & Huyền Thoại V47 ← NEWEST (3 files)
+### 🌋 Thiên Tai & Thảm Họa Toàn Cầu V48 ← NEWEST (4 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `globalDisasterCoreV48.js` | Chain Reaction 9 loại · Thiên Thạch · Băng Hà · AI Response 6 loại · Warning System | `cgv6_global_disaster_v48` | 5000ms |
+| `anomalyEngineV48.js` | 6 Dị Tượng: Cổng KG · Mưa TL · Dị Giới · Thần Linh · Ma Giới · Biến Dạng TG | `cgv6_anomaly_v48` | 5100ms |
+| `multiverseDisasterV48.js` | 4 Thảm Họa Đa Vũ Trụ: Sụp Đổ · Va Chạm · Nứt TG · Bão KTG | `cgv6_mv_disaster_v48` | 5200ms |
+| `disasterRegistryV48.js` | Hub Widget · 6 Sub-Panels (Thiên Tai/Đại Dịch/Dị Tượng/Khủng Hoảng/Cảnh Báo/Thống Kê) | Passive | 5300ms |
+
+**Global Objects:** `window.globalDisasterV48Data` · `window.anomalyV48Data` · `window.mvDisasterV48Data`
+**Public API:** `gdV48TriggerNewDisaster(typeId, region, sev)` · `gdV48TriggerGlobal(typeId)` · `gdV48GetStats()` · `gdV48GetWarnings()` · `gdV48GetAIResponses()` · `gdV48GetChainQueue()` · `anomV48Trigger(typeId, region)` · `anomV48GetActive()` · `anomV48GetHistory()` · `anomV48GetStats()` · `mvdV48Trigger(typeId, univId, sev)` · `mvdV48GetActive()` · `mvdV48GetHistory()` · `mvdV48GetStats()` · `disasterV48HubRenderPanel()` · `disasterV48RenderPanel(tab)`
+**UI Panel:** `panel-disaster-v48` (main) + 5 sub-panels (panel-plague-v48, panel-anomaly-v48, panel-crisis-v48, panel-warnings-v48, panel-disaster-stats-v48)
+**Extends (KHÔNG sửa):** `disasterEngine.js` V25 · `plagueEngine.js` V25 · `economicCrisisEngine.js` V25 · `ecoDisasterEngine.js` V45
+**Chain Reactions:** EQ→TSUNAMI(45%) · EQ→VOLCANO(30%) · VOLCANO→DROUGHT(55%) · VOLCANO→FLOOD(35%) · FLOOD→PLAGUE(40%) · DROUGHT→RECESSION(35%) · METEORITE→EQ(70%) · METEORITE→ICE_AGE(50%) · ICE_AGE→RECESSION(30%)
+
+### ⚔️ Anh Hùng & Huyền Thoại V47 (3 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `legendEngineV47.js` | Sử Thi · Truyền Thuyết · Lời Tiên Tri · Biên Niên Sử | `cgv6_legend_v47` | 4400ms |

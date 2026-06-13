@@ -9,7 +9,7 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V47 — Hệ Thống Anh Hùng & Huyền Thoại |
+| **Current Version** | V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu |
 | **Build Date** | 2026-06-13 |
 | **Total JS Files** | 198 |
 | **Total Systems** | 123+ |
@@ -20,7 +20,13 @@
 
 ## ✅ Completed Systems
 
-### Hệ Thống Anh Hùng & Huyền Thoại V47 ← NEWEST
+### Thiên Tai & Thảm Họa Toàn Cầu V48 ← NEWEST
+- `globalDisasterCoreV48.js` — Chain reaction 9 loại · Thiên Thạch + Băng Hà mới · Global scale · AI phản ứng 6 loại · Warning system · SAVE: cgv6_global_disaster_v48
+- `anomalyEngineV48.js` — 6 Dị Tượng Thần Bí (Cổng Không Gian/Mưa Thần Lực/Dị Giới Xâm Nhập/Thần Linh/Ma Giới/Biến Dạng TG) · SAVE: cgv6_anomaly_v48
+- `multiverseDisasterV48.js` — 4 Thảm Họa Đa Vũ Trụ (Sụp Đổ/Va Chạm/Nứt TG/Bão KTG) · SAVE: cgv6_mv_disaster_v48
+- `disasterRegistryV48.js` — Hub widget · 6 sub-panels (Thiên Tai/Đại Dịch/Dị Tượng/Khủng Hoảng/Cảnh Báo/Thống Kê) · Passive
+
+### Hệ Thống Anh Hùng & Huyền Thoại V47
 - `legendEngineV47.js` — Sử thi · Truyền thuyết dân gian · Lời tiên tri · Biên niên sử · auto-generate từ heroLegendData · SAVE: cgv6_legend_v47
 - `fameSystemV47.js` — Danh tiếng 3 cấp (địa phương/thế giới/đa vũ trụ) · 6 hero archetype · 4 villain archetype · Legacy 6 loại · AI hero journey 7 giai đoạn · Kình địch · killNPC hook · SAVE: cgv6_fame_v47
 - `heroRegistryV47.js` — Hub widget heroV47HubRenderPanel() · 6 sub-panels (Anh Hùng, Sử Thi, Truyền Thuyết, Danh Tiếng, Di Sản, BXH) · panel-hero-v47 · Passive

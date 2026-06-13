@@ -24,13 +24,27 @@
 
 ## 🔢 CURRENT VERSION
 
-**V47 — Hệ Thống Anh Hùng & Huyền Thoại** (2026-06-13)
+**V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (112+ systems)
+## ✅ COMPLETED SYSTEMS (116+ systems)
 
-### Hệ Sinh Thái Thế Giới V45 (5 systems) ← NEWEST
+### Thiên Tai & Thảm Họa Toàn Cầu V48 (4 systems) ← NEWEST
+- `globalDisasterCoreV48.js` — Chain reaction (9 loại: EQ→Tsunami, Volcano→Drought, Flood→Plague, Meteorite→IceAge...) · 2 disaster types mới (☄️ Thiên Thạch, 🧊 Băng Hà) · Global scale affect all countries · AI phản ứng 6 loại (di cư/liên minh/xây công trình/khẩn cấp/chống dịch/cầu nguyện) · Warning system · `gdV48TriggerNewDisaster()` · `gdV48TriggerGlobal()` · `gdV48GetStats()` · SAVE: cgv6_global_disaster_v48 · init: 5000ms
+- `anomalyEngineV48.js` — 6 Dị Tượng Thần Bí: 🌀 Cổng Không Gian · ✨ Mưa Thần Lực · 👾 Dị Giới Xâm Nhập · ☀️ Thần Linh Thức Tỉnh · 🌑 Ma Giới Mở Cửa · ⌛ Biến Dạng Thời Gian · auto-expire · `anomV48Trigger()` · `anomV48GetActive()` · SAVE: cgv6_anomaly_v48 · init: 5100ms
+- `multiverseDisasterV48.js` — 4 Thảm Họa Đa Vũ Trụ: 💥 Sụp Đổ Vũ Trụ · 🌌 Va Chạm Vũ Trụ · ⏳ Nứt Dòng Thời Gian · 🌪️ Bão Không-Thời Gian · timeline branch trigger · crossworld links · `mvdV48Trigger()` · `mvdV48GetActive()` · SAVE: cgv6_mv_disaster_v48 · init: 5200ms
+- `disasterRegistryV48.js` — Hub widget disasterV48HubRenderPanel() · disasterV48RenderPanel(tab) 6 panels (Thiên Tai/Đại Dịch/Dị Tượng/Khủng Hoảng/Cảnh Báo/Thống Kê) · panel-disaster-v48 · Passive · init: 5300ms
+- **Không trùng với:** disasterEngine.js V25 (V48 extends, adds chain+new types) · plagueEngine.js V25 (V48 reads plagueData) · economicCrisisEngine.js V25 (V48 reads econCrisisData) · ecoDisasterEngine.js V45 (khác scope)
+- **UI**: Section mới trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) · panel-disaster-v48 · 5 sub-panels
+- **Chain Reactions:** EQ→Tsunami(45%) · EQ→Volcano(30%) · Volcano→Drought(55%) · Volcano→Flood(35%) · Flood→Plague(40%) · Drought→Recession(35%) · Meteorite→EQ(70%) · Meteorite→IceAge(50%) · IceAge→Recession(30%)
+
+### Hệ Thống Anh Hùng & Huyền Thoại V47 (3 systems)
+- `legendEngineV47.js` — SAVE: cgv6_legend_v47 · init: 4400ms
+- `fameSystemV47.js` — SAVE: cgv6_fame_v47 · init: 4500ms
+- `heroRegistryV47.js` — Passive · init: 4600ms
+
+### Hệ Sinh Thái Thế Giới V45 (5 systems)
 - `ecoClimateEngine.js` — 8 khí hậu (Nhiệt Đới/Ôn Đới/Sa Mạc/Băng Giá/Núi Cao/Thần Giới/Ma Giới/Tùy Chỉnh) · 4 mùa · `ecoSetClimate()` · `ecoGetCurrentSeason()` · `ecoGetEffects()` (pop/agri/econ/war bonus) · V43 age sync · SAVE: cgv6_eco_climate_v45
 - `ecoResourceEngine.js` — 5 tài nguyên (Khoáng/Gỗ/Thực Phẩm/Năng Lượng/Thần Giới) · `ecoExtractResource()` · `ecoAddTradeRoute()` · `ecoGetResourceStats()` · regen theo climate×season×age · SAVE: cgv6_eco_resource_v45
 - `ecoCreatureEngine.js` — 20 sinh vật archetypes · chuỗi thức ăn · `ecoHuntCreature()` · `ecoGetCreaturesByClimate()` · `ecoGetCreaturesByEra()` · extinction risk · sync V44 race+V43 age · SAVE: cgv6_eco_creature_v45

@@ -2756,6 +2756,13 @@ onclick="showPanel('dashboard')">
       <div id="panel-creator-lore-v41" class="panel"></div>
       <div id="panel-creator-event-v41" class="panel"></div>
       <div id="panel-creator-reports-v41" class="panel"></div>
+      <!-- V48 — Thiên Tai & Thảm Họa Toàn Cầu -->
+      <div id="panel-disaster-v48" class="panel"></div>
+      <div id="panel-plague-v48" class="panel"></div>
+      <div id="panel-anomaly-v48" class="panel"></div>
+      <div id="panel-crisis-v48" class="panel"></div>
+      <div id="panel-warnings-v48" class="panel"></div>
+      <div id="panel-disaster-stats-v48" class="panel"></div>
       <!-- V47 — Anh Hùng & Huyền Thoại -->
       <div id="panel-hero-v47" class="panel"></div>
       <div id="panel-epics-v47" class="panel"></div>
@@ -3134,6 +3141,11 @@ window.addEventListener("load", function() {
 <script src="loreGenerator.js"></script>
 <script src="eventGenerator.js"></script>
 <script src="creatorReports.js"></script>
+<!-- V48 — Thiên Tai & Thảm Họa Toàn Cầu -->
+<script src="globalDisasterCoreV48.js"></script>
+<script src="anomalyEngineV48.js"></script>
+<script src="multiverseDisasterV48.js"></script>
+<script src="disasterRegistryV48.js"></script>
 <!-- V47 — Anh Hùng & Huyền Thoại -->
 <script src="legendEngineV47.js"></script>
 <script src="fameSystemV47.js"></script>
@@ -3375,6 +3387,16 @@ window.mvHubRenderPanel = function() {
     +'</div>'
     +'</div>'
     +(typeof window.heroV47HubRenderPanel === "function" ? window.heroV47HubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống anh hùng...</div>')
+    +'</div>'
+
+    +'<div style="background:linear-gradient(135deg,#1a0505,#0f172a);border:1px solid #dc262644;border-radius:12px;padding:16px;margin-bottom:16px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#dc2626;font-family:Cinzel,serif">🌋 Thiên Tai & Thảm Họa Toàn Cầu V48</h3>'
+    +'<div style="font-size:11px;color:#475569">Chain Reaction · Dị Tượng · Đa Vũ Trụ · Băng Hà · Thiên Thạch</div>'
+    +'</div>'
+    +'</div>'
+    +(typeof window.disasterV48HubRenderPanel === "function" ? window.disasterV48HubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống thiên tai...</div>')
     +'</div>'
 
     +'</div>';

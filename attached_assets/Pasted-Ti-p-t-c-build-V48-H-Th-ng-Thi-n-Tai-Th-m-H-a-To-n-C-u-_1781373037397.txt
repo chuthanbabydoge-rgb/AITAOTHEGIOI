@@ -1,0 +1,266 @@
+Tiếp tục build V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V48 - HỆ THỐNG THIÊN TAI & THẢM HỌA TOÀN CẦU
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép thế giới tự sinh ra:
+
+- Thiên tai
+- Đại dịch
+- Dị tượng thần bí
+- Khủng hoảng kinh tế
+- Sự kiện tận thế
+
+Mỗi thảm họa có thể thay đổi:
+
+- Dân số
+- Kinh tế
+- Chiến tranh
+- Tôn giáo
+- Công nghệ
+- Kỷ nguyên
+
+==================================================
+DISASTER CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- disasterEngine.js
+- catastropheSystem.js
+- disasterRegistry.js
+
+==================================================
+THIÊN TAI TỰ NHIÊN
+==================================================
+
+Hỗ trợ:
+
+- Động đất
+- Núi lửa
+- Sóng thần
+- Siêu bão
+- Hạn hán
+- Băng hà
+- Thiên thạch
+
+==================================================
+ĐẠI DỊCH
+==================================================
+
+Tạo:
+
+- plagueSystem.js
+
+Cho phép:
+
+- Dịch bệnh địa phương
+- Dịch bệnh toàn cầu
+- Dịch bệnh đa vũ trụ
+
+Các yếu tố:
+
+- Lây lan
+- Tử vong
+- Miễn dịch
+- Đột biến
+
+==================================================
+DỊ TƯỢNG THẦN BÍ
+==================================================
+
+Tạo:
+
+- anomalyEngine.js
+
+Ví dụ:
+
+- Cổng không gian
+- Mưa thần lực
+- Dị giới xâm nhập
+- Thần linh thức tỉnh
+- Ma giới mở cửa
+
+==================================================
+THẢM HỌA ĐA VŨ TRỤ
+==================================================
+
+Tạo:
+
+- multiverseDisasterSystem.js
+
+Ví dụ:
+
+- Sụp đổ vũ trụ
+- Va chạm vũ trụ
+- Nứt dòng thời gian
+- Bão không-thời gian
+
+==================================================
+KHỦNG HOẢNG KINH TẾ
+==================================================
+
+Tạo:
+
+- economicCrashSystem.js
+
+Cho phép:
+
+- Lạm phát
+- Sụp đổ thị trường
+- Thiếu tài nguyên
+- Khủng hoảng thương mại
+
+==================================================
+TÁC ĐỘNG TỚI HỆ THỐNG KHÁC
+==================================================
+
+Tích hợp với:
+
+- World Age System
+- Civilization System
+- Religion System
+- Ecosystem System
+- Hero System
+- Multiverse System
+- Timeline System
+- Jarvis System
+
+==================================================
+PHẢN ỨNG AI
+==================================================
+
+AI có thể:
+
+- Di cư dân số
+- Chống dịch
+- Xây công trình phòng thủ
+- Thành lập liên minh cứu trợ
+- Tuyên bố tình trạng khẩn cấp
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Thiên tai lớn
+- Đại dịch mới
+- Dị tượng xuất hiện
+- Vũ trụ sụp đổ
+- Kỷ nguyên khủng hoảng
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Thiên Tai
+- Đại Dịch
+- Dị Tượng
+- Khủng Hoảng
+- Cảnh Báo
+- Thống Kê
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Lịch sử thiên tai
+- Đại dịch
+- Dị tượng
+- Khủng hoảng
+- Thiệt hại
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V48
+
+Recommended Next Version = V49 Hệ Thống Chính Trị AI
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
