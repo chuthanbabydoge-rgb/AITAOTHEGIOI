@@ -1638,18 +1638,7 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-naval-ocean" onclick="showPanel('naval-ocean');if(typeof oeRenderPanel==='function')oeRenderPanel();" data-panel="naval-ocean">
         <span class="nav-icon">🌊</span><span>Đại Dương</span>
       </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-naval-v27" onclick="showPanel('naval-v27');if(typeof nvRenderPanel==='function')nvRenderPanel();if(typeof feRenderFleets==='function')feRenderFleets('panel-naval-v27');" data-panel="naval-v27">
-        <span class="nav-icon">🚢</span><span>Hải Quân</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-pirates" onclick="showPanel('pirates');if(typeof piRenderPanel==='function')piRenderPanel();" data-panel="pirates">
-        <span class="nav-icon">🏴</span><span>Cướp Biển</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-ocean-v27" onclick="showPanel('ocean-v27');if(typeof otRenderPanel==='function')otRenderPanel();" data-panel="ocean-v27">
-        <span class="nav-icon">🌊</span><span>Thương Mại Biển</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-colonies" onclick="showPanel('colonies');if(typeof coRenderPanel==='function')coRenderPanel();" data-panel="colonies">
-        <span class="nav-icon">🏝</span><span>Thuộc Địa</span>
-      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-ocean-hub-v27" onclick="showPanel('ocean-hub-v27');if(typeof hubRenderPanel==='function')hubRenderPanel('ocean-hub-v27');" data-panel="ocean-hub-v27">🚢 Hải Dương V27</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-bloodlines" onclick="showPanel('bloodlines');if(typeof blRenderPanel==='function')blRenderPanel();" data-panel="bloodlines">
         <span class="nav-icon">🧬</span><span>Bloodlines</span>
       </button>
@@ -1678,70 +1667,26 @@ onclick="showPanel('dashboard')">
         <span class="nav-icon">🎨</span><span>Văn Hóa</span>
       </button>
       <!-- ═══ V24 DIPLOMACY ENGINE TABS ═══ -->
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-diplomacy-v24" onclick="showPanel('diplomacy-v24');if(typeof window.de24RenderPanel==='function')window.de24RenderPanel();" data-panel="diplomacy-v24">
-        <span class="nav-icon">🤝</span><span>Ngoại Giao V24</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-treaties-v24" onclick="showPanel('treaties-v24');if(typeof window.teRenderPanel==='function')window.teRenderPanel();" data-panel="treaties-v24">
-        <span class="nav-icon">📜</span><span>Hiệp Ước</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-council" onclick="showPanel('world-council');if(typeof window.wcRenderPanel==='function')window.wcRenderPanel();" data-panel="world-council">
-        <span class="nav-icon">🏛</span><span>Hội Đồng</span>
-      </button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-intl-relations" onclick="showPanel('intl-relations');if(typeof window.irRenderPanel==='function')window.irRenderPanel();" data-panel="intl-relations">
-        <span class="nav-icon">🌍</span><span>Quan Hệ Quốc Tế</span>
-      </button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-diplomacy-hub-v24" onclick="showPanel('diplomacy-hub-v24');if(typeof hubRenderPanel==='function')hubRenderPanel('diplomacy-hub-v24');" data-panel="diplomacy-hub-v24">🤝 Ngoại Giao V24</button>
       <button class="nav-btn" id="btn-spirit-beast" onclick="showPanel('spirit-beast');if(typeof renderSpiritBeastPanel==='function')renderSpiritBeastPanel();" data-panel="spirit-beast">
         <span class="nav-icon">🐉</span><span>Linh Vật</span>
       </button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-migration" onclick="showPanel('migration');if(typeof meRenderPanel==='function')meRenderPanel();" data-panel="migration">🚶 Di Dân</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-project-status" onclick="showPanel('project-status');if(typeof psRenderPanel==='function')psRenderPanel();" data-panel="project-status">📋 Hồ Sơ Dự Án</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-disaster" onclick="showPanel('disaster');if(typeof deRenderPanel==='function')deRenderPanel();" data-panel="disaster">🌋 Thiên Tai</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-plague" onclick="showPanel('plague');if(typeof plRenderPanel==='function')plRenderPanel();" data-panel="plague">💀 Đại Dịch</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-econ-crisis" onclick="showPanel('econ-crisis');if(typeof ecRenderPanel==='function')ecRenderPanel();" data-panel="econ-crisis">💹 Sự Kiện KT</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-event-v25" onclick="showPanel('world-event-v25');if(typeof wev25RenderPanel==='function')wev25RenderPanel();" data-panel="world-event-v25">🗡️ Chính Trị V25</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-age-v25" onclick="showPanel('age-v25');if(typeof av25RenderPanel==='function')av25RenderPanel();" data-panel="age-v25">🌅 Thời Đại V25</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-continent-v26" onclick="showPanel('continent-v26');if(typeof window.cev26RenderPanel==='function')window.cev26RenderPanel();" data-panel="continent-v26">🌎 Lục Địa V26</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-migration-v26" onclick="showPanel('migration-v26');if(typeof window.mev26RenderPanel==='function')window.mev26RenderPanel();" data-panel="migration-v26">🚶 Di Cư V26</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-cont-politics" onclick="showPanel('cont-politics');if(typeof window.cpRenderPanel==='function')window.cpRenderPanel();" data-panel="cont-politics">🏛️ Chính Trị LC</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-event-hub-v25" onclick="showPanel('event-hub-v25');if(typeof hubRenderPanel==='function')hubRenderPanel('event-hub-v25');" data-panel="event-hub-v25">🌋 Biến Cố V25</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-continent-hub-v26" onclick="showPanel('continent-hub-v26');if(typeof hubRenderPanel==='function')hubRenderPanel('continent-hub-v26');" data-panel="continent-hub-v26">🌎 Lục Địa V26</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-next-version" onclick="showPanel('next-version');if(typeof nvRenderPanel==='function')nvRenderPanel();" data-panel="next-version">🗺️ Roadmap</button>
       <!-- ═══ V29 BANG HỘI & GIÁO PHÁI ═══ -->
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-sect-v29" onclick="showPanel('sect-v29');if(typeof seV29RenderPanel==='function')seV29RenderPanel();" data-panel="sect-v29">🏯 Môn Phái</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-sect-war-v29" onclick="showPanel('sect-war-v29');if(typeof swV29RenderPanel==='function')swV29RenderPanel();" data-panel="sect-war-v29">⚔️ CT Môn Phái</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-techniques-v29" onclick="showPanel('techniques-v29');if(typeof seV29RenderTechPanel==='function')seV29RenderTechPanel();" data-panel="techniques-v29">📖 Kỹ Thuật</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-disciples-v29" onclick="showPanel('disciples-v29');if(typeof seV29RenderDiscPanel==='function')seV29RenderDiscPanel();" data-panel="disciples-v29">🎓 Đệ Tử</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-guild-v29" onclick="showPanel('guild-v29');if(typeof guildV29RenderPanel==='function')guildV29RenderPanel();" data-panel="guild-v29">🏛 Bang Hội</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-cultivation-hub-v29" onclick="showPanel('cultivation-hub-v29');if(typeof hubRenderPanel==='function')hubRenderPanel('cultivation-hub-v29');" data-panel="cultivation-hub-v29">🏯 Tu Tiên V29</button>
       <!-- ═══ V30 VƯƠNG QUỐC THẦN THÁNH ═══ -->
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-realm-v30" onclick="showPanel('realm-v30');if(typeof realmV30RenderPanel==='function')realmV30RenderPanel();" data-panel="realm-v30">🌌 Các Cõi</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-v30" onclick="showPanel('divine-v30');if(typeof divineV30RenderPanel==='function')divineV30RenderPanel();" data-panel="divine-v30">👼 Thần Linh</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-domain-v30" onclick="showPanel('domain-v30');if(typeof divineV30RenderDomainPanel==='function')divineV30RenderDomainPanel();" data-panel="domain-v30">⚡ Lĩnh Vực TT</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-pantheon-v30" onclick="showPanel('pantheon-v30');if(typeof panV30RenderPanel==='function')panV30RenderPanel();" data-panel="pantheon-v30">🏛 Thần Điện</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-portal-v30" onclick="showPanel('portal-v30');if(typeof portalV30RenderPanel==='function')portalV30RenderPanel();" data-panel="portal-v30">🌀 Cổng DChuyển</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-divinewar-v30" onclick="showPanel('divinewar-v30');if(typeof dwV30RenderPanel==='function')dwV30RenderPanel();" data-panel="divinewar-v30">⚔️ CT Thần Thánh</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-history-v30" onclick="showPanel('divine-history-v30');if(typeof divineV30RenderHistoryPanel==='function')divineV30RenderHistoryPanel();" data-panel="divine-history-v30">📜 Sử Thần Thánh</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-worldboss-v31" onclick="showPanel('worldboss-v31');if(typeof wbv31RenderPanel==='function')wbv31RenderPanel();" data-panel="worldboss-v31">👹 World Boss</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-dungeon-v31" onclick="showPanel('dungeon-v31');if(typeof dev31RenderPanel==='function')dev31RenderPanel();" data-panel="dungeon-v31">🏛 Dungeon V31</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-raid-v31" onclick="showPanel('raid-v31');if(typeof rev31RenderPanel==='function')rev31RenderPanel();" data-panel="raid-v31">⚔️ Raid V31</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-invasion-v31" onclick="showPanel('invasion-v31');if(typeof iev31RenderPanel==='function')iev31RenderPanel();" data-panel="invasion-v31">🌋 Xâm Lược</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-hunt-v31" onclick="showPanel('hunt-v31');if(typeof lhv31RenderPanel==='function')lhv31RenderPanel();" data-panel="hunt-v31">🏆 Săn Boss</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-loot-v31" onclick="showPanel('loot-v31');if(typeof lev31RenderPanel==='function')lev31RenderPanel();" data-panel="loot-v31">🎁 Loot V31</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-hub-v30" onclick="showPanel('divine-hub-v30');if(typeof hubRenderPanel==='function')hubRenderPanel('divine-hub-v30');" data-panel="divine-hub-v30">⚡ Thần Thánh V30</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-combat-hub-v31" onclick="showPanel('combat-hub-v31');if(typeof hubRenderPanel==='function')hubRenderPanel('combat-hub-v31');" data-panel="combat-hub-v31">👹 Chiến Đấu V31</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-story" onclick="showPanel('story');if(typeof renderStoryPanel==='function')renderStoryPanel();" data-panel="story">📖 Kịch Bản</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-v28" onclick="showPanel('player-v28');if(typeof window.peRenderPanel==='function')window.peRenderPanel();" data-panel="player-v28">👤 Nhân Vật V28</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-inventory-v28" onclick="showPanel('inventory-v28');if(typeof window.invRenderPanel==='function')window.invRenderPanel();" data-panel="inventory-v28">🎒 Kho Đồ</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-history" onclick="showPanel('my-history');if(typeof window.prRenderPanel==='function')window.prRenderPanel();" data-panel="my-history">📜 Danh Tiếng Ta</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-kingdom" onclick="showPanel('my-kingdom');if(typeof window.ptRenderMyKingdom==='function')window.ptRenderMyKingdom();" data-panel="my-kingdom">🏰 Lãnh Thổ Ta</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-my-empire" onclick="showPanel('my-empire');if(typeof window.ptRenderMyEmpire==='function')window.ptRenderMyEmpire();" data-panel="my-empire">👑 Đế Chế Ta</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-war" onclick="showPanel('player-war');if(typeof window.ptRenderPlayerWar==='function')window.ptRenderPlayerWar();" data-panel="player-war">⚔️ Chiến Tranh Ta</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-ascension-v28" onclick="showPanel('ascension-v28');if(typeof window.ascRenderPanel==='function')window.ascRenderPanel();" data-panel="ascension-v28">⭐ Thăng Cấp</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-hub-v28" onclick="showPanel('player-hub-v28');if(typeof hubRenderPanel==='function')hubRenderPanel('player-hub-v28');" data-panel="player-hub-v28">👤 Nhân Vật V28</button>
       <!-- ═══ V32 CREATOR GOD CONTROL PANEL BUTTONS ═══ -->
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-creator-control" onclick="showPanel('creator-control');if(typeof creatorControlRenderPanel==='function')creatorControlRenderPanel();" data-panel="creator-control">👁 Bảng ĐK Creator</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-admin" onclick="showPanel('divine-admin');if(typeof divineAdminRenderPanel==='function')divineAdminRenderPanel();" data-panel="divine-admin">👼 Kiểm Soát Thần</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-creator-analytics" onclick="showPanel('creator-analytics');if(typeof creatorAnalyticsRenderPanel==='function')creatorAnalyticsRenderPanel();" data-panel="creator-analytics">📊 Phân Tích TG</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-creator-hub-v32" onclick="showPanel('creator-hub-v32');if(typeof hubRenderPanel==='function')hubRenderPanel('creator-hub-v32');" data-panel="creator-hub-v32">👁 Creator God V32</button>
       <!-- ═══ V33 THỦ HỘ THẦN BUTTONS ═══ -->
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-thuhothan" onclick="showPanel('thuhothan');if(typeof thtRenderPanel==='function')thtRenderPanel();" data-panel="thuhothan">🤖 Thủ Hộ Thần</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-news" onclick="showPanel('world-news');if(typeof efRenderPanel==='function')efRenderPanel();" data-panel="world-news">📢 Tin Tức TG</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-alerts" onclick="showPanel('alerts');if(typeof waeRenderPanel==='function')waeRenderPanel();" data-panel="alerts">🚨 Cảnh Báo</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-advisor" onclick="showPanel('advisor');if(typeof paRenderPanel==='function')paRenderPanel();" data-panel="advisor">📊 Cố Vấn</button>
-      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-report" onclick="showPanel('world-report');if(typeof waRenderReportPanel==='function')waRenderReportPanel();" data-panel="world-report">📖 Báo Cáo TG</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-guardian-hub-v33" onclick="showPanel('guardian-hub-v33');if(typeof hubRenderPanel==='function')hubRenderPanel('guardian-hub-v33');" data-panel="guardian-hub-v33">🤖 Thủ Hộ Thần V33</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-multiplayer" onclick="showPanel('multiplayer');if(typeof mpRenderPanel==='function')mpRenderPanel();" data-panel="multiplayer">🌐 Đa Người Chơi</button>
     </nav>
 
@@ -2804,6 +2749,18 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by waRenderReportPanel() in worldAdvisor.js -->
       </div>
 
+      <!-- ═══ HUB PANELS ═══ -->
+      <div id="panel-diplomacy-hub-v24" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-event-hub-v25" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-continent-hub-v26" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-ocean-hub-v27" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-cultivation-hub-v29" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-divine-hub-v30" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-combat-hub-v31" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-player-hub-v28" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-creator-hub-v32" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-guardian-hub-v33" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -3080,6 +3037,7 @@ window.addEventListener("load", function() {
 <script src="playerAdvisor.js"></script>
 <script src="creatorAdvisor.js"></script>
 <script src="thuhothanCore.js"></script>
+<script src="hubEngine.js"></script>
 <script src="multiplayerEngine.js"></script>
 <script src="playerSessionManager.js"></script>
 <script src="accountEngine.js"></script>
@@ -3093,7 +3051,7 @@ window.addEventListener("load", function() {
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28","creator-control","divine-admin","creator-analytics","thuhothan","world-news","alerts","advisor","world-report","multiplayer"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","project-status","next-version","story","diplomacy-hub-v24","event-hub-v25","continent-hub-v26","ocean-hub-v27","cultivation-hub-v29","divine-hub-v30","combat-hub-v31","player-hub-v28","creator-hub-v32","guardian-hub-v33","multiplayer"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
