@@ -32,16 +32,19 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'POST' && req.url === '/api/claude') {
     try {
       const body = await readBody(req);
-      const apiKey = process.env.ANTHROPIC_API_KEY;
+      const apiKey = process.env.AI_INTEGRATIONS_ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+      const baseURL = process.env.AI_INTEGRATIONS_ANTHROPIC_BASE_URL;
       if (!apiKey) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'ANTHROPIC_API_KEY not configured on server' }));
+        res.end(JSON.stringify({ error: 'Anthropic API key not configured on server' }));
         return;
       }
       const https = require('https');
+      const url = require('url');
+      const target = baseURL ? url.parse(baseURL + '/v1/messages') : { hostname: 'api.anthropic.com', path: '/v1/messages' };
       const options = {
-        hostname: 'api.anthropic.com',
-        path: '/v1/messages',
+        hostname: target.hostname,
+        path: target.path,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
