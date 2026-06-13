@@ -2756,6 +2756,12 @@ onclick="showPanel('dashboard')">
       <div id="panel-creator-lore-v41" class="panel"></div>
       <div id="panel-creator-event-v41" class="panel"></div>
       <div id="panel-creator-reports-v41" class="panel"></div>
+      <!-- V44 — Hệ Thống Chủng Tộc Tiến Hóa -->
+      <div id="panel-race-overview-v44" class="panel"></div>
+      <div id="panel-race-evolution-v44" class="panel"></div>
+      <div id="panel-race-abilities-v44" class="panel"></div>
+      <div id="panel-race-conflicts-v44" class="panel"></div>
+      <div id="panel-race-relations-v44" class="panel"></div>
       <!-- V43 — Hệ Thống Kỷ Nguyên Thế Giới -->
       <div id="panel-age-current-v43" class="panel"></div>
       <div id="panel-age-history-v43" class="panel"></div>
@@ -3114,6 +3120,12 @@ window.addEventListener("load", function() {
 <script src="loreGenerator.js"></script>
 <script src="eventGenerator.js"></script>
 <script src="creatorReports.js"></script>
+<!-- V44 — Hệ Thống Chủng Tộc Tiến Hóa -->
+<script src="raceEvolutionCore.js"></script>
+<script src="raceAbilityEngine.js"></script>
+<script src="raceWarEngine.js"></script>
+<script src="raceRelationEngine.js"></script>
+<script src="raceEvolutionRegistry.js"></script>
 <!-- V43 — Hệ Thống Kỷ Nguyên Thế Giới -->
 <script src="worldAgeEngine.js"></script>
 <script src="ageProgressionEngine.js"></script>
@@ -3308,6 +3320,17 @@ window.mvHubRenderPanel = function() {
     +'</div>'
     +'</div>'
     +(typeof window.waeHubRenderPanel === "function" ? window.waeHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống kỷ nguyên...</div>')
+    +'</div>'
+
+    // ─── V44 RACE EVOLUTION SYSTEM ────────────────────────────────────────
+    +'<div style="margin-top:28px;padding-top:22px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#34d399;font-family:Cinzel,serif">🧬 Hệ Thống Chủng Tộc Tiến Hóa V44</h3>'
+    +'<div style="font-size:11px;color:#475569">8 Chủng Tộc · Kỹ Năng · Xung Đột · Ngoại Giao</div>'
+    +'</div>'
+    +'</div>'
+    +(typeof window.recHubRenderPanel === "function" ? window.recHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống chủng tộc...</div>')
     +'</div>'
 
     +'</div>';

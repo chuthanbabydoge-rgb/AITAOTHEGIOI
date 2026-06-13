@@ -1,22 +1,22 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V43)
+> Ngày audit: 2026-06-13 (cập nhật sau V44)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | Giá Trị |
-|---|---|
-| **Tổng file .js trên disk** | 185 files |
-| **Tổng file được load trong index.html** | 184 files |
-| **File dormant** | 1 (serve.js — HTTP server, không phải game engine) |
-| **Tổng panel divs trong HTML** | 175 panels |
-| **Tổng nav buttons (data-panel)** | 67 buttons |
-| **Tổng localStorage save keys** | 115+ keys |
-| **Engine hook vào gameTick** | 73 engines |
-| **Phiên bản hiện tại** | V43 — Hệ Thống Kỷ Nguyên Thế Giới |
+| Chỉ Số | Giá Trị V43 | Giá Trị V44 (Mới) |
+|---|---|---|
+| **Tổng file .js trên disk** | 185 | **190** |
+| **Tổng file được load trong index.html** | 184 | **189** |
+| **File dormant** | 1 (serve.js) | **1 (serve.js)** |
+| **Tổng panel divs trong HTML** | 175 | **180** |
+| **Tổng nav buttons (data-panel)** | 67 | **67** |
+| **Tổng localStorage save keys** | 115+ | **118+** |
+| **Engine hook vào gameTick** | 73 | **78** |
+| **Phiên bản hiện tại** | V43 | **V44 — Hệ Thống Chủng Tộc Tiến Hóa** |
 
 ---
 
@@ -55,48 +55,48 @@
 | `espionageEngine.js` | espionage |
 
 ### 🤝 Diplomacy V24 (5 files)
-| File | Panel |
-|---|---|
-| `allianceEngine.js` | alliance-v24 |
-| `treatyEngine.js` | treaties-v24 |
-| `sanctionEngine.js` | sanctions-v24 |
-| `worldCouncilEngine.js` | world-council |
-| `diplomacyEngine.js` | diplomacy-v24, intl-relations |
+| File | Panel | Save Key |
+|---|---|---|
+| `allianceEngine.js` | alliance-v24 | — |
+| `treatyEngine.js` | treaties-v24 | — |
+| `sanctionEngine.js` | sanctions-v24 | — |
+| `worldCouncilEngine.js` | world-council | — |
+| `diplomacyEngine.js` | diplomacy-v24, intl-relations | — |
 
 ### 👑 Empire & Kingdom V23 (11 files)
-| File | Panel |
-|---|---|
-| `kingdomEngine.js` | kingdoms |
-| `kingdomAI.js` | — |
-| `empireEngine.js` | empire, empires |
-| `empireAI.js` | — |
-| `successionEngine.js` | succession |
-| `nobleHouseEngine.js` | noble-houses |
-| `dynastyEngine.js` | dynasty-engine |
-| `dynastySystem.js` | dynasty |
-| `bloodlineEngine.js` | bloodlines |
-| `hereditaryBloodlineEngine.js` | — (merged vào bloodlines) |
-| `livingCivilizationAI.js` | living-civ |
+| File | Panel | Save Key |
+|---|---|---|
+| `kingdomEngine.js` | kingdoms | cgv6_kingdoms |
+| `kingdomAI.js` | — | — |
+| `empireEngine.js` | empire, empires | cgv6_empires |
+| `empireAI.js` | — | — |
+| `successionEngine.js` | succession | cgv6_succession |
+| `nobleHouseEngine.js` | noble-houses | cgv6_noble_houses |
+| `dynastyEngine.js` | dynasty-engine | — |
+| `dynastySystem.js` | dynasty | — |
+| `bloodlineEngine.js` | bloodlines | cgv6_bloodlines |
+| `hereditaryBloodlineEngine.js` | — | cgv6_hereditary_bloodline |
+| `livingCivilizationAI.js` | living-civ | cgv6_living_civ_ai |
 
 ### 🌍 World Simulation (14 files)
-| File | Panel |
-|---|---|
-| `worldEventEngine.js` | world-event |
-| `worldEventEngineV25.js` | world-event-v25 |
-| `worldMemoryEngine.js` | world-memory |
-| `worldAlertEngine.js` | alerts |
-| `worldStorySystem.js` | story, world-chronicle |
-| `worldMapSystem.js` | worldmap |
-| `historicalTimeline.js` | historical-timeline |
-| `rankingsEngine.js` | rankings |
-| `technologyEngine.js` | technology |
-| `politicalReligionEngine.js` | political-religion |
-| `cultureHeritageEngine.js` | culture-heritage |
-| `religionEngine.js` | religion |
-| `emergentCivilization.js` | — |
-| `aiWorldGenerator.js` | — |
+| File | Panel | Save Key |
+|---|---|---|
+| `worldEventEngine.js` | world-event | — |
+| `worldEventEngineV25.js` | world-event-v25 | cgv6_world_event_v25 |
+| `worldMemoryEngine.js` | world-memory | cgv6_worldMemoryEngine |
+| `worldAlertEngine.js` | alerts | cgv6_world_alert_v33 |
+| `worldStorySystem.js` | story, world-chronicle | — |
+| `worldMapSystem.js` | worldmap | — |
+| `historicalTimeline.js` | historical-timeline | cgv6_historical_timeline |
+| `rankingsEngine.js` | rankings | cgv6_rankings |
+| `technologyEngine.js` | technology | cgv6_technologyEngine |
+| `politicalReligionEngine.js` | political-religion | — |
+| `cultureHeritageEngine.js` | culture-heritage | — |
+| `religionEngine.js` | religion | — |
+| `emergentCivilization.js` | — | — |
+| `aiWorldGenerator.js` | — | — |
 
-### 🌋 World Events V25 (5 files) — Save Key: cgv6_*_v25
+### 🌋 World Events V25 (5 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `disasterEngine.js` | disaster | cgv6_disaster_v25 |
@@ -105,7 +105,7 @@
 | `worldEventEngineV25.js` | world-event-v25 | cgv6_world_event_v25 |
 | `ageEngineV25.js` | age-v25 | cgv6_age_v25 |
 
-### 🌅 Continent V26 (4 files)
+### 🌍 Continent V26 (4 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `continentEngineV26.js` | continent-v26 | cgv6_continent_v26 |
@@ -113,7 +113,7 @@
 | `continentalPoliticsEngine.js` | cont-politics | cgv6_cont_politics |
 | `migrationEngineV26.js` | migration-v26 | cgv6_migration_v26 |
 
-### 🌊 Ocean V27 (5 files)
+### 🌊 Ocean V27 (6 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `navalOceanEngine.js` | naval-ocean | cgv6_naval_ocean |
@@ -123,7 +123,7 @@
 | `pirateEngine.js` | pirates | cgv6_pirate_v27 |
 | `colonyEngine.js` | colonies | cgv6_colony_v27 |
 
-### 🧘 Player V28 (7 files)
+### 🧘 Player V28 (14 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `playerEngine.js` | player-v28 | cgv6_player_v28 |
@@ -230,7 +230,7 @@
 | `timelineWarEngine.js` | timeline-wars-v36 | cgv6_timeline_war_v36 |
 | `timelineAnalytics.js` | timeline-analytics-v36 | cgv6_timeline_analytics_v36 |
 
-### ♾️ Infinite Universe V37 (5 files)
+### ♾️ Infinite Universe V37 (4 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `universeGeneratorEngine.js` | universe-generator-v37 | cgv6_universe_generator_v37 |
@@ -243,7 +243,7 @@
 |---|---|---|
 | `civEvolutionEngineV38.js` | civ-overview-v38, civ-evolution-v38, civ-tech-v38, civ-culture-v38, civ-religion-v38, civ-stats-v38 | cgv6_civ_evolution_v38 |
 
-### ⚔️ Multiverse War V39 (4 files)
+### ⚔️ Multiverse War V39 (5 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `multiverseWarSystemV39.js` | mv-war-v39 | cgv6_mv_war_v39 |
@@ -265,7 +265,7 @@
 ### 🤖 AI Creator Assistant V41 (7 files)
 | File | Panel | Save Key |
 |---|---|---|
-| `creatorBrain.js` | — | — (passive) |
+| `creatorBrain.js` | — | — |
 | `creatorAI.js` | creator-ai-v41 | cgv6_creator_ai_v41 |
 | `creatorSuggestionEngine.js` | creator-sugg-v41 | cgv6_creator_sugg_v41 |
 | `balanceAnalyzer.js` | creator-balance-v41 | cgv6_balance_v41 |
@@ -281,30 +281,38 @@
 | `mythologyCreatureSystem.js` | myth-creatures-v42 | cgv6_myth_creatures_v42 |
 | `mythologyArtifactSystem.js` | myth-artifacts-v42 | cgv6_myth_artifacts_v42 |
 | `mythologyLoreSystem.js` | myth-lore-v42 | cgv6_myth_lore_v42 |
-| `mythologyRegistry.js` | myth-overview-v42 | — (passive) |
+| `mythologyRegistry.js` | myth-overview-v42 | — |
 
-### 🌀 Kỷ Nguyên Thế Giới V43 — NEWEST (5 files)
+### 🌀 Kỷ Nguyên Thế Giới V43 (5 files)
 | File | Panel | Save Key |
 |---|---|---|
 | `worldAgeEngine.js` | age-current-v43 | cgv6_world_age_v43 |
 | `ageProgressionEngine.js` | age-transition-v43 | cgv6_age_prog_v43 |
 | `ageEventEngine.js` | age-events-v43 | cgv6_age_events_v43 |
 | `ageAnalytics.js` | age-analytics-v43 | cgv6_age_analytics_v43 |
-| `ageRegistry.js` | age-current/history/transition/events/analytics-v43 | — (passive) |
+| `ageRegistry.js` | age-current/history/transition/events/analytics-v43 | — |
+
+### 🧬 Chủng Tộc Tiến Hóa V44 — NEWEST (5 files)
+| File | Panel | Save Key |
+|---|---|---|
+| `raceEvolutionCore.js` | race-overview-v44 | cgv6_race_evo_core_v44 |
+| `raceAbilityEngine.js` | race-abilities-v44 | cgv6_race_ability_v44 |
+| `raceWarEngine.js` | race-conflicts-v44 | cgv6_race_war_v44 |
+| `raceRelationEngine.js` | race-relations-v44 | cgv6_race_relation_v44 |
+| `raceEvolutionRegistry.js` | race-overview/evolution/abilities/conflicts/relations-v44 | — |
 
 ### 🔧 Misc Systems (các file còn lại)
 | File | Chức Năng |
 |---|---|
-| `mythologyEngine.js` | Tự sinh myth từ gameplay (khác V42 static DB) |
+| `mythologyEngine.js` | Mythology tự sinh từ gameplay |
 | `artifactSystem.js` | Artifact V7 |
 | `artifactEvolutionEngine.js` | Artifact Evolution V2 · SAVE: cgv6_artifactEvolutionEngine_v2 |
-| `legendaryArtifactEngine.js` | Legendary Artifact V1 · SAVE: cgv6_legendaryArtifactEngine |
-| `heroLegendEngine.js` | Hero Legend · SAVE: cgv6_heroLegendEngine |
+| `legendaryArtifactEngine.js` | Legendary Artifact V1 |
+| `heroLegendEngine.js` | Hero Legend Engine · SAVE: cgv6_heroLegendEngine |
 | `npcReputationEngine.js` | NPC Reputation · SAVE: cgv6_npcReputationEngine |
 | `npcSpatialEngine.js` | NPC Spatial pathing |
 | `migrationEngine.js` | Migration V1 |
-| `questEngine.js` | Quest Engine V1 |
-| `questSystem.js` | Quest System V2 |
+| `questEngine.js` + `questSystem.js` | Quest V1 + V2 |
 | `aiStoryEngine.js` | AI Story Engine |
 | `spiritBeastSystem.js` | Spirit Beast |
 | `thiendinhSystem.js` | Thiên Đình System V2 |
@@ -316,68 +324,70 @@
 | `worldViewer3D.js` | 3D World Viewer |
 | `webxrSystem.js` | WebXR VR/AR |
 | `catastropheSystem.js` | Catastrophe System V1 |
-| `ageEngine.js` | Age Engine V1 (6 eras, predecessor to V25) |
-| `divineBeingEngine.js` | Divine Being — direct gameTick hook |
+| `ageEngine.js` | Age Engine V1 (6 eras — predecessor) |
 
 ---
 
-## 🗄️ TỔNG HỢP SAVE KEYS (115+ unique keys)
+## 🗄️ TỔNG HỢP SAVE KEYS (118+ unique keys)
 
-### Nhóm theo version
 ```
-Core app keys (app.js):        cgv6_bloodlines · cgv6_empires · cgv6_kingdoms · cgv6_noble_houses
-                                cgv6_rankings · cgv6_succession · cgv6_historical_timeline
-Artifact keys:                  cgv6_artifactEvolutionEngine_v2 · cgv6_legendaryArtifactEngine
-                                cgv6_mythologyEngine
-NPC/Hero keys:                  cgv6_heroLegendEngine · cgv6_npcReputationEngine · cgv6_hereditary_bloodline
-                                cgv6_living_civ_ai · cgv6_worldMemoryEngine · cgv6_technologyEngine
-V25 (World Events):             cgv6_disaster_v25 · cgv6_plague_v25 · cgv6_econ_crisis_v25
-                                cgv6_world_event_v25 · cgv6_age_v25
-V26 (Continent):                cgv6_continent_v26 · cgv6_cont_politics · cgv6_migration_v26
-V27 (Ocean):                    cgv6_naval_v27 · cgv6_naval_ocean · cgv6_oceantrade_v27
-                                cgv6_fleet_v27 · cgv6_pirate_v27 · cgv6_colony_v27
-V28 (Player):                   cgv6_player_v28 · cgv6_cultivation_v28 · cgv6_ascension_v28
-                                cgv6_inventory_v28 · cgv6_player_quest_v28 · cgv6_player_rep_v28
-                                cgv6_territory_v28
-V29 (Sect):                     cgv6_sect_v29 · cgv6_sectwar_v29 · cgv6_guild_v29
-V30 (Divine):                   cgv6_divine_v30 · cgv6_divinewar_v30 · cgv6_realm_v30
-                                cgv6_portal_v30 · cgv6_pantheon_v30
-V31 (Combat):                   cgv6_dungeon_v31 · cgv6_worldboss_v31 · cgv6_invasion_v31
-                                cgv6_raid_v31 · cgv6_loot_v31 · cgv6_hunt_v31 · cgv6_bossevo_v31
-V32 (Creator):                  cgv6_creator_control_v32 · cgv6_creator_analytics_v32
-                                cgv6_divine_admin_v32
-V33 (Guardian):                 cgv6_thuhothan_core_v33 · cgv6_thuhothan_mem_v33
-                                cgv6_world_alert_v33 · cgv6_event_feed_v33
-V34 (Multiplayer):              cgv6_mp_core_v34 · cgv6_mp_events_v34 · cgv6_mp_accounts_v34
-                                cgv6_mp_chat_v34 · cgv6_mp_worldsync_v34 · cgv6_mp_anticheat_v34
-                                cgv6_mp_sessions_v34 · cgv6_mp_market_v34
-V35 (Multiverse):               cgv6_multiverse_v35 · cgv6_universe_manager_v35 · cgv6_universe_registry_v35
-                                cgv6_multiverse_map_v35 · cgv6_multiverse_economy_v35
-                                cgv6_multiverse_war_v35 · cgv6_portal_network_v35 · cgv6_universe_travel_v35
-V36 (Timeline):                 cgv6_timeline_engine_v36 · cgv6_timeline_branch_v36 · cgv6_timeline_events_v36
-                                cgv6_timeline_manager_v36 · cgv6_timeline_merge_v36
-                                cgv6_timeline_registry_v36 · cgv6_timeline_travel_v36
-                                cgv6_timeline_war_v36 · cgv6_timeline_analytics_v36
-V37 (Universe):                 cgv6_universe_generator_v37 · cgv6_universe_laws_v37
-                                cgv6_universe_lifecycle_v37 · cgv6_universe_observatory_v37
-V38 (Civ Evolution):            cgv6_civ_evolution_v38
-V39 (MV War):                   cgv6_mv_war_v39 · cgv6_mv_conquest_v39 · cgv6_mv_invasion_v39
-                                cgv6_mv_alliance_v39
-V40 (Creator Factory):          cgv6_creator_race_v40 · cgv6_creator_god_v40 · cgv6_creator_nation_v40
-                                cgv6_creator_boss_v40 · cgv6_creator_item_v40 · cgv6_creator_universe_v40
-V41 (AI Creator):               cgv6_creator_ai_v41 · cgv6_creator_sugg_v41 · cgv6_balance_v41
-                                cgv6_lore_v41 · cgv6_event_gen_v41 · cgv6_creator_reports_v41
-V42 (Mythology):                cgv6_myth_db_v42 · cgv6_myth_gods_v42 · cgv6_myth_creatures_v42
-                                cgv6_myth_artifacts_v42 · cgv6_myth_lore_v42
-V43 (World Age):                cgv6_world_age_v43 · cgv6_age_prog_v43 · cgv6_age_events_v43
-                                cgv6_age_analytics_v43
+Core/Named keys:          cgv6_bloodlines · cgv6_empires · cgv6_kingdoms · cgv6_noble_houses
+                          cgv6_rankings · cgv6_succession · cgv6_historical_timeline
+                          cgv6_artifactEvolutionEngine_v2 · cgv6_legendaryArtifactEngine
+                          cgv6_heroLegendEngine · cgv6_npcReputationEngine
+                          cgv6_hereditary_bloodline · cgv6_living_civ_ai
+                          cgv6_worldMemoryEngine · cgv6_technologyEngine · cgv6_mythologyEngine
+V25 (World Events):       cgv6_disaster_v25 · cgv6_plague_v25 · cgv6_econ_crisis_v25
+                          cgv6_world_event_v25 · cgv6_age_v25
+V26 (Continent):          cgv6_continent_v26 · cgv6_cont_politics · cgv6_migration_v26
+V27 (Ocean):              cgv6_naval_v27 · cgv6_naval_ocean · cgv6_oceantrade_v27
+                          cgv6_fleet_v27 · cgv6_pirate_v27 · cgv6_colony_v27
+V28 (Player):             cgv6_player_v28 · cgv6_cultivation_v28 · cgv6_ascension_v28
+                          cgv6_inventory_v28 · cgv6_player_quest_v28 · cgv6_player_rep_v28
+                          cgv6_territory_v28
+V29 (Sect):               cgv6_sect_v29 · cgv6_sectwar_v29 · cgv6_guild_v29
+V30 (Divine):             cgv6_divine_v30 · cgv6_divinewar_v30 · cgv6_realm_v30
+                          cgv6_portal_v30 · cgv6_pantheon_v30
+V31 (Combat):             cgv6_dungeon_v31 · cgv6_worldboss_v31 · cgv6_invasion_v31
+                          cgv6_raid_v31 · cgv6_loot_v31 · cgv6_hunt_v31 · cgv6_bossevo_v31
+V32 (Creator):            cgv6_creator_control_v32 · cgv6_creator_analytics_v32
+                          cgv6_divine_admin_v32
+V33 (Guardian):           cgv6_thuhothan_core_v33 · cgv6_thuhothan_mem_v33
+                          cgv6_world_alert_v33 · cgv6_event_feed_v33
+V34 (Multiplayer):        cgv6_mp_core_v34 · cgv6_mp_events_v34 · cgv6_mp_accounts_v34
+                          cgv6_mp_chat_v34 · cgv6_mp_worldsync_v34 · cgv6_mp_anticheat_v34
+                          cgv6_mp_sessions_v34 · cgv6_mp_market_v34
+V35 (Multiverse):         cgv6_multiverse_v35 · cgv6_universe_manager_v35
+                          cgv6_universe_registry_v35 · cgv6_multiverse_map_v35
+                          cgv6_multiverse_economy_v35 · cgv6_multiverse_war_v35
+                          cgv6_portal_network_v35 · cgv6_universe_travel_v35
+V36 (Timeline):           cgv6_timeline_engine_v36 · cgv6_timeline_branch_v36
+                          cgv6_timeline_events_v36 · cgv6_timeline_manager_v36
+                          cgv6_timeline_merge_v36 · cgv6_timeline_registry_v36
+                          cgv6_timeline_travel_v36 · cgv6_timeline_war_v36
+                          cgv6_timeline_analytics_v36
+V37 (Universe):           cgv6_universe_generator_v37 · cgv6_universe_laws_v37
+                          cgv6_universe_lifecycle_v37 · cgv6_universe_observatory_v37
+V38 (CivEvo):             cgv6_civ_evolution_v38
+V39 (MV War):             cgv6_mv_war_v39 · cgv6_mv_conquest_v39
+                          cgv6_mv_invasion_v39 · cgv6_mv_alliance_v39
+V40 (Creator Factory):    cgv6_creator_race_v40 · cgv6_creator_god_v40
+                          cgv6_creator_nation_v40 · cgv6_creator_boss_v40
+                          cgv6_creator_item_v40 · cgv6_creator_universe_v40
+V41 (AI Creator):         cgv6_creator_ai_v41 · cgv6_creator_sugg_v41 · cgv6_balance_v41
+                          cgv6_lore_v41 · cgv6_event_gen_v41 · cgv6_creator_reports_v41
+V42 (Mythology):          cgv6_myth_db_v42 · cgv6_myth_gods_v42 · cgv6_myth_creatures_v42
+                          cgv6_myth_artifacts_v42 · cgv6_myth_lore_v42
+V43 (World Age):          cgv6_world_age_v43 · cgv6_age_prog_v43
+                          cgv6_age_events_v43 · cgv6_age_analytics_v43
+V44 (Race Evolution):     cgv6_race_evo_core_v44 · cgv6_race_ability_v44
+                          cgv6_race_war_v44 · cgv6_race_relation_v44
 ```
 
 ---
 
-## 🎮 GAME TICK HOOKS (73 engines)
+## 🎮 GAME TICK HOOKS (78 engines)
 
-Các engine sau đây hook vào `window.gameTick` (qua `const _orig = window.gameTick` pattern):
 ```
 ageAnalytics.js             ageEngineV25.js             ageEventEngine.js
 ageProgressionEngine.js     aiStoryEngine.js             ascensionEngine.js
@@ -395,50 +405,46 @@ oceanTradeEngine.js         pantheonEngineV30.js         pirateEngine.js
 plagueEngine.js             playerEngine.js              playerInventory.js
 playerQuestSystem.js        playerReputationEngine.js    playerTerritorySystem.js
 portalEngineV30.js          portalNetwork.js             raidEngineV31.js
-realmEngineV30.js           sectEngineV29.js             sectWarEngineV29.js
-thuhothanCore.js            timelineAnalytics.js         timelineBranchEngine.js
-timelineEngine.js           timelineEventEngine.js       timelineManager.js
-timelineMergeEngine.js      timelineRegistry.js          timelineTravelEngine.js
-timelineWarEngine.js        universeGeneratorEngine.js   universeLawEngine.js
-universeLifecycleEngine.js  universeManager.js           universeObservatoryEngine.js
-universeRegistry.js         universeTravelEngine.js      worldAgeEngine.js
-worldAlertEngine.js         worldBossEngineV31.js        worldChatEngine.js
-worldEventEngineV25.js      worldSyncEngine.js
+raceEvolutionCore.js        raceAbilityEngine.js         raceWarEngine.js
+raceRelationEngine.js       realmEngineV30.js            sectEngineV29.js
+sectWarEngineV29.js         thuhothanCore.js             timelineAnalytics.js
+timelineBranchEngine.js     timelineEngine.js            timelineEventEngine.js
+timelineManager.js          timelineMergeEngine.js       timelineRegistry.js
+timelineTravelEngine.js     timelineWarEngine.js         universeGeneratorEngine.js
+universeLawEngine.js        universeLifecycleEngine.js   universeManager.js
+universeObservatoryEngine.js universeRegistry.js         universeTravelEngine.js
+worldAgeEngine.js           worldAlertEngine.js          worldBossEngineV31.js
+worldChatEngine.js          worldEventEngineV25.js       worldSyncEngine.js
 ```
 
 ---
 
-## 🗂️ HUB STRUCTURE (hubEngine.js + mvHubRenderPanel)
+## 🗂️ HUB STRUCTURE
 
-### Sidebar Hubs (8 hubs — KHÔNG thêm mới)
-| Hub ID | Icon | Tabs |
+### Sidebar Hubs (trong hubEngine.js)
+| Hub ID | Tabs |
+|---|---|
+| `diplomacy-hub-v24` | alliance · treaties · sanctions · world-council · diplomacy-v24 · intl-relations |
+| `event-hub-v25` | world-event-v25 · disaster · plague · econ-crisis · age-v25 |
+| `continent-hub-v26` | continent-v26 · cont-politics · migration-v26 · colonies |
+| `ocean-hub-v27` | naval-v27 · naval-ocean · ocean-v27 · pirates |
+| `player-hub-v28` | player-v28 · cultivation-v28 · ascension-v28 · inventory-v28 · player-quest-v28 |
+| `cultivation-hub-v29` | sect-v29 · sect-war-v29 · guild-v29 · disciples-v29 · techniques-v29 |
+| `divine-hub-v30` | divine-v30 · divinewar-v30 · realm-v30 · portal-v30 · pantheon-v30 · divine-admin · domain-v30 |
+| `combat-hub-v31` | dungeon-v31 · worldboss-v31 · invasion-v31 · raid-v31 · loot-v31 · hunt-v31 |
+| `creator-hub-v32` | creator-control · creator-analytics · (7 V40 tabs) · (6 V41 tabs) · **myth-overview-v42 · myth-gods-v42 · myth-creatures-v42 · myth-artifacts-v42 · myth-lore-v42 · myth-database-v42** = **22 tabs tổng** |
+| `guardian-hub-v33` | thuhothan · advisor |
+
+### 🌌 Multiverse Hub V35 — Inline mvHubRenderPanel (index.html ~dòng 3196)
+| Section | Version | Panels |
 |---|---|---|
-| `diplomacy-hub-v24` | 🤝 | alliance · treaties · sanctions · world-council · diplomacy-v24 · intl-relations |
-| `event-hub-v25` | ⚡ | world-event-v25 · disaster · plague · econ-crisis · age-v25 |
-| `continent-hub-v26` | 🌍 | continent-v26 · cont-politics · migration-v26 · colonies |
-| `ocean-hub-v27` | 🌊 | naval-v27 · naval-ocean · ocean-v27 · pirates |
-| `player-hub-v28` | 👤 | player-v28 · cultivation-v28 · ascension-v28 · inventory-v28 · player-quest-v28 |
-| `cultivation-hub-v29` | ⚗️ | sect-v29 · sect-war-v29 · guild-v29 · disciples-v29 · techniques-v29 |
-| `divine-hub-v30` | 🏛️ | divine-v30 · divinewar-v30 · realm-v30 · portal-v30 · pantheon-v30 · divine-admin · divine-history-v30 · domain-v30 |
-| `combat-hub-v31` | ⚔️ | dungeon-v31 · worldboss-v31 · invasion-v31 · raid-v31 · loot-v31 · hunt-v31 |
-| `creator-hub-v32` | 👁️ | creator-control · creator-analytics · creator-god-v40 · creator-race-v40 · creator-nation-v40 · creator-boss-v40 · creator-item-v40 · creator-universe-v40 · creator-library-v40 · creator-ai-v41 · creator-balance-v41 · creator-sugg-v41 · creator-lore-v41 · creator-event-v41 · creator-reports-v41 · **myth-overview-v42 · myth-gods-v42 · myth-creatures-v42 · myth-artifacts-v42 · myth-lore-v42 · myth-database-v42** (22 tabs tổng) |
-| `guardian-hub-v33` | 🤖 | thuhothan · advisor |
-| `multiverse-hub-v35` | 🌌 | (inline render, không dùng hubEngine) — V35 Multiverse · V36 Timeline · V37 Universe · V38 CivEvo · V39 MV War · **V43 World Age** |
-
----
-
-## 🌌 MULTIVERSE HUB V35 — Inline Sections
-
-Render qua `window.mvHubRenderPanel` được định nghĩa inline trong `index.html` (không qua hubEngine.js):
-
-| Section | Version | Panels Liên Kết |
-|---|---|---|
-| Multiverse Portal Network | V35 | multiverse-v35 · portals-v35 · universes · universe-wars · universe-rankings · multiverse-map · universe-travel · multiverse-economy |
-| Alternate Timeline System | V36 | timeline-v36 · timeline-map-v36 · timeline-wars-v36 · timeline-travel-v36 · timeline-analytics-v36 |
-| Infinite Universe Generator | V37 | universe-generator-v37 · universe-laws-v37 · universe-observatory-v37 |
-| Tiến Hóa Nền Văn Minh AI | V38 | civ-overview-v38 · civ-evolution-v38 · civ-tech-v38 · civ-culture-v38 · civ-religion-v38 · civ-stats-v38 |
-| Chiến Tranh Đa Vũ Trụ | V39 | mv-war-v39 · mv-alliance-v39 · mv-invasion-v39 · mv-warmap-v39 · mv-warstats-v39 |
-| **Kỷ Nguyên Thế Giới** | **V43** | **age-current-v43 · age-history-v43 · age-transition-v43 · age-events-v43 · age-analytics-v43** |
+| Multiverse Portal | V35 | multiverse-v35 · portals-v35 · universes · universe-wars · universe-rankings · multiverse-map · universe-travel · multiverse-economy |
+| Timeline | V36 | timeline-v36 · timeline-map-v36 · timeline-wars-v36 · timeline-travel-v36 · timeline-analytics-v36 |
+| Universe Generator | V37 | universe-generator-v37 · universe-laws-v37 · universe-observatory-v37 |
+| CivEvo | V38 | civ-overview-v38 · civ-evolution-v38 · civ-tech-v38 · civ-culture-v38 · civ-religion-v38 · civ-stats-v38 |
+| MV War | V39 | mv-war-v39 · mv-alliance-v39 · mv-invasion-v39 · mv-warmap-v39 · mv-warstats-v39 |
+| World Age | V43 | age-current-v43 · age-history-v43 · age-transition-v43 · age-events-v43 · age-analytics-v43 |
+| **Race Evolution** | **V44** | **race-overview-v44 · race-evolution-v44 · race-abilities-v44 · race-conflicts-v44 · race-relations-v44** |
 
 ---
 
@@ -446,73 +452,77 @@ Render qua `window.mvHubRenderPanel` được định nghĩa inline trong `index
 
 ```javascript
 // Core
-window.gameTick()                  // Main tick — hook via _orig pattern
-window.year                        // Current simulation year
-window.world                       // World state object
-window.npcs                        // NPC array
-window.countries                   // Nations array
-window.warsActive                  // Active wars array
+window.gameTick()                     // Main tick — hook via const _orig pattern
+window.year                           // Năm hiện tại
+window.world                          // World state
+window.npcs                           // NPC array
+window.countries                      // Nations array
+window.warsActive                     // Active wars
 
 // History & Memory
-window.htAddEvent({year,type,title,color})           // → Historical Timeline
-window.wmeAddMemory({year,category,title,content})   // → World Memory
-window.waeAddAlert({type,message,color})             // → World Alert Engine
+window.htAddEvent({year,type,title,color})
+window.wmeAddMemory({year,category,title,content})
+window.waeAddAlert({type,icon,title,year})
+
+// Kingdoms/Empires (V33 ARRAY SAFETY!)
+window.kingdomData.kingdoms           // CÓ THỂ là Object — dùng Array.isArray()!
+window.empireData.empires             // CÓ THỂ là Object — dùng Array.isArray()!
 
 // Diplomacy
-window.drGetRelation(a, b)         // Điểm quan hệ 2 thế lực
-window.aeAreAllied(a, b)           // Kiểm tra liên minh (boolean)
-window.teHasTreaty(a, b, type)     // Kiểm tra hiệp ước
-
-// Kingdoms/Empires (V33 Array Safety!)
-window.kingdomData.kingdoms        // Có thể là Object — dùng Array.isArray()!
-window.empireData.empires          // Có thể là Object — dùng Array.isArray()!
-
-// Multiverse
-window.mvData.universes            // Array vũ trụ
-window.pnGetOpenPortals()          // Cổng portal đang mở
-window.mv39DeclareWar(a,b,type)    // Khai chiến đa vũ trụ
+window.drGetRelation(a, b)            // Quan hệ 2 thế lực
+window.aeAreAllied(a, b)              // Kiểm tra liên minh
+window.teHasTreaty(a, b, type)        // Kiểm tra hiệp ước
 
 // V43 World Age
-window.waeGetCurrentAge()          // Kỷ nguyên hiện tại
-window.waeForceAge(id)             // Chuyển kỷ nguyên thủ công
-window.waeGetHistory()             // Lịch sử chuyển đổi
-window.apeGetProgress(ageId)       // Điểm sẵn sàng 0-100
-window.apeGetConditionDetail(id)   // Chi tiết điều kiện
-window.aeeFireEvent(ageId)         // Kích hoạt sự kiện kỷ nguyên
-window.aanGetStats()               // Thống kê kỷ nguyên
-window.aanGetForecast()            // Dự báo kỷ nguyên tiếp theo
+window.waeGetCurrentAge()             // { id, name, icon, ... }
+window.waeForceAge(id)                // Chuyển kỷ nguyên thủ công
+window.apeGetProgress(ageId)          // Điểm sẵn sàng 0-100
 
-// V42 Mythology
-window.mdbGetPantheons()           // 10 hệ thần thoại
-window.mgsGetAll()                 // Tất cả thần linh
-window.mcsGetAll()                 // Tất cả sinh vật
-window.masGetAll()                 // Tất cả thánh vật
-window.mlsGetAll()                 // Tất cả truyền thuyết
+// V44 Race Evolution
+window.recGetAll()                    // Tất cả chủng tộc
+window.recGetRace(id)                 // Chủng tộc theo id
+window.recEvolveRace(id)              // Kích hoạt tiến hóa thủ công
+window.recGetStats()                  // { total, alive, extinct, totalPop, topRace }
+window.recGetStage(evolutionPoints)   // { id, name, icon, threshold }
+window.raeUnlockAbility(raceId, abilityId)  // Mở kỹ năng
+window.raeGetRaceAbilities(raceId)    // Kỹ năng của một chủng tộc
+window.raeCheckMutation(raceId)       // Kiểm tra đột biến
+window.rweStartConflict(a, b, typeId) // Khai chiến chủng tộc
+window.rweGetDominance()              // Bảng thống trị
+window.rreGetRelation(a, b)           // Điểm quan hệ -100→+100
+window.rreFormAlliance(a, b, typeId)  // Ký liên minh
+window.rreAreAllied(a, b)             // Kiểm tra liên minh chủng tộc
 ```
 
 ---
 
 ## ⚠️ LƯU Ý QUAN TRỌNG CHO AGENT
 
-1. **Array Safety (V33):** `kingdomData.kingdoms` và `empireData.empires` CÓ THỂ là Object thay vì Array. Luôn dùng `Array.isArray(x) ? x : Object.values(x||{})` trước khi `.filter()`.
+1. **Array Safety (V33):** `kingdomData.kingdoms` và `empireData.empires` CÓ THỂ là Object. Luôn dùng:
+   ```javascript
+   Array.isArray(x) ? x : Object.values(x||{})
+   ```
 
-2. **gameTick Hook Pattern:** Luôn dùng:
+2. **gameTick Hook Pattern:**
    ```javascript
    const _orig = window.gameTick;
    window.gameTick = function() { if (_orig) _orig(); myTick(); };
    ```
 
-3. **Init Timing (staggered):** V43 dùng timeout 2900ms–3300ms. V44 trở đi dùng 3400ms+.
+3. **Init Timing (staggered):**
+   - V43: 2900ms–3300ms
+   - V44: 3400ms–3800ms
+   - **V45 trở đi: 3900ms+**
 
-4. **UI Rule (V38+):** KHÔNG tạo tab sidebar mới. Mọi UI mới phải vào hub hiện có:
-   - Creator God features → `creator-hub-v32`
-   - Multiverse/Universe features → `multiverse-hub-v35` (inline section)
+4. **UI Rule (V38+):** KHÔNG tạo tab sidebar mới. Mọi UI mới → hub hiện có:
+   - Creator God features → `creator-hub-v32` (thêm vào HUB_CONFIGS trong hubEngine.js)
+   - Universe/World features → `multiverse-hub-v35` (section mới trong mvHubRenderPanel inline index.html)
 
-5. **Multiverse Hub:** `mvHubRenderPanel` là inline JS trong `index.html` dòng ~3184. KHÔNG nằm trong `hubEngine.js`. Thêm section mới VÀO TRƯỚC dòng `+'</div>';` cuối cùng.
+5. **Multiverse Hub:** `mvHubRenderPanel` là inline JS trong `index.html` ~dòng 3196. KHÔNG nằm trong `hubEngine.js`. Thêm section VÀO TRƯỚC `+'</div>';` cuối cùng.
 
-6. **IIFE Required:** Mọi engine mới phải bọc trong `(function(){ "use strict"; ... })();`
+6. **V44 KHÔNG trùng V40:** `creatorRaceFactory.js` V40 = tạo chủng tộc thủ công. `raceEvolutionCore.js` V44 = tiến hóa tự động.
 
-7. **No Duplicate:** Trước khi tạo file mới, kiểm tra file tương tự đã tồn tại chưa (vd: ageEngineV25.js ≠ worldAgeEngine.js V43).
+7. **Sync Chain V44:** V44 tự động sync với V40 (crfData.races), V42 (mgsGetAll cho patron deity), V43 (waeGetCurrentAge cho age bonus).
 
 ---
 
@@ -520,11 +530,11 @@ window.mlsGetAll()                 // Tất cả truyền thuyết
 
 | Trạng Thái | Số Lượng | Chi Tiết |
 |---|---|---|
-| **Active game files** | 184 | Tất cả được load trong index.html |
+| **Active game files** | 189 | Tất cả được load trong index.html |
 | **Server file** | 1 | serve.js (Node.js HTTP server) |
 | **Dormant game files** | 0 | Không có file game nào bị bỏ quên |
-| **Tổng trên disk** | 185 | — |
+| **Tổng trên disk** | 190 | — |
 
 ---
 
-*Audit tự động từ quét mã nguồn thực — ngày 2026-06-13 — V43*
+*Audit tự động từ quét mã nguồn thực — ngày 2026-06-13 — V44*

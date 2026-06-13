@@ -24,13 +24,23 @@
 
 ## 🔢 CURRENT VERSION
 
-**V43 — Hệ Thống Kỷ Nguyên Thế Giới** (2026-06-13)
+**V44 — Hệ Thống Chủng Tộc Tiến Hóa** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (102+ systems)
+## ✅ COMPLETED SYSTEMS (107+ systems)
 
-### Hệ Thống Kỷ Nguyên Thế Giới V43 (5 systems) ← NEWEST
+### Hệ Thống Chủng Tộc Tiến Hóa V44 (5 systems) ← NEWEST
+- `raceEvolutionCore.js` — Core 8 chủng tộc (👤Nhân/🧝Tiên/🧟Ma/🐉Long/🤖Cơ Khí/🧚Linh/🐺Thú/🌊Hải) · 5 giai đoạn tiến hóa (Nguyên Thủy→Văn Minh→Tiến Hóa→Thức Tỉnh→Siêu Việt) · `recGetAll()` · `recEvolveRace()` · `recGetStats()` · Sync crfData V40 · Gán patron deity V42 · SAVE: cgv6_race_evo_core_v44
+- `raceAbilityEngine.js` — 50+ abilities pool theo 12 kỷ nguyên V43 · 4 rarity (common/rare/epic/legendary) · `raeUnlockAbility()` · `raeCheckMutation()` · `raeAutoUnlockForAge()` · SAVE: cgv6_race_ability_v44
+- `raceWarEngine.js` — 6 loại xung đột (border_skirmish→dominance_war) · `rweStartConflict()` · `rweGetDominance()` · Auto-conflict 25% chance/30 ticks · SAVE: cgv6_race_war_v44
+- `raceRelationEngine.js` — 28 cặp quan hệ default · 7 mức (-100→+100) · 4 loại liên minh · `rreFormAlliance()` · `rreStartAssimilation()` · `rreGetRelation(a,b)` · SAVE: cgv6_race_relation_v44
+- `raceEvolutionRegistry.js` — 5 panel renders + `recHubRenderPanel()` widget mvHub · Passive (no save/tick)
+- **UI**: Section mới trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) · KHÔNG tạo tab sidebar mới
+- **KHÔNG trùng** với creatorRaceFactory.js V40 (V40=tạo thủ công, V44=tiến hóa tự động)
+- **init timing**: raceEvolutionCore=3400ms · raceAbilityEngine=3500ms · raceWarEngine=3600ms · raceRelationEngine=3700ms · raceEvolutionRegistry=3800ms
+
+### Hệ Thống Kỷ Nguyên Thế Giới V43 (5 systems)
 - `worldAgeEngine.js` — Core 12 kỷ nguyên · auto-transition check · `waeGetCurrentAge()` · `waeForceAge()` · SAVE: cgv6_world_age_v43
 - `ageProgressionEngine.js` — Điểm sẵn sàng 7 điều kiện · `apeGetProgress(id)` · `apeGetConditionDetail(id)` · SAVE: cgv6_age_prog_v43
 - `ageEventEngine.js` — 50+ sự kiện theo 12 kỷ nguyên · `aeeFireEvent(id)` · SAVE: cgv6_age_events_v43

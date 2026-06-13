@@ -4,6 +4,38 @@
 
 ---
 
+## [V44] — 2026-06-13 — Hệ Thống Chủng Tộc Tiến Hóa
+
+### New Systems Added (5 files)
+- `raceEvolutionCore.js` — Core 8 chủng tộc (Nhân/Tiên/Ma/Long/Cơ Khí/Linh/Thú/Hải) · 5 giai đoạn tiến hóa · `recGetAll()` · `recEvolveRace()` · `recGetStats()` · Sync với crfData V40 · Gán patron deity V42 · gameTick mỗi 5/15/20 ticks · SAVE: cgv6_race_evo_core_v44
+- `raceAbilityEngine.js` — 50+ kỹ năng pool · 12 kỷ nguyên × 4-5 abilities · `raeUnlockAbility()` · `raeCheckMutation()` · `raeAutoUnlockForAge()` · 4 loại đột biến · gameTick mỗi 25 ticks · SAVE: cgv6_race_ability_v44
+- `raceWarEngine.js` — 6 loại xung đột · `rweStartConflict()` · `rweGetDominance()` · `rweCheckExtinction()` · Auto-conflict mỗi 30 ticks · SAVE: cgv6_race_war_v44
+- `raceRelationEngine.js` — Ma trận quan hệ 28 cặp default · 7 mức quan hệ · 4 loại liên minh · `rreFormAlliance()` · `rreStartAssimilation()` · Auto-ally nếu score≥60 · gameTick mỗi 20 ticks · SAVE: cgv6_race_relation_v44
+- `raceEvolutionRegistry.js` — 5 panel renders + `recHubRenderPanel()` widget cho mvHub · Passive (no save/tick)
+
+### index.html Updates
+- Thêm 5 panel divs V44: panel-race-overview-v44 → panel-race-relations-v44
+- Thêm 5 script tags nhóm V44 (trước V43)
+- Thêm section V44 vào `mvHubRenderPanel` (trước closing `+'</div>';`)
+
+### UI Integration
+- Tích hợp bên trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) — KHÔNG tạo tab sidebar mới
+- 5 sub-panels: 🧬 Tổng Quan · 📈 Tiến Hóa · ⚡ Kỹ Năng · ⚔️ Xung Đột · 🤝 Quan Hệ
+
+### Save Keys Mới
+- `cgv6_race_evo_core_v44` · `cgv6_race_ability_v44` · `cgv6_race_war_v44` · `cgv6_race_relation_v44`
+
+### Integration Points
+- `recEvolveRace()` → trigger `raeCheckMutation()` tự động
+- `waeGetCurrentAge()` → V43 age sync: evolution bonus theo kỷ nguyên
+- `window.crfData.races` → sync chủng tộc từ Creator Factory V40
+- `mgsGetAll()` → gán patron deity từ Mythology V42
+- `rreGetRelation()` → tương thích `drGetRelation()` pattern
+- `htAddEvent()` + `wmeAddMemory()` + `waeAddAlert()` cho mọi sự kiện lớn
+- KHÔNG trùng với `creatorRaceFactory.js` V40 (V40=tạo thủ công, V44=tiến hóa tự động)
+
+---
+
 ## [V43] — 2026-06-13 — Hệ Thống Kỷ Nguyên Thế Giới
 
 ### New Systems Added (5 files)

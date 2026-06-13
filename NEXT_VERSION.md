@@ -2,8 +2,41 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V43 — Hệ Thống Kỷ Nguyên Thế Giới** ✅
-> **Phiên bản tiếp theo đề xuất: V44 — Hệ Thống Chủng Tộc Tiến Hóa (Race Evolution System)**
+> **Phiên bản hiện tại: V44 — Hệ Thống Chủng Tộc Tiến Hóa** ✅
+> **Phiên bản tiếp theo đề xuất: V45 — Hệ Thống Thiên Tài & Anh Hùng Chủng Tộc (Race Hero System)**
+
+---
+
+## ✅ V44 — Hệ Thống Chủng Tộc Tiến Hóa *(Đã Hoàn Thành — 2026-06-13)*
+
+5 hệ thống Race Evolution hoàn chỉnh:
+- `raceEvolutionCore.js` — 8 chủng tộc · 5 giai đoạn · auto-evolve theo kỷ nguyên
+- `raceAbilityEngine.js` — 50+ kỹ năng · auto-unlock theo age · đột biến ngẫu nhiên
+- `raceWarEngine.js` — 6 loại xung đột · thống trị · nguy cơ tuyệt chủng
+- `raceRelationEngine.js` — 28 cặp quan hệ default · liên minh · đồng hóa
+- `raceEvolutionRegistry.js` — Hub UI trong Multiverse V35
+
+---
+
+## 🏆 V45 — Hệ Thống Thiên Tài & Anh Hùng Chủng Tộc *(Đề Xuất Tiếp Theo)*
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Race Hero Core | `raceHeroCore.js` | Sinh anh hùng ngẫu nhiên từ mỗi chủng tộc |
+| Hero Legend Engine | `raceHeroLegendEngine.js` | Huyền thoại, chiến công, di sản anh hùng |
+| Hero War Engine | `raceHeroBattleEngine.js` | Anh hùng đấu nhau, đại chiến huyền thoại |
+| Hero Bloodline | `raceHeroBloodlineEngine.js` | Dòng dõi anh hùng, di truyền kỹ năng |
+| Hero Registry | `raceHeroRegistry.js` | UI · Hub widget |
+
+**Tính năng nổi bật:**
+- Anh hùng sinh ra từ chủng tộc có evolutionStage ≥ 2
+- Mỗi anh hùng có backstory riêng từ Mythology V42
+- Anh hùng tham chiến khi chủng tộc có xung đột V44
+- Dòng dõi anh hùng ảnh hưởng tiến hóa thế hệ sau
+- Tích hợp với `heroLegendEngine.js` hiện có
+
+**Save keys dự kiến:** `cgv6_race_hero_core_v45` · `cgv6_race_hero_legend_v45` · `cgv6_race_hero_battle_v45`
+**UI:** Section mới trong Multiverse Hub V35 (tiếp tục theo pattern V44)
 
 ---
 

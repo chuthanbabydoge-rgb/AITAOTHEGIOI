@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V43 — Hệ Thống Kỷ Nguyên Thế Giới |
+| **Current Version** | V44 — Hệ Thống Chủng Tộc Tiến Hóa |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 134+ |
-| **Total Systems** | 110+ |
+| **Total JS Files** | 190 |
+| **Total Systems** | 115+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,15 @@
 
 ## ✅ Completed Systems
 
-### AI Creator Assistant V41 ← NEWEST
+### Hệ Thống Chủng Tộc Tiến Hóa V44 ← NEWEST
+- `raceEvolutionCore.js` — 8 chủng tộc · 5 giai đoạn tiến hóa · recGetAll() · recEvolveRace() · SAVE: cgv6_race_evo_core_v44
+- `raceAbilityEngine.js` — 50+ kỹ năng · 12 kỷ nguyên · 4 rarity · raeUnlockAbility() · SAVE: cgv6_race_ability_v44
+- `raceWarEngine.js` — 6 loại xung đột · rweStartConflict() · rweGetDominance() · SAVE: cgv6_race_war_v44
+- `raceRelationEngine.js` — Ma trận quan hệ · 7 mức · 4 liên minh · rreFormAlliance() · SAVE: cgv6_race_relation_v44
+- `raceEvolutionRegistry.js` — 5 panel renders · recHubRenderPanel() widget · Passive
+- **hubEngine.js**: mvHubRenderPanel (inline index.html) = thêm section V44
+
+### AI Creator Assistant V41
 - `creatorBrain.js` — `cbrnAnalyzeWorld()` · 10 chiều phân tích · Passive
 - `creatorAI.js` — AI Cố Vấn · gameTick/20 · Điểm sức khỏe · SAVE: cgv6_creator_ai_v41
 - `creatorSuggestionEngine.js` — 12 đề xuất · Priority · One-click · SAVE: cgv6_creator_sugg_v41
