@@ -9,16 +9,19 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V36 — Alternate Timeline System |
+| **Current Version** | V38 — Tiến Hóa Nền Văn Minh AI |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 91 |
-| **Total Systems** | 79+ |
+| **Total JS Files** | 115+ |
+| **Total Systems** | 80+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
 ---
 
 ## ✅ Completed Systems
+
+### Civilization Evolution V38 ← NEWEST
+- `civEvolutionEngineV38.js` — 6 Trụ Cột · 8 Tier · 7 nguồn dữ liệu · UI trong Đa Vũ Trụ hub (6 tabs) · Save: cgv6_civ_evolution_v38
 
 ### Core Engine
 - `app.js` — Core loop, NPC/Sect/Country management, save/load, gameTick

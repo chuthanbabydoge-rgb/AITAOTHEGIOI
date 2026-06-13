@@ -4,6 +4,37 @@
 
 ---
 
+## [V38] — 2026-06-13 — Tiến Hóa Nền Văn Minh AI
+
+### New Systems Added
+- Civilization Evolution Engine (`civEvolutionEngineV38.js`) — 6 Trụ Cột tiến hóa (Khoa Học/Văn Hóa/Quân Sự/Tôn Giáo/Công Nghệ/Phép Thuật) · 8 tier (Nguyên Thủy→Vĩnh Cửu) · 8 thời đại văn minh (Hồng Hoang→Siêu Việt) · Tích hợp 7 nguồn dữ liệu: lcaiData/kingdomData/empireData/sectV29Data/divV30Data/mvData/countries · gameTick mỗi 5 ticks · Breakthrough events → htAddEvent + wmeAddMemory + waeAddAlert · Save: cgv6_civ_evolution_v38
+
+### index.html Updates
+- Thêm `<script src="civEvolutionEngineV38.js">` 
+- Thêm 6 panel divs: panel-civ-overview-v38, panel-civ-evolution-v38, panel-civ-tech-v38, panel-civ-culture-v38, panel-civ-religion-v38, panel-civ-stats-v38
+- Extend `mvHubRenderPanel()` — thêm section V38 với stats cards + 6 tab buttons (KHÔNG tạo tab sidebar mới)
+
+### Integration Points
+- Tích hợp `window.lcaiData.civilizations` (livingCivilizationAI) — đọc traits để boost pillar tương ứng
+- Tích hợp `window.kingdomData`, `window.empireData` — dùng Array.isArray + Object.values safety (V33 pattern)
+- Tích hợp `window.sectV29Data.sects`, `window.divV30Data.beings` — sects boost magic/science, divine boost religion/magic
+- Tích hợp `window.mvData.universes` — universes tiến hóa nhanh hơn (+0.5 rate)
+- Tích hợp `window.techData.globalTechLevel` (technologyEngine) — boost technology pillar
+- Fire events → Historical Timeline, World Memory, World Alert (Jarvis)
+
+### UI (trong 🌌 Đa Vũ Trụ hub — KHÔNG sidebar mới)
+- 🌟 Nền Văn Minh — tổng quan cards với 6 pillar bars + thời đại
+- 📈 Tiến Hóa — biên niên sử 200 sự kiện đột phá
+- ⚙️ Công Nghệ — xếp hạng pillar technology với tier distribution
+- 🎨 Văn Hóa — xếp hạng pillar culture với tier distribution
+- 🛕 Tôn Giáo — xếp hạng pillar religion với tier distribution
+- 📊 Thống Kê — tổng hợp 6 pillars + phân loại + Top 10 văn minh
+
+### Save Keys
+- `cgv6_civ_evolution_v38`
+
+---
+
 ## [V37] — 2026-06-13 — Infinite Universe Generator
 
 ### New Systems Added

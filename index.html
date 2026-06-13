@@ -2713,6 +2713,14 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by renderPerformancePanel() in lodPerformanceSystem.js -->
       </div>
 
+      <!-- ═══ V38 CIVILIZATION EVOLUTION PANELS ═══ -->
+      <div id="panel-civ-overview-v38"  class="panel"></div>
+      <div id="panel-civ-evolution-v38" class="panel"></div>
+      <div id="panel-civ-tech-v38"      class="panel"></div>
+      <div id="panel-civ-culture-v38"   class="panel"></div>
+      <div id="panel-civ-religion-v38"  class="panel"></div>
+      <div id="panel-civ-stats-v38"     class="panel"></div>
+
       <!-- ═══ V32 CREATOR GOD CONTROL PANELS ═══ -->
       <div id="panel-creator-control" class="panel">
         <!-- Rendered by creatorControlRenderPanel() in creatorGodControl.js -->
@@ -3056,6 +3064,7 @@ window.addEventListener("load", function() {
 <script src="invasionEngineV31.js"></script>
 <script src="bossEvolutionEngineV31.js"></script>
 <script src="legendaryHuntEngineV31.js"></script>
+<script src="civEvolutionEngineV38.js"></script>
 <script src="lodPerformanceSystem.js"></script>
 <script src="populationLimitSystem.js"></script>
 <script src="timeControlSystem.js"></script>
@@ -3164,6 +3173,30 @@ window.mvHubRenderPanel = function() {
     +'<button onclick="showPanel(\'panel-universe-generator-v37\');ugRenderPanel&&ugRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#8b5cf6;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">♾️ <strong>Máy Sinh Vũ Trụ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Sinh vô hạn · Seed-based · Preset</div></button>'
     +'<button onclick="showPanel(\'panel-universe-laws-v37\');ulRenderPanel&&ulRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #06b6d4;border-radius:10px;color:#06b6d4;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚖️ <strong>Quy Luật Vật Lý</strong><div style="font-size:11px;color:#64748b;margin-top:4px">8 quy luật · Gán · Tác động</div></button>'
     +'<button onclick="showPanel(\'panel-universe-observatory-v37\');uobRenderPanel&&uobRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🔭 <strong>Đài Quan Sát</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Vòng đời · Bất thường · So sánh</div></button>'
+    +'</div>'
+    +'</div>'
+    +'<div style="margin-top:28px;padding-top:20px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
+    +'<h3 style="margin:0;font-size:18px;color:#34d399;font-family:Cinzel,serif">🌟 Tiến Hóa Nền Văn Minh AI V38</h3>'
+    +'</div>'
+    +(function(){
+        var d=window.civEvoData||{civilizations:{},globalStats:{totalBreakthroughs:0,highestCiv:null}};
+        var cnt=Object.keys(d.civilizations).length;
+        var brk=d.globalStats.totalBreakthroughs||0;
+        var top=d.globalStats.highestCiv||"—";
+        return '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px">'
+          +'<div style="background:#0f172a;border:1px solid #34d39944;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#34d399">'+cnt+'</div><div style="font-size:10px;color:#64748b">Nền Văn Minh</div></div>'
+          +'<div style="background:#0f172a;border:1px solid #8b5cf644;border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:700;color:#8b5cf6">'+brk+'</div><div style="font-size:10px;color:#64748b">Đột Phá</div></div>'
+          +'<div style="background:#0f172a;border:1px solid #fbbf2444;border-radius:8px;padding:10px;text-align:center"><div style="font-size:13px;font-weight:700;color:#fbbf24;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+top+'</div><div style="font-size:10px;color:#64748b">Văn Minh Đỉnh</div></div>'
+          +'</div>';
+      })()
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px">'
+    +'<button onclick="showPanel(\'panel-civ-overview-v38\');window.civEvoRenderOverview&&window.civEvoRenderOverview()" style="padding:14px;background:#0f172a;border:1px solid #34d399;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🌟 <strong>Nền Văn Minh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Tổng quan 6 trụ cột</div></button>'
+    +'<button onclick="showPanel(\'panel-civ-evolution-v38\');window.civEvoRenderEvolution&&window.civEvoRenderEvolution()" style="padding:14px;background:#0f172a;border:1px solid #a78bfa;border-radius:10px;color:#a78bfa;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📈 <strong>Tiến Hóa</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Biên niên sử đột phá</div></button>'
+    +'<button onclick="showPanel(\'panel-civ-tech-v38\');window.civEvoRenderTechnology&&window.civEvoRenderTechnology()" style="padding:14px;background:#0f172a;border:1px solid #34d399;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚙️ <strong>Công Nghệ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xếp hạng kỹ thuật</div></button>'
+    +'<button onclick="showPanel(\'panel-civ-culture-v38\');window.civEvoRenderCulture&&window.civEvoRenderCulture()" style="padding:14px;background:#0f172a;border:1px solid #c084fc;border-radius:10px;color:#c084fc;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🎨 <strong>Văn Hóa</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xếp hạng nghệ thuật</div></button>'
+    +'<button onclick="showPanel(\'panel-civ-religion-v38\');window.civEvoRenderReligion&&window.civEvoRenderReligion()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🛕 <strong>Tôn Giáo</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xếp hạng thần đạo</div></button>'
+    +'<button onclick="showPanel(\'panel-civ-stats-v38\');window.civEvoRenderStats&&window.civEvoRenderStats()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Thống Kê</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Tổng hợp & Top 10</div></button>'
     +'</div>'
     +'</div>'
     +'</div>';

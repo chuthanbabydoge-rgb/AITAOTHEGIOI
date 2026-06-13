@@ -24,13 +24,17 @@
 
 ## 🔢 CURRENT VERSION
 
-**V37 — Infinite Universe Generator** (2026-06-13)
+**V38 — Tiến Hóa Nền Văn Minh AI** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (71+ systems)
+## ✅ COMPLETED SYSTEMS (72+ systems)
 
-### Alternate Timeline System V36 (9 systems) ← NEWEST
+### Civilization Evolution Engine V38 (1 system) ← NEWEST
+- `civEvolutionEngineV38.js` — 6 Trụ Cột (Khoa Học, Văn Hóa, Quân Sự, Tôn Giáo, Công Nghệ, Phép Thuật) · 8 tầng tier · Tích hợp Kingdom/Empire/Sect/Divine/Multiverse/Timeline · gameTick mỗi 5 ticks · Breakthrough events → htAddEvent + wmeAddMemory + waeAddAlert · SAVE_KEY: cgv6_civ_evolution_v38
+- **UI**: Section V38 trong 🌌 Đa Vũ Trụ hub — 6 tabs: Nền Văn Minh, Tiến Hóa, Công Nghệ, Văn Hóa, Tôn Giáo, Thống Kê · Không tạo tab sidebar mới
+
+### Alternate Timeline System V36 (9 systems)
 - `timelineEngine.js` — Core · 7 loại timeline · CRUD · gameTick · Auto-init 3 timelines
 - `timelineManager.js` — Creator God controls · Stabilize/Purge/AlterHistory/Snapshot
 - `timelineRegistry.js` — Danh mục · Rankings · Phân loại theo type · Đồng bộ

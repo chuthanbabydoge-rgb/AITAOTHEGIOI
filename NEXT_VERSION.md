@@ -2,8 +2,8 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V37 — Infinite Universe Generator** ✅
-> **Phiên bản tiếp theo đề xuất: V38 — Civilization Ascension System**
+> **Phiên bản hiện tại: V38 — Tiến Hóa Nền Văn Minh AI** ✅
+> **Phiên bản tiếp theo đề xuất: V39 — Divine War & Pantheon Ascension**
 
 ---
 
