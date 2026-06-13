@@ -1732,6 +1732,10 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-my-empire" onclick="showPanel('my-empire');if(typeof window.ptRenderMyEmpire==='function')window.ptRenderMyEmpire();" data-panel="my-empire">👑 Đế Chế Ta</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-player-war" onclick="showPanel('player-war');if(typeof window.ptRenderPlayerWar==='function')window.ptRenderPlayerWar();" data-panel="player-war">⚔️ Chiến Tranh Ta</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-ascension-v28" onclick="showPanel('ascension-v28');if(typeof window.ascRenderPanel==='function')window.ascRenderPanel();" data-panel="ascension-v28">⭐ Thăng Cấp</button>
+      <!-- ═══ V32 CREATOR GOD CONTROL PANEL BUTTONS ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-creator-control" onclick="showPanel('creator-control');if(typeof creatorControlRenderPanel==='function')creatorControlRenderPanel();" data-panel="creator-control">👁 Bảng ĐK Creator</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-divine-admin" onclick="showPanel('divine-admin');if(typeof divineAdminRenderPanel==='function')divineAdminRenderPanel();" data-panel="divine-admin">👼 Kiểm Soát Thần</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-creator-analytics" onclick="showPanel('creator-analytics');if(typeof creatorAnalyticsRenderPanel==='function')creatorAnalyticsRenderPanel();" data-panel="creator-analytics">📊 Phân Tích TG</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2738,6 +2742,19 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by ascRenderPanel() in ascensionEngine.js + culRenderPanel() in cultivationPlayerEngine.js -->
       </div>
 
+      <!-- ═══ V32 CREATOR GOD CONTROL PANELS ═══ -->
+      <div id="panel-creator-control" class="panel">
+        <!-- Rendered by creatorControlRenderPanel() in creatorGodControl.js -->
+      </div>
+
+      <div id="panel-divine-admin" class="panel">
+        <!-- Rendered by divineAdminRenderPanel() in divineAdministration.js -->
+      </div>
+
+      <div id="panel-creator-analytics" class="panel">
+        <!-- Rendered by creatorAnalyticsRenderPanel() in creatorAnalytics.js -->
+      </div>
+
       <div id="panel-living-civ" class="panel">
         <!-- Rendered by lcaiRenderPanel() in livingCivilizationAI.js -->
       </div>
@@ -2920,6 +2937,10 @@ window.addEventListener("load", function() {
 <script src="warEngine.js"></script>
 <script src="dynastyEngine.js"></script>
 <script src="creatorGodEngine.js"></script>
+<!-- ═══ V32 CREATOR GOD CONTROL PANEL SCRIPTS ═══ -->
+<script src="creatorGodControl.js"></script>
+<script src="divineAdministration.js"></script>
+<script src="creatorAnalytics.js"></script>
 <script src="catastropheSystem.js"></script>
 <script src="religionEngine.js"></script>
 <script src="ageEngine.js"></script>
@@ -3005,7 +3026,7 @@ window.addEventListener("load", function() {
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28","creator-control","divine-admin","creator-analytics"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }

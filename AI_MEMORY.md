@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V31 — World Boss & Dungeon System** (2026-06-13)
+**V32 — Creator God Control Panel** (2026-06-13)
 
 ---
 
@@ -50,7 +50,12 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### World Boss & Dungeon V31 (7 systems) ← NEWEST
+### Creator God Control Panel V32 (3 systems) ← NEWEST
+- `creatorGodControl.js` — World/Kingdom/Empire/Disaster/Boss/Artifact/Player/Timeline/Snapshot controls · 8 sub-tabs
+- `divineAdministration.js` — Tạo/Xóa Thần · Phân Định Lãnh Địa · Thần Điện · Khai Chiến Thần Thánh
+- `creatorAnalytics.js` — World analytics: Population · Economy · Military · Religion · Tech · Stability · Divine · Boss
+
+### World Boss & Dungeon V31 (7 systems)
 - `worldBossEngineV31.js` — 6 boss tiers (Rare→Creator) · 15 templates · Auto-spawn mỗi 80 ticks
 - `dungeonEngineV31.js` — 6 dungeon types · Floor layout · Auto NPC explore
 - `raidEngineV31.js` — Solo/Party/Guild/Sect/Kingdom/Empire raids · Power calc
@@ -340,4 +345,4 @@ PROJECT MODE: EXPAND ONLY · NEVER DELETE · NEVER REPLACE · NEVER REBUILD
 
 ---
 
-*Last updated: V24 — 2026-06-12*
+*Last updated: V32 — 2026-06-13*

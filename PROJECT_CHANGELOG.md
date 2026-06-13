@@ -4,6 +4,47 @@
 
 ---
 
+## [V32] — 2026-06-13 — Creator God Control Panel
+
+### New Systems Added
+- Creator God Control V32 (`creatorGodControl.js`) — Kiểm soát Thế Giới/Vương Quốc/Đế Chế/Thảm Họa/Boss/Cổ Vật/Người Chơi/Timeline
+- Divine Administration V32 (`divineAdministration.js`) — Tạo/Xóa Thần · Lãnh Địa · Thần Điện · Thần Chiến
+- Creator Analytics V32 (`creatorAnalytics.js`) — Phân Tích Thế Giới toàn diện 8 chỉ số
+
+### Files Added
+- `creatorGodControl.js` — World/Kingdom/Empire/Disaster/Boss/Artifact/Player/Timeline controls + Snapshot system
+- `divineAdministration.js` — Divine creation · Domain assignment · Pantheon · Divine War
+- `creatorAnalytics.js` — Population · Economy · Military · Religion · Technology · Stability · Divine · Boss analytics
+
+### Files Modified
+- `index.html` — Added 3 script tags, 3 nav buttons, 3 panel divs, updated v23Panels unlock array
+
+### UI Tabs Added
+- 👁 Bảng ĐK Creator (`panel-creator-control`) — creatorGodControl.js (8 sub-tabs)
+- 👼 Kiểm Soát Thần (`panel-divine-admin`) — divineAdministration.js
+- 📊 Phân Tích TG (`panel-creator-analytics`) — creatorAnalytics.js
+
+### Integration
+- creatorGodControl.js → kingdomEngine.js (kingdom CRUD)
+- creatorGodControl.js → empireEngine.js (empire CRUD)
+- creatorGodControl.js → disasterEngine.js + plagueEngine.js (disaster triggers)
+- creatorGodControl.js → worldBossEngineV31.js (boss summon)
+- creatorGodControl.js → invasionEngineV31.js (invasion trigger)
+- creatorGodControl.js → artifactSystem.js (artifact creation)
+- creatorGodControl.js → playerEngine.js (player level/title/resources)
+- divineAdministration.js → divineBeingEngine.js + divineWarEngine.js + pantheonEngineV30.js
+- creatorAnalytics.js → all global data (read-only aggregation)
+- All engines → historicalTimeline (htAddEvent hook)
+
+### Save Keys (localStorage)
+- `cgv6_creator_control_v32` — Snapshots + action history
+- `cgv6_divine_admin_v32` — Deities + divine wars + pantheons
+- `cgv6_creator_analytics_v32` — Analytics cache
+
+### EXPAND ONLY — creatorGodEngine.js (V1) kept intact, V32 extends it
+
+---
+
 ## [V31] — 2026-06-13 — World Boss & Dungeon System
 
 ### New Systems Added
