@@ -4,6 +4,50 @@
 
 ---
 
+## [V64] — 2026-06-13 — Memory System (Thế Giới Nhớ Người Sáng Thế)
+
+### Triết Lý V64
+EXPAND ONLY. AI không còn là dữ liệu tĩnh — AI phải nhớ lịch sử, nhớ chiến tranh, nhớ người chơi, nhớ thần sáng thế, nhớ tổ tiên. Không tạo tab sidebar mới — 5 sub-tabs trong creator-hub-v32.
+
+### New Files (8 files)
+- `memoryEngineV64.js` — Lõi ký ức toàn cầu · 10 danh mục · auto-scan wars+disasters · mem64Record/GetByCategory/Search · SAVE: cgv6_memory_core_v64 · init: 12600ms
+- `npcMemorySystemV64.js` — Ký ức sinh linh · 4 loại (personal/family/social/historical) · auto-scan npcs[] · SAVE: cgv6_npc_memory_v64 · init: 12700ms
+- `civilizationMemorySystemV64.js` — Ký ức văn minh · khai quốc/chiến tranh/anh hùng/tín ngưỡng · auto-scan countries+kingdomData · SAVE: cgv6_civ_memory_v64 · init: 12800ms
+- `creatorMemorySystemV64.js` — Ký ức tạo hóa · sync V51 miracles+events · worldPerspective() · di sản creator · SAVE: cgv6_creator_memory_v64 · init: 12900ms
+- `dynastyMemoryEngineV64.js` — Ký ức gia tộc · Thủy Tổ/Tiên Tổ/huyền thoại gia tộc · auto-scan npcs dynasty · SAVE: cgv6_dynasty_memory_v64 · init: 13000ms
+- `worldMemoryArchiveV64.js` — Kho lưu trữ thế giới · kỷ nguyên/thần tích/đại thảm/anh hùng huyền thoại · sync V51+V59 · Jarvis Chronicle · SAVE: cgv6_world_memory_archive_v64 · init: 13100ms
+- `memoryDecaySystemV64.js` — Phai nhạt ký ức · 3 giai đoạn (0→50%→80%) · bóp méo → truyền thuyết · 13 template distortion · SAVE: cgv6_memory_decay_v64 · init: 13200ms
+- `memoryRegistryV64.js` — UI Registry · patch hubRenderPanel(creator-hub-v32) · 5 sub-tabs · Jarvis button · Quick-action buttons · init: 13300ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 8 script tags sau worldCinematicV63.js
+
+### Files Generated
+- `MEMORY_REPORT.md` — báo cáo đầy đủ 10 mục
+
+### 5 Sub-tabs UI (trong creator-hub-v32)
+1. 🌍 Thế Giới — Timeline + thống kê + Jarvis Biên Niên Sử
+2. 🏛️ Văn Minh — Lịch sử từng nền văn minh (khai quốc, chiến tranh, anh hùng)
+3. 👤 Sinh Linh — NPC có nhiều ký ức nhất (4 loại ký ức)
+4. 📖 Truyền Thuyết — Ký ức bóp méo + huyền thoại gia tộc
+5. 👁️ Tạo Hóa — Di sản Creator, worldPerspective(), quick-action buttons
+
+### Memory Decay Pipeline
+```
+Ký Ức Gốc (0%) → 100+ năm → Bóp Méo (50%) → Truyền Thuyết (80%)
+"Chiến Tranh A vs B" → "Trận chiến như giao đấu giữa thần linh" → "Huyết Chiến Muôn Thuở"
+```
+
+### Save Keys V64 (7 keys mới)
+- cgv6_memory_core_v64 · cgv6_npc_memory_v64 · cgv6_civ_memory_v64
+- cgv6_creator_memory_v64 · cgv6_dynasty_memory_v64
+- cgv6_world_memory_archive_v64 · cgv6_memory_decay_v64
+
+### Next Version
+- V65 init từ 13400ms+
+
+---
+
 ## [V63] — 2026-06-13 — World Cinematic Engine
 
 ### Triết Lý V63

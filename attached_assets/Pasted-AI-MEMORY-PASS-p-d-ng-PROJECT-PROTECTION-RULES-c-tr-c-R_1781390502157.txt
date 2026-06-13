@@ -1,0 +1,244 @@
+AI MEMORY PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+- WORLD_CREATION_REPORT.md
+- INTEGRATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC
+==================================================
+
+CHỈ EXPAND.
+
+KHÔNG XÓA FILE CŨ.
+
+KHÔNG ĐỔI TÊN FILE CŨ.
+
+KHÔNG THAY THẾ HỆ THỐNG CŨ.
+
+KHÔNG BUILD LẠI DỰ ÁN.
+
+Chỉ để tab chính ở sidebar.
+
+Các tính năng mới:
+
+- tab con
+- modal
+- panel con
+- dashboard con
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Mục tiêu:
+
+AI không còn là dữ liệu tĩnh.
+
+AI phải:
+
+- Nhớ lịch sử
+- Nhớ chiến tranh
+- Nhớ người chơi
+- Nhớ thần sáng thế
+- Nhớ tổ tiên
+
+==================================================
+MEMORY CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- memoryEngine.js
+- npcMemorySystem.js
+- civilizationMemorySystem.js
+- creatorMemorySystem.js
+
+==================================================
+CREATOR MEMORY
+==================================================
+
+AI phải nhớ:
+
+- Người sáng thế
+- Những lần can thiệp
+- Những phép màu
+- Những thảm họa do thần tạo
+
+Ví dụ:
+
+"Ngài là vị thần đã cứu chúng tôi khỏi Đại Hồng Thủy."
+
+==================================================
+NPC MEMORY
+==================================================
+
+Mỗi NPC có:
+
+- Personal Memory
+- Family Memory
+- Social Memory
+- Historical Memory
+
+==================================================
+DYNASTY MEMORY
+==================================================
+
+Tạo:
+
+- dynastyMemoryEngine.js
+
+Cho phép:
+
+- Con cháu nhớ tổ tiên
+- Gia tộc nhớ lịch sử
+- Truyền thuyết gia tộc
+
+==================================================
+CIVILIZATION MEMORY
+==================================================
+
+Mỗi nền văn minh nhớ:
+
+- Người khai quốc
+- Cuộc chiến lớn
+- Anh hùng huyền thoại
+- Tôn giáo khai sinh
+
+==================================================
+WORLD MEMORY
+==================================================
+
+Tạo:
+
+- worldMemoryArchive.js
+
+Lưu:
+
+- Sự kiện lớn
+- Kỷ nguyên
+- Thiên tai
+- Thần tích
+
+==================================================
+MEMORY DECAY
+==================================================
+
+Tạo:
+
+- memoryDecaySystem.js
+
+Một số ký ức:
+
+- Phai nhạt theo thời gian
+- Bị bóp méo
+- Trở thành truyền thuyết
+
+==================================================
+LEGEND SYSTEM
+==================================================
+
+Tạo:
+
+- legendEngine.js
+
+Ký ức lâu năm có thể biến thành:
+
+- Truyền thuyết
+- Thần thoại
+- Sử thi
+
+==================================================
+JARVIS MEMORY MODE
+==================================================
+
+Jarvis có thể:
+
+- Truy xuất lịch sử
+- Kể lại quá khứ
+- Tóm tắt ký ức thế giới
+- Phân tích sự kiện
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp trong:
+
+Creator Panel
+
+Tab nội bộ:
+
+- World Memory
+- Civilization Memory
+- NPC Memory
+- Legends
+- Creator Legacy
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Memories
+- Legends
+- Historical Records
+- Creator History
+
+Tương thích 100% save cũ.
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Người chơi quay lại sau:
+
+100 năm trong game
+
+AI vẫn nhớ:
+
+- Người chơi là ai
+- Đã làm gì
+- Đã cứu ai
+- Đã phá hủy gì
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- MEMORY_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+MEMORY_REPORT phải trả lời:
+
+1. AI nhớ được gì
+2. NPC nhớ được gì
+3. Civilization nhớ được gì
+4. Creator được ghi nhớ thế nào
+5. Ký ức biến thành truyền thuyết ra sao
+
+KHÔNG BUILD HỆ THỐNG MMO MỚI.
+
+KHÔNG BUILD PVP MỚI.
+
+TẬP TRUNG:
+
+"THẾ GIỚI NHỚ NGƯỜI SÁNG THẾ."
