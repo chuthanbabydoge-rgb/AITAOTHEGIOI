@@ -1,6 +1,6 @@
 # INTEGRATION REPORT — Creator God V6
 > Đánh giá mức độ kết nối giữa tất cả hệ thống hiện có
-> Ngày: 2026-06-13 (sau V59 — Global Events Online)
+> Ngày: 2026-06-13 (sau V60 — Living Universe)
 > Phương pháp: Phân tích dependency, data flow, API cross-reference
 
 ---
@@ -9,12 +9,22 @@
 
 | Chỉ Số | Giá Trị |
 |---|---|
-| **Tổng Systems** | 184+ |
-| **Tổng File JS** | 259 |
-| **GameTick Hooks** | 117 |
-| **Cross-system API calls** | 260+ |
-| **Shared Global Objects** | 58+ |
-| **Save Keys** | 169+ |
+| **Tổng Systems** | 192+ |
+| **Tổng File JS** | 265 |
+| **GameTick Hooks** | 122 |
+| **Cross-system API calls** | 280+ |
+| **Shared Global Objects** | 63+ |
+| **Save Keys** | 174+ |
+
+### V60 — Living Universe (Kết Nối Mới)
+| V60 Module | Reads From | Writes To / Effects |
+|---|---|---|
+| `livingUniverseOrchestrator` | window.year · countries[] · kingdomData · empireData · warsActive · guildCoreV53Data · tradeNetV54Data · playerCoreV50Data · eventSchedulerV59Data · mvEventV59Data · worldBossV59Data · playerCivCoreV58Data | luOrchestratorV60Data (read-only observer) |
+| `causeEffectEngine` | disasterData · econCrisisData · warsActive · countries[] · worldEventV25Data · politicalReligionData · mvEventV59Data · npcs[] | countries[i].stability/economy/pop · npcs[i].isHero/fame · htAddEvent · wmeAddMemory |
+| `worldNarrativeEngine` | eventArchiveV59Data · worldBossV59Data · worldEventV25Data · countries[] · npcs[] · kingdomData · empireData · causeEffectV60Data | worldNarrativeV60Data · htAddEvent (indirectly) |
+| `universeMaturitySystem` | countries[] · npcs[] · disasterData · plagueData · kingdomData · empireData · sects[] · tradeNetV54Data · playerCoreV50Data · eventSchedulerV59Data · mvEventV59Data · worldBossV59Data · playerCivCoreV58Data · historicalTimelineData · worldMemoryData · worldNarrativeV60Data · luOrchestratorV60Data | universeMaturityV60Data |
+| `universeAnalyticsEngine` | countries[] · warsActive · npcs[] · playerMarketplaceV52Data · tradeNetV54Data · playerCoreV50Data · eventSchedulerV59Data · eventArchiveV59Data · luOrchestratorV60Data | universeAnalyticsV60Data |
+| `livingUniverseRegistryV60` | Tất cả V60 data objects | Patches hubRenderPanel(creator-hub-v32) |
 
 ### V59 — Global Events Online (Kết Nối Mới)
 | V59 Module | Reads From | Writes To |

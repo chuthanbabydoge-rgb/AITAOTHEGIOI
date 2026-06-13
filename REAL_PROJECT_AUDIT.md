@@ -7,22 +7,39 @@
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V58 | V59 (Mới) |
+| Chỉ Số | V59 | V60 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 251 | **259** |
-| **Tổng file được load trong index.html** | 250 | **258** |
+| **Tổng file .js trên disk** | 259 | **265** |
+| **Tổng file được load trong index.html** | 258 | **264** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V59 dùng hub cũ) |
+| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V60 dùng hub cũ) |
 | **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 162+ | **169+** |
-| **Engine hook vào gameTick** | 113 | **117** |
-| **Phiên bản hiện tại** | V58 | **V59 — Global Events Online** |
+| **Tổng localStorage save keys (unique)** | 169+ | **174+** |
+| **Engine hook vào gameTick** | 117 | **122** |
+| **Phiên bản hiện tại** | V59 | **V60 — Living Universe** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌍 Global Events Online V59 ← NEWEST (8 files)
+### 🌍 Living Universe V60 ← NEWEST (6 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `livingUniverseOrchestrator.js` | 12 domain · 16 links · Integration score · Alert system · luo60GetState/DomainScore/IntegrationScore/Stats() | `cgv6_universe_orchestrator_v60` | 11500ms |
+| `causeEffectEngine.js` | 6 chains · Auto-trigger · Real effects · cee60GetActiveChains/History/TriggerChain/GetStats() | `cgv6_cause_effect_v60` | 11600ms |
+| `worldNarrativeEngine.js` | Chronicle/Legend/TurningPoint/EpochSummary · Auto · wne60GenerateChronicle/Legend/GetAll/JarvisStory() | `cgv6_world_narrative_v60` | 11700ms |
+| `universeMaturitySystem.js` | 8 chiều · 6 tier (Phôi Thai→Thần Thánh) · ums60GetScore/Dimensions/Tier/JarvisReport() | `cgv6_universe_maturity_v60` | 11800ms |
+| `universeAnalyticsEngine.js` | 6 metrics · Trends · 20-point history · uae60GetAnalytics/Trends/Dashboard/Insights() | `cgv6_universe_analytics_v60` | 11900ms |
+| `livingUniverseRegistryV60.js` | Patches creator-hub-v32 · 6 tabs · Omega Jarvis · lur60ShowTab() | — | 12000ms |
+
+**Global Objects:** `window.luOrchestratorV60Data` · `window.causeEffectV60Data` · `window.worldNarrativeV60Data` · `window.universeMaturityV60Data` · `window.universeAnalyticsV60Data`
+**Không thêm hệ thống mới** — Reads từ V59/V58/V57/V56/V55/V54/V53/V52/V51/V50/V49/V48/V25
+**UI:** 6 tabs trong creator-hub-v32 (👁 Creator God V32) — KHÔNG tạo sidebar tab mới
+**GameTick hooks:** luo60Tick · cee60Tick · wne60Tick · ums60Tick · uae60Tick (5 hooks mới)
+
+---
+
+### 🌍 Global Events Online V59 (8 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `globalEventSchedulerV59.js` | 10 loại sự kiện · Auto-trigger · Cooldowns · Priority · ges59ManualFire/GetActive/GetStats() | `cgv6_event_scheduler_v59` | 10700ms |

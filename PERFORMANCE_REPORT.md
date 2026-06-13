@@ -1,7 +1,7 @@
 # PERFORMANCE REPORT — Creator God V6
 > Đánh giá hiệu năng, độ kết nối, và điểm nghẽn kiến trúc
-> Ngày: 2026-06-14 (sau V57 — Creator Economy)
-> Phiên bản: V57 · 246 JS files · 113 gameTick hooks · 162+ save keys
+> Ngày: 2026-06-13 (cập nhật sau V60 — Living Universe)
+> Phiên bản: V60 · 265 JS files · 122 gameTick hooks · 174+ save keys
 
 ---
 
@@ -9,10 +9,10 @@
 
 | Chỉ Số | Giá Trị | Đánh Giá |
 |---|---|---|
-| **Tổng file JS** | 246 | ⚠️ Nặng (cần lazy-load dài hạn) |
-| **Tổng gameTick hooks** | 113 | ⚠️ Cao — mỗi tick gọi 113 hàm |
-| **Thời gian init** | 0 → 10100ms | ✅ Staggered đều — không block |
-| **localStorage keys** | 162+ | ⚠️ Gần giới hạn phổ biến (5MB) |
+| **Tổng file JS** | 265 | ⚠️ Rất nặng (cần lazy-load dài hạn) |
+| **Tổng gameTick hooks** | 122 | ⚠️ Cao — mỗi tick gọi 122 hàm |
+| **Thời gian init** | 0 → 12000ms | ⚠️ 12 giây — staggered đều nhưng lâu |
+| **localStorage keys** | 174+ | ⚠️ Gần giới hạn phổ biến (5MB) |
 | **Vòng lặp tick** | setInterval mỗi 500ms | ✅ Ổn |
 | **DOM manipulation** | Panel-based · Lazy render | ✅ Tốt |
 | **Memory footprint** | ~50-100MB RAM ước tính | ⚠️ Cần giám sát |

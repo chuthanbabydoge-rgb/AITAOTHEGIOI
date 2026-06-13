@@ -1,0 +1,321 @@
+Tiếp tục build V60 — LIVING UNIVERSE.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- INTEGRATION_REPORT.md
+- PERFORMANCE_REPORT.md
+- EVENT_REPORT.md
+- CIVILIZATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V60 - LIVING UNIVERSE
+
+==================================================
+TẦM NHÌN
+==================================================
+
+KHÔNG tạo thêm engine lớn mới.
+
+KHÔNG tạo thêm hệ thống độc lập mới.
+
+Mục tiêu:
+
+HỢP NHẤT TOÀN BỘ HỆ THỐNG HIỆN CÓ.
+
+==================================================
+UNIVERSE ORCHESTRATOR
+==================================================
+
+Tạo:
+
+- livingUniverseOrchestrator.js
+
+Chức năng:
+
+Điều phối toàn bộ:
+
+- Politics
+- Economy
+- Religion
+- Civilization
+- Heroes
+- Disasters
+- Trade
+- Guilds
+- Empires
+- Players
+- Events
+- Multiverse
+
+==================================================
+GLOBAL CAUSE & EFFECT
+==================================================
+
+Tạo:
+
+- causeEffectEngine.js
+
+Ví dụ:
+
+Thiên tai
+
+↓
+
+Thiếu lương thực
+
+↓
+
+Khủng hoảng kinh tế
+
+↓
+
+Bạo loạn
+
+↓
+
+Đảo chính
+
+↓
+
+Chiến tranh
+
+↓
+
+Anh hùng xuất hiện
+
+↓
+
+Kỷ nguyên mới
+
+Mọi hệ thống phải tác động qua lại.
+
+==================================================
+WORLD STORY GENERATOR
+==================================================
+
+Tạo:
+
+- worldNarrativeEngine.js
+
+Tự động sinh:
+
+- Biên niên sử
+- Truyện lịch sử
+- Tóm tắt thế giới
+- Sự kiện nổi bật
+
+==================================================
+LIVING WORLD SCORE
+==================================================
+
+Tạo:
+
+- universeMaturitySystem.js
+
+Đánh giá:
+
+- Độ sống của thế giới
+- Độ kết nối hệ thống
+- Độ ổn định
+- Độ phong phú
+
+==================================================
+MASTER ANALYTICS
+==================================================
+
+Tạo:
+
+- universeAnalyticsEngine.js
+
+Theo dõi:
+
+- Active Systems
+- Integration Score
+- Event Density
+- Economic Activity
+- Population Growth
+- Civilization Growth
+
+==================================================
+SYSTEM INTEGRATION PASS
+==================================================
+
+Bắt buộc kiểm tra:
+
+Politics ↔ Economy
+
+Economy ↔ Trade
+
+Trade ↔ Guild
+
+Guild ↔ Empire
+
+Empire ↔ War
+
+War ↔ Religion
+
+Religion ↔ Civilization
+
+Civilization ↔ Player
+
+Player ↔ Events
+
+Events ↔ Multiverse
+
+Multiverse ↔ Politics
+
+==================================================
+JARVIS OMEGA MODE
+==================================================
+
+Jarvis trở thành:
+
+Living Universe Assistant
+
+Có thể:
+
+- Phân tích toàn thế giới
+- Phát hiện điểm nghẽn
+- Đề xuất cân bằng
+- Tóm tắt lịch sử
+- Dự báo tương lai
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- Living Universe
+- Integration
+- Analytics
+- World Story
+- Universe Health
+- Omega Jarvis
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Integration Data
+- Universe Score
+- Analytics
+- Story History
+- Cause & Effect Chains
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG NHẤT
+==================================================
+
+KHÔNG THÊM HỆ THỐNG MỚI.
+
+ƯU TIÊN:
+
+1. Tích hợp
+2. Tối ưu
+3. Gameplay
+4. Hiệu năng
+5. UI/UX
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V60
+
+Recommended Next Version = V60.1 Integration Pass
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+QUAN TRỌNG:
+
+Chỉ để tab chính ở sidebar.
+Mọi tính năng mới phải nằm trong tab nội bộ.
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
+Generate INTEGRATION_REPORT.md again.
+Generate PERFORMANCE_REPORT.md again.
+Generate FINAL_FOUNDATION_REPORT.md.
+
+FINAL_FOUNDATION_REPORT phải trả lời:
+
+1. Có bao nhiêu hệ thống đang hoạt động
+2. Bao nhiêu hệ thống đã kết nối
+3. Hệ thống nào chưa kết nối
+4. Điểm nghẽn hiệu năng
+5. Điểm nghẽn gameplay
+6. Độ hoàn thiện dự án (%)
+7. Đề xuất V60.1 → V60.5
+
+==================================================
+SAU V60
+==================================================
+
+Không build:
+
+V61
+V62
+V63
+
+Chuyển sang:
+
+V60.1 Integration Pass
+V60.2 Performance Pass
+V60.3 Gameplay Pass
+V60.4 Multiplayer Pass
+V60.5 Production Release
