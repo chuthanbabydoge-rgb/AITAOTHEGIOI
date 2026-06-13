@@ -1,0 +1,268 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+* REAL_PROJECT_AUDIT.md
+
+* WORLD_AUDIT_REPORT.md
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_ARCHITECTURE.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn thông tin chính xác.
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu đã có các hệ thống tương tự:
+
+nâng cấp và mở rộng chúng.
+
+=================================================
+MỤC TIÊU XÂY DỰNG
+============
+
+HỆ THỐNG THẾ GIỚI ĐA NGƯỜI CHƠI V34
+
+==================================================
+MỤC TIÊU
+====
+
+Cho phép nhiều người chơi thực cùng tồn tại trong một thế giới.
+
+Người chơi có thể:
+
+* Tham gia Vương quốc
+* Tạo Vương quốc
+* Tham gia Bang hội
+* Tạo Giáo phái
+* Trở thành Thần
+* Trở thành Hoàng đế
+
+===================================================
+LÕI CHẾ ĐỘ CHƠI NHIỀU NGƯỜI
+===============
+
+Tạo:
+
+* multiplayerEngine.js
+* playerSessionManager.js
+* onlinePresenceSystem.js
+
+==================================================
+HỆ THỐNG TÀI KHOẢN
+==============
+
+Tạo:
+
+* accountEngine.js
+
+Tính năng:
+
+* Đăng ký
+* Đăng nhập
+* Hồ sơ
+
+* Cài đặt
+* Quyền hạn
+
+==================================================
+ĐỒNG BỘ THẾ GIỚI
+==========
+
+Tạo:
+
+* worldSyncEngine.js
+
+Đồng bộ hóa:
+
+* Người chơi
+* Vương quốc
+* Đế chế
+* Bang hội
+* Giáo phái
+* Thần thánh
+* Trùm
+
+====================================================
+HIỂN THỊ NGƯỜI CHƠI
+=================
+
+Tạo:
+
+* playerPresenceEngine.js
+
+Hiển thị:
+
+* Người chơi trực tuyến
+* Lần hoạt động cuối cùng
+* Máy chủ hiện tại
+* Hiện tại Vương quốc
+
+=================================================
+TƯƠNG TÁC NGƯỜI CHƠI
+===================
+
+Cho phép:
+
+* Yêu cầu kết bạn
+* Liên minh
+* Giao dịch
+* Nhắn tin
+* Đấu tay đôi
+
+==================================================
+CHỢ NGƯỜI CHƠI
+==================
+
+Tạo:
+
+* playerMarketplace.js
+
+Cho phép:
+
+* Giao dịch
+* Đấu giá
+* Hợp đồng
+* Tài nguyên Trao đổi
+
+=================================================
+CHÍNH PHỦ NGƯỜI CHƠI
+=================
+
+Cho phép người chơi:
+
+* Bỏ phiếu
+* Bổ nhiệm quan chức
+* Bầu chọn lãnh đạo
+* Khởi xướng nổi loạn
+
+==================================================
+SỰ KIỆN ĐA NGƯỜI CHƠI
+==================
+
+Tạo:
+
+* multiplayerEventEngine.js
+
+Sự kiện:
+
+* Săn Boss Toàn Cầu
+* Chiến tranh Vương quốc
+* Giải đấu Giáo phái
+* Vương quốc Giải vô địch
+
+=================================================
+TRÒ CHAT THẾ GIỚI
+==========
+
+Tạo:
+
+* worldChatEngine.js
+
+Các kênh:
+
+* Toàn cầu
+* Vương quốc
+* Đế chế
+* Bang hội
+* Giáo phái
+* Thần giới
+
+=====================================================
+TÍCH HỢP JARVIS
+==================
+
+Kết nối Jarvis với:
+
+* Người chơi trực tuyến
+* Sự kiện trực tiếp
+* Tin tức toàn cầu
+* Thế giới Báo cáo
+
+=================================================
+TỔ CHỨC CHỐNG GIAN LẬN
+=====================
+
+Tạo:
+
+* antiCheatEngine.js
+
+Phát hiện:
+
+* Khai thác tài nguyên
+* Hành động không hợp lệ
+* Thao túng thời gian
+
+===================================================
+Giao diện người dùng
+==
+
+Thêm các tab:
+
+🌐 Chế độ nhiều người chơi
+
+👥 Người chơi
+
+💬 Trò chuyện
+
+🤝 Bạn bè
+
+🏛 Chính phủ
+
+🏪 Chợ
+
+🏆 Sự kiện
+
+=================================================
+HỆ THỐNG LƯU
+===========
+
+Lưu:
+
+* Tài khoản
+* Dữ liệu trực tuyến
+* Bạn bè
+* Giao dịch
+* Danh sách trên thị trường
+* Sự kiện nhiều người chơi
+
+Vẫn tương thích với tất cả các bản lưu trước đó.
+
+=================================================
+ĐẦU RA
+======
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Sau khi cập nhật hoàn tất:
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Thiết lập:
+
+Phiên bản hiện tại = V34
+
+Phiên bản tiếp theo được đề xuất = V35 Mạng lưới Cổng Đa Vũ trụ
+
+CHỈ MỞ RỘNG
+
+KHÔNG BAO GIỜ XÓA
+
+KHÔNG BAO GIỜ THAY THẾ
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI

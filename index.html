@@ -1742,6 +1742,14 @@ onclick="showPanel('dashboard')">
       <button class="nav-btn ec-hidden" style="display:none" id="btn-alerts" onclick="showPanel('alerts');if(typeof waeRenderPanel==='function')waeRenderPanel();" data-panel="alerts">🚨 Cảnh Báo</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-advisor" onclick="showPanel('advisor');if(typeof paRenderPanel==='function')paRenderPanel();" data-panel="advisor">📊 Cố Vấn</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-world-report" onclick="showPanel('world-report');if(typeof waRenderReportPanel==='function')waRenderReportPanel();" data-panel="world-report">📖 Báo Cáo TG</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-multiplayer" onclick="showPanel('multiplayer');if(typeof mpRenderPanel==='function')mpRenderPanel();" data-panel="multiplayer">🌐 Đa Người Chơi</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-players-online" onclick="showPanel('players-online');if(typeof mpPresenceRenderPanel==='function')mpPresenceRenderPanel();" data-panel="players-online">👥 Người Chơi</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-world-chat" onclick="showPanel('world-chat');if(typeof chatRenderPanel==='function')chatRenderPanel();" data-panel="world-chat">💬 Trò Chuyện</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-mp-friends" onclick="showPanel('mp-friends');if(typeof mpFriendsRenderPanel==='function')mpFriendsRenderPanel();" data-panel="mp-friends">🤝 Bạn Bè</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-gov" onclick="showPanel('player-gov');" data-panel="player-gov">🏛 Chính Phủ</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-player-market" onclick="showPanel('player-market');if(typeof mpMarketRenderPanel==='function')mpMarketRenderPanel();" data-panel="player-market">🏪 Chợ</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-mp-events" onclick="showPanel('mp-events');if(typeof mpEventsRenderPanel==='function')mpEventsRenderPanel();" data-panel="mp-events">🏆 Sự Kiện</button>
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-mp-account" onclick="showPanel('mp-account');if(typeof mpAccountRenderPanel==='function')mpAccountRenderPanel();" data-panel="mp-account">👤 Tài Khoản</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2779,6 +2787,27 @@ onclick="showPanel('dashboard')">
       </div>
 
       <div id="panel-world-report" class="panel">
+      </div>
+      <!-- V34 Multiplayer Panels -->
+      <div id="panel-multiplayer" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-players-online" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-world-chat" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
+      <div id="panel-mp-friends" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-player-gov" class="panel">
+        <div style="padding:20px;font-family:'Noto Serif SC',serif;color:#e2e8f0">
+          <h2 style="color:#ef4444;margin:0 0 12px">🏛 Chính Phủ Người Chơi</h2>
+          <p style="color:#64748b">Hệ thống bỏ phiếu, bổ nhiệm quan chức và bầu cử lãnh đạo sẽ được tích hợp trong V35.</p>
+          <div style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:14px;margin-top:14px">
+            <div style="font-size:12px;color:#94a3b8;margin-bottom:10px">QUYỀN HẠNG NGƯỜI CHƠI</div>
+            <button onclick="mpSystemMsg&&mpSystemMsg('kingdom','🗳️ Một cuộc bỏ phiếu mới được khởi xướng!');chatRenderPanel&&chatRenderPanel();" style="padding:8px 16px;background:#1e293b;border:1px solid #ef4444;border-radius:6px;color:#f87171;cursor:pointer;font-size:12px;margin-right:8px">📢 Bỏ Phiếu Công Khai</button>
+            <button onclick="mpSystemMsg&&mpSystemMsg('kingdom','👑 Đề xuất bổ nhiệm lãnh đạo mới!');chatRenderPanel&&chatRenderPanel();" style="padding:8px 16px;background:#1e293b;border:1px solid #fbbf24;border-radius:6px;color:#fbbf24;cursor:pointer;font-size:12px">👑 Đề Cử Lãnh Đạo</button>
+          </div>
+        </div>
+      </div>
+      <div id="panel-player-market" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-mp-events" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-mp-account" class="panel" style="padding:0;overflow-y:auto">
+        <!-- Rendered by mpAccountRenderPanel() -->
         <!-- Rendered by waRenderReportPanel() in worldAdvisor.js -->
       </div>
 
@@ -3058,11 +3087,20 @@ window.addEventListener("load", function() {
 <script src="playerAdvisor.js"></script>
 <script src="creatorAdvisor.js"></script>
 <script src="thuhothanCore.js"></script>
+<script src="multiplayerEngine.js"></script>
+<script src="playerSessionManager.js"></script>
+<script src="accountEngine.js"></script>
+<script src="worldSyncEngine.js"></script>
+<script src="playerPresenceEngine.js"></script>
+<script src="worldChatEngine.js"></script>
+<script src="playerMarketplace.js"></script>
+<script src="multiplayerEventEngine.js"></script>
+<script src="antiCheatEngine.js"></script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28","creator-control","divine-admin","creator-analytics","thuhothan","world-news","alerts","advisor","world-report"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","diplomacy-v24","treaties-v24","world-council","intl-relations","project-status","disaster","plague","econ-crisis","world-event-v25","age-v25","continent-v26","migration-v26","cont-politics","naval-v27","pirates","ocean-v27","colonies","next-version","sect-v29","sect-war-v29","techniques-v29","disciples-v29","guild-v29","realm-v30","divine-v30","domain-v30","pantheon-v30","portal-v30","divinewar-v30","divine-history-v30","worldboss-v31","dungeon-v31","raid-v31","invasion-v31","hunt-v31","loot-v31","story","player-v28","inventory-v28","my-history","my-kingdom","my-empire","player-war","ascension-v28","creator-control","divine-admin","creator-analytics","thuhothan","world-news","alerts","advisor","world-report","multiplayer","players-online","world-chat","mp-friends","player-gov","player-market","mp-events","mp-account"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }

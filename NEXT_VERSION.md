@@ -2,8 +2,23 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V33 — Thủ Hộ Thần (AI Advisor System)**
-> **Phiên bản tiếp theo đề xuất: V34 — Thế Giới Nhiều Người Chơi (Multiplayer Foundation)**
+> **Phiên bản hiện tại: V34 — Hệ Thống Thế Giới Đa Người Chơi**
+> **Phiên bản tiếp theo đề xuất: V35 — Mạng Lưới Cổng Đa Vũ Trụ**
+
+---
+
+## ✅ V34 — Hệ Thống Đa Người Chơi *(Đã Hoàn Thành — 2026-06-13)*
+
+9 hệ thống Multiplayer hoàn chỉnh (BroadcastChannel, no backend):
+- `multiplayerEngine.js` — Core hub + BroadcastChannel
+- `playerSessionManager.js` — Heartbeat + Presence tracking
+- `accountEngine.js` — Register/Login/Profile
+- `worldSyncEngine.js` — World snapshot sync
+- `playerPresenceEngine.js` — Online list + Friends
+- `worldChatEngine.js` — 6-channel chat
+- `playerMarketplace.js` — Cross-tab trading
+- `multiplayerEventEngine.js` — Global events + Auto-spawn
+- `antiCheatEngine.js` — Rate limiting + Validation
 
 ---
 
@@ -21,22 +36,23 @@
 
 ---
 
-## 🌐 V34 — Thế Giới Nhiều Người Chơi *(Tiếp theo được đề xuất)*
+## 🌀 V35 — Mạng Lưới Cổng Đa Vũ Trụ *(Tiếp theo được đề xuất)*
 
-Nền tảng nhiều người chơi dùng localStorage shared + URL sync.
+Hệ thống Portal Network kết nối nhiều thế giới song song với nhau.
 
 | Hệ Thống | File | Mô Tả |
 |---|---|---|
-| Multiplayer Core | `multiplayerCore.js` | State sync qua URL hash / BroadcastChannel |
-| Player Profile | `playerProfileV34.js` | Mỗi player có profile riêng |
-| Shared World | `sharedWorldEngine.js` | Nhiều player cùng tác động 1 thế giới |
-| Player Chat | `playerChatV34.js` | Chat giữa các player trong thế giới |
+| Multiverse Core | `multiverseEngine.js` | Quản lý 5-10 thế giới song song |
+| Portal Network | `portalNetworkV35.js` | Cổng kết nối giữa các thế giới |
+| World Migration | `worldMigrationV35.js` | NPCs/Kingdoms di cư qua cổng |
+| Cross-World Events | `crossWorldEvents.js` | Sự kiện ảnh hưởng nhiều thế giới |
 
 **Tính năng nổi bật:**
-- Nhiều tab trình duyệt = nhiều "người chơi" cùng 1 thế giới
-- Mỗi player có vai trò: Creator / King / General / Merchant / Sage
-- Actions của 1 player ảnh hưởng real-time đến player khác
-- Không cần backend — dùng BroadcastChannel API
+- Nhiều thế giới (world slots) cùng tồn tại và giao thoa
+- Cổng Portal kết nối thế giới → NPC/Quân đội có thể di chuyển qua cổng
+- Sự kiện xuyên vũ trụ: Boss từ thế giới này xâm lăng thế giới khác
+- Thế giới tối thượng (Vũ Trụ Nguyên Thủy) cai quản tất cả
+- Cạnh tranh giữa các thế giới về sức mạnh, công nghệ, thần thánh
 
 ---
 

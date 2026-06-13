@@ -4,6 +4,64 @@
 
 ---
 
+## [V34] — 2026-06-13 — Hệ Thống Thế Giới Đa Người Chơi
+
+### New Systems Added
+- Multiplayer Engine (`multiplayerEngine.js`) — BroadcastChannel API · SessionID per tab · panel-multiplayer · Navigation hub
+- Player Session Manager (`playerSessionManager.js`) — Heartbeat 15s · Online threshold 45s · Tab-based presence
+- Account Engine (`accountEngine.js`) — Đăng ký/Đăng nhập/Đăng xuất · SimpleHash · SessionStorage · Đổi màu avatar
+- World Sync Engine (`worldSyncEngine.js`) — Snapshot mỗi 30 ticks · Cross-tab sync Kingdom/Empire/Boss/NPC · BroadcastChannel
+- Player Presence Engine (`playerPresenceEngine.js`) — Online list · Friend requests · panel-players-online · Friend management
+- World Chat Engine (`worldChatEngine.js`) — 6 kênh (Global/Kingdom/Empire/Guild/Sect/Divine) · Real-time · Auto-refresh 5s
+- Player Marketplace (`playerMarketplace.js`) — Đăng bán · Mua · Cross-tab trading · panel-player-market
+- Multiplayer Event Engine (`multiplayerEventEngine.js`) — 6 loại sự kiện · Auto-spawn Boss Hunt · panel-mp-events
+- Anti-Cheat Engine (`antiCheatEngine.js`) — Rate limit · Time validation · Resource overflow · Session flagging
+
+### Files Added (9 files)
+- `multiplayerEngine.js`, `playerSessionManager.js`, `accountEngine.js`
+- `worldSyncEngine.js`, `playerPresenceEngine.js`, `worldChatEngine.js`
+- `playerMarketplace.js`, `multiplayerEventEngine.js`, `antiCheatEngine.js`
+
+### Files Modified
+- `index.html` — Added 9 script tags, 9 nav buttons, 9 panel divs, updated v23Panels unlock array (+9 panels)
+
+### UI Tabs Added (9 tabs)
+- 🌐 Đa Người Chơi (`panel-multiplayer`) — Main hub, account quick-access, online players, nav shortcuts
+- 👥 Người Chơi (`panel-players-online`) — Online player list, friend requests, accounts in device
+- 💬 Trò Chuyện (`panel-world-chat`) — Real-time chat 6 channels, send/receive cross-tab
+- 🤝 Bạn Bè (`panel-mp-friends`) — Friend list, remove friends, link to player presence
+- 🏛 Chính Phủ (`panel-player-gov`) — Voting/election stub, V35 placeholder
+- 🏪 Chợ (`panel-player-market`) — Buy/sell listings, cross-tab marketplace, transaction history
+- 🏆 Sự Kiện (`panel-mp-events`) — Active events, join events, create events, ended events history
+- 👤 Tài Khoản (`panel-mp-account`) — Login/Register forms, profile view, avatar color picker
+
+### Save Keys Added
+- `cgv6_mp_core_v34` — Multiplayer core state
+- `cgv6_mp_sessions_v34` — Session tracking (cross-tab)
+- `cgv6_mp_accounts_v34` — Account data (multi-account support)
+- `cgv6_mp_worldsync_v34` — World sync snapshots
+- `cgv6_mp_chat_v34` — Chat messages (200 max)
+- `cgv6_mp_market_v34` — Marketplace listings & transactions
+- `cgv6_mp_events_v34` — Multiplayer events & participations
+- `cgv6_mp_anticheat_v34` — Anti-cheat violations & session flags
+
+### Technical Architecture
+- **BroadcastChannel API** — Real-time cross-tab sync (chat, presence, market, events, world data)
+- **sessionStorage** — Unique session ID per browser tab (= unique player per tab)
+- **localStorage** — Shared state: accounts, sessions, chat, marketplace, events
+- **No backend required** — Pure browser-based multiplayer
+
+### Features
+- Nhiều tab trình duyệt = nhiều người chơi khác nhau trong cùng thế giới
+- Mỗi player có tài khoản riêng với username, password hash, avatar color
+- Chat real-time giữa các tab với 6 kênh khác nhau
+- Marketplace: đăng bán vật phẩm, người chơi khác (tab khác) có thể mua
+- Sự kiện toàn cầu: Boss Hunt, Kingdom War, Sect Tournament...
+- Anti-cheat: rate limiting, time manipulation detection, resource overflow check
+- Tương thích hoàn toàn với save data cũ
+
+---
+
 ## [V33] — 2026-06-13 — Thủ Hộ Thần (AI Advisor System)
 
 ### New Systems Added

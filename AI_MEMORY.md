@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V33 — Thủ Hộ Thần (AI Advisor System)** (2026-06-13)
+**V34 — Hệ Thống Thế Giới Đa Người Chơi** (2026-06-13)
 
 ---
 
@@ -50,7 +50,18 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### Thủ Hộ Thần V33 (8 systems) ← NEWEST
+### Đa Người Chơi V34 (9 systems) ← NEWEST
+- `multiplayerEngine.js` — Core hub · BroadcastChannel setup · SessionID · Render panel-multiplayer
+- `playerSessionManager.js` — Heartbeat 15s · Online threshold 45s · Presence tracking per tab
+- `accountEngine.js` — Register/Login/Profile/Logout · SimpleHash · SessionStorage per tab
+- `worldSyncEngine.js` — World snapshot mỗi 30 ticks · Cross-tab kingdom/empire/boss/NPC sync
+- `playerPresenceEngine.js` — Online players list · Friend requests · Render panel-players-online
+- `worldChatEngine.js` — 6 channels (global/kingdom/empire/guild/sect/divine) · BroadcastChannel · Auto-refresh 5s
+- `playerMarketplace.js` — Buy/sell listings · Auction · Cross-tab trading · Render panel-player-market
+- `multiplayerEventEngine.js` — 6 event types · Auto-spawn from boss/world · Render panel-mp-events
+- `antiCheatEngine.js` — Rate limiting · Time validation · Resource overflow check
+
+### Thủ Hộ Thần V33 (8 systems)
 - `thuhothanCore.js` — Main hub · Q&A keyword engine · Chat history · gameTick integration
 - `thuhothanMemory.js` — Persistent memory: 200 events · 8 types (war/ascension/empire/collapse/divine/boss/creator/economy)
 - `thuhothanPersonality.js` — Personality templates · Message formatting · Tone system (normal/urgent/reflective)
