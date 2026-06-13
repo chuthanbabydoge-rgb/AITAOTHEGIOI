@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V34 — Hệ Thống Thế Giới Đa Người Chơi** (2026-06-13)
+**V35 — Multiverse Portal Network** (2026-06-13)
 
 ---
 
@@ -50,7 +50,17 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### Đa Người Chơi V34 (9 systems) ← NEWEST
+### Multiverse Portal Network V35 (8 systems) ← NEWEST
+- `multiverseEngine.js` — Core · 10 loại vũ trụ · Tạo/Xóa/Clone/Merge/Split · Auto-spawn · gameTick
+- `universeRegistry.js` — Danh mục · Rankings · Phân loại · Thống kê đa vũ trụ
+- `universeManager.js` — Creator controls · Boost/Populate/Events/Snapshots
+- `portalNetwork.js` — 5 loại cổng · Auto-connect · Stability decay · Traffic log
+- `universeTravelEngine.js` — 5 loại phái đoàn · Danger system · Auto-travel
+- `multiverseMapEngine.js` — SVG bản đồ động · Animated nodes · Portal routes
+- `multiverseWarEngine.js` — 4 loại chiến tranh · Auto-resolve · Hậu quả thực tế
+- `multiverseEconomy.js` — 6 hàng hóa · Giá động · Cross-universe trade
+
+### Đa Người Chơi V34 (9 systems)
 - `multiplayerEngine.js` — Core hub · BroadcastChannel setup · SessionID · Render panel-multiplayer
 - `playerSessionManager.js` — Heartbeat 15s · Online threshold 45s · Presence tracking per tab
 - `accountEngine.js` — Register/Login/Profile/Logout · SimpleHash · SessionStorage per tab

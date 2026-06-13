@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V24 — Diplomacy Engine |
-| **Build Date** | 2026-06-12 |
-| **Total JS Files** | 74 |
-| **Total Systems** | 62+ |
+| **Current Version** | V35 — Multiverse Portal Network |
+| **Build Date** | 2026-06-13 |
+| **Total JS Files** | 82 |
+| **Total Systems** | 70+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 

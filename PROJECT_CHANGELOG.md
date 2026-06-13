@@ -4,6 +4,76 @@
 
 ---
 
+## [V35] — 2026-06-13 — Multiverse Portal Network
+
+### New Systems Added
+- Multiverse Engine (`multiverseEngine.js`) — Core đa vũ trụ · 10 loại vũ trụ · Tạo/Xóa/Clone/Merge/Split · gameTick · Auto-spawn · Render panel-multiverse-v35
+- Universe Registry (`universeRegistry.js`) — Danh mục vũ trụ · Rankings · Thống kê · Phân loại theo type · panel-universe-rankings
+- Universe Manager (`universeManager.js`) — Creator God controls · Boost/Populate/Event/Snapshot · Panel-universes · Intervention log
+- Portal Network (`portalNetwork.js`) — 5 loại cổng (Local/Realm/World/Universe/Creator) · Auto-connect · Stability decay · panel-portals-v35
+- Universe Travel Engine (`universeTravelEngine.js`) — 5 loại phái đoàn (Player/Guild/Sect/Kingdom/God) · Danger system · Auto-travel · panel-universe-travel
+- Multiverse Map Engine (`multiverseMapEngine.js`) — SVG bản đồ động · Animated universe nodes · Portal routes · Traveler dots · panel-multiverse-map
+- Multiverse War Engine (`multiverseWarEngine.js`) — 4 loại chiến tranh · Auto-resolve · Hậu quả thực tế · panel-universe-wars
+- Multiverse Economy (`multiverseEconomy.js`) — 6 hàng hóa · Giá thị trường động · Mua/Bán liên vũ trụ · panel-multiverse-economy
+
+### Files Added (8 files)
+- `multiverseEngine.js`, `universeRegistry.js`, `universeManager.js`
+- `portalNetwork.js`, `universeTravelEngine.js`, `multiverseMapEngine.js`
+- `multiverseWarEngine.js`, `multiverseEconomy.js`
+
+### Files Modified
+- `index.html` — Added 8 script tags, 1 nav button (hub), 9 panel divs, mvHubRenderPanel(), updated v23Panels unlock array (+multiverse-hub-v35)
+
+### UI Tabs Added (1 hub → 8 sub-panels)
+- 🌌 Đa Vũ Trụ V35 (`panel-multiverse-hub-v35`) — Hub chính với 8 sub-panels
+- 🌌 Multiverse (`panel-multiverse-v35`) — Danh sách & quản lý vũ trụ
+- 🌀 Portals (`panel-portals-v35`) — Mạng lưới cổng
+- 🌍 Universes (`panel-universes`) — Creator God controls
+- ⚔️ Universe Wars (`panel-universe-wars`) — Chiến tranh liên vũ trụ
+- 📊 Universe Rankings (`panel-universe-rankings`) — Bảng xếp hạng
+- 🗺 Multiverse Map (`panel-multiverse-map`) — Bản đồ SVG động
+- ✈️ Universe Travel (`panel-universe-travel`) — Du hành
+- 💰 Multiverse Economy (`panel-multiverse-economy`) — Thương mại
+
+### Universe Types (10 types)
+- 🏰 Fantasy · ⚡ Cultivation · ✨ Divine · 👹 Demon · ⚙️ Technology
+- 🌆 Cyberpunk · 🌊 Mythology · ☠️ Apocalypse · 🌊 Ocean · 🐉 Beast
+
+### Portal Types (5 types)
+- 🔵 Local · 🟣 Realm · 🟡 World · 🔴 Universe · ⚪ Creator (vô hạn)
+
+### War Types (4 types)
+- ⚔️ Universe War · 🌋 Realm War · ✨ Divine Invasion · 🏰 Empire Expand
+
+### Trade Goods (6 types)
+- 💎 Linh Khí Tinh · ✨ Thần Kim Sa · 🌑 Hắc Ám Bảo Thạch · ⚙️ Lõi Công Nghệ · 📜 Thần Thoại Thánh Khí · ⚡ Mảnh Hư Không
+
+### Save Keys Added
+- `cgv6_multiverse_v35` — Multiverse core (universes, log)
+- `cgv6_universe_registry_v35` — Registry & rankings
+- `cgv6_universe_manager_v35` — Interventions & snapshots
+- `cgv6_portal_network_v35` — Portals, routes, traffic
+- `cgv6_universe_travel_v35` — Journeys, travelers
+- `cgv6_multiverse_map_v35` — Map positions
+- `cgv6_multiverse_war_v35` — Wars, history
+- `cgv6_multiverse_economy_v35` — Trades, listings, market
+
+### Integration
+- multiverseEngine → historicalTimeline (htAddEvent) + worldMemoryEngine (wmAddMemory)
+- portalNetwork → historicalTimeline (portal opened events)
+- universeTravelEngine → historicalTimeline (arrivals)
+- multiverseWarEngine → historicalTimeline (war declared/ended)
+- multiverseEconomy → historicalTimeline (trade events)
+- All engines → gameTick chain (LIFO wrap pattern)
+- All engines → addLog (nhật ký game)
+- Extends portalEngineV30.js — KHÔNG xóa, KHÔNG ghi đè
+
+### Compatibility
+- 100% backward compatible. Tất cả save data V34 và trước đó load bình thường.
+- portalEngineV30.js giữ nguyên, V35 là extension độc lập.
+
+---
+
 ## [V34] — 2026-06-13 — Hệ Thống Thế Giới Đa Người Chơi
 
 ### New Systems Added

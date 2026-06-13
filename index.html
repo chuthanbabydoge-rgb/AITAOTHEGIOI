@@ -1688,6 +1688,8 @@ onclick="showPanel('dashboard')">
       <!-- ═══ V33 THỦ HỘ THẦN BUTTONS ═══ -->
       <button class="nav-btn ec-hidden" style="display:none" id="btn-guardian-hub-v33" onclick="showPanel('guardian-hub-v33');if(typeof hubRenderPanel==='function')hubRenderPanel('guardian-hub-v33');" data-panel="guardian-hub-v33">🤖 Thủ Hộ Thần V33</button>
       <button class="nav-btn ec-hidden" style="display:none" id="btn-multiplayer" onclick="showPanel('multiplayer');if(typeof mpRenderPanel==='function')mpRenderPanel();" data-panel="multiplayer">🌐 Đa Người Chơi</button>
+      <!-- ═══ V35 MULTIVERSE PORTAL NETWORK BUTTONS ═══ -->
+      <button class="nav-btn ec-hidden" style="display:none" id="btn-multiverse-hub-v35" onclick="showPanel('multiverse-hub-v35');if(typeof mvHubRenderPanel==='function')mvHubRenderPanel();" data-panel="multiverse-hub-v35">🌌 Đa Vũ Trụ V35</button>
     </nav>
 
     <div class="sidebar-heaven">
@@ -2749,6 +2751,17 @@ onclick="showPanel('dashboard')">
         <!-- Rendered by waRenderReportPanel() in worldAdvisor.js -->
       </div>
 
+      <!-- ═══ V35 MULTIVERSE PANELS ═══ -->
+      <div id="panel-multiverse-hub-v35" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-multiverse-v35" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-portals-v35" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universes" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-wars" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-rankings" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-multiverse-map" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-universe-travel" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-multiverse-economy" class="panel" style="padding:0;overflow-y:auto"></div>
+
       <!-- ═══ HUB PANELS ═══ -->
       <div id="panel-diplomacy-hub-v24" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
       <div id="panel-event-hub-v25" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
@@ -3047,11 +3060,53 @@ window.addEventListener("load", function() {
 <script src="playerMarketplace.js"></script>
 <script src="multiplayerEventEngine.js"></script>
 <script src="antiCheatEngine.js"></script>
+<!-- ═══ V35 MULTIVERSE PORTAL NETWORK ═══ -->
+<script src="multiverseEngine.js"></script>
+<script src="universeRegistry.js"></script>
+<script src="universeManager.js"></script>
+<script src="portalNetwork.js"></script>
+<script src="universeTravelEngine.js"></script>
+<script src="multiverseMapEngine.js"></script>
+<script src="multiverseWarEngine.js"></script>
+<script src="multiverseEconomy.js"></script>
+<script>
+// ═══ V35 MULTIVERSE HUB RENDER ═══
+window.mvHubRenderPanel = function() {
+  var el = document.getElementById("panel-multiverse-hub-v35");
+  if (!el) return;
+  var universes = (window.mvData && window.mvData.universes) ? window.mvData.universes.filter(function(u){return u.status==="active";}) : [];
+  var portals   = window.pnGetOpenPortals ? window.pnGetOpenPortals() : [];
+  var activeWars= window.mwGetActiveWars ? window.mwGetActiveWars() : [];
+  var travelers = window.utGetActive ? window.utGetActive() : [];
+  el.innerHTML = '<div style="padding:20px;font-family:\'Noto Serif SC\',serif;background:#0a0a1a;min-height:100%;color:#e2e8f0">'
+    +'<div style="margin-bottom:20px">'
+    +'<h2 style="margin:0 0 4px;font-size:22px;color:#8b5cf6;font-family:Cinzel,serif">🌌 Multiverse Portal Network V35</h2>'
+    +'<div style="font-size:12px;color:#475569">Đa Vũ Trụ · Mạng Lưới Cổng · Du Hành Vũ Trụ · Chiến Tranh Liên Giới</div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px">'
+    +'<div style="background:#0f172a;border:1px solid #8b5cf644;border-radius:10px;padding:14px;text-align:center"><div style="font-size:28px;font-weight:700;color:#8b5cf6">'+universes.length+'</div><div style="font-size:11px;color:#64748b">Vũ Trụ Hoạt Động</div></div>'
+    +'<div style="background:#0f172a;border:1px solid #06b6d444;border-radius:10px;padding:14px;text-align:center"><div style="font-size:28px;font-weight:700;color:#06b6d4">'+portals.length+'</div><div style="font-size:11px;color:#64748b">Cổng Đang Mở</div></div>'
+    +'<div style="background:#0f172a;border:1px solid #ef444444;border-radius:10px;padding:14px;text-align:center"><div style="font-size:28px;font-weight:700;color:#ef4444">'+activeWars.length+'</div><div style="font-size:11px;color:#64748b">Chiến Tranh</div></div>'
+    +'<div style="background:#0f172a;border:1px solid #10b98144;border-radius:10px;padding:14px;text-align:center"><div style="font-size:28px;font-weight:700;color:#10b981">'+travelers.length+'</div><div style="font-size:11px;color:#64748b">Đang Du Hành</div></div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">'
+    +'<button onclick="showPanel(\'panel-multiverse-v35\');mvRenderPanel&&mvRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#8b5cf6;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🌌 <strong>Multiverse</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Tạo, xóa, quản lý vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-portals-v35\');pnRenderPanel&&pnRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #06b6d4;border-radius:10px;color:#06b6d4;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🌀 <strong>Cổng Portal</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Mạng lưới cổng liên vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-universes\');umRenderPanel&&umRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🌍 <strong>Vũ Trụ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Quản lý & can thiệp</div></button>'
+    +'<button onclick="showPanel(\'panel-universe-wars\');mwRenderPanel&&mwRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #ef4444;border-radius:10px;color:#ef4444;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚔️ <strong>Chiến Tranh</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xung đột liên vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-universe-rankings\');urRenderPanel&&urRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Xếp Hạng</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Rankings vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-multiverse-map\');mmRenderPanel&&mmRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#a78bfa;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🗺 <strong>Bản Đồ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Bản đồ đa vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-universe-travel\');utRenderPanel&&utRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#10b981;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">✈️ <strong>Du Hành</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Du lịch liên vũ trụ</div></button>'
+    +'<button onclick="showPanel(\'panel-multiverse-economy\');meRenderPanel&&meRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">💰 <strong>Kinh Tế</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Thương mại đa vũ trụ</div></button>'
+    +'</div>'
+    +'</div>';
+};
+</script>
 <script>
 // ═══ V23 — Auto-unlock V23 tabs khi world đã tồn tại ═══
 (function v23UnlockTabs() {
   function _showV23Tabs() {
-    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","project-status","next-version","story","diplomacy-hub-v24","event-hub-v25","continent-hub-v26","ocean-hub-v27","cultivation-hub-v29","divine-hub-v30","combat-hub-v31","player-hub-v28","creator-hub-v32","guardian-hub-v33","multiplayer"];
+    const v23Panels = ["kingdoms","empires","bloodlines","noble-houses","succession","historical-timeline","rankings","diplomacy","espionage","political-religion","culture-heritage","project-status","next-version","story","diplomacy-hub-v24","event-hub-v25","continent-hub-v26","ocean-hub-v27","cultivation-hub-v29","divine-hub-v30","combat-hub-v31","player-hub-v28","creator-hub-v32","guardian-hub-v33","multiplayer","multiverse-hub-v35"];
     v23Panels.forEach(function(p) {
       var btn = document.querySelector('.nav-btn[data-panel="' + p + '"]');
       if (btn) { btn.style.display = ""; btn.classList.remove("ec-hidden"); }
