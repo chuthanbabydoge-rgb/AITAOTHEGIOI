@@ -1,0 +1,258 @@
+Apply PROJECT PROTECTION RULES.
+
+Read:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Use REAL_PROJECT_AUDIT.md as source of truth.
+
+Analyze current project first.
+
+Do not create duplicate systems.
+
+If similar systems already exist:
+upgrade and extend them.
+
+==================================================
+BUILD TARGET
+==================================================
+
+V35 MULTIVERSE PORTAL NETWORK
+
+==================================================
+GOAL
+==================================================
+
+Allow infinite worlds to exist.
+
+Allow travel between worlds.
+
+Allow kingdoms, empires, sects, gods and players
+to move between universes.
+
+==================================================
+MULTIVERSE CORE
+==================================================
+
+Create:
+
+- multiverseEngine.js
+- universeRegistry.js
+- universeManager.js
+
+Each universe has:
+
+- universeId
+- universeName
+- universeType
+- age
+- population
+- stability
+- realmCount
+
+==================================================
+UNIVERSE TYPES
+==================================================
+
+Generate:
+
+- Fantasy Universe
+- Cultivation Universe
+- Divine Universe
+- Demon Universe
+- Technology Universe
+- Cyberpunk Universe
+- Mythology Universe
+- Apocalypse Universe
+- Ocean Universe
+- Beast Universe
+
+==================================================
+PORTAL NETWORK
+==================================================
+
+Create:
+
+- portalNetwork.js
+
+Portal types:
+
+- Local Portal
+- Realm Portal
+- World Portal
+- Universe Portal
+- Creator Portal
+
+==================================================
+UNIVERSE TRAVEL
+==================================================
+
+Create:
+
+- universeTravelEngine.js
+
+Allow:
+
+- Players
+- Guilds
+- Sects
+- Kingdoms
+- Gods
+
+to travel between universes.
+
+==================================================
+MULTIVERSE MAP
+==================================================
+
+Create:
+
+- multiverseMapEngine.js
+
+Display:
+
+- Connected Universes
+- Portal Routes
+- Universe Status
+- Universe Rankings
+
+==================================================
+CROSS-UNIVERSE WAR
+==================================================
+
+Create:
+
+- multiverseWarEngine.js
+
+Allow:
+
+- Universe Wars
+- Realm Wars
+- Divine Invasions
+- Empire Expansion
+
+==================================================
+MULTIVERSE ECONOMY
+==================================================
+
+Create:
+
+- multiverseEconomy.js
+
+Allow:
+
+- Cross Universe Trade
+- Resource Exchange
+- Artifact Markets
+
+==================================================
+MULTIVERSE HISTORY
+==================================================
+
+Integrate with:
+
+- historicalTimeline.js
+- worldMemoryEngine.js
+
+Record:
+
+- Universe Creation
+- Universe Collapse
+- Portal Openings
+- Cross Universe Wars
+- Legendary Explorers
+
+==================================================
+CREATOR GOD INTEGRATION
+==================================================
+
+Allow Creator God to:
+
+- Create Universe
+- Destroy Universe
+- Clone Universe
+- Merge Universes
+- Split Universes
+
+==================================================
+JARVIS INTEGRATION
+==================================================
+
+Jarvis monitors:
+
+- Universe Activity
+- Portal Activity
+- Universe Threats
+- Cross Universe Events
+
+==================================================
+UI
+==================================================
+
+Add tabs:
+
+🌌 Multiverse
+
+🌀 Portals
+
+🌍 Universes
+
+⚔ Universe Wars
+
+📊 Universe Rankings
+
+🗺 Multiverse Map
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Save:
+
+- Universes
+- Portals
+- Travel Data
+- Universe Wars
+- Rankings
+
+Remain compatible with all previous saves.
+
+==================================================
+OUTPUT
+==================================================
+
+Before coding:
+
+1. Existing systems
+2. New systems
+3. Files to create
+4. Files to modify
+5. Integration plan
+6. Compatibility check
+
+After completion update:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Set:
+
+Current Version = V35
+
+Recommended Next Version = V36 Alternate Timeline System
+
+EXPAND ONLY
+
+NEVER DELETE
+
+NEVER REPLACE
+
+NEVER REBUILD
