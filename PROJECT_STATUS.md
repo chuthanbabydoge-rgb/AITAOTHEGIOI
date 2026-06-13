@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V51 — Creator God Online |
+| **Current Version** | V52 — Player Economy & Marketplace |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 212 |
-| **Total Systems** | 137+ |
+| **Total JS Files** | 217 |
+| **Total Systems** | 142+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,14 @@
 
 ## ✅ Completed Systems
 
-### Creator God Online V51 ← NEWEST
+### Player Economy & Marketplace V52 ← NEWEST
+- `playerEconomyCoreV52.js` — Ví 5 tiền tệ · Thu nhập thụ động · Exchange · Net Worth · SAVE: cgv6_player_economy_v52 · init: 6800ms
+- `playerMarketplaceV52.js` — 18 vật phẩm · Listing · Auction · Price History · NPC Sellers · SAVE: cgv6_player_marketplace_v52 · init: 6900ms
+- `businessSystemV52.js` — 4 loại DN · Level 1-5 · AI Competition · Revenue · SAVE: cgv6_business_v52 · init: 7000ms
+- `taxationSystemV52.js` — 4 thuế · 5 chính sách · Jarvis cảnh báo · SAVE: cgv6_taxation_v52 · init: 7100ms
+- `economyRegistryV52.js` — Patches player-hub-v28 · 6 tabs (Ví/Chợ/DN/Đấu Giá/Tiền Tệ/Kinh Tế) · Passive · init: 7200ms
+
+### Creator God Online V51
 - `creatorAuthorityEngineV51.js` — Thiên Ý: 5 Sắc Lệnh · 5 Ban Phước · 4 Trừng Phạt · Thiên Năng regen/cost · SAVE: cgv6_creator_authority_v51 · init: 6200ms
 - `miracleSystemV51.js` — 8 Phép Màu · Cooldown tracking · Effect persistence (expiresYear) · SAVE: cgv6_miracle_v51 · init: 6300ms
 - `prophecySystemV51.js` — 4 loại Tiên Tri · Auto-generate subject · Auto-fulfill · SAVE: cgv6_prophecy_v51 · init: 6400ms

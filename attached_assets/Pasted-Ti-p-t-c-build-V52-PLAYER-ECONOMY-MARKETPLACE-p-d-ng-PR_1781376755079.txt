@@ -1,0 +1,254 @@
+Tiếp tục build V52 — PLAYER ECONOMY & MARKETPLACE.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V52 - PLAYER ECONOMY & MARKETPLACE
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép:
+
+- Người chơi kiếm tài sản
+- Giao dịch với nhau
+- Mua bán vật phẩm
+- Xây dựng doanh nghiệp
+- Tạo nền kinh tế vận hành bởi AI và Player
+
+==================================================
+ECONOMY CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- economyEngine.js
+- marketEngine.js
+- currencySystem.js
+
+==================================================
+TIỀN TỆ
+==================================================
+
+Hỗ trợ:
+
+- Vàng
+- Bạc
+- Đồng
+- Tinh Thạch
+- Thần Thạch
+- Tiền tệ tùy chỉnh
+
+Mỗi thế giới có thể:
+
+- Sử dụng tiền riêng
+- Có tỷ giá riêng
+
+==================================================
+MARKETPLACE
+==================================================
+
+Tạo:
+
+- marketplaceSystem.js
+
+Cho phép:
+
+- Đăng bán vật phẩm
+- Mua vật phẩm
+- Đấu giá
+- Giao dịch trực tiếp
+- Chợ toàn cầu
+
+==================================================
+NGHỀ NGHIỆP KINH TẾ
+==================================================
+
+Mở rộng:
+
+- professionSystem.js
+
+Thêm:
+
+- Thương Nhân
+- Chủ Xưởng
+- Chủ Ngân Hàng
+- Nhà Đầu Tư
+- Chủ Guild
+
+==================================================
+DOANH NGHIỆP
+==================================================
+
+Tạo:
+
+- businessSystem.js
+
+Cho phép:
+
+- Mở cửa hàng
+- Mở công ty
+- Mở học viện
+- Mở ngân hàng
+
+==================================================
+KINH TẾ AI
+==================================================
+
+AI có thể:
+
+- Mua bán
+- Đầu tư
+- Tích trữ
+- Đầu cơ
+- Thành lập doanh nghiệp
+
+==================================================
+THỊ TRƯỜNG THẾ GIỚI
+==================================================
+
+Giá cả thay đổi dựa trên:
+
+- Cung cầu
+- Chiến tranh
+- Thiên tai
+- Kỷ nguyên
+- Tài nguyên
+
+==================================================
+THUẾ
+==================================================
+
+Tạo:
+
+- taxationSystem.js
+
+Hỗ trợ:
+
+- Thuế quốc gia
+- Thuế đế quốc
+- Thuế thương mại
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Biến động thị trường
+- Khủng hoảng kinh tế
+- Người giàu nhất
+- Công ty lớn nhất
+- Mặt hàng hot nhất
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👤 Người Chơi
+hoặc
+🏛 Quốc Gia
+
+Tab nội bộ:
+
+- Chợ
+- Doanh Nghiệp
+- Giao Dịch
+- Đấu Giá
+- Tiền Tệ
+- Thống Kê Kinh Tế
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Ví tiền
+- Tài sản
+- Doanh nghiệp
+- Giao dịch
+- Lịch sử thị trường
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V52
+
+Recommended Next Version = V53 Guild & Empire Online
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.

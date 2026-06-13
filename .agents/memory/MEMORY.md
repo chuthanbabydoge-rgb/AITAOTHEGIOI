@@ -1,3 +1,4 @@
 - [V33 Array Safety Pattern](v33-array-safety.md) — kingdomData.kingdoms / empireData.empires có thể là Object (không phải Array) — phải dùng Array.isArray() + Object.values() fallback trước khi .filter()
 - [Project Expand-Only Rules](project-rules.md) — EXPAND ONLY · NEVER DELETE · NEVER REPLACE · gameTick hook via const _orig pattern · IIFE required · setTimeout init staggered
 - [V38 UI Pattern](v38-ui-pattern.md) — Không tạo tab sidebar mới từ V38 trở đi · Mọi UI mới phải nằm trong các hub hiện có (ưu tiên multiverse-hub-v35) · Extend mvHubRenderPanel() bằng cách thêm section trước closing div cuối cùng
+- [V52 Economy Init Order](v52-economy-init.md) — playerEconCoreV52 init 6800ms · Marketplace 6900ms · Business 7000ms · Tax 7100ms · Registry 7200ms · Registry patches player-hub-v28 (KHÔNG phải mvHub) · biz52ProcessIncome() gọi từ playerEconCoreV52 tick · tax52GetEffectiveRate() gọi từ businessSystemV52

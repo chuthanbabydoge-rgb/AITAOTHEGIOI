@@ -24,13 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V51 — Creator God Online** (2026-06-13)
+**V52 — Player Economy & Marketplace** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (126+ systems)
+## ✅ COMPLETED SYSTEMS (131+ systems)
 
-### Creator God Online V51 (6 systems) ← NEWEST
+### Player Economy & Marketplace V52 (5 systems) ← NEWEST
+- `playerEconomyCoreV52.js` — Ví đa tiền tệ (5 loại: Đồng/Bạc/Vàng/Tinh Thạch/Thần Thạch) · Custom currency per world · Thu nhập thụ động theo nghề (11 nghề) · Exchange rate 5% fee · Net Worth tracking · pec52GetWallet() · pec52AddCurrency() · pec52SpendCurrency() · pec52Exchange() · pec52GetNetWorthInDong() · SAVE: cgv6_player_economy_v52 · init: 6800ms
+- `playerMarketplaceV52.js` — 18 loại vật phẩm (5 danh mục · tier 1-5) · Listing (pm52ListItem) · Buy (pm52BuyItem) · Auction (pm52CreateAuction/pm52PlaceBid/pm52SettleAuctions) · Price history · Demand score 0-100 · NPC AI sellers tự động · Hot items tracking · SAVE: cgv6_player_marketplace_v52 · init: 6900ms
+- `businessSystemV52.js` — 4 loại DN (Cửa Hàng/Công Ty/Học Viện/Ngân Hàng) · Max level 5 · Employees · Thu nhập tự động theo interval · 5 AI competitor companies · biz52Found() · biz52Upgrade() · biz52Close() · biz52GetTotalValue() · biz52ProcessIncome() · SAVE: cgv6_business_v52 · init: 7000ms
+- `taxationSystemV52.js` — 4 loại thuế (Quốc Gia/Đế Chế/Thương Mại/Tu Luyện) · 5 chính sách (Tự Do TM/Chiến Tranh KT/Thịnh Vượng/Cải Cách/Thiên Đường Thuế) · tax52GetEffectiveRate() · tax52SetPolicy() · Jarvis cảnh báo · SAVE: cgv6_taxation_v52 · init: 7100ms
+- `economyRegistryV52.js` — Patches player-hub-v28 · 6 tabs nội bộ (Ví/Chợ/Doanh Nghiệp/Đấu Giá/Tiền Tệ/Kinh Tế) · 6 render functions (er52RenderWallet/Market/Business/Auction/Currency/EcoStats) · Hub widget econV52HubRenderPanel() · Passive · init: 7200ms
+- **Không trùng với:** economyEngine.js (world economy) · economyEngineV2.js (NPC economy/banking) · playerMarketplace.js V34 (multiworld item sharing, không phải player-own marketplace) · economyAuditSystem.js (inflation tracking) · worldMarketplace.js (world export/import)
+- **UI**: 6 tabs trong player-hub-v28 (KHÔNG tạo sidebar tab mới) · 6 panel divs V52
+
+### Creator God Online V51 (6 systems)
 - `creatorAuthorityEngineV51.js` — Sắc Lệnh Thiên Ý (5 loại) · Ban Phước (5 loại) · Trừng Phạt (4 loại) · Thiên Năng regen/cost · cgv51IssueDecree() · cgv51BlessEntity() · cgv51CurseEntity() · cgv51GetEnergy() · cgv51GetStats() · SAVE: cgv6_creator_authority_v51 · init: 6200ms
 - `miracleSystemV51.js` — 8 phép màu (resource_rain/divine_rain/golden_harvest/mass_healing/divine_insight/thunder_strike/earthquake/divine_shield) · Cooldown · Effect persistence · cgv51CastMiracle() · cgv51GetActiveEffects() · cgv51GetMiracleTypes() · SAVE: cgv6_miracle_v51 · init: 6300ms
 - `prophecySystemV51.js` — 4 loại tiên tri · Auto-subject từ kingdoms/npcs · Auto-fulfill theo year · cgv51CreateProphecy() · cgv51AutoGenerateProphecy() · cgv51FulfillProphecy() · cgv51GetActiveProphecies() · SAVE: cgv6_prophecy_v51 · init: 6400ms

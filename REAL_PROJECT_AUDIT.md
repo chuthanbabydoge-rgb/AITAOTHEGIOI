@@ -1,28 +1,54 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V51 — Creator God Online)
+> Ngày audit: 2026-06-13 (cập nhật sau V52 — Player Economy & Marketplace)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V50 | V51 (Mới) |
+| Chỉ Số | V51 | V52 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 206 | **212** |
-| **Tổng file được load trong index.html** | 205 | **211** |
+| **Tổng file .js trên disk** | 212 | **217** |
+| **Tổng file được load trong index.html** | 211 | **216** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 204 | **210** |
+| **Tổng panel divs trong HTML** | 210 | **216** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 130+ | **134+** |
-| **Engine hook vào gameTick** | 90 | **93** |
-| **Phiên bản hiện tại** | V50 | **V51 — Creator God Online** |
+| **Tổng localStorage save keys (unique)** | 134+ | **138+** |
+| **Engine hook vào gameTick** | 93 | **96** |
+| **Phiên bản hiện tại** | V51 | **V52 — Player Economy & Marketplace** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 👁️ Creator God Online V51 ← NEWEST (6 files)
+### 💰 Player Economy & Marketplace V52 ← NEWEST (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `playerEconomyCoreV52.js` | Ví 5 tiền tệ · Thu nhập thụ động 11 nghề · Exchange 5% fee · Net Worth | `cgv6_player_economy_v52` | 6800ms |
+| `playerMarketplaceV52.js` | 18 vật phẩm 5 danh mục tier 1-5 · Listing/Buy/Auction · Price history · Demand · NPC sellers | `cgv6_player_marketplace_v52` | 6900ms |
+| `businessSystemV52.js` | 4 DN (Cửa Hàng/Công Ty/Học Viện/Ngân Hàng) · Level 5 · AI Competition (5 công ty) · Auto income | `cgv6_business_v52` | 7000ms |
+| `taxationSystemV52.js` | 4 loại thuế · 5 chính sách (Tự Do TM/Chiến Tranh/Thịnh Vượng/Cải Cách/Thiên Đường) | `cgv6_taxation_v52` | 7100ms |
+| `economyRegistryV52.js` | Patches player-hub-v28 · 6 tabs · Hub widget `econV52HubRenderPanel()` | Passive | 7200ms |
+
+**Global Objects:** `window.playerEconV52Data` · `window.pmV52Data` · `window.bizV52Data` · `window.taxV52Data`
+**Public API:**
+- Wallet: `pec52GetWallet()` · `pec52AddCurrency(id,amt,src)` · `pec52SpendCurrency(id,amt,reason)` · `pec52Exchange(from,to,amt)` · `pec52GetNetWorthInDong()` · `pec52GetStats()` · `pec52GetCurrencies()` · `pec52GetIncomeLog()` · `pec52AddCustomCurrency(name,icon,worldId,rate)`
+- Market: `pm52ListItem(itemId,qty,cur,price,seller,desc)` · `pm52BuyItem(listingId,buyer)` · `pm52CreateAuction(itemId,cur,startPrice,durYears,seller)` · `pm52PlaceBid(auctionId,bidder,amt,cur)` · `pm52SettleAuctions()` · `pm52GetActiveListings(cat)` · `pm52GetActiveAuctions()` · `pm52GetItems()` · `pm52GetPriceHistory(itemId)` · `pm52GetStats()` · `pm52GetRecentTrades(n)`
+- Business: `biz52Found(typeId,name)` · `biz52Upgrade(bizId)` · `biz52Close(bizId)` · `biz52GetAll()` · `biz52GetTypes()` · `biz52GetAICompanies()` · `biz52GetTotalValue()` · `biz52GetStats()` · `biz52GetJarvisReport()` · `biz52ProcessIncome()`
+- Tax: `tax52GetEffectiveRate(businessType)` · `tax52SetPolicy(policyId)` · `tax52GetCurrentPolicy()` · `tax52GetPolicies()` · `tax52GetTypes()` · `tax52GetStats()` · `tax52RecordPayment(typeId,amt,cur)` · `tax52GetJarvisReport()`
+- UI: `er52RenderWallet()` · `er52RenderMarket(cat)` · `er52RenderBusiness()` · `er52RenderAuction()` · `er52RenderCurrency()` · `er52RenderEcoStats()` · `econV52HubRenderPanel()`
+
+**5 Tiền Tệ:** Đồng🟤(x1) · Bạc⚪(x100) · Vàng🪙(x10K) · Tinh Thạch💎(x1M) · Thần Thạch✨(x1B)
+**4 Loại Thuế:** Quốc Gia(8%) · Đế Chế(12%) · Thương Mại(5%) · Tu Luyện(3%)
+**5 Chính Sách:** FreeTrade · WarEconomy · Prosperity · TaxReform · TaxHaven
+**18 Vật Phẩm:** Vũ Khí(3) · Đan Dược(3) · Khoáng(3) · Pháp Bảo(2) · Nguyên Liệu(3) · Bất Động Sản(2) · Linh Thú(2)
+**Không trùng với:** economyEngine.js (world) · economyEngineV2.js (NPC) · playerMarketplace.js V34 (multiworld sharing) · economyAuditSystem.js
+**UI:** 6 tabs trong player-hub-v28 · 6 panel divs (panel-wallet/market/biz/auction/currency/ecostat-v52)
+
+---
+
+### 👁️ Creator God Online V51 (6 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `creatorAuthorityEngineV51.js` | 5 Sắc Lệnh · 5 Ban Phước · 4 Trừng Phạt · Thiên Năng system | `cgv6_creator_authority_v51` | 6200ms |

@@ -789,6 +789,25 @@
 
 ---
 
+---
+
+## [V52] — Player Economy & Marketplace (2026-06-13)
+
+### Files Tạo Mới
+- `playerEconomyCoreV52.js` — Ví đa tiền tệ 5 loại (Đồng/Bạc/Vàng/Tinh Thạch/Thần Thạch) · Thu nhập thụ động 11 nghề · Exchange 5% fee · Net Worth tracking · SAVE: cgv6_player_economy_v52 · init: 6800ms
+- `playerMarketplaceV52.js` — 18 vật phẩm 5 danh mục tier 1-5 · Listing/Buy/Auction · Price history · Demand score · NPC AI sellers · SAVE: cgv6_player_marketplace_v52 · init: 6900ms
+- `businessSystemV52.js` — 4 loại DN (Cửa Hàng/Công Ty/Học Viện/Ngân Hàng) · Level 1-5 · Thu nhập tự động · 5 AI competitor · SAVE: cgv6_business_v52 · init: 7000ms
+- `taxationSystemV52.js` — 4 loại thuế · 5 chính sách thuế · tax52SetPolicy() · Jarvis cảnh báo · SAVE: cgv6_taxation_v52 · init: 7100ms
+- `economyRegistryV52.js` — Patches player-hub-v28 · 6 tabs nội bộ (Ví/Chợ/Doanh Nghiệp/Đấu Giá/Tiền Tệ/Kinh Tế) · Passive · init: 7200ms
+
+### index.html
+- 6 panel divs (panel-wallet/market/biz/auction/currency/ecostat-v52) · 5 script tags sau V51
+
+### Compatibility
+- 100% backward compatible. Không ảnh hưởng economyEngine.js/V2/playerMarketplace.js V34/worldMarketplace.js
+
+---
+
 ## [V22 and Earlier] — Pre-2026
 
 > Các phiên bản trước V23 được gộp chung. Chi tiết nằm trong source code comments.

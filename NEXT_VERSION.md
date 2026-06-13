@@ -2,8 +2,51 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V51 — Creator God Online** ✅
-> **Phiên bản tiếp theo đề xuất: V52 — Player Economy & Marketplace**
+> **Phiên bản hiện tại: V52 — Player Economy & Marketplace** ✅
+> **Phiên bản tiếp theo đề xuất: V53 — Guild & Empire Online**
+
+---
+
+## ✅ V52 — Player Economy & Marketplace *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `playerEconomyCoreV52.js` — Ví 5 tiền tệ (Đồng/Bạc/Vàng/Tinh Thạch/Thần Thạch) · Thu nhập thụ động 11 nghề · Exchange 5% fee · Net Worth · SAVE: cgv6_player_economy_v52
+- `playerMarketplaceV52.js` — 18 vật phẩm 5 danh mục · Listing/Buy/Auction/PlaceBid/Settle · Price history · Demand · NPC AI sellers · SAVE: cgv6_player_marketplace_v52
+- `businessSystemV52.js` — 4 loại DN (Cửa Hàng/Công Ty/Học Viện/Ngân Hàng) · Level 1-5 · 5 AI competitor · Auto income · SAVE: cgv6_business_v52
+- `taxationSystemV52.js` — 4 thuế · 5 chính sách thuế · tax52SetPolicy() · Jarvis cảnh báo · SAVE: cgv6_taxation_v52
+- `economyRegistryV52.js` — Patches player-hub-v28 · 6 tabs (Ví/Chợ/DN/Đấu Giá/Tiền Tệ/Kinh Tế) · Hub widget · Passive
+
+### index.html
+- 6 panel divs (panel-wallet/market/biz/auction/currency/ecostat-v52) · 5 script tags sau V51
+
+---
+
+## 🏆 V53 — Guild & Empire Online *(Đề Xuất Tiếp Theo)*
+
+### Mục Tiêu
+Cho phép người chơi thành lập, quản lý và phát triển Guild và Đế Chế — đấu tranh quyền lực với các thế lực AI.
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Guild Core V53 | `guildCoreV53.js` | Thành lập Guild · Tuyển thành viên NPC · Nhiệm vụ guild · Guild ranks |
+| Empire Management V53 | `empireManagementV53.js` | Quản lý đế chế · Mở rộng lãnh thổ · Governance · Cống phẩm |
+| Guild Wars V53 | `guildWarsV53.js` | Chiến tranh guild · Raid · Guild vs NPC Factions |
+| Online Ranking V53 | `onlineRankingV53.js` | BXH guild · BXH đế chế · Lịch sử chiến tích · Hall of Fame |
+| Guild Registry V53 | `guildRegistryV53.js` | UI trong player-hub-v28 · 6 tabs (Guild/Empire/Wars/Ranking/Missions/Hall) |
+
+### Save Keys
+- `cgv6_guild_core_v53` · `cgv6_empire_mgmt_v53` · `cgv6_guild_wars_v53` · `cgv6_online_ranking_v53`
+
+### Tích Hợp
+- Extends `guildEngineV29.js` (thêm player-controlled guild layer)
+- Extends `playerCoreV50.js` (career path → guild leader/empire)
+- Reads `businessSystemV52.js` (DN → Guild resources)
+- Reads `taxationSystemV52.js` (guild tax policy)
+- Reads `playerEconomyCoreV52.js` (wallet → guild funding)
+
+### UI
+- 6 tabs nội bộ trong player-hub-v28 (pattern V52)
+- Không tạo sidebar tab mới
 
 ---
 
