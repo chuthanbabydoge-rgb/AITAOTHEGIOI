@@ -115,7 +115,13 @@
         { id: "creator-god-v40",       icon: "✨", label: "Thần",             fn: "cgfRenderPanel" },
         { id: "creator-nation-v40",    icon: "🏛️", label: "Quốc Gia",        fn: "cnfRenderPanel" },
         { id: "creator-universe-v40",  icon: "🌌", label: "Vũ Trụ",          fn: "cufRenderPanel" },
-        { id: "creator-library-v40",   icon: "📚", label: "Thư Viện",        fn: "clibRenderPanel" }
+        { id: "creator-library-v40",   icon: "📚", label: "Thư Viện",        fn: "clibRenderPanel" },
+        { id: "creator-ai-v41",        icon: "🤖", label: "AI Cố Vấn",       fn: "caiRenderPanel" },
+        { id: "creator-balance-v41",   icon: "⚖️", label: "Phân Tích",       fn: "cbaRenderPanel" },
+        { id: "creator-sugg-v41",      icon: "💡", label: "Đề Xuất",         fn: "cseRenderPanel" },
+        { id: "creator-lore-v41",      icon: "📜", label: "Lore",             fn: "lgRenderPanel" },
+        { id: "creator-event-v41",     icon: "⚡", label: "Sự Kiện",         fn: "egRenderPanel" },
+        { id: "creator-reports-v41",   icon: "📊", label: "Báo Cáo",         fn: "crpRenderPanel" }
       ]
     },
     "guardian-hub-v33": {

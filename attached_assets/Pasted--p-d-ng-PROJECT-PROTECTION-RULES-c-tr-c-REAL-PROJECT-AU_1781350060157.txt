@@ -1,0 +1,227 @@
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel
+- dashboard
+- modal
+
+Không tạo thêm tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V41 - AI CREATOR ASSISTANT
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Tạo một AI trợ lý sáng tạo thế giới.
+
+AI có thể:
+
+- Phân tích thế giới hiện tại
+- Đề xuất quốc gia mới
+- Đề xuất đế quốc mới
+- Đề xuất thần mới
+- Đề xuất chủng tộc mới
+- Đề xuất boss mới
+- Đề xuất cốt truyện mới
+- Đề xuất sự kiện mới
+
+==================================================
+CREATOR AI CORE
+==================================================
+
+Tạo:
+
+- creatorAI.js
+- creatorBrain.js
+- creatorSuggestionEngine.js
+
+==================================================
+WORLD ANALYSIS
+==================================================
+
+AI tự động phân tích:
+
+- Dân số
+- Chiến tranh
+- Kinh tế
+- Tôn giáo
+- Công nghệ
+- Thần giới
+- Đa vũ trụ
+
+==================================================
+SMART SUGGESTIONS
+==================================================
+
+AI đề xuất:
+
+- Quốc gia còn thiếu
+- Chủng tộc còn thiếu
+- Thần còn thiếu
+- Vật phẩm còn thiếu
+- Boss còn thiếu
+
+==================================================
+LORE GENERATOR
+==================================================
+
+Tạo:
+
+- loreGenerator.js
+
+Sinh:
+
+- Truyền thuyết
+- Sử thi
+- Huyền thoại
+- Biên niên sử
+
+==================================================
+EVENT GENERATOR
+==================================================
+
+Tạo:
+
+- eventGenerator.js
+
+Sinh:
+
+- Chiến tranh
+- Thiên tai
+- Thần chiến
+- Xâm lược đa vũ trụ
+- Khủng hoảng kinh tế
+
+==================================================
+BALANCE ANALYZER
+==================================================
+
+Tạo:
+
+- balanceAnalyzer.js
+
+Phát hiện:
+
+- Quốc gia quá mạnh
+- Đế quốc quá mạnh
+- Boss quá mạnh
+- Vũ trụ mất cân bằng
+
+==================================================
+JARVIS INTEGRATION
+==================================================
+
+Tích hợp với:
+
+- Jarvis System
+- Creator Panel
+- Multiverse System
+- Timeline System
+- Civilization System
+
+==================================================
+AI REPORTS
+==================================================
+
+Tạo:
+
+- creatorReports.js
+
+Báo cáo:
+
+- Tình trạng thế giới
+- Đề xuất phát triển
+- Nguy cơ sụp đổ
+- Nguy cơ chiến tranh
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- AI Cố Vấn
+- Phân Tích
+- Đề Xuất
+- Lore
+- Sự Kiện
+- Báo Cáo
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Đề xuất AI
+- Báo cáo AI
+- Lịch sử phân tích
+- Lore đã sinh
+
+Tương thích với toàn bộ save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống nào đã tồn tại để tránh trùng lặp
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành cập nhật:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V41
+
+Recommended Next Version = V42 Thư Viện Thần Thoại Toàn Cầu
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI

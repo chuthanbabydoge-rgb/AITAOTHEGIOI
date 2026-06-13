@@ -2,8 +2,8 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V40 — Chợ Sáng Thế Chủ** ✅
-> **Phiên bản tiếp theo đề xuất: V41 — AI Creator Assistant (Trợ Lý Sáng Thế Chủ)**
+> **Phiên bản hiện tại: V41 — AI Creator Assistant** ✅
+> **Phiên bản tiếp theo đề xuất: V42 — Thư Viện Thần Thoại Toàn Cầu (World Mythology Library)**
 
 ---
 

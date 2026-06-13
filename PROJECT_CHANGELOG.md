@@ -4,6 +4,37 @@
 
 ---
 
+## [V41] — 2026-06-13 — AI Creator Assistant
+
+### New Systems Added (7 systems)
+- `creatorBrain.js` — Core analysis engine · `cbrnAnalyzeWorld()` phân tích 10 chiều (population/warfare/economy/religion/technology/divine/multiverse/races/bosses/v40creations) · topThreats + topOpps · Passive
+- `creatorAI.js` — AI Cố Vấn chính · `caiRunAnalysis()` · `caiApplySuggestion()` · gameTick mỗi 20 ticks · Điểm sức khỏe thế giới 0-100 · Tự động phân tích 2s sau init · Save: cgv6_creator_ai_v41
+- `creatorSuggestionEngine.js` — 12 mẫu đề xuất chia 6 danh mục · Priority 1-5 · `cseApply()` thực sự gọi factory functions · `cseDismiss()` · Save: cgv6_creator_sugg_v41
+- `balanceAnalyzer.js` — Phân tích 5 chiều · Phát hiện bá quyền/sụp đổ/boss quá mạnh/vũ trụ bất ổn · `cbaRunAnalysis()` · waeAddAlert khi phát hiện critical · Save: cgv6_balance_v41
+- `loreGenerator.js` — 6 thể loại (Truyền Thuyết/Sử Thi/Huyền Thoại/Biên Niên/Tiên Tri/Chiến Sử) · Template fill với context thực (tên kingdom, NPC) · htAddEvent + wmeAddMemory · Save: cgv6_lore_v41
+- `eventGenerator.js` — 5 loại sự kiện (Chiến Tranh/Thiên Tai/Thần Chiến/Xâm Lược ĐVT/Khủng Hoảng KT) · `egGenerateEvent()` · Tác động thực: mv39DeclareWar khi war event · htAddEvent + waeAddAlert + wmeAddMemory · Save: cgv6_event_gen_v41
+- `creatorReports.js` — 4 loại báo cáo (Tình Trạng/Phát Triển/Nguy Cơ Sụp Đổ/Nguy Cơ Chiến Tranh) · `crpGenerateReport()` · Auto-generate world_state report khi init · Save: cgv6_creator_reports_v41
+
+### index.html Updates
+- Thêm 6 panel divs V41: panel-creator-ai-v41 → panel-creator-reports-v41
+- Thêm 7 script tags (nhóm V41 trước V40, để creatorBrain init trước)
+
+### hubEngine.js Update
+- creator-hub-v32: 10 → 16 tabs (+6 dòng V41)
+- Tabs mới: 🤖 AI Cố Vấn · ⚖️ Phân Tích · 💡 Đề Xuất · 📜 Lore · ⚡ Sự Kiện · 📊 Báo Cáo
+
+### Integration Points
+- `creatorBrain` → data source cho caiData, cseData, cbaData, crpData
+- `caiApplySuggestion()` → gọi trực tiếp V40 factory functions (cnfCreateNation, cgfRandomGod, crfRandomRace...)
+- `eventGenerator` → `mv39DeclareWar()` khi war event (V39 compat)
+- Jarvis: htAddEvent + waeAddAlert + wmeAddMemory trong creatorAI, eventGenerator, loreGenerator, balanceAnalyzer
+
+### Save Keys
+- cgv6_creator_ai_v41, cgv6_creator_sugg_v41, cgv6_balance_v41
+- cgv6_lore_v41, cgv6_event_gen_v41, cgv6_creator_reports_v41
+
+---
+
 ## [V40] — 2026-06-13 — Chợ Sáng Thế Chủ
 
 ### New Systems Added (7 systems)

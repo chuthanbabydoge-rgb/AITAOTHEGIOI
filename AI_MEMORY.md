@@ -24,13 +24,24 @@
 
 ## 🔢 CURRENT VERSION
 
-**V40 — Chợ Sáng Thế Chủ** (2026-06-13)
+**V41 — AI Creator Assistant** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (84+ systems)
+## ✅ COMPLETED SYSTEMS (91+ systems)
 
-### Creator Marketplace V40 (7 systems) ← NEWEST
+### AI Creator Assistant V41 (7 systems) ← NEWEST
+- `creatorBrain.js` — Core world analysis · `cbrnAnalyzeWorld()` trả về 10 chiều (population/warfare/economy/religion/technology/divine/multiverse/races/bosses/v40creations) · Passive (no save, no tick)
+- `creatorAI.js` — AI Cố Vấn chính · `caiRunAnalysis()` · `caiApplySuggestion()` · gameTick mỗi 20 ticks · Điểm sức khỏe thế giới 0-100 · SAVE: cgv6_creator_ai_v41
+- `creatorSuggestionEngine.js` — 12 mẫu đề xuất · Priority 1-5 · One-click thực hiện · `cseApply()` · `cseDismiss()` · SAVE: cgv6_creator_sugg_v41
+- `balanceAnalyzer.js` — Phân tích 5 chiều (Kingdoms/Empires/Bosses/Universes/Gods) · Phát hiện bá quyền / sụp đổ / boss quá mạnh · `cbaRunAnalysis()` · SAVE: cgv6_balance_v41
+- `loreGenerator.js` — 6 thể loại (Truyền Thuyết/Sử Thi/Huyền Thoại/Biên Niên/Tiên Tri/Chiến Sử) · Template + context thực · `lgGenerateLore()` · htAddEvent+wmeAddMemory · SAVE: cgv6_lore_v41
+- `eventGenerator.js` — 5 loại sự kiện (Chiến Tranh/Thiên Tai/Thần Chiến/Xâm Lược/Khủng Hoảng) · `egGenerateEvent()` · Tác động thực lên thế giới (mv39DeclareWar) · SAVE: cgv6_event_gen_v41
+- `creatorReports.js` — 4 loại báo cáo (Tình Trạng/Phát Triển/Sụp Đổ/Chiến Tranh) · Auto-generate khi init · `crpGenerateReport()` · SAVE: cgv6_creator_reports_v41
+- **UI**: 6 tabs mới trong 👁 Creator God hub (3 tab V32 + 7 tab V40 + 6 tab V41 = 16 tổng) · KHÔNG tạo tab sidebar mới
+- **hubEngine.js**: +6 dòng tab (tổng V40+V41 = +13 dòng thêm vào creator-hub-v32)
+
+### Creator Marketplace V40 (7 systems)
 - `creatorRaceFactory.js` — 7 mẫu chủng tộc (Người/Tiên/Ma/Thần/Rồng/Thú/Tùy Chỉnh) · 5 thuộc tính · `crfCreateRace()` · `crfRandomRace()` · SAVE_KEY: cgv6_creator_race_v40
 - `creatorItemFactory.js` — 5 loại vật phẩm · 6 tier (Phàm→Sáng Thế) · `cifCreateItem()` · `cifRandomItem()` · 12 hiệu ứng ngẫu nhiên · SAVE_KEY: cgv6_creator_item_v40
 - `creatorBossFactory.js` — 4 tier boss (World/Divine/Multiverse/Creator) · `cbfCreateBoss()` · `cbfSlayBoss()` · 15 abilities · SAVE_KEY: cgv6_creator_boss_v40
