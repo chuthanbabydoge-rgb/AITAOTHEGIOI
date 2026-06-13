@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V35 — Multiverse Portal Network |
+| **Current Version** | V36 — Alternate Timeline System |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 82 |
-| **Total Systems** | 70+ |
+| **Total JS Files** | 91 |
+| **Total Systems** | 79+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 

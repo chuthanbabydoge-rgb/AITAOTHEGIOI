@@ -24,11 +24,22 @@
 
 ## 🔢 CURRENT VERSION
 
-**V35 — Multiverse Portal Network** (2026-06-13)
+**V36 — Alternate Timeline System** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (62+ systems)
+## ✅ COMPLETED SYSTEMS (71+ systems)
+
+### Alternate Timeline System V36 (9 systems) ← NEWEST
+- `timelineEngine.js` — Core · 7 loại timeline · CRUD · gameTick · Auto-init 3 timelines
+- `timelineManager.js` — Creator God controls · Stabilize/Purge/AlterHistory/Snapshot
+- `timelineRegistry.js` — Danh mục · Rankings · Phân loại theo type · Đồng bộ
+- `timelineBranchEngine.js` — Tự động phân nhánh · 8 triggers · Auto-branch gameTick
+- `timelineTravelEngine.js` — 3 loại traveler (Player/God/Creator) · Danger system · Auto-travel
+- `timelineEventEngine.js` — 10 sự kiện lịch sử thay thế · "What if" scenarios · Auto-generate
+- `timelineMergeEngine.js` — Hợp nhất · Tách · Lưu trữ · Snapshot archive
+- `timelineWarEngine.js` — 4 loại chiến tranh · Auto-resolve · Xâm lược/Chinh phục/Xóa bỏ/Ô nhiễm
+- `timelineAnalytics.js` — SVG bản đồ cây nhánh · Phân tích tổng hợp · Báo cáo · Đe dọa
 
 ### Core
 - `app.js` — Main loop, NPC/Sect/Country, save/load, `window.gameTick`

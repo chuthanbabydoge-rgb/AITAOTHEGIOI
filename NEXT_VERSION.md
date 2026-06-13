@@ -2,8 +2,8 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V35 — Multiverse Portal Network** ✅
-> **Phiên bản tiếp theo đề xuất: V36 — Alternate Timeline System**
+> **Phiên bản hiện tại: V36 — Alternate Timeline System** ✅
+> **Phiên bản tiếp theo đề xuất: V37 — Infinite Universe Generator**
 
 ---
 

@@ -4,6 +4,36 @@
 
 ---
 
+## [V36] — 2026-06-13 — Alternate Timeline System
+
+### New Systems Added
+- Timeline Engine (`timelineEngine.js`) — Core · 7 loại (canonical/dark/golden/divine/apocalypse/demon/lost) · CRUD · Auto-init · gameTick · panel-timeline-v36
+- Timeline Manager (`timelineManager.js`) — Creator controls · Stabilize/Purge/AlterHistory/AddGods/AddKingdoms/Snapshot · Intervention log
+- Timeline Registry (`timelineRegistry.js`) — Danh mục · Rankings · Đồng bộ tự động · panel-timeline-analytics-v36
+- Timeline Branch Engine (`timelineBranchEngine.js`) — 8 triggers · Auto-branch 200 ticks · tbRegisterEvent · tlBranchFromWorld
+- Timeline Travel Engine (`timelineTravelEngine.js`) — 3 loại (Player/God/Creator) · Danger/Risk system · Auto-travel 150 ticks · panel-timeline-travel-v36
+- Timeline Event Engine (`timelineEventEngine.js`) — 10 "what if" scenarios · Auto-generate 180 ticks · teeGenerateEvent · teeAutoGenerate
+- Timeline Merge Engine (`timelineMergeEngine.js`) — Merge · Split · Archive · Snapshot · tmeMerge · tmeSplit · tmeArchive
+- Timeline War Engine (`timelineWarEngine.js`) — 4 loại (invasion/conquest/erasure/corruption) · Auto-resolve · Auto-war 200 ticks · panel-timeline-wars-v36
+- Timeline Analytics (`timelineAnalytics.js`) — SVG tree map · Comprehensive stats · Reports · Threat detection · panel-timeline-map-v36 + panel-timeline-analytics-v36
+
+### index.html Updates
+- Added 9 `<script>` tags (timelineEngine → timelineAnalytics)
+- Added 5 panel divs (panel-timeline-v36, panel-timeline-map-v36, panel-timeline-wars-v36, panel-timeline-travel-v36, panel-timeline-analytics-v36)
+- Extended `mvHubRenderPanel()` with V36 Timeline section (5 internal tab buttons) — NO new sidebar tab
+
+### Integration
+- Kết nối với V35 Multiverse (window.mvData.activeUId)
+- Kết nối với Historical Timeline (htAddEvent)
+- Kết nối với World Memory (wmAddMemory)
+- Kết nối với gameTick chain (9 hooks)
+
+### Compatibility
+- 100% backward compatible. Tất cả save data V35 và trước đó load bình thường.
+- 9 localStorage keys mới với prefix cgv6_timeline_*_v36
+
+---
+
 ## [V35] — 2026-06-13 — Multiverse Portal Network
 
 ### New Systems Added

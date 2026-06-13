@@ -1,0 +1,275 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+- REAL_PROJECT_AUDIT.md
+
+- WORLD_AUDIT_REPORT.md
+
+- AI_MEMORY.md
+
+- PROJECT_STATUS.md
+
+- PROJECT_ARCHITECTURE.md
+
+- PROJECT_CHANGELOG.md
+
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn thông tin chính xác.
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu đã có các hệ thống tương tự:
+
+nâng cấp và mở rộng chúng.
+
+==================================================
+QUY TẮC KIẾN TRÚC GIAO DIỆN NGƯỜI DÙNG
+==================================================
+
+QUAN TRỌNG
+
+Không nên liên tục thêm các tab thanh bên mới.
+
+Chỉ các hệ thống chính mới được phép có trong thanh bên.
+
+Giữ cho thanh bên gọn gàng.
+
+Tất cả các tính năng mới phải được triển khai dưới dạng các tab nội bộ,
+trang con,
+bảng điều khiển,
+cửa sổ bật lên,
+hoặc bảng điều khiển bên trong các hệ thống chính hiện có.
+
+KHÔNG tạo ra sự lộn xộn trong thanh bên.
+
+=================================================
+MỤC TIÊU XÂY DỰNG
+==================================================
+
+HỆ THỐNG DÒNG THỜI GIAN THAY THẾ V36
+
+==================================================
+MỤC TIÊU
+===================================================
+
+Cho phép các dòng thời gian thay thế tồn tại.
+
+Mỗi sự kiện lớn đều có thể tạo ra một dòng thời gian phân nhánh.
+
+Người chơi có thể khám phá những lịch sử thay thế.
+
+Thần Sáng Tạo có thể thao túng dòng thời gian.
+
+=================================================
+CỐT LÕI DÒNG THỜI GIAN
+==================================================
+
+Tạo:
+
+- timelineEngine.js
+
+- timelineManager.js
+
+- timelineRegistry.js
+
+Mỗi dòng thời gian có:
+
+- timelineId
+- timelineName
+- originEvent
+- divergencePoint
+- age
+- stability
+- population
+
+=====================================================
+DÒNG THỜI GIAN PHÂN NHÁNH
+==================================================
+
+Tạo:
+
+- timelineBranchEngine.js
+
+Tạo các dòng thời gian thay thế khi:
+
+- Vương quốc sụp đổ
+- Đế chế thắng trận
+- Thần thánh thăng thiên
+- Trùm thế giới sống sót
+- Đấng Tạo Hóa can thiệp
+
+===================================================
+CÁC LOẠI DÒNG THỜI GIAN
+==================================================
+
+Tạo:
+
+- Dòng thời gian chính thống
+- Dòng thời gian đen tối
+- Dòng thời gian vàng son
+- Dòng thời gian thần thánh
+- Ngày tận thế Dòng thời gian
+- Dòng thời gian của Quỷ
+- Dòng thời gian bị mất
+
+==================================================
+DU HÀNH DÒNG THỜI GIAN
+==================================================
+
+Tạo:
+
+- timelineTravelEngine.js
+
+Cho phép:
+
+- Du hành của Người chơi
+- Du hành của Thần
+- Du hành của Người sáng tạo
+
+====================================================
+DÒNG THỜI GIAN SỰ KIỆN
+=================================================
+
+Tạo:
+
+- timelineEventEngine.js
+
+Ví dụ:
+
+- Đế chế chưa từng tồn tại
+- Người cai trị khác lên ngôi
+- Thần thánh chưa từng thăng thiên
+- Thế giới chưa từng sụp đổ
+
+==================================================
+HỢP NHẤT DÒNG THỜI GIAN
+==================================================
+
+Tạo:
+
+- timelineMergeEngine.js
+
+Cho phép:
+
+- Hợp nhất các dòng thời gian
+- Tách các dòng thời gian
+- Lưu trữ Dòng thời gian
+
+=================================================
+CHIẾN TRANH DÒNG THỜI GIAN
+==================================================
+
+Tạo:
+
+- timelineWarEngine.js
+
+Cho phép:
+
+- Xâm lược Dòng thời gian
+
+- Chinh phục Dòng thời gian
+- Xóa bỏ Dòng thời gian
+
+===================================================
+DÒNG THỜI GIAN PHÂN TÍCH
+==================================================
+
+Tạo:
+
+- timelineAnalytics.js
+
+Hiển thị:
+
+- Dòng thời gian đang hoạt động
+- Dòng thời gian mạnh nhất
+- Dòng thời gian ổn định nhất
+- Các mối đe dọa đối với dòng thời gian
+
+==================================================
+TÍCH HỢP
+===================================================
+
+Kết nối với:
+
+- Hệ thống Đa vũ trụ
+- Hệ thống Thần Sáng tạo
+- Hệ thống Jarvis
+- Hệ thống Ký ức Thế giới
+- Dòng thời gian Lịch sử
+- Hệ thống Vương quốc
+- Đế chế Hệ thống
+
+- Hệ thống Thần Giới
+
+==================================================
+Giao diện người dùng
+==================================================
+
+KHÔNG CÓ TAB THANH BÊN MỚI.
+
+Tích hợp bên trong:
+
+🌌 Đa vũ trụ
+
+Thêm các tab nội bộ:
+
+- Dòng thời gian
+- Bản đồ dòng thời gian
+- Chiến tranh dòng thời gian
+- Du hành dòng thời gian
+- Phân tích dòng thời gian
+
+===================================================
+HỆ THỐNG LƯU
+====================================================
+
+Lưu:
+
+- Dòng thời gian
+- Sự kiện dòng thời gian
+- Chiến tranh dòng thời gian
+- Du hành dòng thời gian
+- Hợp nhất dòng thời gian
+
+Duy trì khả năng tương thích với tất cả các bản lưu trước đó.
+
+=================================================
+ĐẦU RA
+==================================================
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần sửa đổi
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Sau khi cập nhật hoàn tất:
+
+- AI_MEMORY.md
+
+- PROJECT_STATUS.md
+
+- PROJECT_CHANGELOG.md
+
+- NEXT_VERSION.md
+
+Thiết lập:
+
+Phiên bản hiện tại = V36
+
+Phiên bản tiếp theo được đề xuất = V37 Infinite Universe Generator
+
+CHỈ MỞ RỘNG
+
+KHÔNG BAO GIỜ XÓA
+
+KHÔNG BAO GIỜ THAY THẾ
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI

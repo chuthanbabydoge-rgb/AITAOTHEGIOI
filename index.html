@@ -2761,6 +2761,12 @@ onclick="showPanel('dashboard')">
       <div id="panel-multiverse-map" class="panel" style="padding:0;overflow-y:auto"></div>
       <div id="panel-universe-travel" class="panel" style="padding:0;overflow-y:auto"></div>
       <div id="panel-multiverse-economy" class="panel" style="padding:0;overflow-y:auto"></div>
+      <!-- ═══ V36 ALTERNATE TIMELINE SYSTEM PANELS ═══ -->
+      <div id="panel-timeline-v36" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-timeline-map-v36" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-timeline-wars-v36" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-timeline-travel-v36" class="panel" style="padding:0;overflow-y:auto"></div>
+      <div id="panel-timeline-analytics-v36" class="panel" style="padding:0;overflow-y:auto"></div>
 
       <!-- ═══ HUB PANELS ═══ -->
       <div id="panel-diplomacy-hub-v24" class="panel" style="padding:0;overflow:hidden;height:100%"></div>
@@ -3069,6 +3075,16 @@ window.addEventListener("load", function() {
 <script src="multiverseMapEngine.js"></script>
 <script src="multiverseWarEngine.js"></script>
 <script src="multiverseEconomy.js"></script>
+<!-- ═══ V36 ALTERNATE TIMELINE SYSTEM ═══ -->
+<script src="timelineEngine.js"></script>
+<script src="timelineManager.js"></script>
+<script src="timelineRegistry.js"></script>
+<script src="timelineBranchEngine.js"></script>
+<script src="timelineTravelEngine.js"></script>
+<script src="timelineEventEngine.js"></script>
+<script src="timelineMergeEngine.js"></script>
+<script src="timelineWarEngine.js"></script>
+<script src="timelineAnalytics.js"></script>
 <script>
 // ═══ V35 MULTIVERSE HUB RENDER ═══
 window.mvHubRenderPanel = function() {
@@ -3098,6 +3114,19 @@ window.mvHubRenderPanel = function() {
     +'<button onclick="showPanel(\'panel-multiverse-map\');mmRenderPanel&&mmRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#a78bfa;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🗺 <strong>Bản Đồ</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Bản đồ đa vũ trụ</div></button>'
     +'<button onclick="showPanel(\'panel-universe-travel\');utRenderPanel&&utRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#10b981;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">✈️ <strong>Du Hành</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Du lịch liên vũ trụ</div></button>'
     +'<button onclick="showPanel(\'panel-multiverse-economy\');meRenderPanel&&meRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">💰 <strong>Kinh Tế</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Thương mại đa vũ trụ</div></button>'
+    +'</div>'
+    +'<div style="margin-top:28px;padding-top:20px;border-top:1px solid #1e293b">'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">'
+    +'<h3 style="margin:0;font-size:18px;color:#fbbf24;font-family:Cinzel,serif">🌀 Alternate Timeline System V36</h3>'
+    +'</div>'
+    +(function(){var tl=window.tlGetActiveTimelines?window.tlGetActiveTimelines():[];var tw=window.twGetActiveWars?window.twGetActiveWars():[];var ttv=window.ttvGetActive?window.ttvGetActive():[];return '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px">'+'<div style="background:#0f172a;border:1px solid #fbbf2444;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#fbbf24">'+tl.length+'</div><div style="font-size:10px;color:#64748b">Dòng TG Hoạt Động</div></div>'+'<div style="background:#0f172a;border:1px solid #ef444444;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#ef4444">'+tw.length+'</div><div style="font-size:10px;color:#64748b">Chiến Tranh TG</div></div>'+'<div style="background:#0f172a;border:1px solid #10b98144;border-radius:8px;padding:10px;text-align:center"><div style="font-size:22px;font-weight:700;color:#10b981">'+ttv.length+'</div><div style="font-size:10px;color:#64748b">Đang Du Hành</div></div>'+'</div>';})()
+    +'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">'
+    +'<button onclick="showPanel(\'panel-timeline-v36\');tlRenderPanel&&tlRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #fbbf24;border-radius:10px;color:#fbbf24;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🌀 <strong>Dòng Thời Gian</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Tạo & quản lý timelines</div></button>'
+    +'<button onclick="showPanel(\'panel-timeline-map-v36\');tMapRenderPanel&&tMapRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #8b5cf6;border-radius:10px;color:#a78bfa;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">🗺 <strong>Bản Đồ TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Cây nhánh dòng thời gian</div></button>'
+    +'<button onclick="showPanel(\'panel-timeline-wars-v36\');twRenderPanel&&twRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #ef4444;border-radius:10px;color:#f87171;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">⚔️ <strong>Chiến Tranh TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Xâm lược · Chinh phục</div></button>'
+    +'<button onclick="showPanel(\'panel-timeline-travel-v36\');ttvRenderPanel&&ttvRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #10b981;border-radius:10px;color:#34d399;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">✈️ <strong>Du Hành TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Player · Thần · Tạo Hóa</div></button>'
+    +'<button onclick="showPanel(\'panel-timeline-analytics-v36\');taRenderPanel&&taRenderPanel()" style="padding:14px;background:#0f172a;border:1px solid #06b6d4;border-radius:10px;color:#06b6d4;cursor:pointer;font-size:13px;font-family:\'Noto Serif SC\',serif;text-align:left">📊 <strong>Phân Tích TG</strong><div style="font-size:11px;color:#64748b;margin-top:4px">Thống kê & xếp hạng</div></button>'
+    +'</div>'
     +'</div>'
     +'</div>';
 };
