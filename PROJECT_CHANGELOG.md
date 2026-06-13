@@ -4,6 +4,47 @@
 
 ---
 
+## [V33] — 2026-06-13 — Thủ Hộ Thần (AI Advisor System)
+
+### New Systems Added
+- Thủ Hộ Thần Core (`thuhothanCore.js`) — Main AI hub · Q&A engine (keyword-based, 12+ queries) · Chat history · Panel coordinator
+- Bộ Nhớ Thủ Hộ Thần (`thuhothanMemory.js`) — Persistent memory 200 sự kiện · 8 loại · Tìm kiếm · Lọc theo năm/loại
+- Tính Cách Thần (`thuhothanPersonality.js`) — Personality system · Message formatting (normal/urgent/reflective) · Number formatter
+- Cảnh Báo Thế Giới (`worldAlertEngine.js`) — Phát hiện tự động 8 loại sự kiện · Critical/High/Medium/Low alerts
+- Bản Tin Sự Kiện (`eventFeedEngine.js`) — Live news feed từ tất cả engines · Filter · 300 items
+- Phân Tích Thế Giới (`worldAdvisor.js`) — Strongest Kingdom/Empire · Wars · Threats · Economic Issues · Divine Status · Stability Score
+- Cố Vấn Người Chơi (`playerAdvisor.js`) — Tu Luyện · Thăng Thiên · Chiến Đấu · Ngoại Giao · Thương Mại
+- Cố Vấn Tạo Hóa (`creatorAdvisor.js`) — World Stability Report · Dangerous Events · Suggested Actions · Divine Conflicts
+
+### Files Added (8 files)
+- `thuhothanCore.js`, `thuhothanMemory.js`, `thuhothanPersonality.js`
+- `worldAlertEngine.js`, `eventFeedEngine.js`
+- `worldAdvisor.js`, `playerAdvisor.js`, `creatorAdvisor.js`
+
+### Files Modified
+- `index.html` — Added 8 script tags, 5 nav buttons, 5 panel divs, updated v23Panels unlock array (+5 panels)
+
+### UI Tabs Added (5 tabs)
+- 🤖 Thủ Hộ Thần (`panel-thuhothan`) — Main AI hub + Q&A + Creator advisor
+- 📢 Tin Tức TG (`panel-world-news`) — Live event feed from all engines
+- 🚨 Cảnh Báo (`panel-alerts`) — Alert center (Critical/High/Medium/Low)
+- 📊 Cố Vấn (`panel-advisor`) — Player advisor (6 domains)
+- 📖 Báo Cáo TG (`panel-world-report`) — World report (full analysis)
+
+### Save Keys Added (4 keys)
+- `cgv6_thuhothan_mem_v33` — Bộ nhớ Thủ Hộ Thần
+- `cgv6_world_alert_v33` — Cảnh báo thế giới
+- `cgv6_event_feed_v33` — Bản tin sự kiện
+- `cgv6_thuhothan_core_v33` — Core state + chat history
+
+### Features
+- Q&A Engine: "Vương quốc mạnh nhất?", "Chiến tranh?", "Boss nguy hiểm?", "100 năm qua?", "Thần lửa?", v.v.
+- Auto-detect world changes mỗi tick và tạo cảnh báo/tin tức tự động
+- Voice-ready architecture (không cần external API)
+- Tương thích hoàn toàn với tất cả save data cũ
+
+---
+
 ## [V32] — 2026-06-13 — Creator God Control Panel
 
 ### New Systems Added

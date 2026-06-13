@@ -1,0 +1,2 @@
+- [V33 Array Safety Pattern](v33-array-safety.md) — kingdomData.kingdoms / empireData.empires có thể là Object (không phải Array) — phải dùng Array.isArray() + Object.values() fallback trước khi .filter()
+- [Project Expand-Only Rules](project-rules.md) — EXPAND ONLY · NEVER DELETE · NEVER REPLACE · gameTick hook via const _orig pattern · IIFE required · setTimeout init staggered

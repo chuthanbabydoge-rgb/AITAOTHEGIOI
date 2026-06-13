@@ -1,0 +1,253 @@
+Áp dụng các quy tắc bảo vệ dự án.
+
+Đọc:
+
+* REAL_PROJECT_AUDIT.md
+
+* WORLD_AUDIT_REPORT.md
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_ARCHITECTURE.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn thông tin chính xác.
+
+Phân tích dự án hiện tại trước.
+
+Không tạo các hệ thống trùng lặp.
+
+Nếu đã có các hệ thống tương tự:
+
+nâng cấp và mở rộng chúng.
+
+=================================================
+MỤC TIÊU XÂY DỰNG
+============
+
+HỆ THỐNG TRỢ THỦ AI V33 Thủ hộ Thần
+
+==================================================
+MỤC TIÊU
+
+====
+
+Tạo ra một trợ thủ AI bền vững, hiểu biết về thế giới,
+người chơi,
+các vương quốc,
+các đế chế,
+các vị thần và đấng tạo hóa.
+
+Hoạt động như một cố vấn thời gian thực.
+
+==================================================
+LÕI Thủ Hộ Thần
+===========
+
+Tạo:
+
+* thuhothanCore.js
+* thuhothanMemory.js
+* thuhothanPersonality.js
+
+Thủ Hộ Thần phải:
+
+* Hiểu trạng thái thế giới
+* Hiểu trạng thái người chơi
+* Hiểu hành động của người tạo
+* Ghi nhớ các sự kiện quan trọng
+
+===================================================
+PHÂN TÍCH THẾ GIỚI
+==============
+
+Tạo:
+
+* worldAdvisor.js
+
+Thủ Hộ Thần báo cáo:
+
+* Vương quốc mạnh nhất
+* Đế chế mạnh nhất
+* Các cuộc chiến đang diễn ra
+* Các vấn đề kinh tế
+* Các mối đe dọa thế giới
+* Sự trỗi dậy Quyền năng
+
+=================================================
+CỐ VẤN NGƯỜI CHƠI
+==============
+
+Tạo:
+
+* playerAdvisor.js
+
+Thủ Hộ Thần có thể tư vấn:
+
+* Tiến trình
+* Tu luyện
+* Ngoại giao
+* Thương mại
+* Chiến tranh
+* Thăng thiên
+
+====================================================
+CỐ VẤN THẦN SÁNG TẠO
+===================
+
+Tạo:
+
+* creatorAdvisor.js
+
+Thủ Hộ Thần báo cáo:
+
+* Ổn định thế giới
+* Sự kiện nguy hiểm
+* Xung đột thần thánh
+* Vấn đề vương quốc
+* Kinh tế Khủng hoảng
+
+=================================================
+HỆ THỐNG CẢNH BÁO THẾ GIỚI
+==================
+
+Tạo:
+
+* worldAlertEngine.js
+
+Ví dụ:
+
+"Đế chế Mặt Trời Xanh đã tuyên chiến."
+
+"Một Thần Chủ mới đã thức tỉnh."
+
+"Một vương quốc đã sụp đổ."
+
+"Một vị thần đã thăng thiên."
+
+=================================================
+BẢN TIN SỰ KIỆN
+==========
+
+Tạo:
+
+* eventFeedEngine.js
+
+Tin tức thế giới trực tiếp.
+
+=================================================
+BỘ NHỚ Thủ THộ Thần
+=============
+
+Thủ Hộ Thần ghi nhớ:
+
+* Các cuộc chiến tranh lớn
+* Sự thăng thiên
+* Sự hình thành đế chế
+* Sự sụp đổ của vương quốc
+* Hành động của người sáng tạo
+
+===================================================
+KIẾN TRÚC SẴN SÀNG CHO GIỌNG NÓI
+========================
+
+Chuẩn bị kiến ​​trúc cho:
+
+* Đầu vào giọng nói
+* Đầu ra giọng nói
+
+Nhưng không yêu cầu API bên ngoài.
+
+=================================================
+CÂU HỎI VỀ THẾ GIỚI
+===============
+
+Cho phép:
+
+"Ai là vị hoàng đế mạnh nhất?"
+
+"Vương quốc nào giàu nhất?"
+
+"Điều gì đã xảy ra trong 100 năm qua?"
+
+"Vị thần nào điều khiển lửa?"
+
+=================================================
+TÍCH HỢP
+===========
+
+Kết nối với:
+
+* Hệ thống Vương quốc
+* Hệ thống Đế chế
+* Hệ thống Ngoại giao
+* Hệ thống Sự kiện Thế giới
+* Hệ thống Thần thánh
+* Hệ thống Người chơi
+* Hệ thống Thần sáng tạo
+* Hệ thống Dòng thời gian
+* Hệ thống Ký ức Thế giới
+
+===================================================
+Giao diện người dùng
+==
+
+Thêm các tab:
+
+🤖 Thủ Hộ Thần
+
+📢 Tin tức Thế giới
+
+🚨 Cảnh báo
+
+📊 Cố vấn
+
+📖 Thế giới Báo cáo
+
+=================================================
+HỆ THỐNG LƯU
+===========
+
+Lưu:
+
+* Bộ nhớ Thủ Hộ Thần
+* Cảnh báo
+* Báo cáo
+* Lịch sử Cố vấn
+
+Duy trì khả năng tương thích với tất cả các bản lưu cũ.
+
+=================================================
+ĐẦU RA
+======
+
+Trước khi lập trình:
+
+1. Các hệ thống hiện có
+2. Các hệ thống mới
+3. Các tập tin cần tạo
+4. Các tập tin cần chỉnh sửa
+5. Kế hoạch tích hợp
+6. Kiểm tra khả năng tương thích
+
+Sau khi cập nhật hoàn tất:
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Thiết lập:
+
+Phiên bản hiện tại = V33
+
+Phiên bản tiếp theo được đề xuất = V34 Thế giới nhiều người chơi
+
+CHỈ MỞ RỘNG
+
+KHÔNG BAO GIỜ XÓA
+
+KHÔNG BAO GIỜ THAY THẾ
+
+KHÔNG BAO GIỜ XÂY DỰNG LẠI

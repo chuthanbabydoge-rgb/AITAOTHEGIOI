@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V32 — Creator God Control Panel** (2026-06-13)
+**V33 — Thủ Hộ Thần (AI Advisor System)** (2026-06-13)
 
 ---
 
@@ -50,7 +50,17 @@
 - `diplomaticEngine.js` — Relations, ambassadors, treaties, war declaration
 - `espionageEngine.js` — Spy networks, missions
 
-### Creator God Control Panel V32 (3 systems) ← NEWEST
+### Thủ Hộ Thần V33 (8 systems) ← NEWEST
+- `thuhothanCore.js` — Main hub · Q&A keyword engine · Chat history · gameTick integration
+- `thuhothanMemory.js` — Persistent memory: 200 events · 8 types (war/ascension/empire/collapse/divine/boss/creator/economy)
+- `thuhothanPersonality.js` — Personality templates · Message formatting · Tone system (normal/urgent/reflective)
+- `worldAlertEngine.js` — Auto-detect 8 event types (war/kingdom/empire/boss/divine/disaster/plague/invasion) → alerts
+- `eventFeedEngine.js` — Live news feed from all engines · Filter by source/importance · 300 items max
+- `worldAdvisor.js` — World analysis: Strongest Kingdom/Empire · Richest · Wars · Threats · Power Rising · Divine Status
+- `playerAdvisor.js` — Player advice: Cultivation · Ascension · Combat · Diplomacy · Trade
+- `creatorAdvisor.js` — Creator report: Stability · Dangerous Events · Divine Conflicts · Kingdom Issues · Suggested Actions
+
+### Creator God Control Panel V32 (3 systems)
 - `creatorGodControl.js` — World/Kingdom/Empire/Disaster/Boss/Artifact/Player/Timeline/Snapshot controls · 8 sub-tabs
 - `divineAdministration.js` — Tạo/Xóa Thần · Phân Định Lãnh Địa · Thần Điện · Khai Chiến Thần Thánh
 - `creatorAnalytics.js` — World analytics: Population · Economy · Military · Religion · Tech · Stability · Divine · Boss

@@ -2,29 +2,41 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V32 — Creator God Control Panel**
-> **Phiên bản tiếp theo đề xuất: V33 — AI Companion Jarvis**
+> **Phiên bản hiện tại: V33 — Thủ Hộ Thần (AI Advisor System)**
+> **Phiên bản tiếp theo đề xuất: V34 — Thế Giới Nhiều Người Chơi (Multiplayer Foundation)**
 
 ---
 
-## 🤖 V33 — AI Companion Jarvis *(Tiếp theo được đề xuất)*
+## ✅ V33 — Thủ Hộ Thần *(Đã Hoàn Thành — 2026-06-13)*
 
-Trợ Lý AI cá nhân của Đấng Sáng Tạo — tích hợp Anthropic Claude.
+8 hệ thống AI Advisor hoàn chỉnh:
+- `thuhothanCore.js` — Main hub, Q&A engine, chat history
+- `thuhothanMemory.js` — Persistent memory 200 events
+- `thuhothanPersonality.js` — Personality & formatting
+- `worldAlertEngine.js` — Auto-alert 8 event types
+- `eventFeedEngine.js` — Live news feed
+- `worldAdvisor.js` — World analysis & report
+- `playerAdvisor.js` — Player advice 5 domains
+- `creatorAdvisor.js` — Creator stability & action report
+
+---
+
+## 🌐 V34 — Thế Giới Nhiều Người Chơi *(Tiếp theo được đề xuất)*
+
+Nền tảng nhiều người chơi dùng localStorage shared + URL sync.
 
 | Hệ Thống | File | Mô Tả |
 |---|---|---|
-| Jarvis Core | `jarvisEngine.js` | AI assistant tích hợp Claude API |
-| Jarvis Memory | `jarvisMemory.js` | Lưu trữ context + lịch sử chat |
-| Jarvis UI | `jarvisPanel.js` | Giao diện chat + command panel |
+| Multiplayer Core | `multiplayerCore.js` | State sync qua URL hash / BroadcastChannel |
+| Player Profile | `playerProfileV34.js` | Mỗi player có profile riêng |
+| Shared World | `sharedWorldEngine.js` | Nhiều player cùng tác động 1 thế giới |
+| Player Chat | `playerChatV34.js` | Chat giữa các player trong thế giới |
 
 **Tính năng nổi bật:**
-- Chat với AI về thế giới simulation (hỏi về NPC, lịch sử, chiến tranh...)
-- Jarvis tự phân tích thế giới và đề xuất hành động cho Creator
-- Voice-style narration: Jarvis kể chuyện thế giới như một tiểu thuyết
-- Quick commands: "Summon a boss", "Create a kingdom named X", "Show top NPC"
-- Liên kết với creatorAnalytics.js để trả lời câu hỏi về thế giới
-
----
+- Nhiều tab trình duyệt = nhiều "người chơi" cùng 1 thế giới
+- Mỗi player có vai trò: Creator / King / General / Merchant / Sage
+- Actions của 1 player ảnh hưởng real-time đến player khác
+- Không cần backend — dùng BroadcastChannel API
 
 ---
 
