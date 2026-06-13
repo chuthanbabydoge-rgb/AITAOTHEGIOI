@@ -1,0 +1,254 @@
+Tiếp tục build V51 — CREATOR GOD ONLINE.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V51 - CREATOR GOD ONLINE
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Biến người sở hữu thế giới thành:
+
+Creator God
+
+có khả năng:
+
+- Quan sát
+- Can thiệp
+- Ban phước
+- Trừng phạt
+- Tạo sự kiện
+- Tạo sinh vật
+- Tạo đế quốc
+- Tạo thần linh
+
+==================================================
+CREATOR GOD CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- creatorGodSystem.js
+- creatorAuthorityEngine.js
+- creatorActionEngine.js
+
+==================================================
+THIÊN Ý (DIVINE WILL)
+==================================================
+
+Cho phép Creator:
+
+- Ban sắc lệnh
+- Ban phước
+- Ban lời tiên tri
+- Ban nhiệm vụ toàn cầu
+
+==================================================
+CAN THIỆP THẾ GIỚI
+==================================================
+
+Cho phép:
+
+- Tăng tài nguyên
+- Giảm tài nguyên
+- Tạo anh hùng
+- Tạo boss
+- Tạo thảm họa
+- Tạo kỳ quan
+
+==================================================
+THIÊN KHẢI
+==================================================
+
+Tạo:
+
+- prophecySystem.js
+
+Cho phép:
+
+- Tiên tri kỷ nguyên
+- Tiên tri chiến tranh
+- Tiên tri tận thế
+- Tiên tri anh hùng
+
+==================================================
+THẦN TÍCH
+==================================================
+
+Tạo:
+
+- miracleSystem.js
+
+Ví dụ:
+
+- Hồi sinh thành phố
+- Chữa đại dịch
+- Mưa tài nguyên
+- Khai mở thánh địa
+
+==================================================
+SỰ KIỆN TOÀN CẦU
+==================================================
+
+Tạo:
+
+- globalEventControl.js
+
+Cho phép:
+
+- Festival
+- World Boss
+- Divine Invasion
+- Golden Age
+- Dark Age
+
+==================================================
+CREATOR DASHBOARD
+==================================================
+
+Hiển thị:
+
+- Tổng dân số
+- Tổng quốc gia
+- Tổng đế quốc
+- Tổng thần linh
+- Tổng người chơi
+- Tổng vũ trụ
+
+==================================================
+JARVIS GOD MODE
+==================================================
+
+Jarvis hỗ trợ:
+
+- Phân tích toàn thế giới
+- Đề xuất can thiệp
+- Cảnh báo sụp đổ
+- Đề xuất sự kiện
+
+==================================================
+AUDIT MODE
+==================================================
+
+Tạo:
+
+- godAuditPanel.js
+
+Hiển thị:
+
+- Active Systems
+- Dormant Systems
+- Performance
+- Save Status
+- Integration Status
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- God Mode
+- Divine Will
+- Miracles
+- Prophecies
+- World Events
+- Global Analytics
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Divine Actions
+- Prophecies
+- Miracles
+- World Events
+- Creator History
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V51
+
+Recommended Next Version = V52 Player Economy & Marketplace
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
