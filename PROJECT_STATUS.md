@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V39 — Chiến Tranh Đa Vũ Trụ |
+| **Current Version** | V40 — Chợ Sáng Thế Chủ |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 120+ |
-| **Total Systems** | 85+ |
+| **Total JS Files** | 127+ |
+| **Total Systems** | 92+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,17 @@
 
 ## ✅ Completed Systems
 
-### Multiverse War System V39 ← NEWEST
+### Creator Marketplace V40 ← NEWEST
+- `creatorRaceFactory.js` — 7 mẫu chủng tộc · 5 thuộc tính · SAVE: cgv6_creator_race_v40
+- `creatorItemFactory.js` — 5 loại · 6 tier · 12 hiệu ứng · SAVE: cgv6_creator_item_v40
+- `creatorBossFactory.js` — 4 tier boss · 15 abilities · cbfSlayBoss() · SAVE: cgv6_creator_boss_v40
+- `creatorGodFactory.js` — 5 tier · 23 lĩnh vực · 15 quyền năng · SAVE: cgv6_creator_god_v40
+- `creatorNationFactory.js` — 6 văn hóa · 7 tech · Nation+Empire · SAVE: cgv6_creator_nation_v40
+- `creatorUniverseFactory.js` — 8 loại · 9 quy luật · 6 tốc độ · SAVE: cgv6_creator_universe_v40
+- `creatorLibrary.js` — Tổng hợp · Jarvis đề xuất · Timeline · Passive
+- **hubEngine.js**: creator-hub-v32 mở rộng 3→10 tabs
+
+### Multiverse War System V39
 - `multiverseWarSystemV39.js` — 5 loại chiến tranh · Victory board · gameTick · Save: cgv6_mv_war_v39
 - `multiverseInvasionSystemV39.js` — 5 giai đoạn xâm lược · Resource absorption · Save: cgv6_mv_invasion_v39
 - `conquestSystemV39.js` — Lãnh thổ chiếm đóng · SVG bản đồ · Phản loạn · Save: cgv6_mv_conquest_v39

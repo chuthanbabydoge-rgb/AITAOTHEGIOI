@@ -4,6 +4,37 @@
 
 ---
 
+## [V40] — 2026-06-13 — Chợ Sáng Thế Chủ
+
+### New Systems Added (7 systems)
+- `creatorRaceFactory.js` — 7 mẫu chủng tộc (Người/Tiên/Ma/Thần/Rồng/Thú/Tùy Chỉnh) · 5 thuộc tính (Tuổi thọ/Sức mạnh/Trí tuệ/Sinh sản/Tiến hóa) · `crfCreateRace()` · `crfRandomRace()` · Save: cgv6_creator_race_v40
+- `creatorItemFactory.js` — 5 loại (Vũ Khí/Giáp/Thánh Vật/Thần Khí/Di Vật) · 6 tier (Phàm→Sáng Thế) · 12 hiệu ứng ngẫu nhiên · `cifCreateItem()` · Save: cgv6_creator_item_v40
+- `creatorBossFactory.js` — 4 tier (World/Divine/Multiverse/Creator) · 15 abilities · `cbfCreateBoss()` · `cbfSlayBoss()` · Tích hợp wbv31SpawnCustomBoss · Save: cgv6_creator_boss_v40
+- `creatorGodFactory.js` — 5 tier thần (Bán Thần→Thái Cổ) · 23 lĩnh vực · 15 quyền năng · `cgfCreateGod()` · Tích hợp divineAdminData.createdDeities · Save: cgv6_creator_god_v40
+- `creatorNationFactory.js` — 6 văn hóa (Võ Học/Học Thuật/Thương Mại/Tôn Giáo/Phép Thuật/Du Mục) · 7 tech level · `cnfCreateNation()` · `cnfCreateEmpire()` · Save: cgv6_creator_nation_v40
+- `creatorUniverseFactory.js` — 8 loại vũ trụ · 9 quy luật vật lý · 6 tốc độ thời gian · `cufCreateUniverse()` · Tích hợp mvCreateUniverse() · Save: cgv6_creator_universe_v40
+- `creatorLibrary.js` — Tổng hợp 7 factory · Stats cards (7 danh mục) · Jarvis đề xuất 6 loại · Timeline sáng tạo 30 mục gần nhất · Passive (no gameTick, no save key)
+
+### index.html Updates
+- Thêm 7 panel divs: panel-creator-race-v40 → panel-creator-library-v40
+- Thêm 7 script tags (nhóm V40 Creator Marketplace)
+
+### hubEngine.js Update
+- creator-hub-v32 tabs: 3 → 10 tabs (+7 dòng, trong giới hạn 20)
+- Tabs mới: Chủng Tộc · Vật Phẩm · Boss · Thần · Quốc Gia · Vũ Trụ · Thư Viện
+
+### Integration Points
+- `creatorGodFactory` → `divineAdminData.createdDeities.push()` (V32 compatibility)
+- `creatorBossFactory` → `wbv31SpawnCustomBoss()` (V31 compatibility, optional)
+- `creatorUniverseFactory` → `mvCreateUniverse()` (V35 compatibility, optional)
+- Jarvis: htAddEvent + waeAddAlert + wmeAddMemory trong tất cả 6 factory
+
+### Save Keys
+- cgv6_creator_race_v40, cgv6_creator_item_v40, cgv6_creator_boss_v40
+- cgv6_creator_god_v40, cgv6_creator_nation_v40, cgv6_creator_universe_v40
+
+---
+
 ## [V39] — 2026-06-13 — Chiến Tranh Đa Vũ Trụ
 
 ### New Systems Added (5 systems)

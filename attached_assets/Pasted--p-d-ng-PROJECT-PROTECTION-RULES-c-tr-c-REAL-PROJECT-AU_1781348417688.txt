@@ -1,0 +1,245 @@
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Mọi tính năng mới phải nằm trong:
+
+- tab con
+- panel
+- dashboard
+- modal
+
+Không tạo thêm tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V40 - CHỢ SÁNG THẾ CHỦ
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép Creator God tạo và quản lý:
+
+- Chủng tộc
+- Vật phẩm
+- Boss
+- Thần
+- Tông môn
+- Quốc gia
+- Đế quốc
+- Vũ trụ
+
+thông qua một hệ thống Marketplace trung tâm.
+
+==================================================
+XƯỞNG TẠO CHỦNG TỘC
+==================================================
+
+Tạo:
+
+- creatorRaceFactory.js
+
+Cho phép tạo:
+
+- Người
+- Tiên
+- Ma
+- Thần
+- Rồng
+- Thú
+- Chủng tộc tùy chỉnh
+
+Thuộc tính:
+
+- Tuổi thọ
+- Sức mạnh
+- Trí tuệ
+- Tốc độ sinh sản
+- Khả năng tiến hóa
+
+==================================================
+XƯỞNG TẠO VẬT PHẨM
+==================================================
+
+Tạo:
+
+- creatorItemFactory.js
+
+Cho phép tạo:
+
+- Vũ khí
+- Giáp
+- Thánh vật
+- Thần khí
+- Di vật cổ đại
+
+==================================================
+XƯỞNG TẠO BOSS
+==================================================
+
+Tạo:
+
+- creatorBossFactory.js
+
+Cho phép tạo:
+
+- World Boss
+- Divine Boss
+- Multiverse Boss
+- Creator Boss
+
+==================================================
+XƯỞNG TẠO THẦN
+==================================================
+
+Tạo:
+
+- creatorGodFactory.js
+
+Cho phép:
+
+- Tạo thần mới
+- Gán quyền năng
+- Gán lĩnh vực
+- Gán tín đồ
+
+==================================================
+XƯỞNG TẠO QUỐC GIA
+==================================================
+
+Tạo:
+
+- creatorNationFactory.js
+
+Cho phép:
+
+- Tạo quốc gia
+- Tạo đế quốc
+- Chọn văn hóa
+- Chọn công nghệ
+
+==================================================
+XƯỞNG TẠO VŨ TRỤ
+==================================================
+
+Tạo:
+
+- creatorUniverseFactory.js
+
+Cho phép:
+
+- Tạo vũ trụ
+- Chọn loại vũ trụ
+- Chọn quy luật
+- Chọn tốc độ thời gian
+
+==================================================
+THƯ VIỆN SÁNG TẠO
+==================================================
+
+Tạo:
+
+- creatorLibrary.js
+
+Lưu:
+
+- Chủng tộc đã tạo
+- Boss đã tạo
+- Thần đã tạo
+- Vật phẩm đã tạo
+- Vũ trụ đã tạo
+
+==================================================
+JARVIS
+==================================================
+
+Jarvis phải có khả năng:
+
+- Đề xuất chủng tộc mới
+- Đề xuất boss mới
+- Đề xuất thần mới
+- Đề xuất vũ trụ mới
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- Chủng Tộc
+- Vật Phẩm
+- Boss
+- Thần
+- Quốc Gia
+- Vũ Trụ
+- Thư Viện
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Chủng tộc
+- Boss
+- Thần
+- Vật phẩm
+- Quốc gia
+- Vũ trụ
+
+Tương thích với toàn bộ save cũ.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+
+Sau khi hoàn thành cập nhật:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V40
+
+Recommended Next Version = V41 AI Creator Assistant
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI

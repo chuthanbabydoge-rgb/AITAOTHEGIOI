@@ -106,9 +106,16 @@
     "creator-hub-v32": {
       icon: "👁", title: "Creator God V32", color: "#e2e8f0",
       tabs: [
-        { id: "creator-control",    icon: "👁",  label: "Bảng Điều Khiển", fn: "creatorControlRenderPanel" },
-        { id: "divine-admin",       icon: "👼", label: "Kiểm Soát Thần",  fn: "divineAdminRenderPanel" },
-        { id: "creator-analytics",  icon: "📊", label: "Phân Tích TG",    fn: "creatorAnalyticsRenderPanel" }
+        { id: "creator-control",       icon: "👁",  label: "Bảng Điều Khiển", fn: "creatorControlRenderPanel" },
+        { id: "divine-admin",          icon: "👼", label: "Kiểm Soát Thần",  fn: "divineAdminRenderPanel" },
+        { id: "creator-analytics",     icon: "📊", label: "Phân Tích TG",    fn: "creatorAnalyticsRenderPanel" },
+        { id: "creator-race-v40",      icon: "👥", label: "Chủng Tộc",       fn: "crfRenderPanel" },
+        { id: "creator-item-v40",      icon: "💎", label: "Vật Phẩm",        fn: "cifRenderPanel" },
+        { id: "creator-boss-v40",      icon: "👹", label: "Boss",             fn: "cbfRenderPanel" },
+        { id: "creator-god-v40",       icon: "✨", label: "Thần",             fn: "cgfRenderPanel" },
+        { id: "creator-nation-v40",    icon: "🏛️", label: "Quốc Gia",        fn: "cnfRenderPanel" },
+        { id: "creator-universe-v40",  icon: "🌌", label: "Vũ Trụ",          fn: "cufRenderPanel" },
+        { id: "creator-library-v40",   icon: "📚", label: "Thư Viện",        fn: "clibRenderPanel" }
       ]
     },
     "guardian-hub-v33": {

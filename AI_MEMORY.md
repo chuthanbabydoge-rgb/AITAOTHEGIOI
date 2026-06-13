@@ -24,13 +24,25 @@
 
 ## 🔢 CURRENT VERSION
 
-**V39 — Chiến Tranh Đa Vũ Trụ** (2026-06-13)
+**V40 — Chợ Sáng Thế Chủ** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (77+ systems)
+## ✅ COMPLETED SYSTEMS (84+ systems)
 
-### Multiverse War System V39 (5 systems) ← NEWEST
+### Creator Marketplace V40 (7 systems) ← NEWEST
+- `creatorRaceFactory.js` — 7 mẫu chủng tộc (Người/Tiên/Ma/Thần/Rồng/Thú/Tùy Chỉnh) · 5 thuộc tính · `crfCreateRace()` · `crfRandomRace()` · SAVE_KEY: cgv6_creator_race_v40
+- `creatorItemFactory.js` — 5 loại vật phẩm · 6 tier (Phàm→Sáng Thế) · `cifCreateItem()` · `cifRandomItem()` · 12 hiệu ứng ngẫu nhiên · SAVE_KEY: cgv6_creator_item_v40
+- `creatorBossFactory.js` — 4 tier boss (World/Divine/Multiverse/Creator) · `cbfCreateBoss()` · `cbfSlayBoss()` · 15 abilities · SAVE_KEY: cgv6_creator_boss_v40
+- `creatorGodFactory.js` — 5 tier thần · 23 lĩnh vực · 15 quyền năng · `cgfCreateGod()` · Tích hợp divineAdminData.createdDeities · SAVE_KEY: cgv6_creator_god_v40
+- `creatorNationFactory.js` — 6 văn hóa · 7 tech level · `cnfCreateNation()` · `cnfCreateEmpire()` · SAVE_KEY: cgv6_creator_nation_v40
+- `creatorUniverseFactory.js` — 8 loại · 9 quy luật · 6 tốc độ thời gian · `cufCreateUniverse()` · Tích hợp mvCreateUniverse() · SAVE_KEY: cgv6_creator_universe_v40
+- `creatorLibrary.js` — Tổng hợp 7 factory · Stats cards · Jarvis đề xuất 6 danh mục · Timeline sáng tạo · Passive (no save key)
+- **UI**: 7 tabs mới trong 👁 Creator God V32 hub (HUB_CONFIGS mở rộng từ 3→10 tabs) · KHÔNG tạo tab sidebar mới
+- **hubEngine.js**: Thêm 7 tab vào creator-hub-v32.tabs (10 dòng thêm, trong giới hạn 20)
+- **Jarvis**: waeAddAlert + htAddEvent + wmeAddMemory trong tất cả 6 factory có create function
+
+### Multiverse War System V39 (5 systems)
 - `multiverseWarSystemV39.js` — 5 loại chiến tranh (universe/divine/timeline/empire/sect) · `mv39DeclareWar()` · `mv39AutoWar()` · gameTick 8 ticks · Victory board · Hậu quả thực tế → stability/power decay · SAVE_KEY: cgv6_mv_war_v39
 - `multiverseInvasionSystemV39.js` — Xâm lược 5 giai đoạn (Portal/Landing/Conquest/Occupation/Assimilation) · Resource absorption · Territory tracking · `mv39StartInvasion()` · Outcomes (great_victory/stalemate/crushed) · SAVE_KEY: cgv6_mv_invasion_v39
 - `conquestSystemV39.js` — Lãnh thổ chiếm đóng · Kháng cự tăng dần · Cống nạp · Phản loạn khi resistance≥95 · `mv39RecordConquest()` · SVG bản đồ động · SAVE_KEY: cgv6_mv_conquest_v39
