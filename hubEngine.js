@@ -118,7 +118,7 @@
 
     const tabBar = cfg.tabs.map(function(t) {
       const isActive = t.id === activeTabId;
-      return '<button onclick="hubSwitchTab(\'' + hubId + '\',\'' + t.id + '\')" ' +
+      return '<button onclick="sysHubSwitch(\'' + hubId + '\',\'' + t.id + '\')" ' +
         'style="padding:5px 8px;background:' + (isActive ? cfg.color + '22' : 'transparent') + ';' +
         'border:none;border-bottom:2px solid ' + (isActive ? cfg.color : 'transparent') + ';' +
         'color:' + (isActive ? cfg.color : '#64748b') + ';cursor:pointer;font-size:11px;' +
@@ -141,7 +141,7 @@
   };
 
   // ─── SWITCH TAB ──────────────────────────────────────────────────────────
-  window.hubSwitchTab = function(hubId, tabId) {
+  window.sysHubSwitch = function(hubId, tabId) {
     window.hubActiveTab[hubId] = tabId;
     window.hubRenderPanel(hubId);
   };
