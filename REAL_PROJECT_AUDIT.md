@@ -7,22 +7,40 @@
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V54 | V55 (Mới) |
+| Chỉ Số | V55 | V56 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 227 | **233** |
-| **Tổng file được load trong index.html** | 226 | **232** |
+| **Tổng file .js trên disk** | 233 | **239** |
+| **Tổng file được load trong index.html** | 232 | **238** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 228 | **234** |
+| **Tổng panel divs trong HTML** | 234 | **240** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 146+ | **151+** |
-| **Engine hook vào gameTick** | 101 | **107** |
-| **Phiên bản hiện tại** | V54 | **V55 — Persistent Universe** |
+| **Tổng localStorage save keys (unique)** | 151+ | **156+** |
+| **Engine hook vào gameTick** | 107 | **111** |
+| **Phiên bản hiện tại** | V55 | **V56 — Cross-Universe Travel** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌌 Persistent Universe V55 ← NEWEST (6 files)
+### 🚀 Cross-Universe Travel V56 ← NEWEST (6 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `universeGateSystemV56.js` | Player-operated gates · 5 cấp (Sơ Khai/Bạc/Vàng/Thần/Tạo Hóa) · Toll system · 5 sự kiện · g56BuildGate/UpgradeGate/CloseGate() | `cgv6_cx_gate_v56` | 8900ms |
+| `universeExplorationV56.js` | 4 nhiệm vụ (scout/survey/deep/void) · 8 loại phát hiện · Rarity system · exp56StartMission/GetDiscoveries/GetJarvisReport() | `cgv6_cx_exploration_v56` | 9000ms |
+| `crossUniverseColonyV56.js` | 5 loại thuộc địa · 5 sự kiện · AI colonization 6 phe · col56FoundColony/UpgradeColony/GetStats() · Khác V27 local colonies | `cgv6_cx_colony_v56` | 9100ms |
+| `multiverseDiplomacyV56.js` | 6 thế lực · 5 hiệp ước · dip56ProposeTreaty/ImproveRelation/DeclareHostility() · Player-facing · Khác V39 NPC alliances | `cgv6_cx_diplomacy_v56` | 9200ms |
+| `universePassportV56.js` | 5 cấp (Vô Danh→Sứ Thần Tạo Hóa) · 5 visa · pass56GetVisa/Travel/GetProfile() · window.g56PassportData | `cgv6_cx_passport_v56` | 9300ms |
+| `crossUniverseRegistryV56.js` | Patches mvHubRenderPanel() · 6 tabs (Cổng/Khám Phá/Thuộc Địa/Ngoại Giao/Hộ Chiếu/Bản Đồ) · SVG map · Passive | — | 9400ms |
+
+**Global Objects:** `window.gateV56Data` · `window.explorationV56Data` · `window.colonyV56Data` · `window.diplomacyV56Data` · `window.passportV56Data`
+**Không trùng với:** `portalNetwork.js` V35 (system portals) · `universeTravelEngine.js` V35 (journey engine) · `multiverseWarSystemV39.js` V39 (NPC war) · `multiverseAllianceSystemV39.js` V39 (NPC alliances) · `colonyEngineV27.js` V27 (local colonies) · `multiverseMapEngine.js` V35 (map display)
+**UI:** 6 tabs trong multiverse-hub-v35 · 6 panel divs (panel-cx-gates/explore/colonies/diplomacy/passport/map-v56)
+**GameTick hooks:** gateSystemV56Tick · universeExplorationV56Tick · crossUniverseColonyV56Tick · multiverseDiplomacyV56Tick (mỗi 40 tick)
+**Tính năng nổi bật:** Player builds & operates cross-universe gates · Discovery missions · Colony empire · 6 faction diplomacy · Passport/visa system · SVG interactive map
+
+---
+
+### 🌌 Persistent Universe V55 (6 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `persistentUniverseEngine.js` | Theo dõi online/offline timestamp · 1 phút thực = 10 năm game · Unified tick · puv55GetOfflineYears/Stats/TickLog() | `cgv6_persistent_univ_v55` | 8300ms |

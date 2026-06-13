@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V55 — Persistent Universe** (2026-06-14)
+**V56 — Cross-Universe Travel** (2026-06-14)
 
 ---
 

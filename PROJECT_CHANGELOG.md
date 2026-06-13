@@ -4,6 +4,50 @@
 
 ---
 
+## [V56] — 2026-06-14 — Cross-Universe Travel
+
+### New Systems Added (6 files)
+- `universeGateSystemV56.js` — Cổng Liên Vũ Trụ Player-Operated: 5 cấp (Sơ Khai/Bạc/Vàng/Thần/Tạo Hóa) · Toll system · 5 loại sự kiện cổng · g56BuildGate/UpgradeGate/CloseGate/SetToll() · Khác V35 portalNetwork (system portals) · SAVE: cgv6_cx_gate_v56 · init: 8900ms
+- `universeExplorationV56.js` — Khám Phá Vũ Trụ: 4 loại nhiệm vụ (scout/survey/deep/void) · 8 loại phát hiện (universe/race/god/resource/artifact/anomaly/ruins/void) · Rarity system · exp56StartMission/GetDiscoveries/GetStats/GetJarvisReport() · SAVE: cgv6_cx_exploration_v56 · init: 9000ms
+- `crossUniverseColonyV56.js` — Thuộc Địa Liên Vũ Trụ: 5 loại (outpost/settlement/colony/province/capital) · 5 sự kiện colony · AI colonization 6 phe · col56FoundColony/UpgradeColony/GetStats() · Khác V27 colonyEngine (local colonies) · SAVE: cgv6_cx_colony_v56 · init: 9100ms
+- `multiverseDiplomacyV56.js` — Ngoại Giao Player Đa Vũ Trụ: 6 thế lực cố định (Thiên Đình/Ma Đạo/Hội Đồng Thần/Long Tộc/Vô Cực/Đạo Môn) · 5 loại hiệp ước · dip56ProposeTreaty/ImproveRelation/DeclareHostility() · Khác V39 NPC alliances · SAVE: cgv6_cx_diplomacy_v56 · init: 9200ms
+- `universePassportV56.js` — Chứng Minh Thư Vũ Trụ: 5 cấp bậc (Vô Danh→Sứ Thần Tạo Hóa) · 5 loại visa · pass56GetVisa/Travel/GetProfile() · window.g56PassportData · SAVE: cgv6_cx_passport_v56 · init: 9300ms
+- `crossUniverseRegistryV56.js` — Hub UI V56: Patches mvHubRenderPanel() · 6 tabs (Cổng/Khám Phá/Thuộc Địa/Ngoại Giao/Hộ Chiếu/Bản Đồ) · cur56Render*() · SVG multiverse map · Passive · init: 9400ms
+
+### index.html Changes (add only)
+- 6 panel divs sau V55: panel-cx-gates/explore/colonies/diplomacy/passport/map-v56
+- 6 script tags V56 sau V55 scripts
+
+### Global Objects
+- `window.gateV56Data` — playerGates[] · aiGates[] · gateEvents[] · totalTollCollected · totalTravelers
+- `window.explorationV56Data` — missions[] · completed[] · discoveries[] · explorationPoints · exploredUniverses[]
+- `window.colonyV56Data` — playerColonies[] · aiColonies[] · colonyEvents[] · totalIncome · totalUpkeep
+- `window.diplomacyV56Data` — relations{6 thế lực} · treaties[] · diplomaticEvents[] · playerReputation
+- `window.passportV56Data` — rank · visas[] · activeVisa · travelLog[] · visitedUniverses[] · multiverseReputation
+
+### Save Keys
+- cgv6_cx_gate_v56 · cgv6_cx_exploration_v56 · cgv6_cx_colony_v56 · cgv6_cx_diplomacy_v56 · cgv6_cx_passport_v56
+
+### UI Integration
+- 6 tabs trong multiverse-hub-v35 (KHÔNG tạo sidebar tab mới)
+- Section V56 tự động append vào mvHubRenderPanel() sau V55 section
+
+### Không Trùng Với
+- `portalNetwork.js` V35 (system portals AI-dùng — V56 là player-built gates)
+- `universeTravelEngine.js` V35 (basic journey engine — V56 là passport/visa system)
+- `multiverseWarSystemV39.js` V39 (NPC inter-universe war — V56 là player diplomacy)
+- `multiverseAllianceSystemV39.js` V39 (NPC alliances — V56 là player treaties)
+- `colonyEngineV27.js` V27 (local planet colonies — V56 là cross-universe colonies)
+- `multiverseMapEngine.js` V35 (map display — V56 là interactive SVG discovery map)
+
+### GameTick hooks (3 mới)
+- gateSystemV56Tick (mỗi tick)
+- universeExplorationV56Tick (mission completion check)
+- crossUniverseColonyV56Tick (colony income/events)
+- multiverseDiplomacyV56Tick (mỗi 40 tick)
+
+---
+
 ## [V55] — 2026-06-14 — Persistent Universe
 
 ### New Systems Added (6 files)

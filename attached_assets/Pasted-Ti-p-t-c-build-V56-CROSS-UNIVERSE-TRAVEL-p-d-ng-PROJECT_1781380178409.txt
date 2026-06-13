@@ -1,0 +1,253 @@
+Tiếp tục build V56 — CROSS-UNIVERSE TRAVEL.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- INTEGRATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V56 - CROSS-UNIVERSE TRAVEL
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Cho phép:
+
+- Người chơi du hành liên vũ trụ
+- AI Civilization du hành liên vũ trụ
+- Giao thương liên vũ trụ
+- Chiến tranh liên vũ trụ
+- Khám phá đa vũ trụ
+
+==================================================
+MULTIVERSE GATE SYSTEM
+==================================================
+
+Tạo hoặc mở rộng:
+
+- universeGateSystem.js
+- portalNetworkEngine.js
+- multiverseTravelEngine.js
+
+==================================================
+CỔNG LIÊN VŨ TRỤ
+==================================================
+
+Mỗi cổng có:
+
+- ID
+- Điểm đến
+- Độ ổn định
+- Chi phí sử dụng
+- Điều kiện mở khóa
+
+==================================================
+KHÁM PHÁ VŨ TRỤ
+==================================================
+
+Tạo:
+
+- universeExplorationSystem.js
+
+Cho phép:
+
+- Khám phá vũ trụ mới
+- Khám phá chủng tộc mới
+- Khám phá thần linh mới
+- Khám phá tài nguyên mới
+
+==================================================
+NGƯỜI CHƠI DU HÀNH
+==================================================
+
+Người chơi có thể:
+
+- Đi tới vũ trụ khác
+- Mua đất
+- Thành lập căn cứ
+- Thành lập thuộc địa
+
+==================================================
+AI COLONIZATION
+==================================================
+
+AI có thể:
+
+- Mở rộng sang vũ trụ khác
+- Thành lập thuộc địa
+- Thành lập đế quốc liên vũ trụ
+
+==================================================
+INTER-UNIVERSE WAR
+==================================================
+
+Tạo:
+
+- multiverseWarSystem.js
+
+Hỗ trợ:
+
+- Empire vs Empire
+- Universe vs Universe
+- Alliance vs Alliance
+
+==================================================
+INTER-UNIVERSE DIPLOMACY
+==================================================
+
+Mở rộng:
+
+- Diplomacy Engine
+
+Cho phép:
+
+- Hiệp ước liên vũ trụ
+- Liên minh liên vũ trụ
+- Thỏa thuận thương mại
+
+==================================================
+MULTIVERSE MAP
+==================================================
+
+Tạo:
+
+- multiverseMapSystem.js
+
+Hiển thị:
+
+- Các vũ trụ
+- Các cổng
+- Tuyến đường
+- Khu vực nguy hiểm
+
+==================================================
+JARVIS MULTIVERSE MODE
+==================================================
+
+Jarvis có thể:
+
+- Gợi ý vũ trụ nên khám phá
+- Phân tích nguy hiểm
+- Tìm tuyến đường tối ưu
+- Theo dõi chiến tranh liên vũ trụ
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Cổng Dịch Chuyển
+- Bản Đồ Đa Vũ Trụ
+- Khám Phá
+- Thuộc Địa
+- Chiến Tranh
+- Ngoại Giao
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Portal Data
+- Travel History
+- Colonies
+- Exploration Data
+- Multiverse Relations
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V56
+
+Recommended Next Version = V57 Creator Economy
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+QUAN TRỌNG:
+
+Chỉ để tab chính ở sidebar.
+Mọi tính năng mới phải nằm trong tab nội bộ.
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
+Generate INTEGRATION_REPORT.md.
+
+Đánh giá:
+
+- Mức độ kết nối hệ thống
+- Hệ thống nào chưa được sử dụng
+- Hệ thống nào cần tối ưu
+- Hiệu năng tổng thể của dự án
