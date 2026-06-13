@@ -4,6 +4,32 @@
 
 ---
 
+## [V49] — 2026-06-13 — Hệ Thống Chính Trị AI
+
+### New Systems Added (4 files)
+- `governmentSystemV49.js` — 8 chế độ chính trị (Quân Chủ/Đế Chế/Cộng Hòa/Thần Quyền/Quý Tộc/Liên Bang/Hội Đồng/Tùy Chỉnh) · Leaders AI với 6 stats (ambition/diplomacy/militancy/corruption/prestige/age) · 8 personality traits (AMBITIOUS/DIPLOMATIC/MILITARIST/CORRUPT/REFORMIST/ISOLATIONIST/EXPANSIONIST/PIOUS) · Succession system · Gov transitions · auto-sync kingdomData/empireData/countries · SAVE: cgv6_government_v49 · init: 5400ms
+- `politicalFactionV49.js` — 5 phe phái (Bảo Thủ/Cải Cách/Quân Sự/Tôn Giáo/Thương Mại) · Power struggle (normalize to 100%) · Coalition formation khi combined > dominant · Legislation passing per dominant faction · 4 policies per faction · auto-sync entities · SAVE: cgv6_faction_v49 · init: 5500ms
+- `politicalCrisisV49.js` — 5 loại khủng hoảng (⚔️ Đảo Chính / 🔥 Nội Chiến / ✊ Biểu Tình / 👑 Kế Vị / 🗺️ Ly Khai) · 4 cấp độ severity · auto-trigger từ stability < 30 · lão hóa lãnh đạo (age > 75) · V48 disaster triggers protest · crisis resolution 4 kiểu · SAVE: cgv6_crisis_v49 · init: 5600ms
+- `politicsRegistryV49.js` — Hub widget `politicsV49HubRenderPanel()` trong mvHub · `politicsV49RenderPanel(tab)` 6 tabs · reads drData (ngoại giao) + cgv6_espionage localStorage (gián điệp) · panel-politics-v49 · Passive · init: 5700ms
+
+### index.html Changes (add only)
+- 6 panel divs sau V48 panels: panel-politics-v49 · panel-government-v49 · panel-faction-v49 · panel-diplomacy-v49 · panel-espionage-v49 · panel-political-crisis-v49
+- 4 script tags V49 sau V48 scripts
+- Section V49 trong mvHubRenderPanel: 🏛️ Chính Trị AI V49
+
+### Integrations
+- Extends kingdomAI.js / empireAI.js — govV49 reads kingdomData/empireData, không sửa AI cũ
+- Extends livingCivilizationAI.js — faction concept mở rộng, không ghi đè lcaiData
+- Reads continentalPoliticsEngine.js (cpData) — không sửa
+- Reads espionageEngine.js (localStorage cgv6_espionage) — không sửa
+- Reads diplomaticEngine.js (drData) — không sửa
+- politicalCrisisV49.js: auto-trigger từ disasterData.activeDisasters (V48 integration)
+
+### Save Keys
+- cgv6_government_v49 · cgv6_faction_v49 · cgv6_crisis_v49
+
+---
+
 ## [V48] — 2026-06-13 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu
 
 ### New Systems Added (4 files)

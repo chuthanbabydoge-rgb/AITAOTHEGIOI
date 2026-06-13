@@ -2,8 +2,21 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu** ✅
-> **Phiên bản tiếp theo đề xuất: V49 — Hệ Thống Chính Trị AI**
+> **Phiên bản hiện tại: V49 — Hệ Thống Chính Trị AI** ✅
+> **Phiên bản tiếp theo đề xuất: V50 — Kỷ Nguyên Người Chơi**
+
+---
+
+## ✅ V49 — Hệ Thống Chính Trị AI *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `governmentSystemV49.js` — 8 chế độ · Leaders 6 stats · 8 traits · Succession · SAVE: cgv6_government_v49
+- `politicalFactionV49.js` — 5 phe phái · Power struggle · Coalition · Legislation · SAVE: cgv6_faction_v49
+- `politicalCrisisV49.js` — 5 khủng hoảng · 4 cấp độ · auto-trigger · Resolution · SAVE: cgv6_crisis_v49
+- `politicsRegistryV49.js` — Hub widget 6 panels · Passive
+
+### index.html
+- 6 panel divs · 4 script tags · Section mvHub V49
 
 ---
 

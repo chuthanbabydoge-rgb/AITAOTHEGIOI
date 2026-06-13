@@ -1,28 +1,51 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu)
+> Ngày audit: 2026-06-13 (cập nhật sau V49 — Hệ Thống Chính Trị AI)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V47 | V48 (Mới) |
+| Chỉ Số | V48 | V49 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 198 | **202** |
-| **Tổng file được load trong index.html** | 197 | **201** |
+| **Tổng file .js trên disk** | 202 | **206** |
+| **Tổng file được load trong index.html** | 201 | **205** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 192 | **198** |
+| **Tổng panel divs trong HTML** | 198 | **204** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 124+ | **127+** |
-| **Engine hook vào gameTick** | 84 | **87** |
-| **Phiên bản hiện tại** | V47 | **V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu** |
+| **Tổng localStorage save keys (unique)** | 127+ | **130+** |
+| **Engine hook vào gameTick** | 87 | **90** |
+| **Phiên bản hiện tại** | V48 | **V49 — Hệ Thống Chính Trị AI** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌋 Thiên Tai & Thảm Họa Toàn Cầu V48 ← NEWEST (4 files)
+### 🏛️ Chính Trị AI V49 ← NEWEST (4 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `governmentSystemV49.js` | 8 chế độ · Leaders 6 stats · 8 personality traits · Succession · Gov Transitions | `cgv6_government_v49` | 5400ms |
+| `politicalFactionV49.js` | 5 phe phái · Power Struggle · Coalition Formation · Legislation Passing | `cgv6_faction_v49` | 5500ms |
+| `politicalCrisisV49.js` | 5 khủng hoảng · 4 cấp độ · auto-trigger stability/age/disaster · Resolution | `cgv6_crisis_v49` | 5600ms |
+| `politicsRegistryV49.js` | Hub Widget · 6 Sub-Panels (Tổng Quan/Chính Phủ/Phe Phái/Ngoại Giao/Gián Điệp/Khủng Hoảng) | Passive | 5700ms |
+
+**Global Objects:** `window.govV49Data` · `window.factionV49Data` · `window.crisisV49Data`
+**Public API:**
+- Gov: `govV49AssignGovernment(id, name, type, govTypeId)` · `govV49TriggerTransition(entityId, newTypeId, reason)` · `govV49TriggerSuccession(entityId)` · `govV49GetAll()` · `govV49GetLeader(entityId)` · `govV49GetStats()` · `govV49GetTypes()` · `govV49GetTraits()`
+- Faction: `facV49GetEntity(entityId)` · `facV49GetAll()` · `facV49GetEvents()` · `facV49GetStats()` · `facV49GetTypes()` · `facV49TriggerStruggle(entityId)`
+- Crisis: `criV49Trigger(typeId, entityName, sevIdx, reason)` · `criV49Resolve(crisisId, resolutionIdx)` · `criV49GetActive()` · `criV49GetHistory()` · `criV49GetStats()` · `criV49GetTypes()`
+- UI: `politicsV49HubRenderPanel()` · `politicsV49RenderPanel(tab)` (tabs: overview/government/factions/diplomacy/espionage/crisis)
+
+**UI Panel:** `panel-politics-v49` (main) + 5 sub-panels (panel-government-v49, panel-faction-v49, panel-diplomacy-v49, panel-espionage-v49, panel-political-crisis-v49)
+**Extends (KHÔNG sửa):** `continentalPoliticsEngine.js` · `espionageEngine.js` · `diplomaticEngine.js` · `kingdomAI.js` · `empireAI.js` · `livingCivilizationAI.js`
+**Integration:** `politicalCrisisV49.js` auto-trigger protest từ `disasterData.activeDisasters` (V48) · Reads `drData` (diplomaticEngine) · Reads `cgv6_espionage` localStorage
+**8 Chế Độ:** MONARCHY(👑) · EMPIRE(🏛️) · REPUBLIC(🗳️) · THEOCRACY(⛪) · ARISTOCRACY(🎭) · FEDERATION(🔗) · COUNCIL(👥) · CUSTOM(⚙️)
+**5 Phe Phái:** CONSERVATIVE(🏰) · REFORMIST(📜) · MILITARIST(⚔️) · RELIGIOUS(⛪) · MERCHANT(💰)
+**5 Khủng Hoảng:** COUP(⚔️) · CIVIL_WAR(🔥) · PROTEST(✊) · SUCCESSION_CRISIS(👑) · SECESSION(🗺️)
+**8 Leader Traits:** AMBITIOUS · DIPLOMATIC · MILITARIST · CORRUPT · REFORMIST · ISOLATIONIST · EXPANSIONIST · PIOUS
+
+### 🌋 Thiên Tai & Thảm Họa Toàn Cầu V48 (4 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `globalDisasterCoreV48.js` | Chain Reaction 9 loại · Thiên Thạch · Băng Hà · AI Response 6 loại · Warning System | `cgv6_global_disaster_v48` | 5000ms |
@@ -183,27 +206,29 @@
 
 ---
 
-## 🗄️ SAVE KEYS NHÓM V45 (4 keys mới)
+## 🗄️ SAVE KEYS NHÓM V45–V49
 
 ```
 V45 (Ecosystem):    cgv6_eco_climate_v45 · cgv6_eco_resource_v45
                     cgv6_eco_creature_v45 · cgv6_eco_disaster_v45
+V47 (Hero):         cgv6_legend_v47 · cgv6_fame_v47
+V48 (Disaster):     cgv6_global_disaster_v48 · cgv6_anomaly_v48 · cgv6_mv_disaster_v48
+V49 (Politics):     cgv6_government_v49 · cgv6_faction_v49 · cgv6_crisis_v49
 ```
 
-*(Các keys V25–V44 xem REAL_PROJECT_AUDIT bản trước hoặc grep SAVE_KEY *.js)*
+*(Các keys V25–V44 xem grep SAVE_KEY *.js)*
 
 ---
 
-## 🎮 GAME TICK HOOKS V45 (4 engines mới)
+## 🎮 GAME TICK HOOKS V49 (3 engines mới)
 
 ```
-ecoClimateEngine.js    — mỗi tick (season counter)
-ecoResourceEngine.js   — mỗi tick (regen)
-ecoCreatureEngine.js   — mỗi 15 ticks (population)
-ecoDisasterEngine.js   — mỗi 20 ticks (auto-trigger)
+governmentSystemV49.js  — mỗi 30 ticks (AI decisions, succession, aging)
+politicalFactionV49.js  — mỗi 40 ticks (power struggle, coalition, legislation)
+politicalCrisisV49.js   — mỗi 40 ticks (auto-trigger, expire crises)
 ```
 
-**Tổng cộng: 82 engines hook vào gameTick**
+**Tổng cộng: 90 engines hook vào gameTick**
 
 ---
 
@@ -254,7 +279,7 @@ window.ecoHubRenderPanel()           // Widget HTML cho mvHubRenderPanel
 
 ## 🗂️ HUB STRUCTURE — Multiverse Hub V35
 
-### mvHubRenderPanel Sections (inline index.html ~dòng 3196)
+### mvHubRenderPanel Sections (inline index.html ~dòng 3244)
 | Section | Version | Widget Function |
 |---|---|---|
 | Multiverse Portal | V35 | (built-in) |
@@ -264,7 +289,10 @@ window.ecoHubRenderPanel()           // Widget HTML cho mvHubRenderPanel
 | MV War | V39 | (built-in) |
 | World Age | V43 | `waeHubRenderPanel()` |
 | Race Evolution | V44 | `recHubRenderPanel()` |
-| **Hệ Sinh Thái** | **V45** | **`ecoHubRenderPanel()`** |
+| Hệ Sinh Thái | V45 | `ecoHubRenderPanel()` |
+| Anh Hùng & Huyền Thoại | V47 | `heroV47HubRenderPanel()` |
+| Thiên Tai & Thảm Họa | V48 | `disasterV48HubRenderPanel()` |
+| **Chính Trị AI** | **V49** | **`politicsV49HubRenderPanel()`** |
 
 ---
 
@@ -285,19 +313,25 @@ window.ecoHubRenderPanel()           // Widget HTML cho mvHubRenderPanel
    - V43: 2900ms–3300ms
    - V44: 3400ms–3800ms
    - V45: 3900ms–4300ms
-   - **V46 trở đi: 4400ms+**
+   - V47: 4400ms–4600ms
+   - V48: 5000ms–5300ms
+   - **V49: 5400ms–5700ms**
+   - **V50 trở đi: 5800ms+**
 
 4. **UI Rule (V38+):** KHÔNG tạo tab sidebar mới. Mọi UI → hub hiện có (mvHubRenderPanel).
 
-5. **V45 ≠ V25 Disasters:**
-   - `disasterEngine.js` V25 = civilization-scale (ảnh hưởng quốc gia/đế quốc)
-   - `ecoDisasterEngine.js` V45 = ecosystem-scale (ảnh hưởng tài nguyên/sinh vật)
+5. **V49 Politics Scope:**
+   - `continentalPoliticsEngine.js` V26 = continental-scale (lục địa)
+   - `governmentSystemV49.js` V49 = per-entity (kingdom/empire/country mỗi thực thể riêng)
 
-6. **V45 Eco Effects → World:**
-   - `ecoGetEffects()` trả về bonuses ảnh hưởng pop/agri/econ/war
-   - Future systems nên check `ecoGetEffects()` để scale output
+6. **V49 Crisis Integration:**
+   - `politicalCrisisV49.js` đọc `disasterData.activeDisasters` → auto-trigger protest
+   - Auto-trigger succession khi `gov.leader.age > 75`
+   - Auto-trigger crisis khi `country.stability < 30`
 
-7. **Multiverse Hub:** mvHubRenderPanel là **inline JS trong index.html** ~dòng 3196, KHÔNG trong hubEngine.js. Thêm section VÀO TRƯỚC `+'</div>';` cuối cùng.
+7. **Multiverse Hub:** mvHubRenderPanel là **inline JS trong index.html** ~dòng 3244, KHÔNG trong hubEngine.js. Thêm section VÀO TRƯỚC `+'</div>';` cuối cùng.
+
+8. **V49 espionage reading:** `politicsRegistryV49.js` đọc trực tiếp từ `localStorage.getItem("cgv6_espionage")` — KHÔNG gọi hàm espionageEngine vì state là private closure.
 
 ---
 
@@ -305,11 +339,10 @@ window.ecoHubRenderPanel()           // Widget HTML cho mvHubRenderPanel
 
 | Trạng Thái | Số Lượng |
 |---|---|
-| **Active game files (loaded)** | 194 |
+| **Active game files (loaded in index.html)** | 205 |
 | **Server file** | 1 (serve.js) |
-| **Dormant game files** | 0 |
-| **Tổng trên disk** | 195 |
+| **Tổng trên disk** | 206 |
 
 ---
 
-*Audit tự động từ quét mã nguồn thực — ngày 2026-06-13 — V45*
+*Audit tự động từ quét mã nguồn thực — ngày 2026-06-13 — V49*

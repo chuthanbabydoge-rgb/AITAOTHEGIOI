@@ -1,7 +1,7 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-13 (cập nhật sau V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu)
-> Tổng: 202 JS files · 198 panels · 67 nav buttons · 127+ save keys · 87 gameTick hooks
+> Ngày: 2026-06-13 (cập nhật sau V49 — Hệ Thống Chính Trị AI)
+> Tổng: 206 JS files · 204 panels · 67 nav buttons · 130+ save keys · 90 gameTick hooks
 
 ---
 
@@ -61,6 +61,24 @@ V27: navalEngine, fleetEngine, pirateEngine, colonyEngine, oceanTradeEngine
 V29: sectEngineV29, sectWarEngineV29, guildEngineV29
 V30: realmEngineV30, divineBeingEngine, divineWarEngine, pantheonEngineV30, portalEngineV30
 V31: lootEngineV31, worldBossEngineV31, dungeonEngineV31, raidEngineV31, invasionEngineV31, bossEvolutionEngineV31, legendaryHuntEngineV31
+```
+
+### Layer 4 — Advanced Systems V35-V49
+```
+V35: multiverseEngine, universeManager, universeRegistry, portals, travel, economy, war, map
+V36: timeline (9 files)
+V37: universeGenerator, universeLaw, universeLifecycle, universeObservatory
+V38: civEvolutionEngineV38
+V39: multiverseWarSystem, conquestSystem, multiverseInvasion, multiverseAlliance, multiverseWarAnalytics
+V40: creatorRace/God/Nation/Boss/Item/UniverseFactory (6 files)
+V41: creatorBrain, creatorAI, creatorSuggestion, balanceAnalyzer, loreGenerator, eventGenerator, creatorReports (7 files)
+V42: mythologyDatabase/GodSystem/CreatureSystem/ArtifactSystem/LoreSystem/Registry (6 files)
+V43: worldAgeEngine, ageProgressionEngine, ageEventEngine, ageAnalytics, ageRegistry (5 files)
+V44: raceEvolutionCore, raceAbilityEngine, raceWarEngine, raceRelationEngine, raceEvolutionRegistry (5 files)
+V45: ecoClimateEngine, ecoResourceEngine, ecoCreatureEngine, ecoDisasterEngine, ecoRegistry (5 files)
+V47: legendEngineV47, fameSystemV47, heroRegistryV47 (3 files)
+V48: globalDisasterCoreV48, anomalyEngineV48, multiverseDisasterV48, disasterRegistryV48 (4 files)
+V49: governmentSystemV49, politicalFactionV49, politicalCrisisV49, politicsRegistryV49 (4 files) ← NEWEST
 ```
 
 ---
@@ -264,41 +282,61 @@ window.lhv31Data                          // legendaryHuntEngineV31.js
 
 ---
 
+## 🏛️ V49 — CHÍNH TRỊ AI CHI TIẾT
+
+### Chế Độ Chính Trị (8 loại)
+| Chế Độ | Icon | Bonus | Rủi Ro |
+|---|---|---|---|
+| Quân Chủ | 👑 | Stability+15, Mil+10 | Coup15%, Succession25% |
+| Đế Chế | 🏛️ | Stability+20, Mil+20 | Coup20%, CivilWar20% |
+| Cộng Hòa | 🗳️ | Economy+15, Reform+20 | Protest20% |
+| Thần Quyền | ⛪ | Religion+30, Stability+10 | Heresy25% |
+| Quý Tộc | 🎭 | Economy+5, Mil+8 | Secession15% |
+| Liên Bang | 🔗 | Economy+12, Reform+10 | Secession30% |
+| Hội Đồng | 👥 | Stability+18, Economy+8 | Deadlock20% |
+| Tùy Chỉnh | ⚙️ | - | Generic10% |
+
+### Leader Traits (8 loại)
+`AMBITIOUS(🔥)` · `DIPLOMATIC(🤝)` · `MILITARIST(⚔️)` · `CORRUPT(💰)` · `REFORMIST(📜)` · `ISOLATIONIST(🏔️)` · `EXPANSIONIST(🌐)` · `PIOUS(🙏)`
+
+### Phe Phái (5 loại)
+`CONSERVATIVE(🏰)` · `REFORMIST(📜)` · `MILITARIST(⚔️)` · `RELIGIOUS(⛪)` · `MERCHANT(💰)`
+
+### Khủng Hoảng (5 loại × 4 cấp độ)
+- ⚔️ **Đảo Chính**: Âm Mưu → Thất Bại → Thành Công → Cách Mạng Đẫm Máu
+- 🔥 **Nội Chiến**: Xung Đột Nhỏ → Cục Bộ → Đại Nội Chiến → Tuyệt Diệt
+- ✊ **Biểu Tình**: Bất Bình → Biểu Tình Lớn → Bạo Loạn → Cách Mạng Nhân Dân
+- 👑 **Kế Vị**: Tranh Giành Nhẹ → Tranh Chấp → Nội Chiến Kế Vị → Sụp Đổ Vương Triều
+- 🗺️ **Ly Khai**: Phong Trào → Tự Trị → Tuyên Bố Độc Lập → Ly Khai Hoàn Toàn
+
+### Auto-Triggers
+- `country.stability < 30` → random crisis
+- `gov.leader.age > 75` → SUCCESSION_CRISIS
+- `disasterData.activeDisasters` → PROTEST
+
 ## 📊 THỐNG KÊ PHÁT TRIỂN
 
-| Chỉ số | Giá trị |
-|---|---|
-| Tổng dòng JavaScript | ~77,000 dòng |
-| Số file JS trên disk | 111 files |
-| Số file được load | 98 files |
-| Số hệ thống hoạt động đầy đủ | ~85 systems |
-| Số hệ thống hoạt động một phần | ~8 systems |
-| Số hệ thống dormant | 13 files |
-| gameTick hooks hoạt động | 25 hooks |
-| localStorage keys | 73 keys |
-| UI tabs | 87 tabs |
-| Panel divs | 87 panels |
+| Chỉ số | V48 | V49 |
+|---|---|---|
+| Tổng file JS trên disk | 202 | **206** |
+| Số file được load | 201 | **205** |
+| gameTick hooks hoạt động | 87 | **90** |
+| localStorage keys | 127+ | **130+** |
+| UI panels | 198 | **204** |
+| UI tabs sidebar | 67 | **67** |
 
 ---
 
 ## 🚀 ĐỀ XUẤT PHIÊN BẢN TIẾP THEO
 
-### Phương án A — Kích hoạt dormant (nhanh, ít rủi ro)
-Không cần viết code mới. Chỉ load 13 file đã có:
-- Load `progressionSystem.js` (1062 dòng) + `timeControlSystem.js` (1333 dòng) + `worldStorySystem.js` (799 dòng)
-- Load player subsystems: playerEngine, playerInventory, playerQuestSystem, playerReputationEngine, playerTerritorySystem
-- **Kết quả:** Thêm ~4200 dòng code hoạt động mà không cần viết mới
-
-### Phương án B — V32 mới hoàn toàn
-- Achievement & Title System
-- Player milestone tracking
-- Global leaderboard
-
-### Phương án C — Fix & Polish
-- Fix bug `' + p + '` trong nav button
-- Thêm nav button cho `panel-alliance-v24` và `panel-sanctions-v24`
-- Connect V31 World Boss với V30 Divine Realm system
+### V50 — Kỷ Nguyên Người Chơi (ĐỀ XUẤT TIẾP THEO)
+Cho phép người chơi thực sự tham gia vào nền chính trị thế giới:
+- Chọn quốc gia để cai trị trực tiếp
+- Ra lệnh cho lãnh đạo AI
+- Tham gia / can thiệp vào khủng hoảng
+- Đặc quyền Thánh Thần — thay đổi chế độ / áp đặt lãnh đạo
+- Liên kết với V49 govData / factionData / crisisData
 
 ---
 
-*Báo cáo được tạo tự động bằng cách quét mã nguồn thực tế — 2026-06-13*
+*Báo cáo được tạo tự động bằng cách quét mã nguồn thực tế — 2026-06-13 — V49*

@@ -1,0 +1,268 @@
+Tiếp tục build V49 — Hệ Thống Chính Trị AI.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V49 - HỆ THỐNG CHÍNH TRỊ AI
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép các quốc gia, đế quốc và phe phái
+có hệ thống chính trị thực sự.
+
+Lãnh đạo AI có thể:
+
+- Liên minh
+- Phản bội
+- Đàm phán
+- Ám sát
+- Cải cách
+- Đảo chính
+- Nội chiến
+
+==================================================
+POLITICS CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- politicsEngine.js
+- governmentEngine.js
+- politicalFactionEngine.js
+
+==================================================
+CHẾ ĐỘ CHÍNH TRỊ
+==================================================
+
+Hỗ trợ:
+
+- Quân Chủ
+- Đế Chế
+- Cộng Hòa
+- Thần Quyền
+- Quý Tộc
+- Liên Bang
+- Hội Đồng
+- Chế độ tùy chỉnh
+
+==================================================
+LÃNH ĐẠO AI
+==================================================
+
+Mỗi lãnh đạo có:
+
+- Tham vọng
+- Tính cách
+- Mức độ hiếu chiến
+- Mức độ ngoại giao
+- Uy tín
+- Độ tham nhũng
+
+==================================================
+PHE PHÁI CHÍNH TRỊ
+==================================================
+
+Cho phép:
+
+- Phe bảo thủ
+- Phe cải cách
+- Phe quân sự
+- Phe tôn giáo
+- Phe thương mại
+
+Cạnh tranh quyền lực nội bộ.
+
+==================================================
+KHỦNG HOẢNG CHÍNH TRỊ
+==================================================
+
+Cho phép:
+
+- Đảo chính
+- Nội chiến
+- Biểu tình
+- Khủng hoảng kế vị
+- Ly khai
+
+==================================================
+NGOẠI GIAO NÂNG CAO
+==================================================
+
+Mở rộng:
+
+- Diplomacy System
+
+Thêm:
+
+- Hiệp ước
+- Cấm vận
+- Tối hậu thư
+- Hiệp phòng thủ
+- Liên minh bí mật
+
+==================================================
+GIÁN ĐIỆP & ÂM MƯU
+==================================================
+
+Tạo:
+
+- espionageSystem.js
+
+Cho phép:
+
+- Thu thập thông tin
+- Phá hoại
+- Ám sát
+- Kích động nổi loạn
+
+==================================================
+AI DECISION MAKING
+==================================================
+
+AI tự:
+
+- Đàm phán
+- Ra luật
+- Thay đổi chính sách
+- Phát động chiến tranh
+- Cải cách quốc gia
+
+==================================================
+TÍCH HỢP
+==================================================
+
+Kết nối với:
+
+- Kingdom System
+- Empire System
+- Religion System
+- Hero System
+- Civilization System
+- Disaster System
+- Multiverse System
+- Jarvis System
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Đảo chính
+- Nội chiến
+- Lãnh đạo mới
+- Liên minh mới
+- Khủng hoảng chính trị
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🏛 Quốc Gia
+hoặc
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Chính Trị
+- Chính Phủ
+- Phe Phái
+- Ngoại Giao
+- Gián Điệp
+- Khủng Hoảng
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Chính phủ
+- Lãnh đạo
+- Phe phái
+- Quan hệ ngoại giao
+- Lịch sử chính trị
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V49
+
+Recommended Next Version = V50 KỶ NGUYÊN NGƯỜI CHƠI
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.

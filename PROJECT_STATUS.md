@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu |
+| **Current Version** | V49 — Hệ Thống Chính Trị AI |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 198 |
-| **Total Systems** | 123+ |
+| **Total JS Files** | 202 |
+| **Total Systems** | 127+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,13 @@
 
 ## ✅ Completed Systems
 
-### Thiên Tai & Thảm Họa Toàn Cầu V48 ← NEWEST
+### Chính Trị AI V49 ← NEWEST
+- `governmentSystemV49.js` — 8 chế độ · Leaders 6 stats · Succession · Transitions · SAVE: cgv6_government_v49
+- `politicalFactionV49.js` — 5 phe phái · Power struggle · Coalition · Legislation · SAVE: cgv6_faction_v49
+- `politicalCrisisV49.js` — 5 khủng hoảng · 4 cấp độ · auto-trigger · Crisis resolution · SAVE: cgv6_crisis_v49
+- `politicsRegistryV49.js` — Hub widget · 6 sub-panels (Tổng Quan/Chính Phủ/Phe Phái/Ngoại Giao/Gián Điệp/Khủng Hoảng) · Passive
+
+### Thiên Tai & Thảm Họa Toàn Cầu V48
 - `globalDisasterCoreV48.js` — Chain reaction 9 loại · Thiên Thạch + Băng Hà mới · Global scale · AI phản ứng 6 loại · Warning system · SAVE: cgv6_global_disaster_v48
 - `anomalyEngineV48.js` — 6 Dị Tượng Thần Bí (Cổng Không Gian/Mưa Thần Lực/Dị Giới Xâm Nhập/Thần Linh/Ma Giới/Biến Dạng TG) · SAVE: cgv6_anomaly_v48
 - `multiverseDisasterV48.js` — 4 Thảm Họa Đa Vũ Trụ (Sụp Đổ/Va Chạm/Nứt TG/Bão KTG) · SAVE: cgv6_mv_disaster_v48

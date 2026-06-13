@@ -2763,6 +2763,13 @@ onclick="showPanel('dashboard')">
       <div id="panel-crisis-v48" class="panel"></div>
       <div id="panel-warnings-v48" class="panel"></div>
       <div id="panel-disaster-stats-v48" class="panel"></div>
+      <!-- V49 — Chính Trị AI -->
+      <div id="panel-politics-v49" class="panel"></div>
+      <div id="panel-government-v49" class="panel"></div>
+      <div id="panel-faction-v49" class="panel"></div>
+      <div id="panel-diplomacy-v49" class="panel"></div>
+      <div id="panel-espionage-v49" class="panel"></div>
+      <div id="panel-political-crisis-v49" class="panel"></div>
       <!-- V47 — Anh Hùng & Huyền Thoại -->
       <div id="panel-hero-v47" class="panel"></div>
       <div id="panel-epics-v47" class="panel"></div>
@@ -3146,6 +3153,11 @@ window.addEventListener("load", function() {
 <script src="anomalyEngineV48.js"></script>
 <script src="multiverseDisasterV48.js"></script>
 <script src="disasterRegistryV48.js"></script>
+<!-- V49 — Chính Trị AI -->
+<script src="governmentSystemV49.js"></script>
+<script src="politicalFactionV49.js"></script>
+<script src="politicalCrisisV49.js"></script>
+<script src="politicsRegistryV49.js"></script>
 <!-- V47 — Anh Hùng & Huyền Thoại -->
 <script src="legendEngineV47.js"></script>
 <script src="fameSystemV47.js"></script>
@@ -3397,6 +3409,7 @@ window.mvHubRenderPanel = function() {
     +'</div>'
     +'</div>'
     +(typeof window.disasterV48HubRenderPanel === "function" ? window.disasterV48HubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống thiên tai...</div>')
+    +(typeof window.politicsV49HubRenderPanel === "function" ? window.politicsV49HubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống chính trị AI...</div>')
     +'</div>'
 
     +'</div>';

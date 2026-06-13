@@ -24,13 +24,21 @@
 
 ## 🔢 CURRENT VERSION
 
-**V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu** (2026-06-13)
+**V49 — Hệ Thống Chính Trị AI** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (116+ systems)
+## ✅ COMPLETED SYSTEMS (120+ systems)
 
-### Thiên Tai & Thảm Họa Toàn Cầu V48 (4 systems) ← NEWEST
+### Chính Trị AI V49 (4 systems) ← NEWEST
+- `governmentSystemV49.js` — 8 chế độ chính trị (Quân Chủ/Đế Chế/Cộng Hòa/Thần Quyền/Quý Tộc/Liên Bang/Hội Đồng/Tùy Chỉnh) · Leaders 6 stats (ambition/diplomacy/militancy/corruption/prestige/age) · 8 personality traits · Succession · Gov transitions · auto-sync kingdomData/empireData/countries · Public API: `govV49AssignGovernment()` · `govV49TriggerTransition()` · `govV49TriggerSuccession()` · `govV49GetAll()` · `govV49GetLeader()` · SAVE: cgv6_government_v49 · init: 5400ms
+- `politicalFactionV49.js` — 5 phe phái (Bảo Thủ/Cải Cách/Quân Sự/Tôn Giáo/Thương Mại) · Power struggle · Coalition formation · Legislation passing · 4 policies per faction · auto-sync entities · Public API: `facV49GetEntity()` · `facV49GetAll()` · `facV49TriggerStruggle()` · SAVE: cgv6_faction_v49 · init: 5500ms
+- `politicalCrisisV49.js` — 5 loại khủng hoảng (Đảo Chính/Nội Chiến/Biểu Tình/Kế Vị/Ly Khai) · 4 cấp độ severity · auto-trigger từ stability < 30 & lão hóa lãnh đạo & disaster · crisis resolution 4 loại · Kết nối V48/govV49/facV49 · Public API: `criV49Trigger()` · `criV49Resolve()` · `criV49GetActive()` · SAVE: cgv6_crisis_v49 · init: 5600ms
+- `politicsRegistryV49.js` — Hub widget `politicsV49HubRenderPanel()` trong mvHub · `politicsV49RenderPanel(tab)` 6 tabs (Tổng Quan/Chính Phủ/Phe Phái/Ngoại Giao/Gián Điệp/Khủng Hoảng) · reads drData/espionage localStorage · panel-politics-v49 + 5 sub-panels · Passive · init: 5700ms
+- **Không trùng với:** continentalPoliticsEngine.js (V49 extends — khác scope: per-entity vs continental) · espionageEngine.js (V49 reads, không ghi đè) · diplomaticEngine.js (V49 reads drData) · kingdomAI.js/empireAI.js (V49 adds gov layer on top) · livingCivilizationAI.js (V49 extends faction concept)
+- **UI**: Section mới trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) · panel-politics-v49 · 6 tabs nội bộ
+
+### Thiên Tai & Thảm Họa Toàn Cầu V48 (4 systems)
 - `globalDisasterCoreV48.js` — Chain reaction (9 loại: EQ→Tsunami, Volcano→Drought, Flood→Plague, Meteorite→IceAge...) · 2 disaster types mới (☄️ Thiên Thạch, 🧊 Băng Hà) · Global scale affect all countries · AI phản ứng 6 loại (di cư/liên minh/xây công trình/khẩn cấp/chống dịch/cầu nguyện) · Warning system · `gdV48TriggerNewDisaster()` · `gdV48TriggerGlobal()` · `gdV48GetStats()` · SAVE: cgv6_global_disaster_v48 · init: 5000ms
 - `anomalyEngineV48.js` — 6 Dị Tượng Thần Bí: 🌀 Cổng Không Gian · ✨ Mưa Thần Lực · 👾 Dị Giới Xâm Nhập · ☀️ Thần Linh Thức Tỉnh · 🌑 Ma Giới Mở Cửa · ⌛ Biến Dạng Thời Gian · auto-expire · `anomV48Trigger()` · `anomV48GetActive()` · SAVE: cgv6_anomaly_v48 · init: 5100ms
 - `multiverseDisasterV48.js` — 4 Thảm Họa Đa Vũ Trụ: 💥 Sụp Đổ Vũ Trụ · 🌌 Va Chạm Vũ Trụ · ⏳ Nứt Dòng Thời Gian · 🌪️ Bão Không-Thời Gian · timeline branch trigger · crossworld links · `mvdV48Trigger()` · `mvdV48GetActive()` · SAVE: cgv6_mv_disaster_v48 · init: 5200ms
