@@ -269,41 +269,57 @@ function tcInjectCSS() {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Auto Focus Overlay */
+/* Auto Focus Toast (góc phải dưới, không block UI) */
 #tc-focus-overlay {
   position: fixed;
-  inset: 0;
+  bottom: 60px; right: 16px;
   z-index: 8500;
   pointer-events: none;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.4s;
+  opacity: 0; transition: opacity 0.35s, transform 0.35s;
+  transform: translateX(20px);
 }
-#tc-focus-overlay.visible { opacity: 1; pointer-events: auto; }
+#tc-focus-overlay.visible { opacity: 1; pointer-events: auto; transform: translateX(0); }
 #tc-focus-card {
-  background: linear-gradient(135deg, rgba(10,13,18,0.97), rgba(15,19,26,0.97));
-  border: 1px solid rgba(250,204,21,0.3);
-  border-radius: 16px;
-  padding: 32px 40px;
-  max-width: 480px; width: 90%;
-  text-align: center;
-  box-shadow: 0 0 60px rgba(250,204,21,0.12);
-  animation: tcFocusPop 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  background: linear-gradient(135deg, rgba(10,13,18,0.96), rgba(15,23,35,0.96));
+  border: 1px solid rgba(250,204,21,0.35);
+  border-left: 3px solid #facc15;
+  border-radius: 10px;
+  padding: 10px 14px 10px 12px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 20px rgba(250,204,21,0.08);
+  animation: tcFocusPop 0.3s cubic-bezier(0.34,1.4,0.64,1);
+  position: relative;
+  overflow: hidden;
+}
+#tc-focus-progress {
+  position: absolute; bottom: 0; left: 0;
+  height: 2px; background: #facc15;
+  width: 100%; transform-origin: left;
+  animation: tcProgressShrink 6s linear forwards;
+}
+@keyframes tcProgressShrink {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
 }
 @keyframes tcFocusPop {
-  from { opacity: 0; transform: scale(0.85); }
-  to   { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
-#tc-focus-icon { font-size: 52px; margin-bottom: 12px; }
-#tc-focus-title { font-size: 22px; font-weight: 700; color: #facc15; margin-bottom: 8px; }
-#tc-focus-year { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
-#tc-focus-desc { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; margin-bottom: 20px; }
-#tc-focus-close {
-  padding: 8px 24px; background: rgba(250,204,21,0.12);
-  border: 1px solid rgba(250,204,21,0.35); border-radius: 8px;
-  color: #facc15; font-size: 13px; cursor: pointer;
+#tc-focus-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+#tc-focus-icon { font-size: 22px; flex-shrink: 0; }
+#tc-focus-title { font-size: 13px; font-weight: 700; color: #facc15; flex: 1; line-height: 1.3; }
+#tc-focus-close-btn {
+  flex-shrink: 0; width: 18px; height: 18px;
+  background: rgba(255,255,255,0.08); border: none; border-radius: 3px;
+  color: rgba(255,255,255,0.5); font-size: 11px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
   transition: background 0.15s;
 }
-#tc-focus-close:hover { background: rgba(250,204,21,0.22); }
+#tc-focus-close-btn:hover { background: rgba(255,80,80,0.25); color: #f87171; }
+#tc-focus-year { font-size: 10px; color: rgba(255,255,255,0.35); margin-bottom: 3px; }
+#tc-focus-desc { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+#tc-focus-close { display: none; }
 
 /* NPC Inspector Overlay */
 #tc-npc-inspector {
@@ -529,11 +545,15 @@ function tcInjectDOM() {
   overlay.id = 'tc-focus-overlay';
   overlay.innerHTML = `
     <div id="tc-focus-card">
-      <div id="tc-focus-icon">🌟</div>
-      <div id="tc-focus-title"></div>
+      <div id="tc-focus-header">
+        <span id="tc-focus-icon">🌟</span>
+        <span id="tc-focus-title"></span>
+        <button id="tc-focus-close-btn" onclick="tcCloseFocus()" title="Đóng">✕</button>
+      </div>
       <div id="tc-focus-year"></div>
       <div id="tc-focus-desc"></div>
-      <button id="tc-focus-close" onclick="tcCloseFocus()">Tiếp tục quan sát →</button>
+      <div id="tc-focus-progress"></div>
+      <button id="tc-focus-close" onclick="tcCloseFocus()" style="display:none"></button>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -893,40 +913,38 @@ function tcToggleAutoFocus() {
   tcFeedUpdate(tcAutoFocus ? '🔭 Auto Focus bật' : '🔭 Auto Focus tắt', false);
 }
 
+let _tcFocusAutoTimer = null;
+
 function tcShowFocus(icon, title, yr, desc) {
-  tcAutoFocusLocked = true;
-  // Pause simulation while showing focus
-  const wasPaused = tcPaused;
-  if (!wasPaused) {
-    clearInterval(window.simInterval);
-    window.simRunning = false;
-  }
+  tcAutoFocusLocked = false; // Toast không block simulation
 
   document.getElementById('tc-focus-icon').textContent  = icon;
   document.getElementById('tc-focus-title').textContent = title;
   document.getElementById('tc-focus-year').textContent  = `📅 Năm ${yr}`;
   document.getElementById('tc-focus-desc').textContent  = desc;
 
+  // Reset progress bar animation
+  const prog = document.getElementById('tc-focus-progress');
+  if (prog) {
+    prog.style.animation = 'none';
+    prog.offsetHeight; // reflow
+    prog.style.animation = 'tcProgressShrink 6s linear forwards';
+  }
+
   const overlay = document.getElementById('tc-focus-overlay');
   if (overlay) overlay.classList.add('visible');
 
-  // Store state to resume after close
-  overlay.dataset.wasPaused = wasPaused ? '1' : '0';
+  // Auto-dismiss sau 6 giây
+  if (_tcFocusAutoTimer) clearTimeout(_tcFocusAutoTimer);
+  _tcFocusAutoTimer = setTimeout(tcCloseFocus, 6000);
 }
 
 function tcCloseFocus() {
+  if (_tcFocusAutoTimer) { clearTimeout(_tcFocusAutoTimer); _tcFocusAutoTimer = null; }
   const overlay = document.getElementById('tc-focus-overlay');
   if (!overlay) return;
   overlay.classList.remove('visible');
   tcAutoFocusLocked = false;
-
-  const wasPaused = overlay.dataset.wasPaused === '1';
-  if (!wasPaused) {
-    tcApplySpeed(tcCurrentSpeed);
-    window.simRunning = true;
-    const btn = document.getElementById('tc-pause');
-    if (btn) { btn.textContent = '⏸'; btn.classList.remove('paused'); }
-  }
 }
 
 // ================================================================
