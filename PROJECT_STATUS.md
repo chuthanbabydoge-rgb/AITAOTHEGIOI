@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V45 — Hệ Sinh Thái Thế Giới |
+| **Current Version** | V47 — Hệ Thống Anh Hùng & Huyền Thoại |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 195 |
-| **Total Systems** | 120+ |
+| **Total JS Files** | 198 |
+| **Total Systems** | 123+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,12 @@
 
 ## ✅ Completed Systems
 
-### Hệ Sinh Thái Thế Giới V45 ← NEWEST
+### Hệ Thống Anh Hùng & Huyền Thoại V47 ← NEWEST
+- `legendEngineV47.js` — Sử thi · Truyền thuyết dân gian · Lời tiên tri · Biên niên sử · auto-generate từ heroLegendData · SAVE: cgv6_legend_v47
+- `fameSystemV47.js` — Danh tiếng 3 cấp (địa phương/thế giới/đa vũ trụ) · 6 hero archetype · 4 villain archetype · Legacy 6 loại · AI hero journey 7 giai đoạn · Kình địch · killNPC hook · SAVE: cgv6_fame_v47
+- `heroRegistryV47.js` — Hub widget heroV47HubRenderPanel() · 6 sub-panels (Anh Hùng, Sử Thi, Truyền Thuyết, Danh Tiếng, Di Sản, BXH) · panel-hero-v47 · Passive
+
+### Hệ Sinh Thái Thế Giới V45
 - `ecoClimateEngine.js` — 8 khí hậu · 4 mùa · ecoSetClimate() · ecoGetEffects() · SAVE: cgv6_eco_climate_v45
 - `ecoResourceEngine.js` — 5 tài nguyên · ecoExtractResource() · ecoAddTradeRoute() · SAVE: cgv6_eco_resource_v45
 - `ecoCreatureEngine.js` — 20 sinh vật · chuỗi thức ăn · ecoHuntCreature() · extinction · SAVE: cgv6_eco_creature_v45

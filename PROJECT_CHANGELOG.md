@@ -4,6 +4,29 @@
 
 ---
 
+## [V47] — 2026-06-13 — Hệ Thống Anh Hùng & Huyền Thoại
+
+### New Systems Added (3 files)
+- `legendEngineV47.js` — Legend Engine: 8 loại sử thi · 6 loại truyền thuyết dân gian · 5 mẫu lời tiên tri · auto-generate từ heroLegendData (heroes có score ≥ 500) · gameTick mỗi 40 tick · prophecy fulfillment check mỗi 100 tick · htAddEvent + wmeAddMemory integration · SAVE: cgv6_legend_v47 · init: 4400ms
+- `fameSystemV47.js` — Fame System: 6 hero archetypes (Anh Hùng/Nhà Tiên Tri/Thánh Nhân/Nhà Sáng Lập/Kẻ Chinh Phục/Học Giả) · 4 villain archetypes (Ma Vương/Bạo Chúa/Dị Thần/Kẻ Chinh Phạt) · 3 cấp danh tiếng (local/world/multiverse) · 6 loại legacy (doctrine/sect/dynasty/religion/weapon/bloodline) · AI hero journey 7 giai đoạn · kình địch tự động · killNPC hook → tạo legacy khi chết · gameTick mỗi 30 tick · SAVE: cgv6_fame_v47 · init: 4500ms
+- `heroRegistryV47.js` — Hub Registry: heroV47HubRenderPanel() widget trong mvHub · heroV47RenderPanel(tab) 6 panels (heroes/epics/folklore/fame/legacy/rankings) · panel-hero-v47 · Passive (no save/tick) · init: 4600ms
+
+### index.html Changes (add only)
+- 6 panel divs thêm sau V41 panels: panel-hero-v47 · panel-epics-v47 · panel-folklore-v47 · panel-fame-v47 · panel-legacy-v47 · panel-hero-rankings-v47
+- 3 script tags V47 thêm trước V45 scripts
+- Section V47 trong mvHubRenderPanel: ⚔️ Anh Hùng & Huyền Thoại V47
+
+### Integrations
+- Extends `heroLegendEngine.js` (1074 lines, không sửa) — đọc heroLegendData.heroes để generate legends
+- Hook vào killNPC: tạo legacy khi hero tử trận
+- htAddEvent · wmeAddMemory · waeAddAlert notifications
+- Jarvis/alert: anh hùng xuất hiện · huyền thoại mới · ma vương · tử trận
+
+### Save Keys
+- `cgv6_legend_v47` · `cgv6_fame_v47`
+
+---
+
 ## [V45] — 2026-06-13 — Hệ Sinh Thái Thế Giới
 
 ### New Systems Added (5 files)

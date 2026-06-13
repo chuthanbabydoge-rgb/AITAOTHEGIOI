@@ -2756,6 +2756,13 @@ onclick="showPanel('dashboard')">
       <div id="panel-creator-lore-v41" class="panel"></div>
       <div id="panel-creator-event-v41" class="panel"></div>
       <div id="panel-creator-reports-v41" class="panel"></div>
+      <!-- V47 — Anh Hùng & Huyền Thoại -->
+      <div id="panel-hero-v47" class="panel"></div>
+      <div id="panel-epics-v47" class="panel"></div>
+      <div id="panel-folklore-v47" class="panel"></div>
+      <div id="panel-fame-v47" class="panel"></div>
+      <div id="panel-legacy-v47" class="panel"></div>
+      <div id="panel-hero-rankings-v47" class="panel"></div>
       <!-- V45 — Hệ Sinh Thái Thế Giới -->
       <div id="panel-eco-overview-v45" class="panel"></div>
       <div id="panel-eco-climate-v45" class="panel"></div>
@@ -3127,6 +3134,10 @@ window.addEventListener("load", function() {
 <script src="loreGenerator.js"></script>
 <script src="eventGenerator.js"></script>
 <script src="creatorReports.js"></script>
+<!-- V47 — Anh Hùng & Huyền Thoại -->
+<script src="legendEngineV47.js"></script>
+<script src="fameSystemV47.js"></script>
+<script src="heroRegistryV47.js"></script>
 <!-- V45 — Hệ Sinh Thái Thế Giới -->
 <script src="ecoClimateEngine.js"></script>
 <script src="ecoResourceEngine.js"></script>
@@ -3354,6 +3365,16 @@ window.mvHubRenderPanel = function() {
     +'</div>'
     +'</div>'
     +(typeof window.ecoHubRenderPanel === "function" ? window.ecoHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ sinh thái...</div>')
+    +'</div>'
+
+    +'<div style="background:linear-gradient(135deg,#1a0a0a,#0f172a);border:1px solid #f59e0b44;border-radius:12px;padding:16px;margin-bottom:16px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#f59e0b;font-family:Cinzel,serif">⚔️ Anh Hùng & Huyền Thoại V47</h3>'
+    +'<div style="font-size:11px;color:#475569">Danh Tiếng · Sử Thi · Truyền Thuyết · Di Sản · Phản Diện</div>'
+    +'</div>'
+    +'</div>'
+    +(typeof window.heroV47HubRenderPanel === "function" ? window.heroV47HubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống anh hùng...</div>')
     +'</div>'
 
     +'</div>';

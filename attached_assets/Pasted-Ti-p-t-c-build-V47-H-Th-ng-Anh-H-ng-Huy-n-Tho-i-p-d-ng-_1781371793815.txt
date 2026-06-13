@@ -1,0 +1,248 @@
+Tiếp tục build V47 — Hệ Thống Anh Hùng & Huyền Thoại.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V47 - HỆ THỐNG ANH HÙNG & HUYỀN THOẠI
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Cho phép thế giới tự sinh ra:
+
+- Anh hùng
+- Phản anh hùng
+- Ác nhân huyền thoại
+- Nhà sáng lập đế quốc
+- Nhà tiên tri
+- Thánh nhân
+- Kẻ chinh phục đa vũ trụ
+
+Những nhân vật này có thể thay đổi lịch sử.
+
+==================================================
+HERO CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- heroEngine.js
+- legendaryCharacterEngine.js
+- heroRegistry.js
+
+==================================================
+ANH HÙNG
+==================================================
+
+Mỗi anh hùng có:
+
+- Tên
+- Chủng tộc
+- Quốc gia
+- Danh hiệu
+- Thành tựu
+- Chỉ số sức mạnh
+- Độ nổi tiếng
+
+==================================================
+HUYỀN THOẠI
+==================================================
+
+Tạo:
+
+- legendEngine.js
+
+Lưu:
+
+- Chiến công
+- Truyền thuyết
+- Huyền thoại dân gian
+- Sử thi
+
+==================================================
+DANH TIẾNG
+==================================================
+
+Tạo:
+
+- fameSystem.js
+
+Theo dõi:
+
+- Danh tiếng địa phương
+- Danh tiếng thế giới
+- Danh tiếng đa vũ trụ
+
+==================================================
+DI SẢN
+==================================================
+
+Cho phép anh hùng để lại:
+
+- Học thuyết
+- Tông môn
+- Vương triều
+- Tôn giáo
+- Vũ khí huyền thoại
+- Hậu duệ
+
+==================================================
+KẺ PHẢN DIỆN
+==================================================
+
+Cho phép sinh ra:
+
+- Ma Vương
+- Bạo Chúa
+- Dị Thần
+- Kẻ Chinh Phạt
+
+Có thể đối đầu với anh hùng.
+
+==================================================
+ANH HÙNG AI
+==================================================
+
+AI tự:
+
+- Sinh anh hùng mới
+- Tạo hành trình
+- Tạo chiến công
+- Tạo huyền thoại
+
+==================================================
+TÍCH HỢP
+==================================================
+
+Kết nối với:
+
+- Civilization System
+- Religion System
+- Mythology System
+- Race Evolution System
+- World Age System
+- Timeline System
+- Multiverse System
+- Jarvis System
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Anh hùng xuất hiện
+- Huyền thoại mới
+- Đế quốc được sáng lập
+- Ma Vương xuất hiện
+- Anh hùng tử trận
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Anh Hùng
+- Huyền Thoại
+- Sử Thi
+- Danh Tiếng
+- Di Sản
+- Bảng Xếp Hạng
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Anh hùng
+- Huyền thoại
+- Di sản
+- Danh tiếng
+- Thành tựu
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V47
+
+Recommended Next Version = V48 Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.

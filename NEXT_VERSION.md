@@ -2,8 +2,41 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V45 — Hệ Sinh Thái Thế Giới** ✅
-> **Phiên bản tiếp theo đề xuất: V46 — Hệ Thống Tôn Giáo & Đức Tin**
+> **Phiên bản hiện tại: V47 — Hệ Thống Anh Hùng & Huyền Thoại** ✅
+> **Phiên bản tiếp theo đề xuất: V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu**
+
+---
+
+## ✅ V47 — Hệ Thống Anh Hùng & Huyền Thoại *(Đã Hoàn Thành — 2026-06-13)*
+
+3 hệ thống Hero & Legend hoàn chỉnh:
+- `legendEngineV47.js` — 8 loại sử thi · 6 truyền thuyết dân gian · 5 lời tiên tri · biên niên sử
+- `fameSystemV47.js` — Danh tiếng 3 cấp · 6+4 archetypes · Legacy 6 loại · AI Journey 7 stage · Kình địch
+- `heroRegistryV47.js` — Hub widget mvHub · 6 sub-panels
+
+---
+
+## 🏆 V48 — Hệ Thống Thiên Tai & Thảm Họa Toàn Cầu *(Đề Xuất Tiếp Theo)*
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Global Disaster Core | `globalDisasterCoreV48.js` | Thiên tai quy mô toàn cầu · 8 loại thảm họa |
+| Disaster Chain Engine | `disasterChainV48.js` | Thảm họa kéo theo thảm họa (chain reaction) |
+| Climate Crisis Engine | `climateCrisisV48.js` | Khủng hoảng khí hậu dài hạn · băng hà · sa mạc hóa |
+| Extinction Engine | `extinctionEngineV48.js` | Sự kiện tuyệt chủng hàng loạt · recovery |
+| Disaster Registry | `disasterRegistryV48.js` | UI Hub widget · timeline thảm họa |
+
+**Tính năng nổi bật:**
+- 8 loại thảm họa: động đất · sóng thần · núi lửa phun · bão mặt trời · thiên thạch · dịch bệnh toàn cầu · ma giới xâm thực · vũ trụ sụp đổ
+- Chain reaction: núi lửa → bão · sóng thần → dịch bệnh
+- Ảnh hưởng V45 Ecosystem (khí hậu · tài nguyên · sinh vật)
+- Ảnh hưởng V47 Fame (anh hùng xuất hiện cứu thảm họa)
+- Tích hợp V44 Race: chủng tộc chịu ảnh hưởng khác nhau
+- Anh hùng V47 có thể "chặn" thảm họa nếu fame đủ cao
+
+**Save keys:** `cgv6_global_disaster_v48` · `cgv6_disaster_chain_v48` · `cgv6_climate_crisis_v48` · `cgv6_extinction_v48`
+**UI:** Section mới trong Multiverse Hub V35
+**init timing:** 5000ms · 5100ms · 5200ms · 5300ms · 5400ms
 
 ---
 

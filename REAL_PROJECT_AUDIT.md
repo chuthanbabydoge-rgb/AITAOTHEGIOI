@@ -1,26 +1,38 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V45 — Hệ Sinh Thái Thế Giới)
+> Ngày audit: 2026-06-13 (cập nhật sau V47 — Hệ Thống Anh Hùng & Huyền Thoại)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V44 | V45 (Mới) |
+| Chỉ Số | V45 | V47 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 190 | **195** |
-| **Tổng file được load trong index.html** | 189 | **194** |
+| **Tổng file .js trên disk** | 195 | **198** |
+| **Tổng file được load trong index.html** | 194 | **197** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 180 | **186** |
+| **Tổng panel divs trong HTML** | 186 | **192** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 118+ | **122+** |
-| **Engine hook vào gameTick** | 78 | **82** |
-| **Phiên bản hiện tại** | V44 | **V45 — Hệ Sinh Thái Thế Giới** |
+| **Tổng localStorage save keys (unique)** | 122+ | **124+** |
+| **Engine hook vào gameTick** | 82 | **84** |
+| **Phiên bản hiện tại** | V45 | **V47 — Hệ Thống Anh Hùng & Huyền Thoại** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
+
+### ⚔️ Anh Hùng & Huyền Thoại V47 ← NEWEST (3 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `legendEngineV47.js` | Sử Thi · Truyền Thuyết · Lời Tiên Tri · Biên Niên Sử | `cgv6_legend_v47` | 4400ms |
+| `fameSystemV47.js` | Danh Tiếng 3 Cấp · 10 Archetypes · Legacy 6 Loại · AI Journey · Kình Địch | `cgv6_fame_v47` | 4500ms |
+| `heroRegistryV47.js` | Hub Widget · 6 Sub-Panels (heroes/epics/folklore/fame/legacy/rankings) | Passive | 4600ms |
+
+**Global Objects:** `window.legendV47Data` · `window.fameV47Data`
+**Public API:** `legV47GetEpics()` · `legV47GetFolklore()` · `legV47GetProphecies()` · `fv47GetProfiles()` · `fv47GetHeroes()` · `fv47GetVillains()` · `fv47GetLegacies()` · `fv47GetTopByFame(type, limit)` · `heroV47HubRenderPanel()` · `heroV47RenderPanel(tab)`
+**UI Panel:** `panel-hero-v47` (main) + 5 sub-panels (panel-epics-v47, panel-folklore-v47, panel-fame-v47, panel-legacy-v47, panel-hero-rankings-v47)
+**Extends:** `heroLegendEngine.js` (không sửa) — đọc heroLegendData.heroes
 
 ### 🔷 Core Engine (6 files)
 | File | Chức Năng |

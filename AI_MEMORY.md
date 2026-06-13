@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V45 — Hệ Sinh Thái Thế Giới** (2026-06-13)
+**V47 — Hệ Thống Anh Hùng & Huyền Thoại** (2026-06-13)
 
 ---
 
