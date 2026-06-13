@@ -7,22 +7,40 @@
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V53 | V54 (Mới) |
+| Chỉ Số | V54 | V55 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 222 | **227** |
-| **Tổng file được load trong index.html** | 221 | **226** |
+| **Tổng file .js trên disk** | 227 | **233** |
+| **Tổng file được load trong index.html** | 226 | **232** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 222 | **228** |
+| **Tổng panel divs trong HTML** | 228 | **234** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 142+ | **146+** |
-| **Engine hook vào gameTick** | 98 | **101** |
-| **Phiên bản hiện tại** | V53 | **V54 — Marketplace Expansion & Trading Network** |
+| **Tổng localStorage save keys (unique)** | 146+ | **151+** |
+| **Engine hook vào gameTick** | 101 | **107** |
+| **Phiên bản hiện tại** | V54 | **V55 — Persistent Universe** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 💹 Marketplace Expansion & Trading Network V54 ← NEWEST (5 files)
+### 🌌 Persistent Universe V55 ← NEWEST (6 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `persistentUniverseEngine.js` | Theo dõi online/offline timestamp · 1 phút thực = 10 năm game · Unified tick · puv55GetOfflineYears/Stats/TickLog() | `cgv6_persistent_univ_v55` | 8300ms |
+| `offlineWorldProcessor.js` | Tạo sự kiện offline ngẫu nhiên · 5 loại (War/Kingdom/Economy/Hero/Disaster) · Max 30 events · owp55GetOfflineEvents/WarOutcomes/KingdomChanges() | `cgv6_offline_proc_v55` | 8400ms |
+| `historicalReplaySystem.js` | Ghi lịch sử lớn · Wars/EraChanges/Disasters/Heroes/Kingdoms · Auto-record 50 tick · Import offline events · hrs55RecordEvent/War/EraChange() · hrs55GetJarvisChronicle() | `cgv6_hist_replay_v55` | 8500ms |
+| `universeHealthSystem.js` | 8 chỉ số sức khỏe (Dân Số/Ổn Định/Kinh Tế/Quân Sự/Tôn Giáo/Môi Trường/Văn Minh/Đa VT) · Auto mỗi 30 tick · uhs55GetMetrics/Overall/Alerts/JarvisReport() | `cgv6_univ_health_v55` | 8600ms |
+| `eventDigestSystem.js` | Modal popup offline digest · Online event log 100 mục · eds55ShowDigest() · eds55GetOfflineDigest() · eds55GetOnlineEvents() | `cgv6_event_digest_v55` | 8700ms |
+| `universeRegistryV55.js` | Patches mvHubRenderPanel() · 6 tabs (Vũ Trụ/Timeline/Digest/Sức Khỏe/Lịch Sử/Analytics) · Jarvis Chronicle Mode · Passive | — | 8800ms |
+
+**Global Objects:** `window.persistentUnivData` · `window.offlineWorldData` · `window.histReplayData` · `window.univHealthData` · `window.eventDigestData`
+**Không trùng với:** `historicalTimeline.js` (htAddEvent — V55 reads) · `worldMemoryEngine.js` (wmeAddMemory — V55 reads) · `timelineEngine.js` V36 (timeline branches — V55 offline simulation khác scope) · `saveManager.js` (V55 layer mới, không sửa core)
+**UI:** 6 tabs trong multiverse-hub-v35 · 6 panel divs (panel-persistent/timeline/digest/health/replay/analytics-v55)
+**GameTick hooks:** persistentUniverseTick · historicalReplayTick · universeHealthTick (mỗi 30 tick)
+**Tính năng nổi bật:** Offline simulation · Event Digest popup · Historical replay · Universe health 8 metrics · Jarvis Chronicle Mode
+
+---
+
+### 💹 Marketplace Expansion & Trading Network V54 (5 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `tradeNetworkCoreV54.js` | 4 loại tuyến (Nội Địa/Quốc Tế/Đế Quốc/Liên Vũ Trụ) · 5 phương tiện · 6 sự kiện route · Guild/Empire routes · tn54EstablishRoute/UpgradeRoute/CloseRoute | `cgv6_trade_network_v54` | 7800ms |

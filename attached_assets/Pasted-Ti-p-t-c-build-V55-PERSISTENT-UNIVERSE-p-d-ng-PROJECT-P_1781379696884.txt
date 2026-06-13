@@ -1,0 +1,285 @@
+Tiếp tục build V55 — PERSISTENT UNIVERSE.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V55 - PERSISTENT UNIVERSE
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Biến thế giới thành:
+
+Living Persistent Universe
+
+Thế giới tiếp tục tồn tại
+ngay cả khi:
+
+- Không có người chơi online
+- Không mở trình duyệt
+- Không tương tác UI
+
+==================================================
+PERSISTENT CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- persistentUniverseEngine.js
+- worldSimulationScheduler.js
+- offlineWorldProcessor.js
+
+==================================================
+WORLD TICK SYSTEM V2
+==================================================
+
+Nâng cấp:
+
+- GameTick
+- Timeline Tick
+- Civilization Tick
+- Economy Tick
+- Religion Tick
+- Politics Tick
+
+Hợp nhất thành:
+
+Unified Persistent Tick Engine
+
+==================================================
+OFFLINE SIMULATION
+==================================================
+
+Cho phép:
+
+- Mô phỏng thời gian offline
+- Tính toán sự kiện đã xảy ra
+- Đồng bộ khi người chơi quay lại
+
+Ví dụ:
+
+Offline 7 ngày
+
+↓
+
+Chiến tranh xảy ra
+
+↓
+
+Một đế quốc sụp đổ
+
+↓
+
+Người chơi đăng nhập
+
+↓
+
+Nhận báo cáo lịch sử
+
+==================================================
+WORLD HISTORY RECONSTRUCTION
+==================================================
+
+Tạo:
+
+- historicalReplaySystem.js
+
+Lưu:
+
+- Các sự kiện lớn
+- Các cuộc chiến
+- Các thay đổi kỷ nguyên
+- Các thảm họa
+
+==================================================
+LIVING TIMELINE
+==================================================
+
+Nâng cấp Timeline System:
+
+- Quá khứ
+- Hiện tại
+- Tương lai dự đoán
+
+==================================================
+AUTONOMOUS CIVILIZATION
+==================================================
+
+AI Civilization tự:
+
+- Mở rộng
+- Chiến tranh
+- Liên minh
+- Tôn giáo
+- Kinh tế
+
+Không cần người chơi can thiệp.
+
+==================================================
+UNIVERSE HEALTH MONITOR
+==================================================
+
+Tạo:
+
+- universeHealthSystem.js
+
+Theo dõi:
+
+- Hiệu năng
+- Dân số
+- Quốc gia
+- Đế quốc
+- Kinh tế
+- Tài nguyên
+
+==================================================
+EVENT DIGEST SYSTEM
+==================================================
+
+Tạo:
+
+- eventDigestSystem.js
+
+Khi người chơi quay lại:
+
+Hiển thị:
+
+- Điều gì đã xảy ra
+- Ai thắng chiến tranh
+- Quốc gia nào sụp đổ
+- Anh hùng nào xuất hiện
+- Tôn giáo nào phát triển
+
+==================================================
+JARVIS CHRONICLE MODE
+==================================================
+
+Jarvis trở thành:
+
+World Historian
+
+Có thể:
+
+- Tóm tắt lịch sử
+- Phân tích xu hướng
+- Dự đoán tương lai
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp trong:
+
+🌌 Đa Vũ Trụ
+hoặc
+👁 Creator Panel
+
+Tab nội bộ:
+
+- Persistent Universe
+- World Timeline
+- Event Digest
+- World Health
+- Historical Replay
+- Universe Analytics
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Tick State
+- Offline Progress
+- Event Digest
+- World History
+- Timeline Data
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V55
+
+Recommended Next Version = V56 Cross-Universe Travel
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+QUAN TRỌNG:
+
+Chỉ để tab chính ở sidebar.
+Mọi tính năng mới phải nằm trong tab nội bộ.
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
+Generate INTEGRATION_REPORT.md.
+
+Đánh giá mức độ kết nối giữa tất cả hệ thống hiện có.

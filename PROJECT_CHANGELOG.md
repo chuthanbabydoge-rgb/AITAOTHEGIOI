@@ -4,6 +4,42 @@
 
 ---
 
+## [V55] — 2026-06-14 — Persistent Universe
+
+### New Systems Added (6 files)
+- `persistentUniverseEngine.js` — Core Vũ Trụ Liên Tục: Theo dõi timestamp online/offline · Tính toán thời gian vắng mặt · 1 phút thực = 10 năm game · Unified tick counter · puv55GetOfflineYears() · puv55GetStats() · puv55AddTickLog() · puv55GetTickLog() · GameTick hook · SAVE: cgv6_persistent_univ_v55 · init: 8300ms
+- `offlineWorldProcessor.js` — Bộ Xử Lý Offline: Tạo sự kiện ngẫu nhiên tương ứng với thời gian offline · 5 loại (War/Kingdom/Economy/Hero/Disaster) · Max 30 sự kiện · owp55GetOfflineEvents() · owp55GetWarOutcomes() · owp55GetKingdomChanges() · owp55GetEconomicShifts() · owp55GetHeroEvents() · owp55GetDisasterEvents() · SAVE: cgv6_offline_proc_v55 · init: 8400ms
+- `historicalReplaySystem.js` — Tái Hiện Lịch Sử: Ghi toàn bộ sự kiện lớn (wars/era changes/disasters/heroes/kingdoms) · Auto-record mỗi 50 tick · Import offline events · Jarvis Chronicle Mode · hrs55RecordEvent/War/EraChange/Disaster/HeroMoment/KingdomChange() · hrs55GetTimeline() · hrs55GetJarvisChronicle() · SAVE: cgv6_hist_replay_v55 · init: 8500ms
+- `universeHealthSystem.js` — Sức Khỏe Vũ Trụ: 8 chỉ số (Dân Số/Ổn Định/Kinh Tế/Quân Sự/Tôn Giáo/Môi Trường/Văn Minh/Đa Vũ Trụ) · Score 0-100 · Auto-check mỗi 30 tick · Cảnh báo khi critical · uhs55GetMetrics() · uhs55GetOverall() · uhs55GetAlerts() · uhs55GetJarvisReport() · SAVE: cgv6_univ_health_v55 · init: 8600ms
+- `eventDigestSystem.js` — Hệ Thống Digest: Modal popup khi quay lại sau offline · Tổng hợp sự kiện offline thành báo cáo · Online event log 100 mục · eds55ShowDigest() · eds55GetOfflineDigest() · eds55GetOnlineEvents() · eds55GetStats() · SAVE: cgv6_event_digest_v55 · init: 8700ms
+- `universeRegistryV55.js` — Hub UI V55: Patches mvHubRenderPanel() · 6 tabs (Vũ Trụ/Timeline/Digest/Sức Khỏe/Lịch Sử/Analytics) · urv55Render*() · Jarvis Chronicle Mode · Passive · init: 8800ms
+
+### index.html Changes (add only)
+- 6 panel divs sau V54: panel-persistent-v55 · panel-timeline-v55 · panel-digest-v55 · panel-health-v55 · panel-replay-v55 · panel-analytics-v55
+- 6 script tags V55 sau V54 scripts
+
+### Global Objects
+- `window.persistentUnivData` — lastOnlineTimestamp · lastOfflineDurationMs/Years · totalRealTimeMs · totalGameYearsSimulated · tickCount · unifiedTickLog[]
+- `window.offlineWorldData` — offlineEvents[] · warOutcomes[] · kingdomChanges[] · economicShifts[] · heroEvents[] · disasterEvents[]
+- `window.histReplayData` — events[] · wars[] · eraChanges[] · disasters[] · heroMoments[] · kingdomRiseFall[] · totalRecorded
+- `window.univHealthData` — metrics{8 chỉ số} · overallScore · overallStatus · alerts[] · history[]
+- `window.eventDigestData` — offlineDigest · onlineDigest[] · shown · totalDigests
+
+### Save Keys
+- cgv6_persistent_univ_v55 · cgv6_offline_proc_v55 · cgv6_hist_replay_v55 · cgv6_univ_health_v55 · cgv6_event_digest_v55
+
+### UI Integration
+- 6 tabs trong multiverse-hub-v35 (KHÔNG tạo sidebar tab mới)
+- Section V55 tự động append vào mvHubRenderPanel()
+
+### Không Trùng Với
+- `historicalTimeline.js` (htAddEvent — V55 reads/records thêm, không ghi đè)
+- `worldMemoryEngine.js` (wmeAddMemory — V55 reads, không ghi đè)
+- `timelineEngine.js` V36 (timeline branches — V55 là offline simulation, khác scope)
+- `saveManager.js` (V55 adds offline tracking layer, không sửa save core)
+
+---
+
 ## [V54] — 2026-06-13 — Marketplace Expansion & Trading Network
 
 ### New Systems Added (5 files)

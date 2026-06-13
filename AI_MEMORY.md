@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V53 — Guild & Empire Online** (2026-06-13)
+**V55 — Persistent Universe** (2026-06-14)
 
 ---
 
