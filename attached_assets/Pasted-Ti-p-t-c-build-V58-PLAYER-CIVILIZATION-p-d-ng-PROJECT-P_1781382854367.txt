@@ -1,0 +1,286 @@
+Tiếp tục build V58 — PLAYER CIVILIZATION.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- INTEGRATION_REPORT.md
+- PERFORMANCE_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V58 - PLAYER CIVILIZATION
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Cho phép người chơi:
+
+- Tạo nền văn minh
+- Tạo văn hóa
+- Tạo ngôn ngữ
+- Tạo luật pháp
+- Tạo hệ tư tưởng
+- Tạo lịch sử riêng
+
+==================================================
+CIVILIZATION CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- playerCivilizationSystem.js
+- civilizationExpansionEngine.js
+- civilizationIdentitySystem.js
+
+==================================================
+VĂN MINH
+==================================================
+
+Mỗi nền văn minh có:
+
+- Tên
+- Biểu tượng
+- Khẩu hiệu
+- Chủng tộc chính
+- Văn hóa chính
+- Lịch sử hình thành
+
+==================================================
+VĂN HÓA
+==================================================
+
+Tạo:
+
+- cultureSystem.js
+
+Cho phép:
+
+- Phong tục
+- Lễ hội
+- Triết học
+- Nghệ thuật
+- Giá trị xã hội
+
+==================================================
+NGÔN NGỮ
+==================================================
+
+Tạo:
+
+- languageSystem.js
+
+Cho phép:
+
+- Ngôn ngữ riêng
+- Bảng chữ cái
+- Danh xưng
+- Thuật ngữ văn minh
+
+==================================================
+LUẬT PHÁP
+==================================================
+
+Tạo:
+
+- lawSystem.js
+
+Cho phép:
+
+- Luật quốc gia
+- Luật đế quốc
+- Quyền công dân
+- Hình phạt
+
+==================================================
+HỆ TƯ TƯỞNG
+==================================================
+
+Tạo:
+
+- ideologySystem.js
+
+Ví dụ:
+
+- Quân Chủ
+- Dân Chủ
+- Thần Quyền
+- Học Viện Trị
+- Chủ Nghĩa Chinh Phạt
+- Tùy chỉnh
+
+==================================================
+LỊCH SỬ VĂN MINH
+==================================================
+
+Tạo:
+
+- civilizationHistorySystem.js
+
+Lưu:
+
+- Thành lập
+- Chiến tranh
+- Kỷ nguyên vàng
+- Khủng hoảng
+- Sụp đổ
+
+==================================================
+ĐIỂM ẢNH HƯỞNG
+==================================================
+
+Tạo:
+
+- influenceSystem.js
+
+Theo dõi:
+
+- Ảnh hưởng quân sự
+- Ảnh hưởng kinh tế
+- Ảnh hưởng văn hóa
+- Ảnh hưởng tôn giáo
+
+==================================================
+AI CIVILIZATION INTERACTION
+==================================================
+
+AI có thể:
+
+- Học hỏi văn hóa người chơi
+- Đồng hóa
+- Liên minh
+- Xung đột văn hóa
+
+==================================================
+JARVIS CIVILIZATION MODE
+==================================================
+
+Jarvis có thể:
+
+- Phân tích nền văn minh
+- So sánh nền văn minh
+- Dự đoán tương lai
+- Đề xuất phát triển
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+👤 Người Chơi
+hoặc
+🏛 Quốc Gia
+
+Tab nội bộ:
+
+- Văn Minh
+- Văn Hóa
+- Ngôn Ngữ
+- Luật Pháp
+- Tư Tưởng
+- Lịch Sử
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Civilization Data
+- Culture Data
+- Language Data
+- Laws
+- Historical Records
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V58
+
+Recommended Next Version = V59 Global Events Online
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+QUAN TRỌNG:
+
+Chỉ để tab chính ở sidebar.
+Mọi tính năng mới phải nằm trong tab nội bộ.
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.
+Generate INTEGRATION_REPORT.md.
+Generate PERFORMANCE_REPORT.md.
+Generate CIVILIZATION_REPORT.md.
+
+Đánh giá:
+
+- Mức độ trưởng thành của nền văn minh
+- Mức độ kết nối hệ thống
+- Các điểm nghẽn hiệu năng
+- Hệ thống nào cần hợp nhất

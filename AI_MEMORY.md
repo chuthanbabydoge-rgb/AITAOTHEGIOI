@@ -24,13 +24,23 @@
 
 ## 🔢 CURRENT VERSION
 
-**V57 — Creator Economy** (2026-06-14)
+**V58 — Player Civilization** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (136+ systems)
+## ✅ COMPLETED SYSTEMS (141+ systems)
 
-### Guild & Empire Online V53 (5 systems) ← NEWEST
+### Player Civilization V58 (5 systems) ← NEWEST
+- `playerCivCoreV58.js` — 8 chủng tộc (Human/Elf/Dwarf/Dragonian/Celestial/Demon/Undead/Hybrid) · 8 văn hóa · Prestige (0-100) · Population tracking · AI Relations system (4 loại: trade/alliance/culture/war) · Founding story · pc58FoundCivilization(name,symbol,motto,raceId,cultureId) · pc58InteractWithAI(entity,type) · pc58GetJarvisAnalysis() · pc58SetFoundingStory() · pc58GetStats() · pc58GetRaces() · pc58GetCultures() · pc58GetRaceName() · pc58GetCultureName() · pc58GetInteractTypes() · SAVE: cgv6_player_civ_core_v58 · init: 10200ms
+- `civCultureLanguageV58.js` — 8 giá trị xã hội (Honor/Wisdom/Trade/War/Peace/Art/Nature/Magic) · Custom traditions (cc58AddCustom) · Festivals 6 mùa (cc58AddFestival — bonus effects) · Triết học (cc58SetPhilosophy) · Phong cách nghệ thuật (cc58SetArtStyle) · Ngôn ngữ riêng (cc58SetLanguage + alphabet) · Greetings pool · Danh xưng (cc58SetTitle) · cc58GetStats() · SAVE: cgv6_civ_culture_lang_v58 · init: 10300ms
+- `civLawIdeologyV58.js` — 6 hệ tư tưởng (monarchy/democracy/theocracy/meritocracy/militarist/custom) · cl58SetIdeology(id, customName?, customDesc?) → updates bonuses · cl58EnactLaw(name,cat,desc,effect) · cl58RepealLaw(lawId) · cl58AddRight(name,desc) · cl58SetPunishment(crime,punishment) · 6 law categories (war/civil/economic/religious/social/criminal) · Default rights list · cl58GetDefaultRights() · cl58GetCategories() · cl58GetIdeologies() · cl58GetCurrentIdeology() · cl58GetStats() · SAVE: cgv6_civ_law_ideology_v58 · init: 10400ms
+- `civHistoryInfluenceV58.js` — 11 loại sự kiện (founding/war/golden_age/crisis/expansion/cultural/religion/collapse/ai_interact/ideology/tech) · ch58RecordEvent(typeId,title,desc,impact) · ch58UpdateInfluence(type,amount) max 100 · ch58AddAILearner(entityName) → auto +5 cultural inf · ch58GetTimeline() reverse-chrono · ch58GetInfluenceReport() {military,economic,cultural,religious,dominant,aiLearners,assimilated} · ch58GetJarvisAnalysis() {tips,warnings,predictions} · auto decay 0.05/tick · auto AI learner từ countries[] khi totalInf>50 · SAVE: cgv6_civ_history_influence_v58 · init: 10500ms
+- `civRegistryV58.js` — const _orig = window.hubRenderPanel pattern (giống V52/V53/V54) · Patches player-hub-v28 · 6 tab buttons (data-v58tab attr, active = yellow underline) · cr58RenderCore (khai quốc form + civ overview + AI interact) · cr58RenderCulture (phong tục/lễ hội/triết học/nghệ thuật/ngôn ngữ/danh xưng) · cr58RenderLaw (ideology picker + ban hành luật + quyền công dân + hình phạt) · cr58RenderHistory (ghi sự kiện thủ công + timeline 20 gần nhất) · cr58RenderInfluence (4 bars + AI learners list + tăng thủ công) · cr58RenderJarvis (overview + tips + warnings + predictions) · civV58HubRenderPanel() widget · Passive · init: 10600ms
+- **Không trùng với:** emergentCivilization.js (world-level) · livingCivilizationAI.js (NPC AI logic) · civEvolutionEngineV38.js (AI civ 6 pillars tự động) · cultureHeritageEngine.js (NPC soft power/heritage) · universeLawEngine.js (V37 vật lý vũ trụ)
+- **UI**: 6 tabs NẰNG TRONG player-hub-v28 bằng cách inject button vào topBar · data-v58tab attr · KHÔNG tạo sidebar tab mới · KHÔNG tạo panel-div mới ngoài hub
+- **Save keys**: cgv6_player_civ_core_v58 · cgv6_civ_culture_lang_v58 · cgv6_civ_law_ideology_v58 · cgv6_civ_history_influence_v58 (civRegistryV58 không có save riêng)
+
+### Guild & Empire Online V53 (5 systems)
 - `guildCoreV53.js` — Extends guildEngineV29 (KHÔNG ghi đè V29) · 5 cấp bậc (guildMaster/viceMaster/elder/officer/member) · 8 công trình HQ (hall/vault/barracks/market/library/shrine/fortress/palace) · 10 nhiệm vụ nâng cao · 7 AI guilds tự động · Chiêu mộ NPC · g53CreateGuild() · g53AddMember() · g53RecruitNpc() · g53PromoteMember() · g53KickMember() · g53BuildHQ() · g53AssignQuest() · g53GetStats() · g53GetJarvisReport() · SAVE: cgv6_guild_core_v53 · init: 7300ms
 - `guildAllianceV53.js` — Guild-to-Guild alliances (KHÔNG phải V24 nation alliances) · 4 pact types (defense/trade/military/grand) · Đại Bang Liên multi-guild · ga53FormAlliance() · ga53SignPact() · ga53BreakPact() · ga53GetEffectiveBonuses() · ga53GetJarvisReport() · SAVE: cgv6_guild_alliance_v53 · init: 7400ms
 - `playerEmpireV53.js` — Extends playerTerritorySystem.js V28 · 6 loại quan chức · 6 loại quân đội · 4 AI interactions (trade/tribute/ally/war) · Thuế lãnh thổ auto-collect · Cống phẩm hàng năm · emp53SetImperialName() · emp53AppointOfficial() · emp53RecruitArmy() · emp53InteractAI() · emp53GetStats() · SAVE: cgv6_player_empire_v53 · init: 7500ms
