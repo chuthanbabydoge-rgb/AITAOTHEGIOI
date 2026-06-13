@@ -351,20 +351,10 @@ Cấu trúc JSON CHÍNH XÁC như sau:
 // ============================
 
 async function callClaudeAPI(systemPrompt, userMessage) {
-  const apiKey = window.CLAUDE_API_KEY || localStorage.getItem("claude_api_key") || "";
-  if (!apiKey) {
-    const key = prompt("🔑 Nhập Anthropic API Key của bạn:\n(Bắt đầu bằng 'sk-ant-...')");
-    if (!key) throw new Error("Chưa có API key");
-    localStorage.setItem("claude_api_key", key.trim());
-    window.CLAUDE_API_KEY = key.trim();
-  }
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  const response = await fetch("/api/claude", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": window.CLAUDE_API_KEY || localStorage.getItem("claude_api_key"),
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerous-direct-browser-access": "true"
     },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
@@ -1384,20 +1374,8 @@ if (document.readyState === "loading") {
 }
 
 // ============================
-// API KEY MANAGEMENT
+// API KEY MANAGEMENT (no-op: key is managed server-side)
 // ============================
 function setAPIKey() {
-  const current = localStorage.getItem("claude_api_key") || "";
-  const hint = current ? `\nKey hiện tại: ${current.slice(0,10)}...` : "";
-  const key = prompt(`🔑 Nhập Anthropic API Key của bạn:${hint}\n(Bắt đầu bằng 'sk-ant-...')\n\nĐể trống và nhấn OK để xóa key hiện tại.`);
-  if (key === null) return; // cancelled
-  if (key.trim() === "") {
-    localStorage.removeItem("claude_api_key");
-    window.CLAUDE_API_KEY = "";
-    toast("🗑️ Đã xóa API Key");
-  } else {
-    localStorage.setItem("claude_api_key", key.trim());
-    window.CLAUDE_API_KEY = key.trim();
-    toast("✅ Đã lưu API Key thành công!");
-  }
+  toast("✅ AI đã được cấu hình sẵn trên server.");
 }

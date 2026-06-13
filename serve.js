@@ -19,7 +19,57 @@ const MIME_TYPES = {
   '.ttf': 'font/ttf',
 };
 
-const server = http.createServer((req, res) => {
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
+
+const server = http.createServer(async (req, res) => {
+  if (req.method === 'POST' && req.url === '/api/claude') {
+    try {
+      const body = await readBody(req);
+      const apiKey = process.env.ANTHROPIC_API_KEY;
+      if (!apiKey) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'ANTHROPIC_API_KEY not configured on server' }));
+        return;
+      }
+      const https = require('https');
+      const options = {
+        hostname: 'api.anthropic.com',
+        path: '/v1/messages',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+      };
+      const proxyReq = https.request(options, proxyRes => {
+        let data = '';
+        proxyRes.on('data', chunk => { data += chunk; });
+        proxyRes.on('end', () => {
+          res.writeHead(proxyRes.statusCode, { 'Content-Type': 'application/json' });
+          res.end(data);
+        });
+      });
+      proxyReq.on('error', err => {
+        res.writeHead(502, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: err.message }));
+      });
+      proxyReq.write(body);
+      proxyReq.end();
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
   let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
 
   const ext = path.extname(filePath).toLowerCase();

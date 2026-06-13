@@ -313,7 +313,7 @@ async function generateAISummary(context, targetId) {
   el.innerHTML = `<div class="story-ai-loading"><span class="spin">⚙️</span> AI đang soạn kịch bản...</div>`;
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/claude", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
