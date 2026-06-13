@@ -4,6 +4,35 @@
 
 ---
 
+## [V61] — 2026-06-13 — Integration Bridges
+
+### Triết Lý V61
+KHÔNG tạo hệ thống mới — CHỈ sửa các khoảng trống kết nối. Dựa trên audit code thực tế (8 explore agents đọc source) xác nhận 10 gaps thực sự. V61 là tầng "cầu nối" thuần túy.
+
+### New Files (1 file)
+- `integrationBridgesV61.js` — 10 bridge functions · gameTick hook mỗi 50 tick · defensive API calls (typeof guards) · SAVE: cgv6_integration_bridges_v61 · init: 12100ms
+
+### 10 Bridges Implemented
+1. **Boss→Fame** (V59→V47): worldBossV59Data.bossKills → fameV47Data.fameProfiles hero fame +400 world/+200 local
+2. **Event→Guild** (V59→V53): great_disaster/plague → treasury -10% gold; world_war → mobilization log; golden_era → +500 gold; boss kill → +2000 gold reward
+3. **CauseEffect→CivHistory** (V60→V58): causeEffectV60Data.chainHistory entries → ch58RecordEvent() với impact scores 4 chiều
+4. **Season→Profession** (V59→V50): communityEventV59Data.currentSeason change → pec52AddCurrency bonus theo nghề (spring/scholar, summer/warrior, autumn/merchant, winter/scholar)
+5. **Boss→Achievement** (V59→V50): bossKills count → inject v61_first_boss_kill/v61_boss_veteran/v61_boss_legend; event count → v61_event_initiate/v61_event_veteran vào achievementV50Data.unlocked
+6. **Trade↔War** (V54↔warsActive): route.from/to trong warSet → route.income ×0.3; peace restored → income restored
+7. **Event→WorldCouncil** (V59→V24): catastrophic events (world_war/great_disaster/great_plague/multiverse_rift) + boss kills → wcHoldSession() khẩn cấp (tránh spam với min 5 năm cooldown)
+8. **Boss+Narrative→HistoricalReplay** (V59/V60→V55): bossKills → hrs55RecordEvent({category:'boss_kill', importance:5}); chronicles + turningPoints → hrs55RecordEvent({category:'chronicle'})
+9. **UniverseHealth Enhanced** (V55+V53/V54/V59): inject _v61GuildScore/_v61TradeScore/_v61EventScore/_v61GuildWarScore/_v61EnhancedOverall vào univHealthData
+10. **Guild→PlayerCore** (V53→V50): guildV53Data.playerGuildId → sync playerCoreV50Data.affiliations.guild (tên đầy đủ từ V29)
+
+### Files Modified
+- `index.html` — thêm `<script src="integrationBridgesV61.js"></script>` sau V60 scripts
+
+### Confirmed by Code Audit
+- 12 kết nối đã hoạt động trước V61 (documented in INTEGRATION_GAP_REPORT.md)
+- 10 gaps thực sự được xác nhận bằng đọc source code (không dựa vào docs)
+
+---
+
 ## [V60] — 2026-06-13 — Living Universe
 
 ### Triết Lý V60

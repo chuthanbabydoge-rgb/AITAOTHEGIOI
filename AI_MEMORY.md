@@ -24,7 +24,7 @@
 
 ## 🔢 CURRENT VERSION
 
-**V60 — Living Universe** (2026-06-13)
+**V61 — Integration Bridges** (2026-06-13)
 
 ---
 

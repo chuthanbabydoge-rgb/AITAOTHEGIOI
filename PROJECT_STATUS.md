@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V60 — Living Universe |
+| **Current Version** | V61 — Integration Bridges |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 265 |
-| **Total Systems** | 192+ |
+| **Total JS Files** | 266 |
+| **Total Systems** | 193+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,11 @@
 
 ## ✅ Completed Systems
 
-### Living Universe V60 ← NEWEST
+### Integration Bridges V61 ← NEWEST
+- `integrationBridgesV61.js` — 10 cầu nối giữa các hệ thống cô lập · gameTick hook mỗi 50 tick · ib61GetLog/GetStats/GetBridges/ForceRun() · SAVE: cgv6_integration_bridges_v61 · init: 12100ms
+- **10 Bridges**: Boss→Fame (V59→V47) · Event→Guild (V59→V53) · CauseEffect→CivHistory (V60→V58) · Season→Profession (V59→V50) · Boss→Achievement (V59→V50) · Trade↔War suspension (V54↔warsActive) · Event→WorldCouncil emergency session (V59→V24) · Boss+Narrative→HistoricalReplay (V59/V60→V55) · UniverseHealth Enhanced (V55+V53/V54/V59 inject) · Guild→PlayerCore affiliation sync (V53→V50)
+
+### Living Universe V60
 - `livingUniverseOrchestrator.js` — 12 domain · 16 liên kết · Integration score · Alerts · luo60GetState/DomainScore/IntegrationScore/Stats() · SAVE: cgv6_universe_orchestrator_v60 · init: 11500ms
 - `causeEffectEngine.js` — 6 chuỗi nhân quả auto-trigger · Effects thực vào countries/heroes · cee60GetActiveChains/History/TriggerChain() · SAVE: cgv6_cause_effect_v60 · init: 11600ms
 - `worldNarrativeEngine.js` — Chronicle/Legend/TurningPoint/EpochSummary · Auto mỗi 20 năm · Boss kills → Legend · wne60GenerateChronicle/Legend/GetAll/JarvisStory() · SAVE: cgv6_world_narrative_v60 · init: 11700ms
