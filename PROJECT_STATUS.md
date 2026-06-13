@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V44 — Hệ Thống Chủng Tộc Tiến Hóa |
+| **Current Version** | V45 — Hệ Sinh Thái Thế Giới |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 190 |
-| **Total Systems** | 115+ |
+| **Total JS Files** | 195 |
+| **Total Systems** | 120+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,14 @@
 
 ## ✅ Completed Systems
 
-### Hệ Thống Chủng Tộc Tiến Hóa V44 ← NEWEST
+### Hệ Sinh Thái Thế Giới V45 ← NEWEST
+- `ecoClimateEngine.js` — 8 khí hậu · 4 mùa · ecoSetClimate() · ecoGetEffects() · SAVE: cgv6_eco_climate_v45
+- `ecoResourceEngine.js` — 5 tài nguyên · ecoExtractResource() · ecoAddTradeRoute() · SAVE: cgv6_eco_resource_v45
+- `ecoCreatureEngine.js` — 20 sinh vật · chuỗi thức ăn · ecoHuntCreature() · extinction · SAVE: cgv6_eco_creature_v45
+- `ecoDisasterEngine.js` — 5 thiên tai eco-scale · ecoTriggerDisaster() · auto-trigger · SAVE: cgv6_eco_disaster_v45
+- `ecoRegistry.js` — 6 panel renders · ecoHubRenderPanel() widget · ecoRenderPanel(id) · Passive
+
+### Hệ Thống Chủng Tộc Tiến Hóa V44
 - `raceEvolutionCore.js` — 8 chủng tộc · 5 giai đoạn tiến hóa · recGetAll() · recEvolveRace() · SAVE: cgv6_race_evo_core_v44
 - `raceAbilityEngine.js` — 50+ kỹ năng · 12 kỷ nguyên · 4 rarity · raeUnlockAbility() · SAVE: cgv6_race_ability_v44
 - `raceWarEngine.js` — 6 loại xung đột · rweStartConflict() · rweGetDominance() · SAVE: cgv6_race_war_v44

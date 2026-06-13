@@ -2,8 +2,42 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V44 — Hệ Thống Chủng Tộc Tiến Hóa** ✅
-> **Phiên bản tiếp theo đề xuất: V45 — Hệ Thống Thiên Tài & Anh Hùng Chủng Tộc (Race Hero System)**
+> **Phiên bản hiện tại: V45 — Hệ Sinh Thái Thế Giới** ✅
+> **Phiên bản tiếp theo đề xuất: V46 — Hệ Thống Tôn Giáo & Đức Tin**
+
+---
+
+## ✅ V45 — Hệ Sinh Thái Thế Giới *(Đã Hoàn Thành — 2026-06-13)*
+
+5 hệ thống Ecosystem hoàn chỉnh:
+- `ecoClimateEngine.js` — 8 khí hậu · 4 mùa · bonus pop/agri/econ/war
+- `ecoResourceEngine.js` — 5 tài nguyên · regen · thương mại
+- `ecoCreatureEngine.js` — 20 sinh vật · chuỗi thức ăn · tuyệt chủng
+- `ecoDisasterEngine.js` — 5 thiên tai eco-scale · auto-trigger
+- `ecoRegistry.js` — Hub UI trong Multiverse V35
+
+---
+
+## 🏆 V46 — Hệ Thống Tôn Giáo & Đức Tin *(Đề Xuất Tiếp Theo)*
+
+| Hệ Thống | File | Mô Tả |
+|---|---|---|
+| Religion Core | `religionCoreV46.js` | Core đức tin · tín đồ · điểm thần thánh |
+| Faith Spread Engine | `faithSpreadEngine.js` | Lan truyền tôn giáo theo địa hình/climate |
+| Holy War Engine | `holyWarEngine.js` | Thánh chiến · Thập Tự Quân · Jihad |
+| Miracle Engine | `miracleEngine.js` | Phép màu · Thần hiển linh · Khải thị |
+| Religion Registry | `religionRegistryV46.js` | UI · Hub widget |
+
+**Tính năng nổi bật:**
+- Mỗi khí hậu V45 có xu hướng tôn giáo riêng (Thần Giới → tôn thờ thiên thần)
+- Sinh vật V45 có thể trở thành linh vật tôn giáo
+- Tích hợp Mythology V42 (pantheon → organized religion)
+- Thánh địa sinh ra tài nguyên mythological V45
+- `religionCoreV46.js` extends `politicalReligionEngine.js` (không ghi đè)
+
+**Save keys dự kiến:** `cgv6_religion_core_v46` · `cgv6_faith_spread_v46` · `cgv6_holy_war_v46` · `cgv6_miracle_v46`
+**UI:** Section mới trong Multiverse Hub V35 (tiếp tục pattern V45)
+**init timing:** 4400ms · 4500ms · 4600ms · 4700ms · 4800ms
 
 ---
 

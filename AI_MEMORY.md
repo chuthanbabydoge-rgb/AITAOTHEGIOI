@@ -24,13 +24,23 @@
 
 ## 🔢 CURRENT VERSION
 
-**V44 — Hệ Thống Chủng Tộc Tiến Hóa** (2026-06-13)
+**V45 — Hệ Sinh Thái Thế Giới** (2026-06-13)
 
 ---
 
-## ✅ COMPLETED SYSTEMS (107+ systems)
+## ✅ COMPLETED SYSTEMS (112+ systems)
 
-### Hệ Thống Chủng Tộc Tiến Hóa V44 (5 systems) ← NEWEST
+### Hệ Sinh Thái Thế Giới V45 (5 systems) ← NEWEST
+- `ecoClimateEngine.js` — 8 khí hậu (Nhiệt Đới/Ôn Đới/Sa Mạc/Băng Giá/Núi Cao/Thần Giới/Ma Giới/Tùy Chỉnh) · 4 mùa · `ecoSetClimate()` · `ecoGetCurrentSeason()` · `ecoGetEffects()` (pop/agri/econ/war bonus) · V43 age sync · SAVE: cgv6_eco_climate_v45
+- `ecoResourceEngine.js` — 5 tài nguyên (Khoáng/Gỗ/Thực Phẩm/Năng Lượng/Thần Giới) · `ecoExtractResource()` · `ecoAddTradeRoute()` · `ecoGetResourceStats()` · regen theo climate×season×age · SAVE: cgv6_eco_resource_v45
+- `ecoCreatureEngine.js` — 20 sinh vật archetypes · chuỗi thức ăn · `ecoHuntCreature()` · `ecoGetCreaturesByClimate()` · `ecoGetCreaturesByEra()` · extinction risk · sync V44 race+V43 age · SAVE: cgv6_eco_creature_v45
+- `ecoDisasterEngine.js` — 5 loại thiên tai eco-scale (khác V25) · `ecoTriggerDisaster()` · auto-trigger mỗi 20 ticks · `ecoGetActiveDisasters()` · SAVE: cgv6_eco_disaster_v45
+- `ecoRegistry.js` — 6 panel renders + `ecoHubRenderPanel()` widget mvHub · `ecoRenderPanel(id)` public API · Passive (no save/tick)
+- **UI**: Section mới trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) · KHÔNG tạo tab sidebar mới
+- **KHÔNG trùng** với disasterEngine.js V25 (V25=world-scale civilization impact, V45=local ecosystem impact)
+- **init timing**: ecoClimateEngine=3900ms · ecoResourceEngine=4000ms · ecoCreatureEngine=4100ms · ecoDisasterEngine=4200ms · ecoRegistry=4300ms
+
+### Hệ Thống Chủng Tộc Tiến Hóa V44 (5 systems)
 - `raceEvolutionCore.js` — Core 8 chủng tộc (👤Nhân/🧝Tiên/🧟Ma/🐉Long/🤖Cơ Khí/🧚Linh/🐺Thú/🌊Hải) · 5 giai đoạn tiến hóa (Nguyên Thủy→Văn Minh→Tiến Hóa→Thức Tỉnh→Siêu Việt) · `recGetAll()` · `recEvolveRace()` · `recGetStats()` · Sync crfData V40 · Gán patron deity V42 · SAVE: cgv6_race_evo_core_v44
 - `raceAbilityEngine.js` — 50+ abilities pool theo 12 kỷ nguyên V43 · 4 rarity (common/rare/epic/legendary) · `raeUnlockAbility()` · `raeCheckMutation()` · `raeAutoUnlockForAge()` · SAVE: cgv6_race_ability_v44
 - `raceWarEngine.js` — 6 loại xung đột (border_skirmish→dominance_war) · `rweStartConflict()` · `rweGetDominance()` · Auto-conflict 25% chance/30 ticks · SAVE: cgv6_race_war_v44

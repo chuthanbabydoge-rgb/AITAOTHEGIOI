@@ -2756,6 +2756,13 @@ onclick="showPanel('dashboard')">
       <div id="panel-creator-lore-v41" class="panel"></div>
       <div id="panel-creator-event-v41" class="panel"></div>
       <div id="panel-creator-reports-v41" class="panel"></div>
+      <!-- V45 — Hệ Sinh Thái Thế Giới -->
+      <div id="panel-eco-overview-v45" class="panel"></div>
+      <div id="panel-eco-climate-v45" class="panel"></div>
+      <div id="panel-eco-seasons-v45" class="panel"></div>
+      <div id="panel-eco-creatures-v45" class="panel"></div>
+      <div id="panel-eco-resources-v45" class="panel"></div>
+      <div id="panel-eco-disasters-v45" class="panel"></div>
       <!-- V44 — Hệ Thống Chủng Tộc Tiến Hóa -->
       <div id="panel-race-overview-v44" class="panel"></div>
       <div id="panel-race-evolution-v44" class="panel"></div>
@@ -3120,6 +3127,12 @@ window.addEventListener("load", function() {
 <script src="loreGenerator.js"></script>
 <script src="eventGenerator.js"></script>
 <script src="creatorReports.js"></script>
+<!-- V45 — Hệ Sinh Thái Thế Giới -->
+<script src="ecoClimateEngine.js"></script>
+<script src="ecoResourceEngine.js"></script>
+<script src="ecoCreatureEngine.js"></script>
+<script src="ecoDisasterEngine.js"></script>
+<script src="ecoRegistry.js"></script>
 <!-- V44 — Hệ Thống Chủng Tộc Tiến Hóa -->
 <script src="raceEvolutionCore.js"></script>
 <script src="raceAbilityEngine.js"></script>
@@ -3331,6 +3344,16 @@ window.mvHubRenderPanel = function() {
     +'</div>'
     +'</div>'
     +(typeof window.recHubRenderPanel === "function" ? window.recHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ thống chủng tộc...</div>')
+    +'</div>'
+
+    +'<div style="background:linear-gradient(135deg,#1e293b,#0f172a);border:1px solid #166534;border-radius:12px;padding:16px;margin-bottom:16px">'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'
+    +'<div>'
+    +'<h3 style="margin:0 0 3px;font-size:16px;color:#4ade80;font-family:Cinzel,serif">🌿 Hệ Sinh Thái Thế Giới V45</h3>'
+    +'<div style="font-size:11px;color:#475569">Khí Hậu · Mùa · Tài Nguyên · Sinh Vật · Thiên Tai</div>'
+    +'</div>'
+    +'</div>'
+    +(typeof window.ecoHubRenderPanel === "function" ? window.ecoHubRenderPanel() : '<div style="color:#475569;font-size:12px">Đang tải hệ sinh thái...</div>')
     +'</div>'
 
     +'</div>';

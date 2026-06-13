@@ -4,6 +4,40 @@
 
 ---
 
+## [V45] — 2026-06-13 — Hệ Sinh Thái Thế Giới
+
+### New Systems Added (5 files)
+- `ecoClimateEngine.js` — 8 khí hậu (Nhiệt Đới/Ôn Đới/Sa Mạc/Băng Giá/Núi Cao/Thần Giới/Ma Giới/Tùy Chỉnh) · 4 mùa (Xuân/Hạ/Thu/Đông) · `ecoSetClimate()` · `ecoGetCurrentSeason()` · `ecoGetEffects()` (pop/agri/econ/war bonus) · `ecoAddCustomClimate()` · V43 age sync (chaos→demon_realm, divine→divine_realm) · gameTick mỗi tick · SAVE: cgv6_eco_climate_v45
+- `ecoResourceEngine.js` — 5 loại tài nguyên (⛏️Khoáng/🌲Gỗ/🌾Thực Phẩm/⚡Năng Lượng/💎Thần Giới) · regen theo climate×season×age bonus · `ecoExtractResource(id,amount)` · `ecoAddTradeRoute()` · `ecoGetResourceStats()` · tuyến thương mại · SAVE: cgv6_eco_resource_v45
+- `ecoCreatureEngine.js` — 20 archetypes sinh vật (Sói/Nai/Long/Phượng/Kraken/Sâu Sa Mạc/Gấu Băng/Điểu Lôi...) · chuỗi thức ăn predator/prey/apex · `ecoHuntCreature()` · `ecoGetCreaturesByClimate()` · `ecoGetCreaturesByEra()` · nguy cơ tuyệt chủng · sync V44 race domain + V43 era · gameTick mỗi 15 ticks · SAVE: cgv6_eco_creature_v45
+- `ecoDisasterEngine.js` — 5 loại thiên tai eco-scale (Động Đất/Núi Lửa/Bão/Đại Hồng Thủy/Dị Tượng Thần) · KHÁC V25 (V25=world-scale, V45=local ecosystem) · `ecoTriggerDisaster(id,severity)` · auto-trigger mỗi 20 ticks · V43 age multiplier (chaos×2.5, golden×0.4) · `ecoGetActiveDisasters()` · SAVE: cgv6_eco_disaster_v45
+- `ecoRegistry.js` — 6 panel renders + `ecoHubRenderPanel()` widget mvHub · `ecoRenderPanel(id)` public API · Passive (no save/tick)
+
+### index.html Updates
+- Thêm 6 panel divs V45: panel-eco-overview-v45 → panel-eco-disasters-v45
+- Thêm 5 script tags nhóm V45 (trước V44)
+- Thêm section V45 vào `mvHubRenderPanel` (trước closing `+'</div>';`)
+
+### UI Integration
+- Tích hợp bên trong 🌌 Đa Vũ Trụ V35 hub (mvHubRenderPanel) — KHÔNG tạo tab sidebar mới
+- 6 sub-panels: 🌿 Tổng Quan · 🌤️ Khí Hậu · 🌸 Mùa · 🦎 Sinh Vật · ⛏️ Tài Nguyên · 🌪️ Thiên Tai
+
+### Save Keys Mới
+- `cgv6_eco_climate_v45` · `cgv6_eco_resource_v45` · `cgv6_eco_creature_v45` · `cgv6_eco_disaster_v45`
+
+### Integration Points
+- `waeGetCurrentAge()` → V43 sync: climate default by age · resource regen bonus · disaster frequency
+- `recGetAll()` → V44 sync: domain race → linked creature (e.g. dragon race → dragon creature)
+- `ecoGetEffects()` → pop/agri/econ/war bonus từ climate×season → tích hợp vào world simulation
+- `htAddEvent()` + `wmeAddMemory()` + `waeAddAlert()` cho mọi sự kiện sinh thái lớn
+- KHÔNG trùng với `disasterEngine.js` V25 (V25=civilization scale, V45=ecosystem scale)
+- `mdbGetPantheons()` V42 → mythological resources phân bổ theo pantheon khu vực
+
+### Số Liệu Sau V45
+- JS files: 190 → **195** · Panels: 180 → **186** · gameTick hooks: 78 → **82**
+
+---
+
 ## [V44] — 2026-06-13 — Hệ Thống Chủng Tộc Tiến Hóa
 
 ### New Systems Added (5 files)

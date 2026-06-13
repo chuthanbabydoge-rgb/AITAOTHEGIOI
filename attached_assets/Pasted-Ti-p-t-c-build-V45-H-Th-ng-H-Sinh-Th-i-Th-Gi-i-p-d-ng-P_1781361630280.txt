@@ -1,0 +1,187 @@
+Tiếp tục build V45 — Hệ Thống Hệ Sinh Thái Thế Giới.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+* REAL_PROJECT_AUDIT.md
+* WORLD_AUDIT_REPORT.md
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_ARCHITECTURE.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+====================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+* tab con
+* dashboard con
+* panel con
+* modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==============
+
+V45 - HỆ SINH THÁI THẾ GIỚI
+
+==================================================
+MỤC TIÊU
+========
+
+Cho phép mỗi thế giới có:
+
+* Khí hậu
+* Mùa
+* Địa hình
+* Sinh vật
+* Tài nguyên
+* Chuỗi thức ăn
+* Môi trường
+
+==================================================
+KHÍ HẬU
+=======
+
+Hỗ trợ:
+
+* Nhiệt đới
+* Ôn đới
+* Sa mạc
+* Băng giá
+* Núi cao
+* Thần giới
+* Ma giới
+* Khí hậu tùy chỉnh
+
+==================================================
+MÙA
+===
+
+Hỗ trợ:
+
+* Xuân
+* Hạ
+* Thu
+* Đông
+
+Ảnh hưởng tới:
+
+* Dân số
+* Nông nghiệp
+* Kinh tế
+* Chiến tranh
+
+==================================================
+TÀI NGUYÊN
+==========
+
+Tạo hệ thống:
+
+* Khoáng sản
+* Gỗ
+* Thực phẩm
+* Năng lượng
+* Tài nguyên thần thoại
+
+==================================================
+SINH VẬT
+========
+
+Cho phép sinh vật xuất hiện theo:
+
+* Chủng tộc
+* Kỷ nguyên
+* Khí hậu
+* Khu vực
+
+==================================================
+THIÊN TAI
+=========
+
+Hỗ trợ:
+
+* Động đất
+* Núi lửa
+* Bão
+* Đại hồng thủy
+* Dị tượng thần giới
+
+==================================================
+TÍCH HỢP
+========
+
+Kết nối với:
+
+* World Age System
+* Civilization System
+* Mythology System
+* Multiverse System
+* Race Evolution System
+* Jarvis System
+
+==================================================
+UI
+==
+
+Không tạo tab sidebar mới.
+
+Tích hợp bên trong:
+
+🌍 Thế Giới
+hoặc
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+* Hệ Sinh Thái
+* Khí Hậu
+* Mùa
+* Sinh Vật
+* Tài Nguyên
+* Thiên Tai
+
+==================================================
+SAVE SYSTEM
+===========
+
+Lưu toàn bộ dữ liệu hệ sinh thái.
+
+Tương thích 100% save cũ.
+
+==================================================
+KẾT THÚC
+========
+
+Sau khi build:
+
+* AI_MEMORY.md
+* PROJECT_STATUS.md
+* PROJECT_CHANGELOG.md
+* NEXT_VERSION.md
+
+Current Version = V45
+
+Recommended Next Version = V46 Hệ Thống Tôn Giáo & Đức Tin
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi hoàn thành:
+
+Generate REAL_PROJECT_AUDIT.md again.
