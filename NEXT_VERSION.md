@@ -2,8 +2,31 @@
 
 > Tài liệu kế hoạch phát triển các phiên bản tiếp theo.
 > Cập nhật sau mỗi version hoàn thành.
-> **Phiên bản hiện tại: V53 — Guild & Empire Online** ✅
-> **Phiên bản tiếp theo đề xuất: V54 — Marketplace Expansion & Trading Network**
+> **Phiên bản hiện tại: V54 — Marketplace Expansion & Trading Network** ✅
+> **Phiên bản tiếp theo đề xuất: V55 — Persistent Universe**
+
+---
+
+## ✅ V54 — Marketplace Expansion & Trading Network *(Đã Hoàn Thành — 2026-06-13)*
+
+### Files Tạo Mới
+- `tradeNetworkCoreV54.js` — 4 loại tuyến (Nội Địa/Quốc Tế/Đế Quốc/Liên Vũ Trụ) · 5 phương tiện (Thương Đoàn/Thuyền/Phi Thuyền/Cổng DCD/Thiên Thuyền) · 6 sự kiện ngẫu nhiên · Guild/Empire routes · SAVE: cgv6_trade_network_v54
+- `goodsSystemV54.js` — 6 danh mục (Thực Phẩm/Khoáng Sản/Vũ Khí/Thần Khí/Tài Nguyên Hiếm/Tùy Chỉnh) · 26 loại hàng hóa · Player/Guild/Empire warehouse · Custom goods creation · SAVE: cgv6_goods_v54
+- `supplyDemandV54.js` — Dynamic pricing · 7 loại sự kiện (boom/crash/shortage/surplus/golden_age/trade_war/discovery) · Disaster+War+Age+Pop modifiers · Auto price fluctuation · SAVE: cgv6_supply_demand_v54
+- `blackMarketV54.js` — 8 hàng cấm (Cấm Thư/Hồn Tinh/Độc Đan/Hỗn Mang Vũ Khí/Bí Mật Quân/Cổ Vật/Đoạt Huyết Đan/Bản Đồ Cấm Địa) · 4 fence · 4 cấp mạng lưới ngầm · Guild black market · Khác ev2BlackMarkets · SAVE: cgv6_black_market_v54
+- `tradeRegistryV54.js` — Patches player-hub-v28 · 6 tabs (Thương Mại/Tuyến Đường/Hàng Hóa/Logistics/Chợ Đen/Thống Kê) · Passive
+
+### index.html
+- 6 panel divs (panel-trade/routes/goods/logistics/blackmkt/tradestats-v54) · 5 script tags sau V53
+
+### Save Keys
+- `cgv6_trade_network_v54` · `cgv6_goods_v54` · `cgv6_supply_demand_v54` · `cgv6_black_market_v54`
+
+### Không Trùng Với
+- `oceanTradeEngineV27.js` (V27 ocean routes — V54 extends thêm empire/multiverse)
+- `economyEngineV2.js` (ev2BlackMarkets NPC-level — V54 là player-facing)
+- `multiverseEconomy.js` V35 (multiverse goods — V54 reads meData, không ghi đè)
+- `playerMarketplaceV52.js` (item marketplace — V54 là goods/routes/supply demand)
 
 ---
 
@@ -21,30 +44,28 @@
 
 ---
 
-## 🏆 V54 — Marketplace Expansion & Trading Network *(Đề Xuất Tiếp Theo)*
+## 🏆 V55 — Persistent Universe *(Đề Xuất Tiếp Theo)*
 
 ### Mục Tiêu
-Mở rộng hệ thống marketplace V52 với mạng lưới thương mại liên vùng, crafting system, và hệ thống supply chain.
+Xây dựng hệ thống "Vũ Trụ Liên Tục" — nơi mọi sự kiện, thành tựu, và lịch sử được lưu vĩnh viễn, tạo di sản xuyên suốt các thế giới.
 
 | Hệ Thống | File | Mô Tả |
 |---|---|---|
-| Trade Network Core | `tradeNetworkCoreV54.js` | Mạng lưới thương mại liên vùng · Tuyến đường trade routes |
-| Crafting System | `craftingSystemV54.js` | 5 nghề thủ công · Recipe system · Material gathering |
-| Supply Chain | `supplyChainV54.js` | Chuỗi cung ứng · Resource flow · Bottleneck detection |
-| Guild Economy | `guildEconomyV54.js` | Kinh tế bang hội · Guild marketplace · Trade guild wars |
-| Economy Registry V54 | `economyRegistryV54.js` | UI patches · 6 tabs mới trong player-hub-v28 |
+| Universe Chronicle | `universeChronicleV55.js` | Lịch sử vũ trụ vĩnh cửu · Major events archive · Legendary records |
+| Civilization Memory | `civMemoryV55.js` | Ký ức văn minh · Bài học từ thời đại · Inherited traits |
+| Legacy System | `legacySystemV55.js` | Di sản xuyên thế hệ · Kế thừa sức mạnh · Dynasty chains |
+| Prophecy Fulfillment | `prophecyFulfillV55.js` | Hoàn thành lời tiên tri V51 · Universe destiny · Final wars |
+| Universe Registry V55 | `universeRegistryV55.js` | UI trong multiverse-hub-v35 · 6 tabs (Chronicle/Memory/Legacy/Prophecy/Destiny/Stats) |
 
 ### Save Keys
-- `cgv6_trade_network_v54` · `cgv6_crafting_v54` · `cgv6_supply_chain_v54` · `cgv6_guild_economy_v54`
+- `cgv6_universe_chronicle_v55` · `cgv6_civ_memory_v55` · `cgv6_legacy_v55` · `cgv6_prophecy_fulfill_v55`
 
 ### Tích Hợp
-- Extends `playerMarketplaceV52.js` (marketplace) → thêm bulk trading
-- Extends `businessSystemV52.js` (DN) → thêm supply chain management
-- Extends `guildCoreV53.js` (guild treasury) → thêm guild trading
-- Reads `ecoResourceEngine.js` (scarcity affects prices)
-
-### UI
-- 6 tabs mới trong player-hub-v28 (tiếp tục pattern V52/V53)
+- Reads `ageV25Data` (era transitions → chronicle entries)
+- Reads `prophecyV51Data` (V51 prophecies → fulfillment tracking)
+- Reads `tradeNetV54Data` (trade history → economic legacy)
+- Reads `guildV53Data` (guild achievements → guild legacy)
+- UI: 6 tabs mới trong multiverse-hub-v35 (pattern V35-V48)
 
 ---
 

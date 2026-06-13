@@ -9,10 +9,10 @@
 | Trường | Giá Trị |
 |---|---|
 | **Project Name** | Creator God V6 — Nền Tảng Đa Thế Giới |
-| **Current Version** | V53 — Guild & Empire Online |
+| **Current Version** | V54 — Marketplace Expansion & Trading Network |
 | **Build Date** | 2026-06-13 |
-| **Total JS Files** | 222 |
-| **Total Systems** | 147+ |
+| **Total JS Files** | 227 |
+| **Total Systems** | 152+ |
 | **Architecture** | Vanilla JS · Monolithic Frontend · localStorage |
 | **Entry Point** | index.html |
 
@@ -20,7 +20,14 @@
 
 ## ✅ Completed Systems
 
-### Guild & Empire Online V53 ← NEWEST
+### Marketplace Expansion & Trading Network V54 ← NEWEST
+- `tradeNetworkCoreV54.js` — 4 loại tuyến (Nội Địa/Quốc Tế/Đế Quốc/Liên Vũ Trụ) · 5 phương tiện · 6 sự kiện ngẫu nhiên · Extends oceanTradeEngineV27 · SAVE: cgv6_trade_network_v54 · init: 7800ms
+- `goodsSystemV54.js` — 6 danh mục · 26 loại hàng hóa · Player/Guild/Empire warehouse · Custom goods · SAVE: cgv6_goods_v54 · init: 7900ms
+- `supplyDemandV54.js` — Dynamic pricing · 7 loại sự kiện TT · Disaster/War/Age/Pop modifiers · Auto fluctuation · SAVE: cgv6_supply_demand_v54 · init: 8000ms
+- `blackMarketV54.js` — 8 hàng cấm · 4 fence · 4 cấp mạng lưới ngầm · Guild black market · Khác ev2BlackMarkets · SAVE: cgv6_black_market_v54 · init: 8100ms
+- `tradeRegistryV54.js` — Patches player-hub-v28 · 6 tabs (Thương Mại/Tuyến Đường/Hàng Hóa/Logistics/Chợ Đen/Thống Kê) · Passive · init: 8200ms
+
+### Guild & Empire Online V53
 - `guildCoreV53.js` — Extends guildEngineV29 · 5 cấp bậc (GM/Vice/Elder/Officer/Member) · 8 công trình HQ · 10 nhiệm vụ nâng cao · AI guild fluctuation · SAVE: cgv6_guild_core_v53 · init: 7300ms
 - `guildAllianceV53.js` — Guild-to-Guild pacts (Defense/Trade/Military/Grand) · Đại Bang Liên · Bonus system · Khác V24 · SAVE: cgv6_guild_alliance_v53 · init: 7400ms
 - `playerEmpireV53.js` — Extends V28 Territory · 6 loại quan chức · 6 loại quân · 4 tương tác AI · Thuế lãnh thổ · Cống phẩm · SAVE: cgv6_player_empire_v53 · init: 7500ms

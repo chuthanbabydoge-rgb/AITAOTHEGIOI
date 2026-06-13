@@ -1,0 +1,269 @@
+Tiếp tục build V54 — MARKETPLACE EXPANSION & TRADING NETWORK.
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC UI
+==================================================
+
+Chỉ giữ tab chính ở sidebar.
+
+Các tính năng mới phải nằm trong:
+
+- tab con
+- dashboard con
+- panel con
+- modal
+
+Không tạo tab sidebar mới.
+
+==================================================
+MỤC TIÊU BUILD
+==================================================
+
+V54 - MARKETPLACE EXPANSION & TRADING NETWORK
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Tạo hệ thống thương mại vận hành giữa:
+
+- Người chơi
+- Guild
+- Quốc gia
+- Đế quốc
+- Vũ trụ
+
+==================================================
+TRADE CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- tradeNetworkEngine.js
+- tradeRouteSystem.js
+- commerceEngine.js
+
+==================================================
+TUYẾN THƯƠNG MẠI
+==================================================
+
+Cho phép:
+
+- Tuyến nội địa
+- Tuyến quốc tế
+- Tuyến đế quốc
+- Tuyến liên vũ trụ
+
+Mỗi tuyến có:
+
+- Lưu lượng
+- Thuế
+- Nguy cơ
+- Lợi nhuận
+
+==================================================
+HÀNG HÓA
+==================================================
+
+Tạo:
+
+- goodsSystem.js
+
+Hỗ trợ:
+
+- Thực phẩm
+- Khoáng sản
+- Vũ khí
+- Thần khí
+- Tài nguyên hiếm
+- Hàng hóa tùy chỉnh
+
+==================================================
+CUNG CẦU
+==================================================
+
+Tạo:
+
+- supplyDemandEngine.js
+
+Giá cả thay đổi theo:
+
+- Khan hiếm
+- Thiên tai
+- Chiến tranh
+- Kỷ nguyên
+- Dân số
+
+==================================================
+LOGISTICS
+==================================================
+
+Tạo:
+
+- logisticsSystem.js
+
+Hỗ trợ:
+
+- Kho bãi
+- Trung tâm thương mại
+- Cảng thương mại
+- Cổng dịch chuyển
+
+==================================================
+GUILD COMMERCE
+==================================================
+
+Guild có thể:
+
+- Sở hữu tuyến thương mại
+- Thu phí vận chuyển
+- Đầu tư thương mại
+- Kiểm soát thị trường
+
+==================================================
+EMPIRE COMMERCE
+==================================================
+
+Đế quốc có thể:
+
+- Thu thuế
+- Kiểm soát hàng hóa
+- Phong tỏa thương mại
+- Bảo vệ tuyến đường
+
+==================================================
+BLACK MARKET
+==================================================
+
+Tạo:
+
+- blackMarketSystem.js
+
+Hỗ trợ:
+
+- Chợ đen
+- Buôn lậu
+- Hàng cấm
+- Mạng lưới ngầm
+
+==================================================
+INTER-UNIVERSE TRADE
+==================================================
+
+Tạo:
+
+- multiverseTradeSystem.js
+
+Cho phép:
+
+- Giao thương liên vũ trụ
+- Hàng hóa độc quyền
+- Thuế liên vũ trụ
+- Hiệp định thương mại
+
+==================================================
+JARVIS
+==================================================
+
+Thông báo:
+
+- Tuyến thương mại mới
+- Mặt hàng tăng giá
+- Khủng hoảng thương mại
+- Đế quốc giàu nhất
+- Guild giàu nhất
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+🏛 Quốc Gia
+👤 Người Chơi
+🌌 Đa Vũ Trụ
+
+Tab nội bộ:
+
+- Thương Mại
+- Tuyến Đường
+- Hàng Hóa
+- Logistics
+- Chợ Đen
+- Thống Kê
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Tuyến thương mại
+- Hàng hóa
+- Giao dịch
+- Thuế
+- Lịch sử kinh tế
+
+Tương thích 100% save cũ.
+
+==================================================
+YÊU CẦU QUAN TRỌNG
+==================================================
+
+Trước khi code:
+
+1. Phân tích hệ thống hiện có
+2. Liệt kê file cần tạo
+3. Liệt kê file cần sửa
+4. Kế hoạch tích hợp
+5. Kiểm tra hệ thống trùng lặp
+
+Nếu đã có hệ thống tương tự:
+
+Nâng cấp.
+
+Không tạo bản sao.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Sau khi hoàn thành:
+
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_CHANGELOG.md
+- NEXT_VERSION.md
+
+Current Version = V54
+
+Recommended Next Version = V55 Persistent Universe
+
+EXPAND ONLY
+
+KHÔNG XÓA
+
+KHÔNG THAY THẾ
+
+KHÔNG BUILD LẠI
+
+Sau khi build xong:
+
+Generate REAL_PROJECT_AUDIT.md again.
+Generate WORLD_AUDIT_REPORT.md again.

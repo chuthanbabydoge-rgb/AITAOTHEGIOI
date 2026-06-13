@@ -1,28 +1,44 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V53 — Guild & Empire Online)
+> Ngày audit: 2026-06-13 (cập nhật sau V54 — Marketplace Expansion & Trading Network)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V52 | V53 (Mới) |
+| Chỉ Số | V53 | V54 (Mới) |
 |---|---|---|
-| **Tổng file .js trên disk** | 217 | **222** |
-| **Tổng file được load trong index.html** | 216 | **221** |
+| **Tổng file .js trên disk** | 222 | **227** |
+| **Tổng file được load trong index.html** | 221 | **226** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 216 | **222** |
+| **Tổng panel divs trong HTML** | 222 | **228** |
 | **Tổng nav buttons (data-panel)** | 67 | **67** |
-| **Tổng localStorage save keys (unique)** | 138+ | **142+** |
-| **Engine hook vào gameTick** | 96 | **98** |
-| **Phiên bản hiện tại** | V52 | **V53 — Guild & Empire Online** |
+| **Tổng localStorage save keys (unique)** | 142+ | **146+** |
+| **Engine hook vào gameTick** | 98 | **101** |
+| **Phiên bản hiện tại** | V53 | **V54 — Marketplace Expansion & Trading Network** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### ⚔️ Guild & Empire Online V53 ← NEWEST (5 files)
+### 💹 Marketplace Expansion & Trading Network V54 ← NEWEST (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `tradeNetworkCoreV54.js` | 4 loại tuyến (Nội Địa/Quốc Tế/Đế Quốc/Liên Vũ Trụ) · 5 phương tiện · 6 sự kiện route · Guild/Empire routes · tn54EstablishRoute/UpgradeRoute/CloseRoute | `cgv6_trade_network_v54` | 7800ms |
+| `goodsSystemV54.js` | 6 danh mục · 26 loại hàng hóa · Player/Guild/Empire warehouse · Custom goods · gs54BuyGoods/SellGoods/CreateCustomGood/GetInventory | `cgv6_goods_v54` | 7900ms |
+| `supplyDemandV54.js` | Dynamic pricing · 7 sự kiện TT · Disaster+War+Age+Pop modifiers · Auto fluctuation 15 tick · sd54GetCurrentPrice/TriggerMarketEvent/GetAllPrices | `cgv6_supply_demand_v54` | 8000ms |
+| `blackMarketV54.js` | 8 hàng cấm · 4 fence · 4 cấp mạng lưới ngầm · Risk+bust system · Guild black market · bm54BuyContraband/SellContraband/UpgradeNetwork | `cgv6_black_market_v54` | 8100ms |
+| `tradeRegistryV54.js` | Patches player-hub-v28 · 6 tabs (Thương Mại/Tuyến Đường/Hàng Hóa/Logistics/Chợ Đen/Thống Kê) · tr54Render* · tradeV54HubRenderPanel() | Passive | 8200ms |
+
+**Global Objects:** `window.tradeNetV54Data` · `window.goodsV54Data` · `window.supplyDemandV54Data` · `window.blackMarketV54Data`
+**Không trùng với:** `oceanTradeEngineV27.js` (V27 ocean, V54 extends empire/multiverse) · `economyEngineV2.js` (ev2BlackMarkets NPC-level) · `multiverseEconomy.js` V35 (6 MV goods, V54 reads) · `playerMarketplaceV52.js` (item market)
+**UI:** 6 tabs trong player-hub-v28 · 6 panel divs (panel-trade/routes/goods/logistics/blackmkt/tradestats-v54)
+**GameTick hooks:** tradeNetworkCoreV54 (mỗi 6 tick) · supplyDemandV54 (mỗi 15 tick) · blackMarketV54 (mỗi 8 tick — guild income)
+
+---
+
+### ⚔️ Guild & Empire Online V53 (5 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `guildCoreV53.js` | Extends guildEngineV29 · 5 cấp bậc (GM/Vice/Elder/Officer/Member) · 8 công trình HQ · 10 nhiệm vụ · 7 AI guilds · Chiêu mộ NPC · g53CreateGuild/AddMember/RecruitNpc/PromoteMember/BuildHQ/AssignQuest | `cgv6_guild_core_v53` | 7300ms |

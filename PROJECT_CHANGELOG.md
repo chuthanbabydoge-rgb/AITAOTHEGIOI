@@ -4,6 +4,44 @@
 
 ---
 
+## [V54] — 2026-06-13 — Marketplace Expansion & Trading Network
+
+### New Systems Added (5 files)
+- `tradeNetworkCoreV54.js` — Mạng Lưới Thương Mại V54: 4 loại tuyến (domestic/international/empire/multiverse) · 5 phương tiện (caravan/ship/airship/portal/godship) · 6 sự kiện ngẫu nhiên (bandit/storm/boom/tax/discovery/war) · Guild-owned routes · Empire routes · tn54EstablishRoute() · tn54UpgradeRoute() · tn54CloseRoute() · tn54GetStats() · tn54GetJarvisReport() · GameTick hook · SAVE: cgv6_trade_network_v54 · init: 7800ms
+- `goodsSystemV54.js` — Hàng Hóa V54: 6 danh mục (Thực Phẩm/Khoáng Sản/Vũ Khí/Thần Khí/Tài Nguyên Hiếm/Tùy Chỉnh) · 26 loại hàng hóa · Player/Guild/Empire warehouse · Custom goods creation · gs54BuyGoods() · gs54SellGoods() · gs54CreateCustomGood() · gs54GetInventory() · gs54GetStats() · SAVE: cgv6_goods_v54 · init: 7900ms
+- `supplyDemandV54.js` — Cung Cầu Giá Cả V54: Dynamic pricing · 7 loại sự kiện thị trường (boom/crash/shortage/surplus/golden_age/trade_war/discovery) · Disaster+War+Age+Pop modifiers · Auto price fluctuation mỗi 15 tick · sd54GetCurrentPrice() · sd54TriggerMarketEvent() · sd54ApplyExternalModifier() · sd54GetStats() · sd54GetJarvisReport() · GameTick hook · SAVE: cgv6_supply_demand_v54 · init: 8000ms
+- `blackMarketV54.js` — Chợ Đen V54: 8 hàng cấm (Cấm Thư Tà Đạo/Hồn Tinh Nô Lệ/Tuyệt Thế Độc Đan/Vũ Khí Hỗn Mang/Bí Mật Quân Sự/Cổ Vật Bị Truy Tìm/Đoạt Huyết Tiên Đan/Bản Đồ Cấm Địa) · 4 fence (Lão Trương/Hắc Liên/Cô Bé Tóc Đen/Thiên Hạ TH Đen) · 4 cấp mạng lưới ngầm · Risk system (bị bắt → hối lộ thoát) · Guild black market · bm54BuyContraband() · bm54SellContraband() · bm54UpgradeNetwork() · bm54SetupGuildBlackMarket() · GameTick hook (guild BM income) · SAVE: cgv6_black_market_v54 · init: 8100ms
+- `tradeRegistryV54.js` — Trade Registry V54: Patches player-hub-v28 · 6 tabs (Thương Mại/Tuyến Đường/Hàng Hóa/Logistics/Chợ Đen/Thống Kê) · tr54RenderTrade/Routes/Goods/Logistics/BlackMkt/TradeStats · tradeV54HubRenderPanel() · Passive · init: 8200ms
+
+### index.html Changes (add only)
+- 6 panel divs sau V53 panels: panel-trade-v54 · panel-routes-v54 · panel-goods-v54 · panel-logistics-v54 · panel-blackmkt-v54 · panel-tradestats-v54
+- 5 script tags V54 sau V53 scripts
+
+### Global Objects
+- `window.tradeNetV54Data` — routes[] · guildRoutes[] · empireRoutes[] · totalRevenue · stats
+- `window.goodsV54Data` — playerInventory{} · guildWarehouse{} · empireStockpile{} · customGoods[] · transactions[]
+- `window.supplyDemandV54Data` — prices{} · activeModifiers[] · marketEvents[] · priceHistory{}
+- `window.blackMarketV54Data` — playerRep · networkTier · stockpile{} · activeFence · arrests · totalProfit · guildBlackMarket
+
+### Save Keys
+- cgv6_trade_network_v54 · cgv6_goods_v54 · cgv6_supply_demand_v54 · cgv6_black_market_v54
+
+### UI Integration
+- 6 tabs trong player-hub-v28 (KHÔNG tạo sidebar tab mới — quy tắc V38)
+
+### Không Trùng Với
+- `oceanTradeEngineV27.js` (V27 ocean routes, V54 extends: empire+multiverse types)
+- `economyEngineV2.js` (ev2BlackMarkets NPC-level, V54 là player-facing)
+- `multiverseEconomy.js` V35 (6 goods, V54 reads meData không ghi đè)
+- `playerMarketplaceV52.js` (item marketplace, V54 là goods catalog + trade routes)
+
+### GameTick Hooks
+- tradeNetworkCoreV54 (mỗi 6 tick: route income + event trigger)
+- supplyDemandV54 (mỗi 15 tick: price fluctuation + world event sync)
+- blackMarketV54 (mỗi 8 tick: guild black market income)
+
+---
+
 ## [V51] — 2026-06-13 — Creator God Online
 
 ### New Systems Added (6 files)
