@@ -209,22 +209,11 @@
 
       container.style.display = anyVisible ? "" : "none";
 
-      // Highlight header if active panel is inside
+      // Highlight header nếu tab active đang nằm trong nhóm này
       var header = container.querySelector(".nav-group-header");
       if (header) {
         if (hasActive) header.classList.add("has-active");
         else header.classList.remove("has-active");
-        if (hasActive) {
-          // Auto-expand group containing active tab
-          var open = content.style.maxHeight !== "0" && content.style.maxHeight !== "0px";
-          if (!open) {
-            content.style.maxHeight = "2000px";
-            var arrow = header.querySelector(".nav-group-arrow");
-            if (arrow) arrow.classList.add("open");
-            collapseState[grp.id] = true;
-            saveState();
-          }
-        }
       }
     });
   }
