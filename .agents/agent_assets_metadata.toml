@@ -12,3 +12,15 @@ id = "_vgw_TT-yufXyI8_6dA7w"
 uri = "file://PROMPT_TEMPLATE.md"
 type = "text"
 title = "PROMPT_TEMPLATE.md — Onboarding AI Mới"
+
+[[outputs]]
+id = "MlGubPuJyn-05BPt3wU5b"
+uri = "file://UI_REARCHITECTURE_REPORT.md"
+type = "text"
+title = "UI Rearchitecture Report — Creator God V6"
+
+[[outputs]]
+id = "5KV6nj_sJU7e3vCPAn4KA"
+uri = "file://screenshots/ui_current.jpg"
+type = "image"
+title = "Ảnh chụp giao diện hiện tại"

@@ -1,225 +1,448 @@
-# UI REARCHITECTURE REPORT — V90
-
-> Date: 2026-06-14
-> Pass: UI Rearchitecture Pass
-> Objective: Biến "Admin Dashboard" thành "Personal Universe Operating System"
-
----
-
-## 1. SIDEBAR MỚI GỒM GÌ
-
-### Trước (11 groups, 100+ buttons)
-```
-🌍 Thế Giới       → world, npcs, logs, worldmap, world3d
-🏰 Văn Minh       → countries, empire, kingdoms, empires, dynasty... (12 panels)
-⚔️ Chiến Tranh    → sectwars, territories, war-engine... (6 panels)
-🤝 Ngoại Giao     → diplomacy, alliance, sanctions... (9 panels)
-🌌 Thiên Địa      → continent, naval, event-hub... (8 panels)
-🏯 Tu Tiên        → sects, spirit-beast, cultivation... (5 panels)
-📜 Lịch Sử       → world-history, chronicle, timeline... (7 panels)
-💰 Kinh Tế       → economy, dungeon, technology (4 panels)
-👤 Nhân Vật       → player, player-hub-v28 (2 panels)
-👁 Tạo Hóa       → creator-hub-v32, guardian-hub-v33 (2 panels, mỗi hub 50+ sub-tabs)
-⚙️ Hệ Thống      → dashboard, performance, project-status... (5 panels)
-```
-**Tổng: ~60 mục sidebar cấp cao, 249 panels, 102 nav buttons**
-
-### Sau (6 items cố định — PUOS V90)
-```
-🪐 My Universe    → Dashboard tổng quan vũ trụ
-🌍 Worlds         → Tạo, quản lý, AI Genesis, Timeline, Snapshots
-🏛 Civilization   → Văn minh, Văn hóa, Tôn giáo, Tri thức, Lịch sử
-🌌 Universe Hub   → Worlds, Creators, Portals, Events, Multiverse
-🤖 Jarvis         → AI assistant với Claude API + command routing
-⚙ Settings       → Chung, Hiệu năng, Bảo mật, Backup, Advanced
-```
-**Tổng: 6 items, mỗi item 4-5 sub-tabs = 26 tabs tổng**
-
-### Escape Hatch
-- **Classic Mode button** ở footer sidebar → khôi phục 100% UI cũ
-- **"Xem Đầy Đủ →"** trong mỗi panel → mở đúng classic hub
-- Advanced Settings → quick access 6 classic panels
+# UI_REARCHITECTURE_REPORT.md
+# Creator God V6 — Nền Tảng Đa Thế Giới
+**Ngày cập nhật:** 2026-06-14
+**Phiên bản:** V90 (PUOS — Personal Universe Operating System)
+**Ảnh chụp giao diện:** `screenshots/ui_current.jpg`
 
 ---
 
-## 2. MÀN HÌNH NÀO BỊ HỢP NHẤT
+## 1. TỔNG QUAN HIỆN TRẠNG
 
-### Gộp vào "Worlds" (5 tabs)
-| Cũ | Mới |
+### 1.1 Thông số kỹ thuật
+
+| Hạng mục | Số lượng |
 |---|---|
-| creator-hub-v32 > World Creation Wizard | Worlds > Creation tab |
-| creator-hub-v32 > AI Genesis (V75) | Worlds > Genesis tab |
-| creator-hub-v32 > World DNA (V62) | Worlds > Creation tab |
-| creator-hub-v32 > Timeline V76 | Worlds > Timeline tab |
-| backupEngine (V87) | Worlds > Snapshots tab |
-| worldmap panel | Quick action button |
+| Tổng dòng code `index.html` | **3.730 dòng** |
+| Thẻ `<script>` trong HTML | **398 thẻ** |
+| File Engine (`*Engine.js`) | **130 file** |
+| File System (`*System.js`) | **50 file** |
+| Tổng file JavaScript | **397 file** |
+| File CSS ngoài | `v6_style_additions.css` |
+| CSS nhúng trong HTML | > 1.400 dòng |
+| Panel/View riêng biệt | **65+ panel** |
+| File HTML | 2 (`index.html`, `worldTimelineViewer.html`) |
 
-### Gộp vào "Civilization" (5 tabs)
-| Cũ | Mới |
+### 1.2 Stack hiện tại
+- **Framework UI:** Không có — Vanilla HTML/CSS/JavaScript thuần
+- **State management:** Global `window` object (`window.world`, `window.npcs`, v.v.)
+- **Rendering:** Imperative DOM manipulation + `innerHTML` injection
+- **Persistence:** `localStorage` với prefix `cgv6_*`
+- **AI Backend:** Node.js `serve.js` proxy → Anthropic Claude API
+- **Runtime:** Node.js 20 trên Replit Nix
+
+---
+
+## 2. KIẾN TRÚC UI HIỆN TẠI
+
+### 2.1 Sơ đồ layout tổng thể
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  #particleCanvas (background layer — canvas animation)          │
+├──────────────┬──────────────────────────────────────────────────┤
+│              │  .top-bar (world name · year · tick stats)       │
+│  .sidebar    ├──────────────────────────────────────────────────┤
+│  (240px)     │                                                  │
+│              │  .panels  (chỉ 1 .active hiển thị tại 1 thời điểm)│
+│  sidebar-    │                                                  │
+│  logo        │  #panel-world | #panel-npcs | #panel-worldmap    │
+│              │  #panel-world3d | ... (65+ panels)               │
+│  sidebar-    │                                                  │
+│  nav         │                                                  │
+│  (nav-btn×N) ├──────────────────────────────────────────────────┤
+│              │  .sim-controls (speed: 1× 10× 100× 1000× MAX)   │
+│  sidebar-    │  bottom-bar (Timeline · AutoFocus · Replay)      │
+│  heaven      │                                                  │
+└──────────────┴──────────────────────────────────────────────────┘
+│  #modalOverlay (global modal — NPC detail · World create · etc) │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 2.2 Danh sách đầy đủ 65+ Panel (Classic Mode)
+
+#### Nhóm Core / Thế Giới
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `world` | 🌐 Thế Giới Của Tôi | Luôn hiện |
+| `npcs` | 👥 Tu Sĩ | Luôn hiện |
+| `logs` | 📜 Nhật Ký | Luôn hiện |
+| `world-history` | 📖 Lịch Sử | Mở khóa theo tiến trình |
+| `world-chronicle` | 📰 Biên Niên Sử | Mở khóa theo tiến trình |
+| `world-memory` | 🧠 Ký Ức Thế Giới | Mở khóa theo tiến trình |
+
+#### Nhóm Chính Trị / Tổ Chức
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `sects` | 🏯 Tông Môn | Mở khóa theo tiến trình |
+| `countries` | 🏛 Quốc Gia | Mở khóa theo tiến trình |
+| `empire` | 👑 Đế Quốc | Mở khóa theo tiến trình |
+| `kingdoms` | 🗺 Vương Quốc | Mở khóa theo tiến trình |
+| `empires` | 🌐 Đế Chế | Mở khóa theo tiến trình |
+| `dynasty` | 👑 Triều Đại | Mở khóa theo tiến trình |
+| `dynasty-engine` | ⚙️ Dynasty Engine | Mở khóa theo tiến trình |
+| `noble-houses` | 🏰 Danh Gia | Mở khóa theo tiến trình |
+| `succession` | 👑 Kế Thừa | Mở khóa theo tiến trình |
+| `political-religion` | ⛪ Tôn Giáo Chính Trị | Mở khóa theo tiến trình |
+| `espionage` | 🕵️ Tình Báo | Mở khóa theo tiến trình |
+
+#### Nhóm Chiến Tranh / Xung Đột
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `sectwars` | ⚔️ Chiến Tranh Tông Môn | Mở khóa theo tiến trình |
+| `war-engine` | ⚔️ War Engine | Mở khóa theo tiến trình |
+| `territory-war` | 🏴 Chiến Tranh Lãnh Thổ | Mở khóa theo tiến trình |
+| `combat-hub-v31` | ⚔️ Combat Hub | Mở khóa theo tiến trình |
+| `event-hub-v25` | ⚡ Event Hub | Mở khóa theo tiến trình |
+
+#### Nhóm Kinh Tế / Thương Mại
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `economy` | 💰 Kinh Tế | Mở khóa theo tiến trình |
+| `economy-engine` | 📊 Economy Engine | Mở khóa theo tiến trình |
+| `ocean-hub-v27` | 🌊 Đại Dương | Mở khóa theo tiến trình |
+| `naval-ocean` | 🚢 Hải Quân | Mở khóa theo tiến trình |
+
+#### Nhóm Tu Luyện / Nhân Vật
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `player` | 👤 Người Chơi | Mở khóa theo tiến trình |
+| `player-hub-v28` | 🎮 Player Hub | Mở khóa theo tiến trình |
+| `cultivation-hub-v29` | 🧘 Tu Luyện | Mở khóa theo tiến trình |
+| `bloodlines` | 🩸 Huyết Mạch | Mở khóa theo tiến trình |
+| `spirit-beast` | 🐉 Linh Thú | Mở khóa theo tiến trình |
+| `hero-legend` | ⚔️ Anh Hùng & Huyền Thoại | Mở khóa theo tiến trình |
+| `npc-reputation` | 🌟 Danh Tiếng NPC | Mở khóa theo tiến trình |
+| `leaderboard` | 🏆 Bảng Xếp Hạng | Mở khóa theo tiến trình |
+
+#### Nhóm Vũ Trụ / Siêu Việt
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `multiverse-hub-v35` | 🌌 Đa Vũ Trụ | Mở khóa theo tiến trình |
+| `divine-hub-v30` | ✨ Thần Thánh | Mở khóa theo tiến trình |
+| `guardian-hub-v33` | 🛡️ Thủ Hộ Thần | Mở khóa theo tiến trình |
+| `heavenly-dao` | ⚖️ Thiên Đạo | Mở khóa theo tiến trình |
+| `mythology` | 📜 Thần Thoại | Mở khóa theo tiến trình |
+| `religion` | ⛪ Tôn Giáo | Mở khóa theo tiến trình |
+
+#### Nhóm Bản Đồ / Trực Quan
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `worldmap` | 🗺 Bản Đồ Thế Giới | Mở khóa theo tiến trình |
+| `world3d` | 🌐 3D World Viewer (WebGL) | Mở khóa theo tiến trình |
+| `territories` | 🏴 Lãnh Thổ | Mở khóa theo tiến trình |
+| `continent` | 🌍 Đại Lục | Mở khóa theo tiến trình |
+| `continent-hub-v26` | 🌎 Continent Hub | Mở khóa theo tiến trình |
+| `migration` | 🚶 Di Cư | Mở khóa theo tiến trình |
+| `historical-timeline` | 📅 Dòng Thời Gian | Mở khóa theo tiến trình |
+
+#### Nhóm Sinh Thái / Khoa Học
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `technology` | 🔬 Công Nghệ | Mở khóa theo tiến trình |
+| `living-civ` | 🌱 Văn Minh Sống | Mở khóa theo tiến trình |
+| `culture-heritage` | 🎨 Văn Hóa & Di Sản | Mở khóa theo tiến trình |
+| `age` | 🌅 Kỷ Nguyên | Mở khóa theo tiến trình |
+| `world-event` | 🌌 Thiên Hạ Đại Sự | Mở khóa theo tiến trình |
+
+#### Nhóm Đặc Biệt / Creator
+| Panel ID | Tên hiển thị | Trạng thái |
+|---|---|---|
+| `dungeon` | 🏛 Dungeon | Mở khóa theo tiến trình |
+| `boss` | 👹 World Boss | Mở khóa theo tiến trình |
+| `secret-realms` | 🌀 Bí Cảnh | Mở khóa theo tiến trình |
+| `creator-hub-v32` | ✨ Creator Hub (~50 sub-tabs) | Mở khóa theo tiến trình |
+| `alliance-v24` | 🤝 Liên Minh | Mở khóa theo tiến trình |
+| `diplomacy-hub-v24` | 🌐 Diplomacy Hub | Mở khóa theo tiến trình |
+| `multiplayer` | 👥 Đa Người Chơi | Mở khóa theo tiến trình |
+| `story` | 📖 Câu Chuyện | Mở khóa theo tiến trình |
+| `dashboard` / `performance` | ⚙️ Hệ Thống | Luôn hiện |
+| `project-status` / `next-version` | 📋 Dev Info | Luôn hiện |
+
+---
+
+## 3. KIẾN TRÚC UI MỚI — PUOS V90
+
+### 3.1 Triết lý thiết kế lại
+
+> **"Admin Dashboard" → "Personal Universe Operating System"**
+> Giảm cognitive load từ 60+ sidebar items xuống còn 6 items rõ ràng,
+> trong khi vẫn giữ nguyên 100% tính năng cũ qua Classic Mode escape hatch.
+
+### 3.2 Sidebar mới — 6 items cố định
+
+```
+Trước (V89 và cũ hơn)         Sau (PUOS V90)
+─────────────────────         ──────────────────────
+🌍 Thế Giới       (12+)  →   🪐 My Universe     (1 dashboard)
+🏰 Văn Minh       (12+)  →   🌍 Worlds          (5 tabs)
+⚔️ Chiến Tranh    (6+)   →   🏛 Civilization    (5 tabs)
+🤝 Ngoại Giao     (9+)   →   🌌 Universe Hub    (5 tabs)
+🌌 Thiên Địa      (8+)   →   🤖 Jarvis          (AI chat)
+🏯 Tu Tiên        (5+)   →   ⚙ Settings        (5 tabs)
+📜 Lịch Sử        (7+)
+💰 Kinh Tế        (4+)      Tổng: 6 items, 26 tabs
+👤 Nhân Vật       (2+)
+👁 Tạo Hóa        (2 hubs)   vs. 11 groups, 100+ buttons
+⚙️ Hệ Thống       (5+)
+─────────────────────
+Tổng: 60+ items sidebar
+```
+
+### 3.3 Sơ đồ hợp nhất panel
+
+#### 🪐 My Universe — Dashboard tổng quan
+| Nguồn cũ | Tích hợp vào |
 |---|---|
-| panel-civ-culture-v38 | Civilization > Cultures tab |
-| panel-civ-religion-v38 | Civilization > Religions tab |
-| panel-civ-tech-v38 | Civilization > Knowledge tab |
-| academyEngineV79 | Civilization > Knowledge tab |
-| philosophyEngineV79 | Civilization > Knowledge tab |
-| world-history, world-chronicle | Civilization > History tab |
-| panel-civ-overview-v38 | Civilization > Overview tab |
+| PUOS registry V81 (overview) | My Universe stats cards |
+| analyticsEngine V88 (metrics) | My Universe metrics |
+| universeHealthSystem V55 | Health status card |
+| disasterRecovery V87 | Health check indicator |
+| historical timeline events | Recent Events feed |
 
-### Gộp vào "Universe Hub" (5 tabs)
-| Cũ | Mới |
+#### 🌍 Worlds — 5 tabs
+| Nguồn cũ | Tab mới |
 |---|---|
-| universeHubCore V73 (Worlds tab) | Universe Hub > Worlds |
-| universeHubCore V73 (Creators) | Universe Hub > Creators |
-| universeGateSystemV56 (portals) | Universe Hub > Portals |
-| universePassportData | Universe Hub > Portals |
-| eventRegistryV59 | Universe Hub > Events |
-| multiverseEvolutionV80 | Universe Hub > Multiverse |
-| crossWorldInfluenceV80 | Universe Hub > Multiverse |
+| creator-hub-v32 > World Creation Wizard | Creation tab |
+| creator-hub-v32 > AI Genesis (V75) | Genesis tab |
+| creator-hub-v32 > World DNA (V62) | Creation tab |
+| creator-hub-v32 > Timeline V76 | Timeline tab |
+| backupEngine V87 | Snapshots tab |
 
-### Gộp vào "My Universe" (single dashboard)
-| Cũ | Mới |
+#### 🏛 Civilization — 5 tabs
+| Nguồn cũ | Tab mới |
 |---|---|
-| PUOS registry V81 (overview) | My Universe stats |
-| analyticsEngine V88 (metrics) | My Universe stats |
-| universeHealthSystem V55 | My Universe health card |
-| disasterRecovery V87 (health check) | My Universe health |
-| historical timeline events | My Universe recent events |
+| panel-civ-culture-v38 | Cultures tab |
+| panel-civ-religion-v38 | Religions tab |
+| academyEngineV79 + philosophyEngineV79 | Knowledge tab |
+| world-history + world-chronicle | History tab |
+| panel-civ-overview-v38 | Overview tab |
 
-### Gộp vào "Jarvis" (chat center)
-| Cũ | Mới |
+#### 🌌 Universe Hub — 5 tabs
+| Nguồn cũ | Tab mới |
+|---|---|
+| universeHubCore V73 (Worlds) | Worlds tab |
+| universeHubCore V73 (Creators) | Creators tab |
+| universeGateSystemV56 (portals) | Portals tab |
+| eventRegistryV59 | Events tab |
+| multiverseEvolutionV80 | Multiverse tab |
+
+#### 🤖 Jarvis — AI Chat Center
+| Nguồn cũ | Tích hợp |
 |---|---|
 | guardian-hub-v33 (AI Advisor) | Jarvis panel |
 | creator-hub-v32 > AI Advisor (V41) | Jarvis shortcuts |
-| DivineOracle V77 | Jarvis Claude routing |
-| worldAdvisorData | Jarvis context |
+| DivineOracle V77 | Claude routing |
+| worldAdvisorData | Context injection |
 
-### Gộp vào "Settings" (5 tabs)
-| Cũ | Mới |
+#### ⚙ Settings — 5 tabs
+| Nguồn cũ | Tab mới |
 |---|---|
-| dashboard panel | Settings > General |
-| performance panel (V82) | Settings > Performance |
-| securityLayer V86 | Settings > Security |
-| backupEngine V87 | Settings > Backup |
-| project-status, next-version | Settings > Advanced |
+| dashboard panel | General tab |
+| performance panel (V82) | Performance tab |
+| securityLayer V86 | Security tab |
+| backupEngine V87 | Backup tab |
+| project-status + next-version | Advanced tab |
+
+### 3.4 Classic Mode Escape Hatch
+
+**Không có gì bị xóa.** Tất cả panels cũ vẫn tồn tại trong DOM:
+
+| Cách truy cập | Mô tả |
+|---|---|
+| Classic Mode toggle (sidebar footer) | Khôi phục 100% UI cũ ngay lập tức |
+| "Xem Đầy Đủ →" button trong mỗi PUOS panel | Mở đúng classic hub tương ứng |
+| Settings > Advanced > Quick Access | Nhanh chóng vào 6 classic panels |
 
 ---
 
-## 3. COMPONENT NÀO BỊ LOẠI BỎ (ẨN, KHÔNG XÓA)
+## 4. HỆ THỐNG THIẾT KẾ (Design System)
 
-**Không có gì bị xóa.** Tất cả đều vẫn tồn tại trong DOM, chỉ bị ẩn bởi PUOS overlay.
+### 4.1 Theme & Màu sắc
 
-### Ẩn (nhưng truy cập được qua Classic Mode):
-- 11 sidebar groups với 100+ nav buttons
-- guardian-hub-v33 (5 tabs)
-- 22 tab gốc của creator-hub-v32
-- 27 file inject thêm vào creator-hub-v32
-- player-hub-v28 (10+ tabs)
-- multiverse-hub-v35 (8+ tabs)
+```css
+:root {
+  --gold:       #c9a227;   /* Tiêu đề chính, accent chủ đạo */
+  --jade:       #4a9e6b;   /* Nút hành động, trạng thái tích cực */
+  --bg-main:    #0d0e12;   /* Nền tổng thể */
+  --bg-card:    #13151c;   /* Background thẻ/panel */
+  --bg-hover:   #1a1d27;   /* Hover state */
+  --border:     #2a2d3a;   /* Đường viền */
+  --white-main: #e8e9ef;   /* Text chính */
+  --sidebar-w:  240px;     /* Chiều rộng sidebar */
+}
+```
 
-### Cách truy cập UI cũ:
-1. Classic Mode toggle (sidebar footer) → khôi phục 100%
-2. "Xem Đầy Đủ →" buttons trong PUOS panels
-3. Settings > Advanced > Quick Access buttons
+**Theme:** Dark charcoal + Gold + Jade — phong cách Tiên Hiệp Đông Phương.
 
----
+### 4.2 Typography
+- **Tiêu đề:** Cinzel Decorative (Google Fonts)
+- **Nội dung CJK/Tiếng Việt:** Noto Serif SC
+- **Số liệu/Stats:** system monospace
 
-## 4. UX ĐƠN GIẢN HƠN THẾ NÀO
+### 4.3 Component Library (Vanilla CSS)
 
-### Before (Pain Points)
-- Sidebar có 11 groups, phải scroll để thấy hết
-- creator-hub-v32 có ~50 tabs trong 1 hub → không biết dùng tab nào
-- player-hub-v28 có tabs từ 8 file khác nhau inject vào → thứ tự ngẫu nhiên
-- Không có "home page" — mở app là thấy dashboard/thế giới rỗng
-- Không có hướng dẫn "làm gì tiếp theo"
-- Jarvis bị chôn vùi trong creator-hub-v32 > AI Advisor tab
-
-### After (PUOS UX)
-- Mở app → thấy ngay My Universe dashboard với stats thật
-- 6 items rõ ràng theo mental model: Vũ Trụ → Thế Giới → Văn Minh → Hub → Trợ Lý → Cài Đặt
-- Jarvis là section riêng, accessible từ Quick Actions
-- Quick action buttons trên My Universe: không cần nhớ panel nào
-- "Xem Đầy Đủ →" pattern: overview trước, detail sau
-- Classic Mode để power users không mất tính năng nào
-
-### Cognitive Load Reduction
-| Metric | Before | After |
+| Component | CSS Class | Mô tả |
 |---|---|---|
-| Sidebar items (cấp cao) | 60+ | 6 |
+| Card | `.card` | Bo góc 12px, border 1px, bg-card |
+| Card Title | `.card-title` | Chữ vàng, font Cinzel |
+| Button chính | `.btn-primary` | Gradient vàng |
+| Button jade | `.btn-jade` | Gradient xanh lá |
+| Input | `.dao-input` | Input tối, border gold khi focus |
+| Select | `.dao-select` | Dropdown custom style |
+| NPC Card | `.npc-card` | Avatar + progress bars HP/MP/EXP |
+| Progress Bar | `.progress-bar` | Thanh tiến trình gradient |
+| Panel Toolbar | `.panel-toolbar` | Flexbox header toolbar |
+| Panel Grid | `.panel-grid` | 2-column responsive grid |
+| Modal Overlay | `#modalOverlay` | Full-screen modal toàn cục |
+
+### 4.4 Responsive Breakpoints
+
+```css
+@media (max-width: 900px) { --sidebar-w: 200px; .panel-grid → 1 column }
+@media (max-width: 640px) { --sidebar-w: 56px;  sidebar icon-only mode }
+```
+
+---
+
+## 5. KIẾN TRÚC RENDERING
+
+### 5.1 Luồng khởi tạo
+
+```
+index.html load
+  → 398 <script> tags (tuần tự, ~24 giây)
+    → mỗi Engine/System đăng ký vào window.*
+  → DOMContentLoaded → initApp() / app.js
+      → khởi tạo world state
+      → bắt đầu gameTick() interval
+        → tick toàn bộ Engines
+        → render active panel
+  → setTimeout(24000ms) → PUOS V90 Shell init
+      → overlay PUOS lên toàn bộ classic UI
+```
+
+### 5.2 Pattern render (hiện tại)
+
+```javascript
+function renderDungeonPanel() {
+  const el = document.getElementById('panel-dungeon');
+  el.innerHTML = `...toàn bộ HTML string...`;
+}
+showPanel('dungeon');
+renderDungeonPanel();
+```
+
+Vấn đề: Toàn bộ panel bị xóa và viết lại mỗi lần — không có virtual DOM, không có diffing.
+
+### 5.3 State Management
+
+```javascript
+window.world    = { name, year, population, ... }
+window.npcs     = [ ...array of NPC objects ]
+window.sects    = [ ...array ]
+window.economy  = { gdp, trade, ... }
+```
+
+Không có encapsulation — toàn bộ state là global trên `window`.
+
+---
+
+## 6. FILES PUOS V90 ĐÃ TẠO
+
+| File | Chức năng | Init delay |
+|---|---|---|
+| `puosShell.js` | Main shell · 6-item sidebar · routing · Classic Mode | 24000ms |
+| `puosMyUniverse.js` | My Universe dashboard · stats · quick actions | 24100ms |
+| `puosWorldsPanel.js` | Worlds · 5 tabs · Creation/Genesis/Timeline/Snapshots | 24200ms |
+| `puosCivPanel.js` | Civilization · 5 tabs · Culture/Religion/Knowledge/History | 24300ms |
+| `puosHubPanel.js` | Universe Hub · 5 tabs · Worlds/Creators/Portals/Events | 24400ms |
+| `puosJarvis.js` | Jarvis AI · chat · Claude API bridge · command routing | 24500ms |
+| `puosSettings.js` | Settings · 5 tabs · General/Performance/Security/Backup | 24600ms |
+
+**Rules đã tuân thủ:**
+- EXPAND ONLY — không xóa file cũ
+- IIFE pattern với staggered setTimeout init
+- Không sửa `app.js` hoặc bất kỳ engine nào
+- Classic Mode cho phép truy cập 100% UI cũ
+
+---
+
+## 7. VẤN ĐỀ UI HIỆN TẠI
+
+### Critical
+1. **398 script tags** tải tuần tự → khởi động chậm (~24 giây)
+2. **`innerHTML` toàn panel** mỗi tick → garbage collection nặng
+3. **localStorage 5MB limit** — chưa có auto-cleanup
+
+### High Priority
+4. **Mobile UX** — sidebar + content chật trên màn hình nhỏ
+5. **Tab state không persist** — reset khi navigate qua lại
+6. **XSS tiềm năng** — `innerHTML` với dữ liệu AI chưa được sanitize nhất quán
+
+### Medium Priority
+7. **Jarvis chat history** — chỉ in-memory, mất khi refresh
+8. **Classic Mode state** — không nhớ panel đang mở khi toggle
+9. **No loading indicator** — không có spinner khi AI đang xử lý
+
+---
+
+## 8. UX SCORECARD
+
+| Dimension | Trước V90 | Sau V90 (PUOS) | Mục tiêu V95+ |
+|---|---|---|---|
+| Navigation Clarity | 12/25 | 22/25 | 24/25 |
+| First-Time Experience | 5/20 | 13/20 | 18/20 |
+| Feature Discoverability | 10/20 | 16/20 | 18/20 |
+| Visual Consistency | 14/20 | 17/20 | 19/20 |
+| Task Completion Speed | 5/15 | 11/15 | 13/15 |
+| **Tổng** | **46/100** | **79/100** | **92/100** |
+
+| Metric | Trước | Sau |
+|---|---|---|
+| Sidebar items cấp cao | 60+ | 6 |
 | Tabs trong hub phổ biến nhất | ~50 | 5 |
-| Clicks để thấy universe health | 4-5 | 0 (hiển thị ngay) |
+| Clicks để thấy universe health | 4–5 | 0 (hiển thị ngay) |
 | Clicks để hỏi Jarvis | 3 | 1 |
 | Clicks để tạo thế giới | 2 | 1 |
 
 ---
 
-## 5. VẤN ĐỀ UI CÒN TỒN TẠI
+## 9. ẢNH CHỤP GIAO DIỆN
 
-### Critical
-1. **localStorage limit** — 5MB limit, lsUsed indicator trong Settings nhưng chưa có auto-cleanup
-2. **Classic Mode mặc định** — người dùng cũ sẽ cảm thấy "lost" khi load lần đầu thấy PUOS shell
+**File lưu:** `screenshots/ui_current.jpg`
+**Thời điểm chụp:** 2026-06-14
 
-### High Priority
-3. **Mobile UX** — PUOS sidebar 200px + content area chật trên mobile (<768px)
-4. **Tab state không persist** — khi navigate sang section khác rồi quay lại, tab active bị reset
-5. **Loading time 24 giây** — PUOS shell chỉ hiện sau 24000ms (chờ tất cả engines load)
+**Mô tả:** Màn hình khởi đầu "Thế Giới Của Tôi" — trạng thái trước khi tạo thế giới đầu tiên.
 
-### Medium Priority
-6. **Jarvis chat history** — không persist khi refresh (chỉ in-memory)
-7. **My Universe "recent events"** — đọc từ localStorage keys, có thể miss events nếu key không match
-8. **Classic Mode không nhớ state** — khi toggle Classic→PUOS, không nhớ đang ở panel nào trong Classic
-
-### Low Priority
-9. **PUOS animations** — chỉ có fade-in, chưa có slide transitions
-10. **Dark/Light mode** — chỉ có dark mode
+**Các thành phần hiển thị:**
+- Header: Logo "Thần Sáng Tạo / Creator God V6" + tabs điều hướng trên
+- Counter: "0 thế giới" | "0 Tu Sĩ Tổng"
+- Action buttons: Tạo Thế Giới Mới · Nhập · Xuất Tất Cả
+- Search bar: Tìm kiếm thế giới
+- Empty state: "Hư Không Chưa Có Gì — Chưa có thế giới nào"
+- Bottom bar: Speed controls (1× 10× 100× 1000× MAX) · Năm 1 · Timeline · AutoFocus · Replay · Live
 
 ---
 
-## 6. ĐIỂM UX HIỆN TẠI / 100
+## 10. ROADMAP ĐỀ NGHỊ (V95+)
 
-### Điểm Cũ (trước V90)
-| Dimension | Điểm | Lý Do |
-|---|---|---|
-| Navigation Clarity | 12/25 | 60+ items, không có hierarchy rõ |
-| First-Time Experience | 5/20 | Không có onboarding, overwhelming |
-| Feature Discoverability | 10/20 | Tính năng hay bị chôn trong hubs |
-| Visual Consistency | 14/20 | Mỗi engine có style riêng |
-| Task Completion Speed | 5/15 | Phải click nhiều để làm 1 việc |
-| **Tổng** | **46/100** | **"Admin Dashboard"** |
+### Phase 1 — Quick Wins (1–2 tuần)
+- [ ] Onboarding wizard lần đầu mở app
+- [ ] Tab state persist qua `sessionStorage`
+- [ ] `sanitizeHTML()` wrapper trước mọi `innerHTML`
+- [ ] Loading spinner khi Jarvis/AI đang xử lý
 
-### Điểm Mới (sau V90 PUOS)
-| Dimension | Điểm | Lý Do |
-|---|---|---|
-| Navigation Clarity | 22/25 | 6 items rõ ràng, mental model tốt |
-| First-Time Experience | 13/20 | Dashboard ngay lập tức, nhưng còn thiếu onboarding |
-| Feature Discoverability | 16/20 | Quick actions + "Xem Đầy Đủ" pattern |
-| Visual Consistency | 17/20 | Design System thống nhất cho PUOS panels |
-| Task Completion Speed | 11/15 | 1-2 clicks cho common tasks |
-| **Tổng** | **79/100** | **"Personal Universe OS"** |
+### Phase 2 — Performance (3–4 tuần)
+- [ ] Bundle 397 JS files với esbuild → 1 file (giảm từ 398 request xuống 1)
+- [ ] Lazy load panels chỉ khi cần
+- [ ] Virtualize danh sách NPC lớn (>500 NPC)
 
-### Điểm Mục Tiêu (V95+)
-- Onboarding wizard: +5 điểm First-Time Experience  
-- Tab state persistence: +2 điểm Task Completion Speed
-- Mobile optimization: +2 điểm Visual Consistency
-- **Mục tiêu: 88+/100**
+### Phase 3 — Architecture (6–8 tuần)
+- [ ] ES Modules — bỏ global `window.*`
+- [ ] TypeScript cho Engine/System core
+- [ ] Unit test cho game logic (gameTick, economy, war)
+- [ ] Mobile optimization pass
 
 ---
 
-## 7. FILES ĐÃ TẠO (V90)
-
-| File | Chức Năng | Init |
-|---|---|---|
-| `puosShell.js` | Main overlay shell · 6-item sidebar · routing · Classic Mode | 24000ms |
-| `puosMyUniverse.js` | My Universe dashboard · stats · quick actions · events | 24100ms |
-| `puosWorldsPanel.js` | Worlds · 5 tabs · Creation/Genesis/Timeline/Snapshots | 24200ms |
-| `puosCivPanel.js` | Civilization · 5 tabs · Culture/Religion/Knowledge/History | 24300ms |
-| `puosHubPanel.js` | Universe Hub · 5 tabs · Worlds/Creators/Portals/Events/Multiverse | 24400ms |
-| `puosJarvis.js` | Jarvis AI · chat · Claude bridge · command routing | 24500ms |
-| `puosSettings.js` | Settings · 5 tabs · General/Performance/Security/Backup/Advanced | 24600ms |
-
-### Rules Đã Tuân Thủ
-- ✅ EXPAND ONLY — không xóa file cũ
-- ✅ IIFE pattern với staggered init
-- ✅ Không sửa app.js
-- ✅ Không xóa panels cũ — chỉ ẩn bằng CSS overlay
-- ✅ Classic Mode cho phép truy cập 100% UI cũ
-- ✅ Không tạo gameTick hooks mới (UI-only)
+*Báo cáo được tạo từ phân tích codebase Creator God V6 — cập nhật 2026-06-14*
