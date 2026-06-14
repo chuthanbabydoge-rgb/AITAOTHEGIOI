@@ -4,6 +4,64 @@
 
 ---
 
+## [V68] — 2026-06-14 — World Narrative Engine (Claude Viết Sử Ký)
+
+### Triết Lý V68
+EXPAND ONLY. Không tạo tab sidebar mới. Dùng Anthropic Claude đã cài sẵn (endpoint /api/claude qua serve.js) để tự động viết sử ký văn học cho thế giới. Mỗi chapter = 1 lần gọi AI, viết bằng tiếng Việt cổ điển. Lưu vào localStorage + World Memory V64.
+
+### New Files (4 files)
+- `worldNarrativeCoreV68.js` — Chapter manager · snapshot builder (countries/wars/heroes/divine acts/prophecies) · auto-generate hook vào gameTick · SAVE: cgv6_world_narrative_v68 · init: 15200ms
+- `narrativeGeneratorV68.js` — Build prompt từ world data · fetch /api/claude · 4 style prompts (sử thi/truyện ký/biên niên sử/sử thi anh hùng) · 3 length options (short 400/medium 800/long 1400 tokens) · init: 15300ms
+- `narrativeBookV68.js` — Hologram book UI: 2-panel (chapter list + reader) · Markdown→HTML · copy/delete chapter · ng68_* action handlers · init: 15400ms
+- `narrativeRegistryV68.js` — Patch creator-hub-v32 · Jarvis Narrator banner · Quick Generate button · gameTick refresh · init: 15500ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 4 script tags sau V67 scripts
+
+### UI (trong creator-hub-v32, section: nr68-section-wrapper)
+- Jarvis Narrator Banner — cập nhật tự động, nhắc tạo chapter mới
+- ✍️ Viết Ngay — Quick Generate button ở header
+- Style selector: 📜 Sử Thi / 📖 Truyện Ký / 🗞️ Biên Niên Sử / ⚔️ Sử Thi Anh Hùng
+- Length: Ngắn (~400 từ) / Vừa (~800 từ) / Dài (~1400 từ)
+- Custom focus: text input "tập trung vào [nhân vật/sự kiện]"
+- ✍️ CLAUDE VIẾT SỬ KÝ — main action button
+- 2-panel: Chapter list (trái) + Book reader (phải)
+- Reader: title, tags, full content formatted, Copy / Xóa buttons
+- Auto-generate: checkbox + interval (100-5000 năm)
+- Stats: Tổng chương / Tổng từ / Tổng đã tạo
+
+### Prompt Data Sources (read-only)
+- Top 8 quốc gia (sorted by population)
+- Empires (top 5 by power)
+- Active wars (top 5)
+- Top 6 NPCs alive by power (heroes)
+- Last 15 historical events (from htData/historicalTimeline)
+- Last 8 divine acts (from creatorLegacyV66Data.legacyEntries)
+- Active prophecies (V51 + V66, up to 5)
+- Current era (ageV25Data.current)
+- God status (creatorLeg66GetGodRank + score)
+
+### 4 Claude Prompt Styles
+- **Sử Thi**: trang trọng, hào hùng, có vần điệu, từ ngữ cổ kính
+- **Truyện Ký**: kể chuyện sinh động như tiểu thuyết lịch sử
+- **Biên Niên Sử**: format `[Năm X] — Sự kiện`, khách quan, súc tích
+- **Sử Thi Anh Hùng**: tập trung nhân vật, ẩn dụ hùng tráng
+
+### Save Keys V68 (1 key)
+cgv6_world_narrative_v68
+
+### V64 Integration
+wmeAddMemory() + htAddEvent() called sau mỗi chapter
+
+### API Route
+POST /api/claude (proxy trong serve.js → api.anthropic.com)
+Key: AI_INTEGRATIONS_ANTHROPIC_API_KEY
+
+### Next Version
+- V69 init từ 15600ms+
+
+---
+
 ## [V67] — 2026-06-14 — Spatial UI Pass (Thế Giới Trong Không Gian 3D)
 
 ### Triết Lý V67
