@@ -1,0 +1,216 @@
+AVATAR OF GOD PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- IMMERSION_REPORT.md
+- MEMORY_REPORT.md
+- NPC_REPORT.md
+- GOD_EXPERIENCE_REPORT.md
+- WORLD_AUDIT_REPORT.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Người dùng không còn là người quan sát.
+
+Người dùng trở thành:
+
+Một thực thể tồn tại trong thế giới.
+
+==================================================
+AVATAR CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- avatarOfGodEngine.js
+- divinePresenceSystem.js
+- creatorManifestationSystem.js
+
+==================================================
+GOD AVATAR SYSTEM
+==================================================
+
+Người dùng có thể chọn:
+
+- Hình người
+- Thiên sứ
+- Rồng thần
+- Thực thể ánh sáng
+- Hologram
+- Tùy chỉnh
+
+==================================================
+DIVINE PRESENCE
+==================================================
+
+Khi xuất hiện:
+
+AI nhận biết:
+
+- Thần đang hiện diện
+- Thần đang quan sát
+- Thần đang can thiệp
+
+==================================================
+NPC REACTION SYSTEM
+==================================================
+
+NPC phản ứng khác nhau:
+
+- Tôn kính
+- Sợ hãi
+- Hoài nghi
+- Sùng bái
+- Chống đối
+
+Tùy văn hóa và tôn giáo.
+
+==================================================
+RELIGION EVOLUTION
+==================================================
+
+Tôn giáo có thể:
+
+- Tôn thờ Creator
+- Xem Creator là thần tối cao
+- Xem Creator là kẻ hủy diệt
+- Tạo giáo lý riêng
+
+==================================================
+DIVINE APPEARANCE EVENTS
+==================================================
+
+Tạo:
+
+- divineAppearanceSystem.js
+
+Ví dụ:
+
+- Thần giáng thế
+- Thần ban lời tiên tri
+- Thần cứu thành phố
+- Thần hủy diệt đế quốc
+
+==================================================
+CREATOR LEGACY EXPANSION
+==================================================
+
+Mọi lần hiện thân được ghi lại:
+
+- Sử sách
+- Truyền thuyết
+- Tôn giáo
+- Ký ức tập thể
+
+==================================================
+FOLLOW THE GOD
+==================================================
+
+NPC có thể:
+
+- Trở thành môn đồ
+- Thành lập giáo phái
+- Truyền bá tín ngưỡng
+
+==================================================
+JARVIS DIVINE COMPANION
+==================================================
+
+Jarvis có thể:
+
+- Xuất hiện cạnh Creator
+- Giới thiệu khu vực
+- Giải thích phản ứng của thế giới
+
+==================================================
+XR PREPARATION
+==================================================
+
+Thiết kế để tương thích:
+
+- Meta Quest
+- Apple Vision Pro
+- AR Glasses
+- XR Devices
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp:
+
+Creator Panel
+
+Tab nội bộ:
+
+- Avatar
+- Divine Presence
+- Manifestation
+- Followers
+- Divine Legacy
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Avatar Data
+- Divine Events
+- Religious Impact
+- Creator Legacy
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Người dùng xuất hiện trong thành phố.
+
+↓
+
+NPC nhận ra.
+
+↓
+
+Một số NPC quỳ xuống.
+
+↓
+
+Một số NPC bỏ chạy.
+
+↓
+
+Một số NPC lập tôn giáo mới.
+
+↓
+
+1000 năm sau vẫn còn truyền thuyết về lần xuất hiện đó.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- AVATAR_OF_GOD_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+KHÔNG BUILD MMO.
+
+KHÔNG BUILD PVP.
+
+KHÔNG BUILD MARKETPLACE.
+
+TẬP TRUNG:
+
+"THẦN SÁNG THẾ BƯỚC VÀO THẾ GIỚI."

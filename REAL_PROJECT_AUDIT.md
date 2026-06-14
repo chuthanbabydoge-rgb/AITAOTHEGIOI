@@ -1,28 +1,45 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V70 — World Immersion Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V71 — Avatar of God Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V60 | V70 (Mới Nhất) |
+| Chỉ Số | V70 | V71 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | 265 | **~287** |
-| **Tổng file được load trong index.html** | 264 | **~279** |
+| **Tổng file .js trên disk** | ~287 | **~292** |
+| **Tổng file được load trong index.html** | ~279 | **~284** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V61→V70 dùng hub cũ) |
+| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V71 dùng hub cũ) |
 | **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 174+ | **181+** |
-| **Engine hook vào gameTick** | 122 | **122** (V70 là visual layer — không hook) |
-| **Phiên bản hiện tại** | V60 | **V70 — World Immersion Pass** |
+| **Tổng localStorage save keys (unique)** | 181+ | **185+** |
+| **Engine hook vào gameTick** | 122 | **122** (V71 là pure interactive layer — không hook) |
+| **Phiên bản hiện tại** | V70 | **V71 — Avatar of God Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌌 World Immersion Pass V70 ← NEWEST (8 files)
+### 👁️ Avatar of God Pass V71 ← NEWEST (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `avatarOfGodEngine.js` | 6 hình thức avatar · Thần Năng 1000max · God name/title · Regen energy · Jarvis comment · avg71SelectForm/SpendEnergy/LogAppearance/GetJarvisComment() | `cgv6_avatar_god_v71` | 16900ms |
+| `divinePresenceSystem.js` | 5 phản ứng NPC (venerate/fear/skeptic/worship/rebel) · 5 tiến hóa tôn giáo · Cult generation · Religion doctrine · dps71EnterPresence/TriggerReligionEvolution/ExitPresence() | `cgv6_divine_presence_v71` | 17000ms |
+| `creatorManifestationSystem.js` | 8 loại hiện thân · Ghi sử sách · Tiêu hao Thần Năng · Tích hợp V66 prophecy · mfst71Perform/GetTypes/GetLog() | `cgv6_manifestation_v71` | 17100ms |
+| `divineAppearanceSystem.js` | 8 loại xuất hiện · 5 vai trò môn đồ · Cult formation · Legend creation · das71TriggerAppearance/AddFollower/AssignRole/GetLegendLog() | `cgv6_divine_appearance_v71` | 17200ms |
+| `avatarOfGodRegistry.js` | UI 5 tabs creator-hub-v32 · Patch hubRenderPanel · Toast notifications | — | 17300ms |
+
+**Global Objects:** `window.avatarGodV71Data` · `window.divinePresenceV71Data` · `window.manifestationV71Data` · `window.divineAppearanceV71Data`  
+**Đọc từ:** V64 mem64Record() · V65 window.npcs NPC profiles · V66 divineInterventionV66Data energy · `window.htAddEvent()` · `window.countries` · `window.warsActive`  
+**UI:** 5 tabs nội bộ creator-hub-v32 — KHÔNG tạo sidebar tab mới  
+**GameTick hooks:** KHÔNG CÓ (pure interactive layer)  
+**XR Compatible:** Thiết kế tương thích Meta Quest · Apple Vision Pro · AR Glasses  
+
+---
+
+### 🌌 World Immersion Pass V70 (8 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `immersionEngine.js` | 9 scale levels · zoom pipeline · Jarvis narration · imm70ZoomTo/In/Out/Back/GetContextData/GetJarvisNarration() | `cgv6_immersion_engine_v70` | 16100ms |

@@ -1,11 +1,108 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-14 (cập nhật sau V70 — World Immersion Pass)
-> Tổng: ~287 JS files · 240 panels · 67 nav buttons · 181+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V71 — Avatar of God Pass)
+> Tổng: ~292 JS files · 240 panels · 67 nav buttons · 185+ save keys · 122 gameTick hooks
 
 ---
 
-## 🌌 V70 — WORLD IMMERSION PASS (MỚI NHẤT)
+## 👁️ V71 — AVATAR OF GOD PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+Người dùng không còn là người quan sát. Creator bước vào thế giới với hình thức vật lý — NPC nhận ra, phản ứng, lập tôn giáo, kể truyền thuyết 1000 năm sau.
+
+### 6 Hình Thức Avatar
+```
+🧑 Hình Người          — Gần gũi, có thể nhầm là người thường (50% power)
+👼 Thiên Sứ            — Cánh vàng, ánh sáng thánh thiện (75% power)
+🐉 Rồng Thần           — Biểu tượng quyền năng tuyệt đối (100% power)
+✨ Thực Thể Ánh Sáng   — Thuần năng lượng, không hình thể (90% power)
+🌀 Hologram            — Hình chiếu kỹ thuật số, huyền bí (70% power)
+⚡ Tùy Chỉnh           — Hình dạng do Creator chọn (80% power)
+```
+
+### 5 Phản Ứng NPC (theo nghề nghiệp & tính cách)
+```
+🙏 Tôn Kính    — Cúi đầu, dâng lễ vật (Priests · Farmers)
+😱 Sợ Hãi      — Bỏ chạy, trốn tránh (Civilians · Low-power NPCs)
+🤔 Hoài Nghi   — Quan sát, đặt câu hỏi (Scholars)
+⭐ Sùng Bái    — Quỳ lạy, trở thành môn đồ (High-faith NPCs)
+⚔️ Chống Đối   — Kêu gọi kháng cự (Warriors · Rival religions)
+```
+
+### 5 Tiến Hóa Tôn Giáo
+```
+✨ Thờ Đấng Sáng Thế    — NPC lập đền thờ Creator làm thần tối cao
+👑 Thần Tối Cao          — Creator đứng trên mọi thần linh
+🔥 Thần Hủy Diệt         — Creator bị xem là kẻ phải chống lại
+📜 Giáo Lý Mới           — NPC tự tạo giáo lý từ những gì thấy
+🌟 Ngôn Sứ Xuất Hiện     — Một NPC nhận thiên khải, thành prophet
+```
+
+### 8 Loại Hiện Thân (mfst71Perform)
+```
+🌟 Giáng Thế     — 100⚡  Xuất hiện trước dân chúng
+🛡️ Cứu Thế      — 150⚡  Cứu thành phố/quốc gia
+🔮 Ban Tiên Tri  — 80⚡   Phán lời tiên tri → khắc vào đá
+✨ Đại Phúc Lành — 120⚡  Ban phước cả thành phố
+💥 Hủy Diệt      — 200⚡  Trừng phạt kẻ tội lỗi
+⚔️ Triệu Anh Hùng— 180⚡  Biến NPC thường thành anh hùng
+📣 Thần Ngôn     — 60⚡   Nói với toàn thế giới
+🌈 Phép Màu      — 130⚡  Tạo phép màu không thể giải thích
+```
+
+### 8 Loại Xuất Hiện (das71TriggerAppearance)
+```
+🏙️ Giáng Thế Thành Phố · ⚔️ Thần Trên Chiến Trường
+⛪ Thần Hiện Linh     · 💊 Thần Chữa Bệnh
+📜 Chữ Thần Trên Vách Đá · 🌟 Cứu Anh Hùng
+⚡ Trừng Phạt Bạo Chúa  · 🌅 Mở Kỷ Nguyên Mới
+```
+
+### 5 UI Tabs (trong creator-hub-v32)
+```
+👁️ Avatar          — Chọn hình thức · Đặt tên Thần · Danh hiệu · Jarvis
+✨ Hiện Diện        — State (Absent/Watch/Present/Active) · Bước Vào Thế Giới · Reaction log
+🌟 Hiện Thân        — 8 nút hiện thân · Tiêu Thần Năng · Kết quả live · Lịch sử
+🙏 Môn Đồ           — Phân loại roles · Giáo phái · Sự kiện tôn giáo
+📜 Di Sản Thần Linh  — Stats tổng · Truyền thuyết · Sử sách · Nhật ký
+```
+
+### 5 File Mới
+| File | Save Key | Init |
+|---|---|---|
+| avatarOfGodEngine.js | cgv6_avatar_god_v71 | 16900ms |
+| divinePresenceSystem.js | cgv6_divine_presence_v71 | 17000ms |
+| creatorManifestationSystem.js | cgv6_manifestation_v71 | 17100ms |
+| divineAppearanceSystem.js | cgv6_divine_appearance_v71 | 17200ms |
+| avatarOfGodRegistry.js | — | 17300ms |
+
+### Tích Hợp
+- Ghi vào: V64 `mem64Record()` · `window.htAddEvent()` · `window.wmeAddMemory()`
+- Đọc từ: V65 `window.npcs` profiles · V66 divine energy · `window.countries` · `window.warsActive` · `window.disasterData` · `window.plagueData`
+- Extends V66: `creatorLegacySystemV66` (không ghi đè)
+- Không hook gameTick — pure interactive layer
+- XR Ready: tương thích Meta Quest · Apple Vision Pro · AR Glasses
+
+### Hành Trình Creator
+```
+Creator chọn hình thức → Đặt tên Thần
+         ↓
+Bước vào thế giới tại một địa điểm
+         ↓
+NPC nhận ra: 🙏 quỳ · 😱 bỏ chạy · ⭐ sùng bái · ⚔️ chống đối
+         ↓
+Một số NPC lập giáo phái thờ Creator
+         ↓
+Creator hiện thân: Giáng Thế · Cứu Thế · Phán Tiên Tri...
+         ↓
+Mọi sự kiện → Sử sách · Truyền thuyết · Ký ức tập thể V64
+         ↓
+1000 năm sau vẫn còn truyền thuyết về lần xuất hiện đó
+```
+
+---
+
+## 🌌 V70 — WORLD IMMERSION PASS
 
 ### Tầm Nhìn
 Creator có thể zoom liên tục từ toàn vũ trụ xuống một NPC cụ thể, quan sát cuộc đời của họ qua hàng thế kỷ.
