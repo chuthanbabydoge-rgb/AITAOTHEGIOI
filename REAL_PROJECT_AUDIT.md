@@ -5,7 +5,43 @@
 
 ---
 
-## ☁️ V85 — CLOUD SCALE PASS (MỚI NHẤT)
+## 🔒 V86 — SECURITY PASS (MỚI NHẤT)
+
+### Mục Tiêu
+Bảo vệ dữ liệu thế giới — RBAC · World Ownership · Creator Permissions · Tamper-Evident Audit Log
+
+### 3 Files Mới
+
+| File | Chức Năng | Save Key | Init |
+|---|---|---|---|
+| `securityLayer.js` | RBAC 6 roles · World Ownership · Session Management · Access Control | `cgv6_security_layer_v86` | 23100ms |
+| `permissionEngine.js` | 38 permissions · Fine-Grained ACL · 4 Creator Profiles · Inheritance | `cgv6_permission_engine_v86` | 23200ms |
+| `auditLogger.js` | Tamper-Evident Log · Query/Filter/Export · Integrity Check · 12 categories | `cgv6_audit_logger_v86` | 23300ms |
+
+### Public API chính
+- `sl86CheckAccess(action, resource, resourceId, principalId?, worldId?)` → `{ allowed, role, reason? }`
+- `sl86GetEffectiveRole(principalId, worldId?)` → role string
+- `sl86RegisterWorldOwnership(worldId, ownerId)` · `sl86AddCollaborator(worldId, principalId, role)`
+- `pe86Check(principalId, action, resource, worldId)` → permission check
+- `pe86ApplyCreatorProfile(principalId, profile, worldId)` → bulk grant
+- `al86Log({ category, action, actorId, detail, severity })` → core logger
+- `al86Query({ category, severity, worldId, search, limit })` → filtered query
+- `al86VerifyIntegrity(sampleSize)` → tamper detection
+
+### gameTick Hooks (6 hooks mới)
+- securityLayer: auto-register world ownership mỗi 500 ticks · auto-save 1000 ticks
+- permissionEngine: cleanup expired temp grants mỗi 600 ticks · auto-save 1000 ticks
+- auditLogger: hourly volume update mỗi 100 ticks · integrity check mỗi 3000 ticks
+
+### Save Keys V86 (3 keys)
+`cgv6_security_layer_v86` · `cgv6_permission_engine_v86` · `cgv6_audit_logger_v86`
+
+### Next Version
+- V87 init từ 23400ms+
+
+---
+
+## ☁️ V85 — CLOUD SCALE PASS
 
 ### Mục Tiêu
 Chuẩn bị kiến trúc scale — Multi Region · Multi Tenant · World Isolation
