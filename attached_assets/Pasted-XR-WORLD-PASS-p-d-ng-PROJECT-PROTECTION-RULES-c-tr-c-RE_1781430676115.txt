@@ -1,0 +1,207 @@
+XR WORLD PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- AVATAR_OF_GOD_REPORT.md
+- IMMERSION_REPORT.md
+- XR_FOUNDATION_REPORT.md
+- WORLD_AUDIT_REPORT.md
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Người dùng đeo:
+
+- Meta Quest
+- Vision Pro
+- AR Glasses
+
+và bước vào thế giới của chính họ.
+
+==================================================
+XR WORLD CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- xrWorldEngine.js
+- xrPresenceSystem.js
+- xrGodInteraction.js
+
+==================================================
+WORLD TABLE MODE
+==================================================
+
+Thế giới xuất hiện:
+
+Như sa bàn sống.
+
+Có thể:
+
+- Phóng to
+- Thu nhỏ
+- Xoay
+- Kéo
+
+==================================================
+ENTER WORLD MODE
+==================================================
+
+Người dùng có thể:
+
+Từ:
+
+Universe View
+
+↓
+
+City View
+
+↓
+
+Street View
+
+↓
+
+NPC View
+
+==================================================
+GOD SCALE SHIFT
+==================================================
+
+Cho phép:
+
+- God Scale
+- Human Scale
+
+Ví dụ:
+
+Thần khổng lồ nhìn thế giới.
+
+↓
+
+Thu nhỏ.
+
+↓
+
+Đi bộ trong thành phố.
+
+==================================================
+XR NPC INTERACTION
+==================================================
+
+NPC có thể:
+
+- Nhìn thấy Creator
+- Chào Creator
+- Cầu nguyện Creator
+- Trò chuyện với Creator
+
+==================================================
+DIVINE COMMAND SYSTEM
+==================================================
+
+Người dùng có thể:
+
+- Ra lệnh bằng giọng nói
+- Ban phước
+- Tạo phép màu
+
+==================================================
+XR WORLD HISTORY
+==================================================
+
+Cho phép:
+
+Nhìn thấy:
+
+- Các cuộc chiến cũ
+- Các đế quốc cũ
+- Các anh hùng cũ
+
+dưới dạng replay 3D.
+
+==================================================
+JARVIS XR MODE
+==================================================
+
+Jarvis trở thành:
+
+XR Companion
+
+Có thể:
+
+- Đi cùng Creator
+- Giải thích thế giới
+- Hướng dẫn tương tác
+
+==================================================
+UI
+==================================================
+
+Không tạo sidebar mới.
+
+Tích hợp trong:
+
+Creator Panel
+
+Tab nội bộ:
+
+- XR World
+- Enter World
+- God Scale
+- XR Replay
+- XR Companion
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- XR State
+- World Position
+- Avatar State
+- XR History
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Người dùng:
+
+Đeo Meta Quest
+
+↓
+
+Nhìn thấy thế giới của mình
+
+↓
+
+Đi vào thành phố
+
+↓
+
+NPC nhận ra
+
+↓
+
+NPC kể lịch sử
+
+↓
+
+Người dùng can thiệp như thần.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- XR_WORLD_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
