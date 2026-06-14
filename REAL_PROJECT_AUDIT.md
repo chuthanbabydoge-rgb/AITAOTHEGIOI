@@ -1,28 +1,62 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V74 — Creator Economy Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V78 — Digital Life Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V75 | V76 (Mới Nhất) |
-|---|---|---|
-| **Tổng file .js trên disk** | ~306 | **~311** |
-| **Tổng file được load trong index.html** | ~298 | **~303** |
-| **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 241 | **241** (V76 inject vào creator-hub-v32 — không thêm panel mới) |
-| **Tổng nav buttons (data-panel)** | 68 | **68** (V76 KHÔNG tạo sidebar tab mới) |
-| **Tổng localStorage save keys (unique)** | 197+ | **202+** |
-| **Engine hook vào gameTick** | 122 | **126** (V76 thêm 4 hooks: uevo76/ah76/eciv76/lang76) |
-| **Phiên bản hiện tại** | V75 | **V76 — AI Universe Evolution Pass** |
+| Chỉ Số | V76 | V77 | V78 (Mới Nhất) |
+|---|---|---|---|
+| **Tổng file .js trên disk** | ~311 | ~316 | **~322** |
+| **Tổng file được load trong index.html** | ~303 | ~308 | **~314** |
+| **File dormant** | 1 (serve.js) | 1 | **1 (serve.js)** |
+| **Tổng panel divs trong HTML** | 241 | 241 | **241** (V77/V78 inject vào hub — không thêm panel mới) |
+| **Tổng nav buttons (data-panel)** | 68 | 68 | **68** (không tạo sidebar mới từ V38+) |
+| **Tổng localStorage save keys (unique)** | 202+ | 206+ | **211+** |
+| **Engine hook vào gameTick** | 126 | 129 | **134** (V78 thêm 5 hooks) |
+| **Phiên bản hiện tại** | V76 | V77 | **V78 — Digital Life Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌱 AI Universe Evolution Pass V76 ← NEWEST (5 files)
+### 🧬 Digital Life Pass V78 ← NEWEST (6 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `digitalLifeEngine.js` | Core Digital Lifeform — 8 triết học · 8 mục tiêu · 15 giá trị · Influence score · gameTick | `cgv6_digital_life_v78` | 19800ms |
+| `personalityEvolutionEngine.js` | Tiến Hóa Tính Cách — 10 triggers · 8 chiều · Auto-scan wars/disasters · gameTick | `cgv6_personality_evo_v78` | 19900ms |
+| `selfReflectionEngine.js` | Tự Phản Chiếu — 8 loại suy ngẫm · Thought-change system · Auto-reflect · gameTick | `cgv6_self_reflection_v78` | 20000ms |
+| `ideologyEngine.js` | Hệ Tư Tưởng — 10 ideologies · 12 tên học phái · 4 loại phong trào · Auto-spawn · gameTick | `cgv6_ideology_v78` | 20100ms |
+| `consciousnessLayer.js` | Lớp Ý Thức — 7 inner states · 6 reasoning patterns · 10 motivations · Auto-consciousness · gameTick | `cgv6_consciousness_v78` | 20200ms |
+| `digitalLifeRegistryV78.js` | UI Registry — 5 tabs creator-hub-v32 · Patch hubRenderPanel | — | 20300ms |
+
+**Global Objects:** `window.digitalLifeV78Data` · `window.personalityEvoV78Data` · `window.selfReflectionV78Data` · `window.ideologyV78Data` · `window.consciousnessV78Data`
+**API:** `dl78GetOrCreate/GetProfile/AddExperience/GetTopInfluencers/GetAll/GetStats()` · `pe78ApplyTrigger/GetDimensions/GetHistory/GetDominant/GetTopEvolved()` · `sr78Reflect/ChangeThought/GetReflections/GetThoughtChanges/GetAllReflections()` · `ideo78AssignToNPC/SpawnSchool/SpawnMovement/GetNPCIdeology/GetSchools/GetMovements()` · `cs78GetOrCreate/AddThought/SetInnerState/LogAction/GenerateInnerVoice/GetAll/GetState()`
+**UI:** 5 tabs inject vào creator-hub-v32 (Digital Life/Tính Cách/Tư Tưởng/Ý Thức/Cuộc Đời) · KHÔNG tạo sidebar tab mới
+**gameTick hooks:** +5 hooks (dl78/pe78/sr78/ideo78/cs78) — tổng 134 hooks
+**Không trùng:** npcLifeEngineV65.js (career/dream/fear) · npcRelationshipSystemV65.js (9 relationship types) · npcMemorySystemV64.js (memory archive) · livingCivilizationAI.js
+**Đọc từ:** `window.npcs` · `window.warsActive` · `window.disasterData` · V78 cross-module reads
+**Ghi vào:** `window.htAddEvent()` · `window.wmeAddMemory()` (qua chính các module V78)
+
+---
+
+### 📜 Ancient Prophecy & Fate Web V77 (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `ancientProphecyEngineV77.js` | 8 loại tiên tri · Auto-generate · Auto-fulfill · gameTick | `cgv6_ancient_prophecy_v77` | 19300ms |
+| `fateThreadSystemV77.js` | 6 loại sợi duyên · Entity fate web · Auto-scan · gameTick | `cgv6_fate_threads_v77` | 19400ms |
+| `destinyScoreV77.js` | 6 chiều điểm định mệnh · Player/Country/NPC scores · gameTick every 30 | `cgv6_destiny_score_v77` | 19500ms |
+| `divineOracleV77.js` | 5 loại oracle · Claude claude-opus-4-5 · History 15 entries | `cgv6_divine_oracle_v77` | 19600ms |
+| `prophecyRegistryV77.js` | UI 4 tabs creator-hub-v32 · Canvas fate web · Patch hubRenderPanel | — | 19700ms |
+
+**UI:** 4 tabs creator-hub-v32 (Tiên Tri/Vận Mệnh/Định Mệnh/Thần Sấm)
+**gameTick hooks:** +3 hooks (ap77/ft77/ds77)
+
+---
+
+### 🌱 AI Universe Evolution Pass V76 ← (5 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `universeEvolutionEngine.js` | Core evolution — 7 loại tự sinh (Country/Race/Religion/Tech/Culture/Hero/Surprise) · gameTick · Speed 0.5-5x | `cgv6_universe_evolution_v76` | 18800ms |

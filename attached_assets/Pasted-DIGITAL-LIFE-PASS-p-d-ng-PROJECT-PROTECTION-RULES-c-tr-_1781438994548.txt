@@ -1,0 +1,192 @@
+DIGITAL LIFE PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- EVOLUTION_REPORT.md
+- MEMORY_REPORT.md
+- NPC_REPORT.md
+- WORLD_AUDIT_REPORT.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+NPC không còn là object.
+
+NPC trở thành:
+
+Digital Lifeform.
+
+==================================================
+DIGITAL LIFE CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- digitalLifeEngine.js
+- personalityEvolutionEngine.js
+- selfReflectionEngine.js
+
+==================================================
+INDIVIDUAL IDENTITY
+==================================================
+
+Mỗi NPC có:
+
+- Cá tính riêng
+- Giá trị sống riêng
+- Niềm tin riêng
+- Triết lý riêng
+
+==================================================
+SELF REFLECTION
+==================================================
+
+NPC có thể:
+
+- Tự đánh giá bản thân
+- Tự thay đổi suy nghĩ
+- Tự học từ trải nghiệm
+
+==================================================
+PERSONAL GOALS
+==================================================
+
+NPC tự sinh mục tiêu:
+
+- Quyền lực
+- Tri thức
+- Gia đình
+- Tôn giáo
+- Khám phá
+
+==================================================
+PERSONALITY EVOLUTION
+==================================================
+
+Tính cách thay đổi theo:
+
+- Ký ức
+- Chiến tranh
+- Thành công
+- Thất bại
+
+==================================================
+IDEOLOGY SYSTEM
+==================================================
+
+Tạo:
+
+- ideologyEngine.js
+
+NPC có thể hình thành:
+
+- Triết học
+- Hệ tư tưởng
+- Trường phái học thuật
+
+==================================================
+SOCIAL INFLUENCE
+==================================================
+
+Một NPC có thể:
+
+- Ảnh hưởng cộng đồng
+- Tạo phong trào
+- Thành lập học phái
+
+==================================================
+DIGITAL CONSCIOUSNESS LAYER
+==================================================
+
+Tạo:
+
+- consciousnessLayer.js
+
+Không giả lập AGI.
+
+Nhưng cho phép:
+
+- Nội tâm
+- Suy luận
+- Động cơ hành động
+
+==================================================
+JARVIS LIFE ANALYSIS
+==================================================
+
+Jarvis có thể:
+
+- Phân tích nhân vật
+- Giải thích động cơ
+- Tóm tắt cuộc đời
+
+==================================================
+UI
+==================================================
+
+Không tạo sidebar mới.
+
+Tích hợp:
+
+Creator Panel
+
+Tab nội bộ:
+
+- Digital Life
+- Personalities
+- Ideologies
+- Consciousness
+- Life Stories
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Personality State
+- Ideology State
+- Life Journey
+- Reflection History
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Hai NPC sinh cùng ngày
+
+↓
+
+500 năm sau
+
+↓
+
+Có hệ tư tưởng hoàn toàn khác nhau
+
+↓
+
+Có ảnh hưởng khác nhau tới thế giới
+
+↓
+
+Tạo lịch sử khác nhau.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- DIGITAL_LIFE_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+TẬP TRUNG:
+
+"NPC PHẢI CÓ ĐỜI SỐNG TINH THẦN."
