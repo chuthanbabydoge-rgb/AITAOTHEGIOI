@@ -1,0 +1,151 @@
+LIFE SIMULATION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- AUTONOMOUS_WORLD_REPORT.md
+- FIRST_CREATION_EXPERIENCE_REPORT.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Thế giới không chỉ có sự kiện.
+
+Thế giới phải có sự sống.
+
+Sau pass này:
+
+- Sinh linh xuất hiện
+- Sinh linh phát triển
+- Sinh linh chết
+- Quần thể thay đổi theo thời gian
+
+==================================================
+LIFE ENGINE
+==================================================
+
+Tạo hệ thống Life Simulation cơ bản.
+
+Mỗi thế giới có:
+
+- Population
+- Birth Rate
+- Death Rate
+- Growth Rate
+
+==================================================
+SPECIES SYSTEM
+==================================================
+
+Hỗ trợ các loại sinh vật:
+
+- Human
+- Animal
+- Fantasy Creature
+- Custom Species
+
+Mỗi loài có:
+
+- Tên
+- Dân số
+- Trạng thái
+- Mức phát triển
+
+==================================================
+POPULATION EVOLUTION
+==================================================
+
+Theo thời gian:
+
+Population tự tăng giảm.
+
+Ví dụ:
+
+Năm 1:
+100 sinh linh
+
+Năm 2:
+132 sinh linh
+
+Năm 3:
+117 sinh linh
+
+==================================================
+LIFE EVENTS
+==================================================
+
+Sinh linh có thể tạo ra:
+
+- Sinh sản
+- Di cư
+- Bệnh dịch
+- Tuyệt chủng
+- Thích nghi
+
+Event tự sinh ra theo thời gian.
+
+==================================================
+LIFE TIMELINE
+==================================================
+
+Mọi thay đổi phải ghi vào:
+
+Biên Niên Sử
+
+Ví dụ:
+
+"Năm 4:
+Loài Người xuất hiện."
+
+"Năm 8:
+Quần thể tăng trưởng mạnh."
+
+==================================================
+JARVIS OBSERVER
+==================================================
+
+Jarvis có thể tóm tắt:
+
+"Tổng dân số tăng 14%."
+
+"Một loài mới đã xuất hiện."
+
+==================================================
+VISUALIZATION
+==================================================
+
+Không redesign UI.
+
+Chỉ thêm:
+
+- Population Card
+- Species Overview
+- Life Growth Visualization
+
+phù hợp với giao diện hiện tại.
+
+==================================================
+XR FUTURE
+==================================================
+
+Thiết kế dữ liệu theo hướng:
+
+Sau này có thể hiển thị trong:
+
+- VR
+- AR
+- MR
+- XR
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+LIFE_SIMULATION_REPORT.md
+
+và demo một thế giới có sinh linh đang phát triển.
