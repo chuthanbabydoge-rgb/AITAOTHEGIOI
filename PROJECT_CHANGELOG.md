@@ -4,6 +4,55 @@
 
 ---
 
+## [V67] — 2026-06-14 — Spatial UI Pass (Thế Giới Trong Không Gian 3D)
+
+### Triết Lý V67
+EXPAND ONLY. Không tạo tab sidebar mới. Không build gameplay. Không build MMO. Pure visualization layer — đọc data từ V51-V66 và hiển thị dưới dạng spatial computing. Chuẩn bị architecture cho VR/AR/MR/XR.
+
+### New Files (6 files)
+- `spatialWorldEngine.js` — Canvas 3D isometric, node projection, depth sort, drag/zoom, auto-rotate · init: 14600ms
+- `hologramMapSystem.js` — Hologram top-down map: countries(cyan)/kingdoms(purple)/empires(gold)/NPCs(green)/wars(red arc)/alliances(blue arc)/religions(pink) · init: 14700ms
+- `universeVisualizationEngine.js` — Universe Table sa bàn sống: 200 stars, 5 nebulae, multiverse worlds, artifact orbits, energy particles · init: 14800ms
+- `hologramTimelineSystem.js` — Draggable timeline canvas: past events + prophecies + NOW line + age milestones, drag scroll, scroll zoom, presets · init: 14900ms
+- `spatialGodModeV67.js` — 8 god modes (bless/smite/hero/disaster/message/artifact/prophecy/peace), entity selection from map, calls V66 APIs · init: 15000ms
+- `spatialUIRegistryV67.js` — UI 4 tabs (Spatial View / Hologram Timeline / Universe Table / Spatial God Mode), Jarvis Spatial Mode, patch creator-hub-v32 · init: 15100ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 6 script tags sau V66 scripts
+
+### Files Generated
+- `SPATIAL_UI_REPORT.md` — báo cáo đầy đủ 12 mục
+
+### 4 Sub-tabs UI (trong creator-hub-v32, section wrapper: su67-section-wrapper)
+1. 🌍 Spatial View — 3D isometric world, auto-rotate, drag/zoom, click select, war/alliance arcs
+2. ⏳ Hologram Timeline — draggable time axis, past events above/prophecies below, zoom 20-5000y
+3. 🌌 Universe Table — sa bàn sống: multiverse planets + stars + nebulae + artifact orbits
+4. ⚡ Spatial God Mode — 8 action modes + target selector + execute + action log
+
+### Jarvis Spatial Mode
+- Toggle panel bên dưới tất cả tabs
+- Real-time: Wars/Prophecies/NPCs/Energy status
+- Auto-commentary từ world state
+- Refresh button để cập nhật phân tích
+
+### V67 Extends (KHÔNG ghi đè)
+- Reads: window.countries, window.kingdomData, window.empireData, window.warsActive
+- Reads: window.allianceData, window.treatyData, window.npcs
+- Reads: window.historicalTimeline, window.prophecyV51Data, window.prophecyV66Data
+- Reads: window.creatorLegacyV66Data, window.disasterData, window.ageV25Data
+- Calls: div66Perform(), div66Punish(), mir66CastGrandMiracle(), divVoice66Send(), div66CreateArtifact(), proph66Create()
+
+### No Save Keys
+V67 là pure visual layer — không có save state riêng.
+
+### VR/AR/XR Readiness
+Coordinate system (x,y,z) normalized [-0.5, 0.5] — ready for WebXR/Three.js upgrade.
+
+### Next Version
+- V68 init từ 15200ms+
+
+---
+
 ## [V66] — 2026-06-14 — God Experience System (Biến User Thành Thần)
 
 ### Triết Lý V66

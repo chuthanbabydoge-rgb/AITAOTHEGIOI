@@ -1,0 +1,149 @@
+SPATIAL UI PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- GOD_EXPERIENCE_REPORT.md
+- MEMORY_REPORT.md
+- NPC_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Loại bỏ tư duy:
+
+Dashboard 2D
+
+Chuyển sang:
+
+Spatial Computing
+
+==================================================
+SPATIAL WORLD VIEW
+==================================================
+
+Tạo hoặc mở rộng:
+
+- spatialWorldEngine.js
+- hologramMapSystem.js
+- universeVisualizationEngine.js
+
+==================================================
+3D WORLD VIEW
+==================================================
+
+Cho phép:
+
+- Xoay thế giới
+- Zoom thế giới
+- Quan sát quốc gia
+- Quan sát đế quốc
+
+==================================================
+HOLOGRAM TIMELINE
+==================================================
+
+Tạo:
+
+- hologramTimelineSystem.js
+
+Cho phép:
+
+- Kéo timeline
+- Xem lịch sử
+- Xem tương lai dự đoán
+
+==================================================
+SPATIAL CIVILIZATION VIEW
+==================================================
+
+Hiển thị:
+
+- Quốc gia
+- Đế quốc
+- Tôn giáo
+- Chiến tranh
+
+dưới dạng hologram.
+
+==================================================
+SPATIAL GOD MODE
+==================================================
+
+Người sáng thế có thể:
+
+- Chạm quốc gia
+- Ban phước
+- Tạo thiên tai
+- Tạo anh hùng
+
+trực tiếp trên bản đồ.
+
+==================================================
+UNIVERSE TABLE MODE
+==================================================
+
+Mục tiêu:
+
+Thế giới xuất hiện như:
+
+"Sa bàn sống"
+
+trên bàn làm việc.
+
+==================================================
+JARVIS SPATIAL MODE
+==================================================
+
+Jarvis xuất hiện như:
+
+- Trợ lý hologram
+- Hướng dẫn viên
+- Nhà sử học
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp:
+
+Creator Panel
+
+Tab nội bộ:
+
+- Spatial View
+- Hologram Timeline
+- Universe Table
+- Spatial God Mode
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- SPATIAL_UI_REPORT.md
+- REAL_PROJECT_AUDIT.md
+
+Mục tiêu:
+
+Chuẩn bị kiến trúc cho:
+
+- VR
+- AR
+- MR
+- XR
+
+KHÔNG BUILD GAMEPLAY MỚI.
+
+KHÔNG BUILD MMO MỚI.
+
+TẬP TRUNG:
+
+"THẾ GIỚI PHẢI NHÌN ĐƯỢC TRONG KHÔNG GIAN 3D."
