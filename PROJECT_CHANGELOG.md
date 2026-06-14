@@ -4,6 +4,50 @@
 
 ---
 
+## [V66] — 2026-06-14 — God Experience System (Biến User Thành Thần)
+
+### Triết Lý V66
+EXPAND ONLY. Không tạo tab sidebar mới. Mọi quyền năng thần linh tập trung trong creator-hub-v32. Extends V51 (miracle/prophecy) — KHÔNG ghi đè. Mọi hành động đều được NPC ghi nhớ qua V64+V65.
+
+### New Files (8 files)
+- `divineInterventionEngineV66.js` — 12 can thiệp · Thần Năng system (1000 max, +5/10y) · World Edit (núi/sông/lục địa/biển/vùng cấm) · SAVE: cgv6_divine_intervention_v66 · init: 13800ms
+- `miracleSystemV66.js` — 7 Grand Miracles (Golden Age/Incarnation/Genesis Wave/Covenant/World Memory/Hero Awakening/Apocalypse Ward) · extends cgv51CastMiracle · SAVE: cgv6_miracle_v66 · init: 13900ms
+- `divinePunishmentSystemV66.js` — 8 thần phạt (sét/thần dịch/nguyền/lưu đày/xóa lịch sử/quốc gia sụp đổ/gia tộc nguyền/thần nộ) · SAVE: cgv6_divine_punishment_v66 · init: 14000ms
+- `divineVoiceSystemV66.js` — Thần Ngôn (4 types) · Luật Thiêng · Tiên Tri voice · NPC nhớ qua V64+V65 · SAVE: cgv6_divine_voice_v66 · init: 14100ms
+- `divineArtifactSystemV66.js` — 10 Thần Khí (3 Legendary: Kiếm Thần/Trượng/Viên Đá · 3 Epic · 4 Rare) · grant to NPC · SAVE: cgv6_divine_artifact_v66 · init: 14200ms
+- `prophecyEngineV66.js` — 5 loại (war/hero/apocalypse/era/destiny) · auto-fulfillment tracking · extends cgv51CreateProphecy · SAVE: cgv6_prophecy_v66 · init: 14300ms
+- `creatorLegacySystemV66.js` — God Score + 7 cấp bậc · Jarvis Divine comments auto-generate · worshipStats · narrative generator · SAVE: cgv6_creator_legacy_v66 · init: 14400ms
+- `godExperienceRegistryV66.js` — UI 5 tabs (God Mode/Quyền Năng/Phép Màu/Tiên Tri/Di Sản) · global action handlers · patch creator-hub-v32 · init: 14500ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 8 script tags sau V65 scripts
+
+### Files Generated
+- `GOD_EXPERIENCE_REPORT.md` — báo cáo đầy đủ 11 mục
+
+### 5 Sub-tabs UI (trong creator-hub-v32)
+1. 👁️ God Mode — Danh tính thần linh + Energy bar + God Score + 7 cấp bậc + Quick actions
+2. ✨ Quyền Năng — 12 can thiệp + 8 thần phạt + Divine Voice textarea + Tạo Thần Khí
+3. 🌟 Phép Màu — 7 Grand Miracles + V51 miracles + lịch sử tổng hợp
+4. 🔮 Tiên Tri — Create prophecy form + active list + fulfilled list
+5. 📖 Di Sản — Jarvis Narrative + Full history + Thần Khí list + Curse/Exile status
+
+### V51 Integration (Extend, NOT Replace)
+- cgv51CastMiracle() → wrapped bởi mir66CastV51()
+- cgv51CreateProphecy() → called sau proph66Create()
+- cgv51GetMiracleHistory() → combined với V66 trong mir66GetAllHistory()
+
+### God Score Điểm Mỗi Hành Động
+intervention:10 · grand_miracle:50 · miracle_v51:20 · punishment:15 · divine_message:8 · divine_law:25 · prophecy:20 · artifact:30
+
+### Save Keys V66 (7 keys mới)
+cgv6_divine_intervention_v66 · cgv6_miracle_v66 · cgv6_divine_punishment_v66 · cgv6_divine_voice_v66 · cgv6_divine_artifact_v66 · cgv6_prophecy_v66 · cgv6_creator_legacy_v66
+
+### Next Version
+- V67 init từ 14600ms+
+
+---
+
 ## [V65] — 2026-06-13 — Living NPC System (Làm Cho Dân Cư Thực Sự Sống)
 
 ### Triết Lý V65

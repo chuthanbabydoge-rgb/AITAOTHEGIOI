@@ -1,0 +1,184 @@
+GOD EXPERIENCE PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- NPC_REPORT.md
+- MEMORY_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Người dùng phải cảm thấy:
+
+"Tôi là vị thần của thế giới này."
+
+Không phải:
+
+Admin Dashboard
+
+Mà là:
+
+Creator God Experience
+
+==================================================
+DIVINE INTERVENTION SYSTEM
+==================================================
+
+Tạo hoặc mở rộng:
+
+- divineInterventionEngine.js
+- miracleSystem.js
+- divinePunishmentSystem.js
+
+Cho phép:
+
+- Ban phước
+- Trừng phạt
+- Tạo phép màu
+- Tạo thảm họa
+
+==================================================
+DIVINE SPEECH
+==================================================
+
+Tạo:
+
+- divineVoiceSystem.js
+
+Người sáng thế có thể:
+
+- Gửi thông điệp
+- Ban tiên tri
+- Ban luật lệ
+
+AI và NPC sẽ ghi nhớ.
+
+==================================================
+WORLD EDITING
+==================================================
+
+Cho phép:
+
+- Nâng núi
+- Tạo sông
+- Tạo lục địa
+- Tạo biển
+- Tạo vùng cấm
+
+==================================================
+DIVINE ARTIFACTS
+==================================================
+
+Tạo:
+
+- divineArtifactSystem.js
+
+Ví dụ:
+
+- Kiếm Thần
+- Trượng Khởi Nguyên
+- Viên Đá Sáng Thế
+
+==================================================
+PROPHECY SYSTEM
+==================================================
+
+Tạo:
+
+- prophecyEngine.js
+
+Người sáng thế có thể:
+
+- Tiên tri chiến tranh
+- Tiên tri anh hùng
+- Tiên tri tận thế
+
+==================================================
+RELIGION INTEGRATION
+==================================================
+
+Các tôn giáo hiện có:
+
+Có thể tôn thờ:
+
+- Người sáng thế
+- Các vị thần phụ
+- Các anh hùng thần thánh hóa
+
+==================================================
+CREATOR LEGACY
+==================================================
+
+Tạo:
+
+- creatorLegacySystem.js
+
+Lưu:
+
+- Mọi hành động thần linh
+- Mọi phép màu
+- Mọi lời tiên tri
+
+==================================================
+JARVIS DIVINE MODE
+==================================================
+
+Jarvis có thể:
+
+- Ghi lại thần tích
+- Phân tích tác động
+- Tạo biên niên sử thần linh
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp vào:
+
+👁 Creator Panel
+
+Tab nội bộ:
+
+- God Mode
+- Divine Powers
+- Miracles
+- Prophecies
+- Legacy
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Một NPC sau 1000 năm có thể nói:
+
+"Đó là phép màu của Đấng Sáng Thế."
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- GOD_EXPERIENCE_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+KHÔNG BUILD MMO.
+
+KHÔNG BUILD PVP.
+
+TẬP TRUNG:
+
+"BIẾN USER THÀNH THẦN."
