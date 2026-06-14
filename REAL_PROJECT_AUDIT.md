@@ -5,7 +5,44 @@
 
 ---
 
-## 🧵 V83 — WEB WORKER ENGINE (MỚI NHẤT)
+## 💰 V84 — AI COST MANAGER (MỚI NHẤT)
+
+### Vấn Đề Giải Quyết
+- `divineOracleV77.js` dùng `claude-opus-4-5` cho 300 tokens → lãng phí 94.8%
+- Không có cache — cùng prompt gọi AI lặp lại vô tận
+- Không tracking chi phí, không budget limit
+- System prompts dài 2000+ chars tốn input tokens
+
+### 2 Files Mới
+
+| File | Chức Năng | Save Key | Init |
+|---|---|---|---|
+| `aiCostManager.js` | Cache LRU 60 entries · Budget $0.50 · Tracking per-model/engine · `window.aiCall()` | `cgv6_ai_cost_manager_v84` | 22700ms |
+| `modelRoutingEngine.js` | Task→Model routing · Engine override · Prompt summarizer · Force controls | `cgv6_model_router_v84` | 22800ms |
+
+### Routing Mặc Định
+
+| Engine / Task | Trước | Sau | Tiết Kiệm |
+|---|---|---|---|
+| divineOracleV77 (oracle) | Opus | 🟢 Haiku | **-94.8%** |
+| worldLoreGenerator (lore) | Opus | 🟡 Sonnet | **-80%** |
+| story / diplomacy / analysis | Sonnet | Sonnet | — (OK) |
+| genesis / narrative / world_build | Opus | Opus | — (justified) |
+
+### Public API
+- `window.aiCall({ model, system, messages, taskType, engine })` — unified, cached, routed
+- `window.aiSmartCall(engine, task, system, msg, tokens)` — all-in-one
+- `window.aiSummarizePrompt(text, 800)` — compress prompts dài
+- `window.aiForceHaiku()` · `window.aiForceSonnet()` · `window.aiForceAuto()`
+- `window.aiEstimateCost(model, system, msg, outTokens)` — tính giá trước khi call
+- `window.aiCostGetReport()` — full report với per-model/engine breakdown
+
+### Next Version
+- V85 init từ 22900ms+
+
+---
+
+## 🧵 V83 — WEB WORKER ENGINE
 
 ### Vấn Đề Giải Quyết
 - Main thread bị block bởi NPC AI computation mỗi tick
