@@ -1,0 +1,150 @@
+UNIVERSE EXPERIENCE PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- UI_REARCHITECTURE_REPORT.md
+- DESIGN_SYSTEM.md
+- REAL_PROJECT_AUDIT.md
+
+==================================================
+VẤN ĐỀ
+==================================================
+
+Giao diện hiện tại vẫn giống:
+
+Admin Dashboard
+
+Mục tiêu:
+
+Biến thành:
+
+Personal Universe Experience
+
+==================================================
+QUY TẮC
+==================================================
+
+Không build engine mới.
+
+Không build AI mới.
+
+Không build XR mới.
+
+Chỉ thay đổi trải nghiệm.
+
+==================================================
+MY UNIVERSE REDESIGN
+==================================================
+
+Trang chủ không được bắt đầu bằng KPI.
+
+Thay bằng:
+
+Hero Section
+
+Hiển thị:
+
+- Tên thế giới
+- Tuổi thế giới
+- Mô tả thế giới
+- Trạng thái tiến hóa
+
+Ví dụ:
+
+"Thế Giới AITAO"
+
+Năm 1
+
+Chưa có sinh linh.
+
+Một vũ trụ đang chờ được khai sinh.
+
+==================================================
+UNIVERSE STORY FIRST
+==================================================
+
+Ưu tiên:
+
+- Câu chuyện
+- Thế giới
+- Tiến hóa
+
+Không ưu tiên:
+
+- KPI
+- Analytics
+- Metrics
+
+==================================================
+REDUCE DASHBOARD FEELING
+==================================================
+
+Giảm:
+
+- Cards
+- Tables
+- Status Panels
+
+ít nhất 50%.
+
+==================================================
+QUICK ACTIONS
+==================================================
+
+Chỉ giữ:
+
+- Tạo Thế Giới
+- Hỏi Jarvis
+- Mở Universe Hub
+
+Ẩn các nút phụ.
+
+==================================================
+VISUAL STYLE
+==================================================
+
+Lấy cảm hứng:
+
+- VisionOS
+- Apple Fitness Summary
+- Notion Home
+
+Không lấy cảm hứng từ:
+
+- Admin Dashboard
+- CRM
+- Analytics Panel
+
+==================================================
+SIDEBAR
+==================================================
+
+Giữ nguyên sidebar hiện tại.
+
+Không thêm tab.
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Khi mở app.
+
+Người dùng cảm thấy:
+
+"Đây là thế giới của tôi."
+
+Không phải:
+
+"Đây là dashboard quản trị."
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+UNIVERSE_EXPERIENCE_REPORT.md
+
+và chụp lại toàn bộ giao diện mới.

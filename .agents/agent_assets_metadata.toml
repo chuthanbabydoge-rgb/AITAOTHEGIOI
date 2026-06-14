@@ -24,3 +24,15 @@ id = "5KV6nj_sJU7e3vCPAn4KA"
 uri = "file://screenshots/ui_current.jpg"
 type = "image"
 title = "Ảnh chụp giao diện hiện tại"
+
+[[outputs]]
+id = "MapihgyjM-vysKjjS6KaC"
+uri = "file://UNIVERSE_EXPERIENCE_REPORT.md"
+type = "text"
+title = "Universe Experience Report"
+
+[[outputs]]
+id = "ysVHErMvQ_hItu6meLU-6"
+uri = "file://screenshots/universe_experience_new.jpg"
+type = "image"
+title = "Giao diện — Classic UI (trước PUOS 24s init)"
