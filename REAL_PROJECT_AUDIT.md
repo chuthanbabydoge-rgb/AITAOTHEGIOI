@@ -7,22 +7,40 @@
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V73 | V74 (Mới Nhất) |
+| Chỉ Số | V74 | V75 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | ~299 | **~302** |
-| **Tổng file được load trong index.html** | ~291 | **~294** |
+| **Tổng file .js trên disk** | ~302 | **~306** |
+| **Tổng file được load trong index.html** | ~294 | **~298** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 241 | **241** (V74 inject dynamic vào Universe Hub panel — không thêm panel mới) |
-| **Tổng nav buttons (data-panel)** | 68 | **68** (V74 KHÔNG tạo sidebar tab mới — inject vào Universe Hub) |
-| **Tổng localStorage save keys (unique)** | 190+ | **193+** |
-| **Engine hook vào gameTick** | 122 | **122** (V74 là pure interactive layer — không hook) |
-| **Phiên bản hiện tại** | V73 | **V74 — Creator Economy Pass** |
+| **Tổng panel divs trong HTML** | 241 | **241** (V75 inject vào creator-hub-v32 — không thêm panel mới) |
+| **Tổng nav buttons (data-panel)** | 68 | **68** (V75 KHÔNG tạo sidebar tab mới) |
+| **Tổng localStorage save keys (unique)** | 193+ | **197+** |
+| **Engine hook vào gameTick** | 122 | **122** (V75 là pure async interactive layer — không hook) |
+| **Phiên bản hiện tại** | V74 | **V75 — AI World Genesis Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🏪 Creator Economy Pass V74 ← NEWEST (3 files)
+### 🤖 AI World Genesis Pass V75 ← NEWEST (4 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `aiGenesisEngine.js` | Claude claude-opus-4-5 caller · 7 genre detector · JSON parser · History 30 entries | `cgv6_ai_genesis_v75` | 18400ms |
+| `promptToWorldEngine.js` | Prompt analyzer · Keyword hints · 7 templates · System prompt builder | `cgv6_prompt_world_v75` | 18500ms |
+| `worldGenerationPipeline.js` | Pipeline orchestrator · Apply world.countries.npcs.lore · stageLog | `cgv6_world_pipeline_v75` | 18600ms |
+| `worldLoreGenerator.js` | UI Registry · 4 tabs creator-hub-v32 (AI Genesis/Prompt Builder/World Preview/Generated Worlds) · hook hubRenderPanel | `cgv6_lore_gen_v75` | 18700ms |
+
+**Global Objects:** `window.aiGenesisV75Data` · `window.promptToWorldV75Data` · `window.worldPipelineV75Data` · `window.worldLoreGenV75Data` · `window.GENESIS75_GENRES` · `window.PROMPT75_TEMPLATES`
+**API:** `ag75DetectGenre/BuildSystemPrompt/CallClaude/ParseWorldJSON/SaveGeneration/GetHistory/GetStats()` · `ptw75AnalyzePrompt/BuildFullPrompt/SavePrompt/GetTemplates/GetSaved()` · `wgp75Generate/ApplyWorld/GetPending/GetApplied/GetStats()` · `wgl75SwitchTab/StartGenerate/UseTemplate/ApplyWorld/RenderSection()`
+**UI:** 4 tabs inject vào creator-hub-v32 (phần dưới, height 310px) · KHÔNG tạo sidebar tab mới · Hook hubRenderPanel const _orig pattern
+**Claude Flow:** `ptw75BuildFullPrompt()` → `ag75CallClaude()` → `ag75ParseWorldJSON()` → `wgp75ApplyWorld()` → inject window.world/countries/npcs/htAddEvent/wmeAddMemory
+**7 Templates:** Thần Thoại Bắc Âu · Tu Tiên Hắc Ám · Khoa Học Viễn Tưởng · Tận Thế Sinh Hóa · Hy Lạp Cổ Đại · Cyberpunk Neo · Đông Phương Kỳ Bí
+**Không trùng với:** aiWorldGenerator.js (random RNG V1) · worldCreationWizard.js (manual 5-step) · originStoryEngine.js (static lore banks)
+**GameTick hooks:** KHÔNG CÓ (pure async interactive layer)
+
+---
+
+### 🏪 Creator Economy Pass V74 (3 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `creatorAssetEngine.js` | Asset engine — 6 loại (Race/Creature/Religion/Technology/Civilization/Lore) · 8 demo assets · 6 bậc rarity · CRUD + Rating + Import | `cgv6_creator_assets_v74` | 18100ms |

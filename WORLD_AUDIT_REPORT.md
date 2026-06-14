@@ -1,11 +1,48 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-14 (cập nhật sau V74 — Creator Economy Pass)
-> Tổng: ~302 JS files · 241 panels · 68 nav buttons · 193+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V75 — AI World Genesis Pass)
+> Tổng: ~306 JS files · 241 panels · 68 nav buttons · 197+ save keys · 122 gameTick hooks
 
 ---
 
-## 🏪 V74 — CREATOR ECONOMY PASS (MỚI NHẤT)
+## 🤖 V75 — AI WORLD GENESIS PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+"Text → World trong 60 giây" — User mô tả thế giới bằng ngôn ngữ tự nhiên, Claude AI tạo ra thế giới hoàn chỉnh gồm quốc gia, chủng tộc, tôn giáo, sinh vật, anh hùng, lore.
+
+### 4 Tabs AI Genesis (inject vào Creator Hub V32)
+```
+🤖 AI Genesis       — Textarea nhập prompt · "Tạo Thế Giới" button · Stage log · 7 templates nhanh
+✏️ Prompt Builder   — Phân tích prompt · Genre detect · 7 templates chi tiết · Prompts đã lưu
+👁️ World Preview    — World summary · Countries/Races/Religions/Creatures/Heroes · Full Lore · Apply button
+🌍 Generated Worlds — Thế giới đã áp dụng · Lịch sử tạo (30 entries) · Xem lại từng thế giới
+```
+
+### Generation Pipeline
+```
+Prompt → ptw75AnalyzePrompt() → ag75BuildSystemPrompt() → ag75CallClaude(claude-opus-4-5)
+    ↓
+ag75ParseWorldJSON() → wgp75Generate() → wgl75RenderPreview()
+    ↓
+[User: "✅ Áp Dụng"]
+    ↓
+wgp75ApplyWorld() → window.world + window.countries + window.npcs
+    ↓
+htAddEvent(4 events) + wmeAddMemory(2 entries) → Save
+```
+
+### 7 Thể Loại Detect Tự Động
+Tu Tiên ⚗️ · Kỳ Huyễn ⚔️ · Khoa Học 🚀 · Thần Thoại ⚡ · Tận Thế ☢️ · Cyberpunk 🤖 · Lai Ghép 🌀
+
+### Files
+- `aiGenesisEngine.js` (init 18400ms · save: cgv6_ai_genesis_v75)
+- `promptToWorldEngine.js` (init 18500ms · save: cgv6_prompt_world_v75)
+- `worldGenerationPipeline.js` (init 18600ms · save: cgv6_world_pipeline_v75)
+- `worldLoreGenerator.js` (init 18700ms · save: cgv6_lore_gen_v75)
+
+---
+
+## 🏪 V74 — CREATOR ECONOMY PASS
 
 ### Tầm Nhìn
 "Nền Kinh Tế Của Các Thế Giới" — Creator tạo, chia sẻ và import Asset (Race/Creature/Religion/Technology/Civilization/Lore) và Blueprint (World/Country/Race) qua Universe Hub.
