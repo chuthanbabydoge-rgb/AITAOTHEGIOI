@@ -1,0 +1,268 @@
+WORLD IMMERSION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- XR_FOUNDATION_REPORT.md
+- SPATIAL_UI_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+- AI_MEMORY.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+QUY TẮC KIẾN TRÚC
+==================================================
+
+CHỈ EXPAND.
+
+KHÔNG XÓA FILE CŨ.
+
+KHÔNG THAY THẾ HỆ THỐNG CŨ.
+
+KHÔNG BUILD LẠI DỰ ÁN.
+
+Chỉ để tab chính ở sidebar.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Hiện tại:
+
+Creator nhìn thế giới từ trên cao.
+
+Mục tiêu:
+
+Creator có thể:
+
+- Zoom từ vũ trụ
+- Xuống hành tinh
+- Xuống lục địa
+- Xuống quốc gia
+- Xuống thành phố
+- Xuống đường phố
+- Quan sát NPC
+
+==================================================
+IMMERSION CORE
+==================================================
+
+Tạo hoặc mở rộng:
+
+- immersionEngine.js
+- worldScaleEngine.js
+- dynamicZoomSystem.js
+
+==================================================
+MULTI-SCALE VIEW
+==================================================
+
+Cho phép:
+
+Universe
+↓
+Galaxy
+↓
+Planet
+↓
+Continent
+↓
+Kingdom
+↓
+City
+↓
+District
+↓
+Building
+↓
+NPC
+
+==================================================
+SEAMLESS ZOOM
+==================================================
+
+Người dùng có thể:
+
+- Zoom liên tục
+- Không chuyển scene
+- Không reload
+
+==================================================
+LIVING CITY VIEW
+==================================================
+
+Tạo:
+
+- cityImmersionSystem.js
+
+Hiển thị:
+
+- Dân số
+- Kinh tế
+- Công trình
+- Giao thông
+- Xã hội
+
+==================================================
+NPC OBSERVATION MODE
+==================================================
+
+Tạo:
+
+- npcObservationSystem.js
+
+Cho phép:
+
+Theo dõi:
+
+- Một NPC
+- Một gia đình
+- Một dòng họ
+
+Qua nhiều thế hệ
+
+==================================================
+DYNASTY VIEW
+==================================================
+
+Tạo:
+
+- dynastyVisualizationSystem.js
+
+Hiển thị:
+
+- Gia phả
+- Ký ức
+- Lịch sử gia tộc
+
+==================================================
+HISTORICAL REPLAY IMMERSION
+==================================================
+
+Cho phép:
+
+- Xem lại lịch sử
+- Xem chiến tranh
+- Xem sự kiện
+
+như một bộ phim.
+
+==================================================
+WORLD WALKTHROUGH MODE
+==================================================
+
+Tạo:
+
+- worldWalkthroughSystem.js
+
+Creator có thể:
+
+- Di chuyển trong thành phố
+- Quan sát cuộc sống
+- Quan sát NPC tương tác
+
+==================================================
+JARVIS IMMERSION MODE
+==================================================
+
+Jarvis có thể:
+
+- Dẫn tour thế giới
+- Giải thích lịch sử
+- Giải thích nền văn minh
+- Phân tích khu vực đang xem
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp:
+
+Creator Panel
+
+Tab nội bộ:
+
+- Immersion View
+- World Zoom
+- NPC Observer
+- Dynasty View
+- Historical Replay
+
+==================================================
+XR PREPARATION
+==================================================
+
+Thiết kế tương thích:
+
+- Meta Quest
+- Vision Pro
+- AR Glasses
+- Future XR Devices
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Camera State
+- Observation History
+- Replay Data
+- Immersion Settings
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Người dùng có thể:
+
+Zoom từ toàn vũ trụ
+
+↓
+
+Xuống một thành phố
+
+↓
+
+Theo dõi một NPC
+
+↓
+
+Xem cuộc đời của NPC đó
+
+↓
+
+Xem con cháu của NPC đó sau 500 năm.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- IMMERSION_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+IMMERSION_REPORT phải trả lời:
+
+1. Có thể zoom tới cấp độ nào
+2. Theo dõi NPC được bao lâu
+3. Xem lịch sử thế giới thế nào
+4. XR readiness score
+5. Bước tiếp theo nên build gì
+
+KHÔNG BUILD MMO.
+
+KHÔNG BUILD PVP.
+
+KHÔNG BUILD MARKETPLACE.
+
+TẬP TRUNG:
+
+"CHO PHÉP NGƯỜI DÙNG BƯỚC VÀO THẾ GIỚI CỦA CHÍNH HỌ."
