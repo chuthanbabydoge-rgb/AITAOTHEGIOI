@@ -5,7 +5,48 @@
 
 ---
 
-## ⚡ V82 — PERFORMANCE OPTIMIZATION PASS (MỚI NHẤT)
+## 🧵 V83 — WEB WORKER ENGINE (MỚI NHẤT)
+
+### Vấn Đề Giải Quyết
+- Main thread bị block bởi NPC AI computation mỗi tick
+- 328 gameTick hooks → UI jank khi world có 100+ NPC
+- Relationship updates + economy math chạy synchronous trên main thread
+
+### 4 Files Mới
+
+| File | Vai Trò | Save Key | Init |
+|---|---|---|---|
+| `npcAIWorker.js` | Web Worker standalone — 4 task types | — (Worker context) | — |
+| `webWorkerEngine.js` | Main thread coordinator · dispatch · apply results | `cgv6_web_worker_v83` | 22400ms |
+| `workerPoolManager.js` | Priority task queue · pool management | — (ephemeral) | 22500ms |
+| `webWorkerRegistryV83.js` | UI monitoring panel · status · stats | — | 22600ms |
+
+### 4 Task Types (chạy trong Worker thread)
+- `PROCESS_NPC_AI` — mood/happiness/health/wealth delta mỗi 10 ticks
+- `PROCESS_ECONOMY` — growth/inflation per country mỗi 30 ticks
+- `PROCESS_RELATIONSHIPS` — relationship score drift mỗi 45 ticks
+- `PROCESS_HISTORY_SCORE` — civilisation score từ event log mỗi 60 ticks
+
+### Public API
+- `window.ww83DispatchNPCAI()` — gửi batch NPC AI ngay lập tức
+- `window.ww83QueueTask({ type, data, priority })` — priority queue (1=high)
+- `window.ww83GetStatus()` — worker status + stats
+- `window.ww83RestartWorker()` — respawn worker
+- `window.ww83ToggleEnabled()` — bật/tắt offloading
+- `window.ww83GetPoolStatus()` — pool info + task history
+
+### Hiệu Quả
+- NPC AI computation: **main thread → background thread**
+- Auto-respawn nếu worker crash
+- Batch max 150 NPCs/dispatch
+- Serialize/deserialize qua JSON.parse(JSON.stringify()) để tránh SharedArrayBuffer
+
+### Next Version
+- V84 init từ 22700ms+
+
+---
+
+## ⚡ V82 — PERFORMANCE OPTIMIZATION PASS
 
 ### Bottleneck Thực Tế (quét code)
 - **328 gameTick hooks** — mỗi tick gọi chain 328 functions

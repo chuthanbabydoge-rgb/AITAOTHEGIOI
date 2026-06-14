@@ -63,6 +63,57 @@
 
 ---
 
+---
+
+## 🧵 V83 — WEB WORKER ENGINE
+
+### Kiến Trúc
+
+```
+Main Thread                        Worker Thread (npcAIWorker.js)
+    │                                      │
+    │── postMessage(NPC batch) ──────────▶│
+    │                                      │ processNPCAI()
+    │                                      │   mood delta
+    │                                      │   happiness delta
+    │                                      │   health delta
+    │                                      │   wealth delta
+    │                                      │   migration intent
+    │◀─────────── NPC_AI_RESULTS ─────────│
+    │ applyNPCAIResults()                  │
+    │   → window.npcs[i].mood += delta     │
+    │   → npcCacheInvalidate()             │
+```
+
+### 4 Task Types
+
+| Task | Trigger | Max Items | Priority |
+|---|---|---|---|
+| PROCESS_NPC_AI | every 10 ticks | 150 NPCs | Normal |
+| PROCESS_ECONOMY | every 30 ticks | 30 countries | Normal |
+| PROCESS_RELATIONSHIPS | every 45 ticks | 50 NPCs | Low |
+| PROCESS_HISTORY_SCORE | every 60 ticks | 200 events | Low |
+
+### 4 Files
+
+| File | Context | Init |
+|---|---|---|
+| `npcAIWorker.js` | Web Worker (standalone JS) | Worker |
+| `webWorkerEngine.js` | Main thread, `cgv6_web_worker_v83` | 22400ms |
+| `workerPoolManager.js` | Main thread, ephemeral | 22500ms |
+| `webWorkerRegistryV83.js` | UI inject creator-hub-v32 | 22600ms |
+
+### Kết Quả Kỳ Vọng
+
+| Metric | Trước V83 | Sau V83 | Cải Thiện |
+|---|---|---|---|
+| NPC AI trên main thread | Đồng bộ | Background thread | **~0ms main thread** |
+| Economy calc trên main thread | Đồng bộ | Background thread | **~0ms main thread** |
+| UI thread availability | Bị block | Gần như tự do | **+60fps stability** |
+| Worker crash recovery | N/A | Auto-respawn 3s | ✅ Resilient |
+
+---
+
 > Dữ Liệu Cũ (V60 — 2026-06-13):
 
 ---
