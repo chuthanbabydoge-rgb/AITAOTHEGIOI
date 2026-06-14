@@ -4,6 +4,53 @@
 
 ---
 
+## [V65] — 2026-06-13 — Living NPC System (Làm Cho Dân Cư Thực Sự Sống)
+
+### Triết Lý V65
+EXPAND ONLY. Mở rộng living-world-engine.js (đã có NPC lifecycle cơ bản) với 3 module chuyên biệt: hồ sơ cuộc đời chi tiết, mạng quan hệ 9 loại, hệ thống gia tộc & gia phả đa thế hệ. UI 5 tabs trong player-hub-v28.
+
+### New Files (4 files)
+- `npcLifeEngineV65.js` — Hồ sơ cuộc đời · 8 nghề nghiệp (career seeded) · 10 ước mơ · 8 nỗi sợ · cảm xúc (happy/angry/fearful/hopeful/desperate) · lifeEvents · goals · auto-scan mỗi 5 năm · SAVE: cgv6_npc_life_v65 · init: 13400ms
+- `npcRelationshipSystemV65.js` — 9 loại quan hệ (friend/enemy/ally/lover/rival/mentor/apprentice/sibling/spouse) · score -100→+100 · loveStories · rivalries · auto-scan wars+sect+spouse · SAVE: cgv6_npc_relationship_v65 · init: 13500ms
+- `npcFamilySystemV65.js` — Gia phả đa thế hệ · parentA/B · children/siblings · generationCount · ký ức truyền cho con cháu khi cha/mẹ mất · sync V64 dynastyMemory · SAVE: cgv6_npc_family_v65 · init: 13600ms
+- `npcLivingRegistryV65.js` — UI patch player-hub-v28 · 5 sub-tabs · click-to-bio modal · career distribution · emotion snapshot · family narrative button · init: 13700ms
+
+### Files Modified (1 file)
+- `index.html` — thêm 4 script tags sau V64 scripts
+
+### Files Generated
+- `NPC_REPORT.md` — báo cáo đầy đủ 9 mục
+
+### 5 Sub-tabs UI (trong player-hub-v28)
+1. 👤 NPC — Hồ sơ + nghề nghiệp + cảm xúc + death log
+2. 👨‍👩‍👧‍👦 Gia Tộc — Cây gia phả + biên niên gia tộc (click → expand)
+3. 💕 Quan Hệ — Tình yêu, thù địch, top social NPC
+4. 🌐 Xã Hội — Phân bổ địa lý + nghề + cảm xúc thế giới
+5. 📅 Cuộc Đời — Dropdown chọn NPC → timeline đầy đủ + genealogy + bio
+
+### NPC Lifecycle Pipeline (Năm 1 → 500)
+```
+Năm 1:   Sinh → profile(career, dream, fear)
+Năm 50:  Kết hôn → spouse relationship + family marriage
+Năm 80:  Sinh con → genealogy.children, generation++
+Năm 150: Qua đời → deathRecord + ký ức truyền cho con cháu
+Năm 500: Thế hệ 5 → Người chơi xem gia phả đầy đủ 500 năm
+```
+
+### V64 ↔ V65 Integration
+- npcMem64AddMemory() — mọi sự kiện cuộc đời → V64 NPC Memory
+- mem64Record("hero") — cái chết → V64 global memory
+- dynMem64AddMember() — thành viên → V64 dynasty memory
+- Ký ức cha/mẹ tự động truyền cho con cái qua npcMem64AddMemory()
+
+### Save Keys V65 (3 keys mới)
+- cgv6_npc_life_v65 · cgv6_npc_relationship_v65 · cgv6_npc_family_v65
+
+### Next Version
+- V66 init từ 13800ms+
+
+---
+
 ## [V64] — 2026-06-13 — Memory System (Thế Giới Nhớ Người Sáng Thế)
 
 ### Triết Lý V64

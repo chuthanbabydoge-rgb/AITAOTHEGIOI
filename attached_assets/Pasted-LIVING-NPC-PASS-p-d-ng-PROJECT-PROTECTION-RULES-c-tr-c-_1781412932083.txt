@@ -1,0 +1,196 @@
+LIVING NPC PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+- MEMORY_REPORT.md
+- FINAL_FOUNDATION_REPORT.md
+- AI_MEMORY.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+NPC không còn là dữ liệu.
+
+NPC phải:
+
+- Sinh ra
+- Trưởng thành
+- Kết hôn
+- Sinh con
+- Già đi
+- Chết
+
+==================================================
+NPC LIFE SYSTEM
+==================================================
+
+Tạo hoặc mở rộng:
+
+- npcLifeEngine.js
+- npcRelationshipSystem.js
+- npcFamilySystem.js
+
+==================================================
+NPC PERSONALITY
+==================================================
+
+Mỗi NPC có:
+
+- Tính cách
+- Sở thích
+- Nỗi sợ
+- Ước mơ
+- Tham vọng
+
+==================================================
+FAMILY SYSTEM
+==================================================
+
+NPC có:
+
+- Cha mẹ
+- Con cái
+- Anh chị em
+- Gia tộc
+
+==================================================
+SOCIAL SYSTEM
+==================================================
+
+NPC có:
+
+- Bạn bè
+- Kẻ thù
+- Đồng minh
+- Người yêu
+
+==================================================
+CAREER SYSTEM
+==================================================
+
+NPC có nghề nghiệp:
+
+- Nông dân
+- Thương nhân
+- Chiến binh
+- Học giả
+- Tư tế
+- Quý tộc
+
+==================================================
+GOAL SYSTEM
+==================================================
+
+NPC tự đặt mục tiêu:
+
+- Làm giàu
+- Trả thù
+- Mở rộng gia tộc
+- Trở thành anh hùng
+
+==================================================
+EMOTIONAL SYSTEM
+==================================================
+
+NPC có:
+
+- Hạnh phúc
+- Tức giận
+- Sợ hãi
+- Hy vọng
+- Tuyệt vọng
+
+==================================================
+NPC DAILY LIFE
+==================================================
+
+NPC có:
+
+- Sinh hoạt
+- Làm việc
+- Giao tiếp
+- Du lịch
+- Kết hôn
+
+==================================================
+JARVIS LIFE MODE
+==================================================
+
+Jarvis có thể:
+
+- Theo dõi cuộc đời NPC
+- Tóm tắt gia phả
+- Phân tích xã hội
+
+==================================================
+UI
+==================================================
+
+Không tạo tab sidebar mới.
+
+Tích hợp trong:
+
+👤 Người Chơi
+🏛 Quốc Gia
+
+Tab nội bộ:
+
+- NPC
+- Gia Tộc
+- Quan Hệ
+- Xã Hội
+- Cuộc Đời
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Gia phả
+- Quan hệ
+- Ký ức
+- Nghề nghiệp
+- Cuộc đời NPC
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Một NPC sinh ra ở năm 1
+
+↓
+
+Có con cháu năm 500
+
+↓
+
+Người chơi vẫn xem được toàn bộ gia phả.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- NPC_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+KHÔNG BUILD MMO.
+
+KHÔNG BUILD PVP.
+
+TẬP TRUNG:
+
+"LÀM CHO DÂN CƯ THỰC SỰ SỐNG."
