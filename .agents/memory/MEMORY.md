@@ -35,3 +35,4 @@
 - [V87 Backup & Recovery Architecture](v87-backup-recovery.md) — 2 files · backupEngine+disasterRecoverySystem · auto 500t · 6-test suite · init 23400→23500ms · next V88 từ 23600ms+
 - [V88 Analytics Architecture](v88-analytics.md) — 1 file · analyticsEngine · 27 metrics · 4 categories · time series · init 23600ms · next V89 từ 23700ms+
 - [V89 XR Device Adapter](v89-xr-device-adapter.md) — 3 files · xrDeviceAdapter+questBridge+visionProBridge · Quest hand/haptic/passthrough · Vision Pro eye/spatial/volume · 3 save keys cgv6_xr_device_adapter/quest_bridge/vision_pro_bridge_v89 · init 23700→23900ms · next V90 từ 24000ms+
+- [V90 PUOS Shell Architecture](v90-puos-shell.md) — puosShell.js + 6 panel files · CSS body.puos-mode class approach (KHÔNG dùng JS display manipulation) · z-index:2147483647 · serve.js strip query params · init 24000ms · next V91 từ 24700ms+

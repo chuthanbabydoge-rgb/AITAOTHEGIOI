@@ -1,11 +1,60 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V88 — Analytics Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V90 — UI Rearchitecture Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
-## 📊 V88 — ANALYTICS PASS (MỚI NHẤT)
+## ⭕ V90 — PUOS UI REARCHITECTURE PASS (MỚI NHẤT)
+
+### Mục Tiêu
+Biến "Admin Dashboard" thành "Personal Universe Operating System" — 6-item sidebar sạch, curated panels, Jarvis trung tâm, Classic Mode escape hatch.
+
+### 7 Files Mới
+
+| File | Chức Năng | Init |
+|---|---|---|
+| `puosShell.js` | Main PUOS overlay · 6-item sidebar · routing · CSS system · Classic Mode toggle | 24000ms |
+| `puosMyUniverse.js` | My Universe dashboard · 4 stat cards · quick actions · recent events | 24100ms |
+| `puosWorldsPanel.js` | Worlds · 5 tabs (Overview/Creation/Genesis/Timeline/Snapshots) | 24200ms |
+| `puosCivPanel.js` | Civilization · 5 tabs (Overview/Cultures/Religions/Knowledge/History) | 24300ms |
+| `puosHubPanel.js` | Universe Hub · 5 tabs (Worlds/Creators/Portals/Events/Multiverse) | 24400ms |
+| `puosJarvis.js` | Jarvis AI · chat UI · Claude bridge · fallbacks · nav command routing | 24500ms |
+| `puosSettings.js` | Settings · 5 tabs (General/Performance/Security/Backup/Advanced) | 24600ms |
+
+### Public API
+- `puosGo(sectionId)` → navigate PUOS section
+- `puosClassicToggle()` → toggle Classic Mode
+- `puosOpenClassicPanel(panelId, renderFn?)` → open classic panel by ID
+- `puosWorldsTab(tabId)` / `puosCivTab(tabId)` / `puosHubTab(tabId)` / `puosSettingsTab(tabId)` → sub-tab navigation
+- `puosJarvisSend()` / `puosJarvisAsk(query)` → Jarvis chat
+- `puosGenesisGenerate()` → AI Genesis từ prompt
+
+### Design System
+- CSS Classes: `.puos-card` · `.puos-card-title` · `.puos-tab-bar` · `.puos-tab` · `.puos-row` · `.puos-row-lbl` · `.puos-row-val` · `.puos-action` · `.puos-badge` · `.puos-fade`
+- Color: `#050a14` bg · `#7c3aed` accent · `#0d1117` card · `#1e293b` border
+- Font: Noto Serif SC · Scale: 10/11/12/13/22/26px
+
+### gameTick Hooks
+- Không có (UI-only layer)
+
+### Save Keys V90
+- Không có (UI state không persist — Classic Mode state in-memory)
+
+### UX Trước/Sau
+| | Trước | Sau |
+|---|---|---|
+| Sidebar items | 60+ | 6 |
+| Tabs phổ biến nhất | ~50 | 5 |
+| Clicks đến Jarvis | 3 | 1 |
+| UX Score | 46/100 | 79/100 |
+
+### Next Version
+- V91 init từ 24700ms+
+
+---
+
+## 📊 V88 — ANALYTICS PASS
 
 ### Mục Tiêu
 Biết user dùng gì — World Growth · NPC Activity · XR Usage · Creator Activity · Time Series

@@ -1,0 +1,275 @@
+UI REARCHITECTURE PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- PUOS_REPORT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+VẤN ĐỀ HIỆN TẠI
+==================================================
+
+Dự án đã hoàn thành:
+
+- World Creation
+- AI Memory
+- Living NPC
+- Digital Life
+- Civilization
+- XR
+- Universe Hub
+- Genesis
+- Evolution
+- PUOS
+
+Nhưng giao diện đang:
+
+- Quá nhiều màn hình
+- Quá nhiều panel
+- Quá nhiều card
+- Điều hướng phức tạp
+- Thiếu cảm giác sản phẩm hoàn chỉnh
+
+Mục tiêu:
+
+Biến hệ thống từ:
+
+"Admin Dashboard"
+
+thành
+
+"Personal Universe Operating System"
+
+==================================================
+QUY TẮC
+==================================================
+
+KHÔNG BUILD ENGINE MỚI.
+
+KHÔNG BUILD TÍNH NĂNG MỚI.
+
+KHÔNG BUILD HỆ THỐNG AI MỚI.
+
+KHÔNG BUILD XR MỚI.
+
+CHỈ REFACTOR UI/UX.
+
+==================================================
+SIDEBAR MỚI
+==================================================
+
+Giữ tối đa 6 mục:
+
+🪐 My Universe
+
+🌍 Worlds
+
+🏛 Civilization
+
+🌌 Universe Hub
+
+🤖 Jarvis
+
+⚙ Settings
+
+Không thêm sidebar khác.
+
+==================================================
+MY UNIVERSE
+==================================================
+
+Đây là trang chủ mặc định.
+
+Hiển thị:
+
+- World Age
+- Population
+- Active Civilizations
+- Active Religions
+- AI Status
+- XR Status
+- Multiverse Status
+- Universe Health
+
+Mục tiêu:
+
+Khi user mở app:
+
+Không thấy dashboard.
+
+Thấy:
+
+"Đây là vũ trụ của tôi."
+
+==================================================
+WORLDS
+==================================================
+
+Gộp:
+
+- World Creation
+- AI Genesis
+- World DNA
+- Snapshot
+- Timeline
+
+thành một khu vực thống nhất.
+
+Tab nội bộ:
+
+- Overview
+- Creation
+- Genesis
+- Timeline
+- Snapshots
+
+==================================================
+CIVILIZATION
+==================================================
+
+Gộp:
+
+- Culture
+- Religion
+- Philosophy
+- Academy
+- Technology
+- History
+
+thành một khu vực thống nhất.
+
+Tab nội bộ:
+
+- Overview
+- Cultures
+- Religions
+- Knowledge
+- History
+
+==================================================
+UNIVERSE HUB
+==================================================
+
+Gộp:
+
+- World Directory
+- Creator Directory
+- Portals
+- Multiverse
+- Events
+
+thành một khu vực thống nhất.
+
+Tab nội bộ:
+
+- Worlds
+- Creators
+- Portals
+- Events
+- Multiverse
+
+==================================================
+JARVIS
+==================================================
+
+Jarvis trở thành trung tâm điều hướng.
+
+User có thể nhập:
+
+- Tạo thế giới mới
+- Phân tích quốc gia
+- Mở XR
+- Xem lịch sử
+
+Jarvis điều hướng tới khu vực phù hợp.
+
+==================================================
+DESIGN SYSTEM
+==================================================
+
+Tạo:
+
+design-system.md
+
+Định nghĩa:
+
+- Typography Scale
+- Color System
+- Card System
+- Panel System
+- Modal System
+- Navigation System
+
+Chuẩn hóa toàn bộ UI.
+
+==================================================
+VISUAL CONSISTENCY
+==================================================
+
+Kiểm tra:
+
+- Card trùng lặp
+- Modal trùng lặp
+- Dashboard trùng lặp
+- Panel trùng lặp
+
+Hợp nhất tối đa.
+
+==================================================
+PERFORMANCE
+==================================================
+
+Giảm:
+
+- Render depth
+- Nested components
+- Duplicate views
+
+==================================================
+PHÂN TÍCH TRƯỚC KHI CODE
+==================================================
+
+1. Liệt kê UI hiện tại
+
+2. Liệt kê UI dư thừa
+
+3. Liệt kê sidebar dư thừa
+
+4. Kế hoạch hợp nhất
+
+5. Wireframe mới
+
+6. Kiểm tra ảnh hưởng
+
+Chỉ sau khi phân tích mới bắt đầu code.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- UI_REARCHITECTURE_REPORT.md
+- DESIGN_SYSTEM.md
+- REAL_PROJECT_AUDIT.md
+
+UI_REARCHITECTURE_REPORT phải trả lời:
+
+1. Sidebar mới gồm gì
+2. Những màn hình nào bị hợp nhất
+3. Những component nào bị loại bỏ
+4. UX đơn giản hơn thế nào
+5. Những vấn đề UI còn tồn tại
+6. Điểm UX hiện tại trên 100
+
+TẬP TRUNG:
+
+"BIẾN DỰ ÁN THÀNH MỘT PERSONAL UNIVERSE OPERATING SYSTEM CÓ GIAO DIỆN ĐƠN GIẢN, CAO CẤP VÀ DỄ DÙNG."
