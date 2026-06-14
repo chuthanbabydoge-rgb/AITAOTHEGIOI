@@ -1,28 +1,47 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V72 — XR World Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V73 — Universe Hub Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V71 | V72 (Mới Nhất) |
+| Chỉ Số | V72 | V73 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | ~292 | **~296** |
-| **Tổng file được load trong index.html** | ~284 | **~288** |
+| **Tổng file .js trên disk** | ~296 | **~299** |
+| **Tổng file được load trong index.html** | ~288 | **~291** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V72 dùng hub cũ) |
-| **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 185+ | **188+** |
-| **Engine hook vào gameTick** | 122 | **122** (V72 là pure interactive layer — không hook) |
-| **Phiên bản hiện tại** | V71 | **V72 — XR World Pass** |
+| **Tổng panel divs trong HTML** | 240 | **241** (V73 inject dynamic 1 panel mới) |
+| **Tổng nav buttons (data-panel)** | 67 | **68** (V73 inject dynamic — FIRST new sidebar tab từ V38) |
+| **Tổng localStorage save keys (unique)** | 188+ | **190+** |
+| **Engine hook vào gameTick** | 122 | **122** (V73 là pure interactive layer — không hook) |
+| **Phiên bản hiện tại** | V72 | **V73 — Universe Hub Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🥽 XR World Pass V72 ← NEWEST (4 files)
+### 🌌 Universe Hub Pass V73 ← NEWEST (3 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `universeHubCore.js` | Data engine — 8 Demo Worlds · 8 Creators · 4 Events · Portal System · Rankings · Follow System · Stats | `cgv6_universe_hub_v73` | 17800ms |
+| `universeHubMap.js` | Canvas 2D Universe Map — starfield · animated connections · 3 clusters · click-to-info · node glow | — | 17900ms |
+| `universeHubRegistry.js` | Full UI 6 tabs (Worlds/Creators/Map/Portals/Events/Rankings) · Dynamic sidebar button inject · Dynamic panel inject | `cgv6_universe_hub_registry_v73` | 18000ms |
+
+**Global Objects:** `window.universeHubV73Data` · `window.UHUB73_DEMO_WORLDS` · `window.UHUB73_DEMO_CREATORS` · `window.UHUB73_DEMO_EVENTS` · `window.universeMapV73`  
+**API:** `uhub73GetWorlds/GetCreators/GetEvents/GetRankings/GetProfile/GetData/GetStats()` · `uhub73OpenPortal/VisitWorld/FollowWorld/UnfollowWorld/JoinEvent/BuildUniverseMap()` · `umap73Init/Stop/Refresh()`  
+**UI:** 🌌 Universe Hub — tab sidebar MỚI (đầu tiên kể từ V38) · Inject dynamically · 6 tabs nội bộ  
+**GameTick hooks:** KHÔNG CÓ (pure interactive meta-platform layer)  
+**XR Readiness:** 84% — Portal traversal · Universe Map hologram · World Visit overlay · Controller-compatible buttons  
+**Demo Worlds:** 8 thế giới · CivScore range 5,100 → 15,600 · Mythic→Active tiers  
+**Demo Creators:** 8 creators · Online/Offline status · Reputation tiers: Mythic/Legendary/Master/Elite  
+**Events:** 4 sự kiện · Types: cross_world/platform/community  
+**Rankings:** Sort by CivScore/Worlds/Population · Player profile auto-included  
+
+---
+
+### 🥽 XR World Pass V72 (4 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `xrWorldEngine.js` | 8 view levels · World Table controls (scale/rotate/zoom) · 5 device profiles · xrw72ActivateWorldTable/SetView/SetScale/Rotate/SetGodScale/FocusEntity/GetData() | `cgv6_xr_world_v72` | 17400ms |
