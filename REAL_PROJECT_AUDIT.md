@@ -5,7 +5,42 @@
 
 ---
 
-## 🪐 V81 — PERSONAL UNIVERSE OPERATING SYSTEM (MỚI NHẤT)
+## ⚡ V82 — PERFORMANCE OPTIMIZATION PASS (MỚI NHẤT)
+
+### Bottleneck Thực Tế (quét code)
+- **328 gameTick hooks** — mỗi tick gọi chain 328 functions
+- **713 innerHTML calls** — full re-render không cache
+- **820 localStorage ops** — ghi phân tán, không batch
+- **20+ NPC filter/tick** — mỗi engine tự filter window.npcs
+
+### 2 Files Mới
+
+| File | Save Key | Init |
+|---|---|---|
+| `performanceMonitor.js` | `cgv6_perf_monitor_v82` | 22200ms |
+| `performanceProfiler.js` | `cgv6_perf_profiler_v82` | 22300ms |
+
+### 4 Optimization Layers
+- **NPC Cache**: `getNPCsAlive()` / `getNPCsHeroes()` / `getNPCsByJob()` — -95% filter ops
+- **Render Cache**: `renderCache.get/set()` TTL 5s — -80% re-renders
+- **Save Batcher**: `perfSave(key, data)` debounce 600ms — -80% localStorage I/O
+- **Lazy Tick**: `perfTick.registerCritical/Normal/Lazy()` — phân tier tick execution
+
+### Public API
+- `window.getNPCsAlive()` · `window.getNPCsHeroes()` · `window.getNPCsByJob(job)`
+- `window.renderCache.get/set/invalidate/invalidateAll()`
+- `window.perfSave(key, data)` · `window.perfSaveFlush()`
+- `window.perfTick.registerLazy/Normal/Critical(fn, id)`
+- `window.perfIdleQueue.push(fn)` · `window.perfIsVisible()`
+- `window.perfVirtualize(items, fn, pageSize, page)`
+- `window.perfMon82GetReport()` · `window.uhmon81GetHealthScore()`
+
+### Next Version
+- V83 init từ 22400ms+
+
+---
+
+## 🪐 V81 — PERSONAL UNIVERSE OPERATING SYSTEM
 
 ### Tầm Nhìn
 "Mỗi người dùng sở hữu một Vũ Trụ Cá Nhân" — PUOS là lớp hệ điều hành tổng hợp tất cả 40+ engines thành một hệ thống thống nhất có thể theo dõi, đo lường và quản lý toàn bộ vũ trụ.

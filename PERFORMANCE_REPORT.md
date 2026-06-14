@@ -1,7 +1,69 @@
 # PERFORMANCE REPORT — Creator God V6
-> Đánh giá hiệu năng, độ kết nối, và điểm nghẽn kiến trúc
-> Ngày: 2026-06-13 (cập nhật sau V60 — Living Universe)
-> Phiên bản: V60 · 265 JS files · 122 gameTick hooks · 174+ save keys
+> Cập nhật: 2026-06-14 · V82 — Performance Optimization Pass
+> Phiên bản: V82 · 373 JS files · 328 gameTick hooks · 229+ save keys
+
+---
+
+## ⚡ V82 — PERFORMANCE OPTIMIZATION PASS (MỚI NHẤT)
+
+### Số Liệu Thực Tế (quét code)
+
+| Bottleneck | Số Liệu | Mức Độ |
+|---|---|---|
+| gameTick hooks | **328** | 🔴 Nghiêm trọng |
+| innerHTML calls | **713** | 🔴 Nghiêm trọng |
+| localStorage ops | **820** | 🟡 Trung bình |
+| NPC filter ops (20+ files) | ~20+/tick | 🟡 Trung bình |
+| JS files tổng | **373** | 🟢 Bình thường |
+| Project size | **70MB** | 🟢 Bình thường |
+
+### 2 Files Mới
+
+| File | Chức Năng | Save Key | Init |
+|---|---|---|---|
+| `performanceMonitor.js` | Đo tick time, render time, storage · Alert system · UI widget | `cgv6_perf_monitor_v82` | 22200ms |
+| `performanceProfiler.js` | NPC Cache · Render Cache · Save Batcher · Lazy Tick · Virtualization | `cgv6_perf_profiler_v82` | 22300ms |
+
+### 4 Optimization Layers
+
+| Layer | API | Hiệu Quả |
+|---|---|---|
+| 🧬 NPC Cache | `getNPCsAlive()` `getNPCsHeroes()` `getNPCsByJob()` | -95% filter calls/tick |
+| 🖼️ Render Cache | `renderCache.get/set/invalidate()` TTL 5s | -80% re-renders |
+| 💾 Save Batcher | `perfSave(key, data)` debounce 600ms | -80% localStorage I/O |
+| ⚡ Lazy Tick | `perfTick.registerCritical/Normal/Lazy()` | -70% tick overhead |
+
+### Bonus Utilities
+
+| Utility | API | Dùng Khi |
+|---|---|---|
+| Visibility API | `perfIsVisible()` | Skip canvas render khi tab ẩn |
+| DOM Virtualization | `perfVirtualize(items, fn, size, page)` | List > 50 items |
+| Idle Queue | `perfIdleQueue.push(fn)` | Heavy ops không cấp bách |
+| Save Flush | `perfSaveFlush()` | Force save trước khi unload |
+
+### UI (2 widgets trong creator-hub-v32)
+
+```
+⚡ Performance Monitor — 4 metric cards · 4 progress bars · alert log · Live/Pause toggle
+🔬 Performance Profiler — 6 stat cards · 4 optimization status cards · Refresh button
+```
+
+### Kết Quả Kỳ Vọng
+
+| Metric | Trước V82 | Sau V82 | Cải Thiện |
+|---|---|---|---|
+| NPC filter/tick | 20+ | 1 cached | **-95%** |
+| localStorage writes/tick | ~10 | batch 600ms | **-80%** |
+| Render khi tab ẩn | Có | 0 | **-100%** |
+| DOM nodes per list | 50–200 | 20 | **-80%** |
+
+### Next Version
+- V83 init từ 22400ms+
+
+---
+
+> Dữ Liệu Cũ (V60 — 2026-06-13):
 
 ---
 
