@@ -1,11 +1,59 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V81 — Personal Universe OS Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V85 — Cloud Scale Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
-## 💰 V84 — AI COST MANAGER (MỚI NHẤT)
+## ☁️ V85 — CLOUD SCALE PASS (MỚI NHẤT)
+
+### Mục Tiêu
+Chuẩn bị kiến trúc scale — Multi Region · Multi Tenant · World Isolation
+
+### 4 Files Mới
+
+| File | Loại | Chức Năng | Save Key | Init |
+|---|---|---|---|---|
+| `cloudArchitecture.md` | Design Doc | Kiến trúc tổng thể, sơ đồ, roadmap | — | — |
+| `worldShardSystem.js` | Engine | World Isolation · Tenant Quota · Region Health · Cross-Shard Events | `cgv6_world_shard_v85` | 22900ms |
+| `universeClusterManager.js` | Engine | Extends uclu80 · Cloud Topology · Auto-Rebalance · Failover | `cgv6_universe_cluster_manager_v85` | 23000ms |
+| `CLOUD_ARCHITECTURE_REPORT.md` | Report | Tổng kết triển khai V85 | — | — |
+
+### worldShardSystem.js — Public API
+- `wss85CreateTenant({ tier, region })` — tạo tenant (FREE/CREATOR/MASTER/DIVINE)
+- `wss85UpgradeTenant(tenantId, newTier)` — nâng tier
+- `wss85CheckQuota(tenantId, resource, amount)` — kiểm tra quota trước khi dùng
+- `wss85ProvisionShard({ tenantId, worldId, region })` — tạo world shard
+- `wss85SuspendShard(shardId)` · `wss85ResumeShard(shardId)` · `wss85MigrateShard(shardId, region)` · `wss85TerminateShard(shardId)`
+- `wss85SendCrossShardEvent({ fromShard, toShard, eventType, payload, authorized })` — cross-shard msg
+- `wss85GetStats()` · `wss85GetRegionHealth(regionId)` · `wss85GetAllRegions()` · `wss85GetReport()`
+
+### universeClusterManager.js — Public API
+- `ucm85RegisterCluster({ region, tenantId, memberWorlds })` — register cloud cluster
+- `ucm85SetTopology(id)` — SINGLE_REGION / MULTI_REGION_ACTIVE_PASSIVE / MULTI_REGION_ACTIVE_ACTIVE / GEO_DISTRIBUTED
+- `ucm85SetPolicy(id)` — LATENCY_OPTIMIZED / COST_OPTIMIZED / HIGH_AVAILABILITY / ISOLATION_FIRST
+- `ucm85RebalanceClusters()` · `ucm85TriggerFailover(clusterId, targetRegion)`
+- `ucm85GetClustersByRegion(regionId)` · `ucm85GetTenantClusters(tenantId)` · `ucm85GetAlerts(onlyUnresolved)`
+- `ucm85GetStats()` · `ucm85GetReport()`
+
+### gameTick Hooks (4 hooks mới)
+- `worldShardSystem` — health check mỗi 50 ticks · region update mỗi 100 ticks
+- `universeClusterManager` — topology score mỗi 150 ticks · region failover mỗi 500 ticks
+
+### Tích Hợp
+- `universeClusterManager.js` **extends** `universeClusterEngine.js` (V80) — không xóa/thay thế
+- Đọc: `window.perfMon82GetReport()` (V82) · `window.aiCostGetReport()` (V84) · `window.wss85GetAllRegions()` (cross-module V85)
+- Ghi: `window.htAddEvent()` · `window.perfSave()` (V82 batched saves)
+
+### Save Keys V85 (2 keys)
+`cgv6_world_shard_v85` · `cgv6_universe_cluster_manager_v85`
+
+### Next Version
+- V86 init từ 23100ms+
+
+---
+
+## 💰 V84 — AI COST MANAGER
 
 ### Vấn Đề Giải Quyết
 - `divineOracleV77.js` dùng `claude-opus-4-5` cho 300 tokens → lãng phí 94.8%
