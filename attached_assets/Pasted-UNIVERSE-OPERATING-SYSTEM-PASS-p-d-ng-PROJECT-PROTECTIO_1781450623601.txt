@@ -1,0 +1,314 @@
+UNIVERSE OPERATING SYSTEM PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- MULTIVERSE_EVOLUTION_REPORT.md
+- SENTIENT_CIVILIZATION_REPORT.md
+- DIGITAL_LIFE_REPORT.md
+- EVOLUTION_REPORT.md
+- AI_GENESIS_REPORT.md
+- UNIVERSE_HUB_REPORT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Dự án không còn là:
+
+- Dashboard
+- Game
+- Simulator
+
+Mà trở thành:
+
+PERSONAL UNIVERSE OPERATING SYSTEM (PUOS)
+
+Mỗi người dùng sở hữu:
+
+- Một vũ trụ riêng
+- Một lịch sử riêng
+- Một hệ sinh thái AI riêng
+- Một nền văn minh riêng
+
+==================================================
+KIẾN TRÚC PUOS
+==================================================
+
+Tạo hoặc mở rộng:
+
+- puosCore.js
+- universeKernel.js
+- universeServiceManager.js
+- universeLifecycleManager.js
+
+==================================================
+UNIVERSE KERNEL
+==================================================
+
+Universe Kernel là lớp trung tâm quản lý:
+
+- World Engine
+- NPC Engine
+- Digital Life Engine
+- Civilization Engine
+- Evolution Engine
+- Genesis Engine
+- XR Engine
+- Universe Hub
+
+Không thay thế hệ thống cũ.
+
+Chỉ hợp nhất và điều phối.
+
+==================================================
+UNIVERSE SERVICES
+==================================================
+
+Định nghĩa các service:
+
+- World Service
+- Memory Service
+- NPC Service
+- Civilization Service
+- Economy Service
+- XR Service
+- Multiverse Service
+
+==================================================
+UNIVERSE HEALTH SYSTEM
+==================================================
+
+Tạo:
+
+- universeHealthMonitor.js
+
+Theo dõi:
+
+- World Size
+- NPC Count
+- AI Load
+- Memory Usage
+- Evolution Status
+
+==================================================
+UNIVERSE DASHBOARD
+==================================================
+
+Tạo một trang PUOS Overview.
+
+Hiển thị:
+
+- Tuổi thế giới
+- Dân số
+- Số quốc gia
+- Số tôn giáo
+- Số nền văn minh
+- Trạng thái AI
+- Trạng thái XR
+- Trạng thái Multiverse
+
+==================================================
+WORLD DNA SYSTEM
+==================================================
+
+Tạo:
+
+- worldDNAEngine.js
+
+Lưu:
+
+- World Seed
+- History Seed
+- Civilization Seed
+- AI Seed
+
+Cho phép sao lưu và tái tạo thế giới.
+
+==================================================
+UNIVERSE SNAPSHOT
+==================================================
+
+Tạo:
+
+- universeSnapshotSystem.js
+
+Cho phép:
+
+- Snapshot
+- Restore
+- Branch Timeline
+
+==================================================
+UNIVERSE TIMELINE
+==================================================
+
+Tạo:
+
+- universeTimelineEngine.js
+
+Hiển thị:
+
+- Toàn bộ lịch sử thế giới
+- Các nhánh timeline
+- Các mốc tiến hóa
+
+==================================================
+UNIVERSE CONTROL CENTER
+==================================================
+
+Tạo:
+
+- Creator Command Center
+
+Bao gồm:
+
+- World Management
+- Civilization Management
+- AI Management
+- XR Management
+- Multiverse Management
+
+==================================================
+JARVIS OS MODE
+==================================================
+
+Jarvis trở thành:
+
+Universe Operating Assistant
+
+Có thể:
+
+- Kiểm tra sức khỏe thế giới
+- Tóm tắt lịch sử
+- Phân tích tương lai
+- Đề xuất hành động
+
+==================================================
+UI
+==================================================
+
+Sidebar:
+
+Giữ nguyên toàn bộ sidebar hiện tại.
+
+Không tạo thêm sidebar mới.
+
+Creator Panel vẫn là trung tâm quản lý.
+
+Universe Hub vẫn là trung tâm đa vũ trụ.
+
+Tạo:
+
+🪐 PUOS Overview
+
+như một trang tổng quan cấp hệ điều hành.
+
+==================================================
+XR PREPARATION
+==================================================
+
+PUOS phải tương thích kiến trúc:
+
+- VR
+- AR
+- MR
+- XR
+
+==================================================
+SCALABILITY PREPARATION
+==================================================
+
+Chuẩn bị kiến trúc cho:
+
+- 1.000 thế giới
+- 10.000 thế giới
+- 100.000 thế giới
+
+Không cần triển khai cloud thực tế.
+
+Chỉ chuẩn bị kiến trúc.
+
+==================================================
+PHÂN TÍCH TRƯỚC KHI CODE
+==================================================
+
+1. Liệt kê file cần tạo
+2. Liệt kê file cần sửa
+3. Kế hoạch tích hợp
+4. Kiểm tra xung đột
+5. Không tạo hệ thống trùng lặp
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Người dùng mở ứng dụng.
+
+↓
+
+Không thấy dashboard.
+
+↓
+
+Thấy:
+
+"Đây là vũ trụ của tôi."
+
+↓
+
+Có lịch sử riêng.
+
+↓
+
+Có AI riêng.
+
+↓
+
+Có nền văn minh riêng.
+
+↓
+
+Có khả năng tiến hóa riêng.
+
+↓
+
+Có khả năng kết nối đa vũ trụ.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- PUOS_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+PUOS_REPORT phải trả lời:
+
+1. PUOS gồm những thành phần nào
+2. Universe Kernel hoạt động ra sao
+3. Những engine nào đã được hợp nhất
+4. Khả năng XR hiện tại
+5. Khả năng Multiverse hiện tại
+6. Mức độ hoàn thành so với tầm nhìn ban đầu (%)
+7. Những bước còn lại để production-ready
+
+KHÔNG BUILD MMO.
+
+KHÔNG BUILD PVP.
+
+KHÔNG BUILD MARKETPLACE MỚI.
+
+TẬP TRUNG:
+
+"BIẾN DỰ ÁN THÀNH PERSONAL UNIVERSE OPERATING SYSTEM."
