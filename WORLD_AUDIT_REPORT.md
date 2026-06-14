@@ -1,7 +1,58 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-13 (cập nhật sau V60 — Living Universe)
-> Tổng: 265 JS files · 240 panels · 67 nav buttons · 174+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V70 — World Immersion Pass)
+> Tổng: ~287 JS files · 240 panels · 67 nav buttons · 181+ save keys · 122 gameTick hooks
+
+---
+
+## 🌌 V70 — WORLD IMMERSION PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+Creator có thể zoom liên tục từ toàn vũ trụ xuống một NPC cụ thể, quan sát cuộc đời của họ qua hàng thế kỷ.
+
+### 9 Cấp Độ Zoom (Universe → NPC)
+```
+Scale 0: 🌌 Vũ Trụ    — Toàn bộ đa vũ trụ
+Scale 1: ⭐ Thiên Hà  — Một thiên hà
+Scale 2: 🌍 Hành Tinh — Thế giới hiện tại (mặc định)
+Scale 3: 🗺️ Lục Địa  — Một lục địa
+Scale 4: 🏰 Vương Quốc— Một kingdom/empire
+Scale 5: 🏙️ Thành Phố — Living city
+Scale 6: 🏘️ Khu Phố  — Đường phố, shops
+Scale 7: 🏠 Công Trình— Một tòa nhà
+Scale 8: 👤 NPC       — Một cá nhân
+```
+
+### 5 UI Tabs (trong creator-hub-v32)
+```
+🌌 Immersion View  — Scale navigator · Jarvis narration · Stats
+🔍 World Zoom      — Canvas 2D animated (scroll/pinch/click)
+👤 NPC Observer    — Dropdown chọn NPC · Lifeline · Ký ức · Gia đình
+👑 Dynasty View    — Gia tộc nổi bật · Canvas tree · Lịch sử
+📽️ Historical Replay — Walkthrough · Auto Replay · Jarvis Tour Guide
+```
+
+### 8 File Mới
+| File | Save Key | Init |
+|---|---|---|
+| immersionEngine.js | cgv6_immersion_engine_v70 | 16100ms |
+| worldScaleEngine.js | cgv6_world_scale_v70 | 16200ms |
+| dynamicZoomSystem.js | cgv6_dynamic_zoom_v70 | 16300ms |
+| cityImmersionSystem.js | cgv6_city_immersion_v70 | 16400ms |
+| npcObservationSystem.js | cgv6_npc_observation_v70 | 16500ms |
+| dynastyVisualizationSystem.js | cgv6_dynasty_viz_v70 | 16600ms |
+| worldWalkthroughSystem.js | cgv6_walkthrough_v70 | 16700ms |
+| immersionRegistry.js | — | 16800ms |
+
+### Tích Hợp
+- Đọc từ: V64 Memory · V65 NPC Life/Family · V55 Replay · V67 Spatial · V69 XR
+- Không hook gameTick — pure visual/immersion layer
+- XR Ready: pinch zoom · AR overlay · canvas 2D coords khớp V67
+
+### Đề Xuất Tiếp Theo: V71 — God Eye Pass
+- First-Person NPC View qua Claude API
+- Dream System · Memory Theater · Time Travel Mode
+- Init từ 16900ms+
 
 ---
 

@@ -1,28 +1,48 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-13 (cập nhật sau V59 — Global Events Online)
+> Ngày audit: 2026-06-14 (cập nhật sau V70 — World Immersion Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V59 | V60 (Mới) |
+| Chỉ Số | V60 | V70 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | 259 | **265** |
-| **Tổng file được load trong index.html** | 258 | **264** |
+| **Tổng file .js trên disk** | 265 | **~287** |
+| **Tổng file được load trong index.html** | 264 | **~279** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V60 dùng hub cũ) |
+| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V61→V70 dùng hub cũ) |
 | **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 169+ | **174+** |
-| **Engine hook vào gameTick** | 117 | **122** |
-| **Phiên bản hiện tại** | V59 | **V60 — Living Universe** |
+| **Tổng localStorage save keys (unique)** | 174+ | **181+** |
+| **Engine hook vào gameTick** | 122 | **122** (V70 là visual layer — không hook) |
+| **Phiên bản hiện tại** | V60 | **V70 — World Immersion Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌍 Living Universe V60 ← NEWEST (6 files)
+### 🌌 World Immersion Pass V70 ← NEWEST (8 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `immersionEngine.js` | 9 scale levels · zoom pipeline · Jarvis narration · imm70ZoomTo/In/Out/Back/GetContextData/GetJarvisNarration() | `cgv6_immersion_engine_v70` | 16100ms |
+| `worldScaleEngine.js` | Canvas 2D render theo 9 scale · animated nodes · wse70SetupCanvas/Render/StartLoop() | `cgv6_world_scale_v70` | 16200ms |
+| `dynamicZoomSystem.js` | Smooth zoom · scroll/pinch · transition overlay · dzm70SetupWheelZoom/SetupPinchZoom/JumpToLevel/GetZoom() | `cgv6_dynamic_zoom_v70` | 16300ms |
+| `cityImmersionSystem.js` | Living city: buildings · districts · social groups · cis70VisitCity/GetBuildings/RenderCity() | `cgv6_city_immersion_v70` | 16400ms |
+| `npcObservationSystem.js` | NPC tracker: lifeline · family · descendants · nos70ObserveNpc/GetLifeline/GetProfile/GetDescendants() | `cgv6_npc_observation_v70` | 16500ms |
+| `dynastyVisualizationSystem.js` | Dynasty tree canvas · history timeline · dv70VisitDynasty/RenderTree/GetStats/GetTimeline() | `cgv6_dynasty_viz_v70` | 16600ms |
+| `worldWalkthroughSystem.js` | Walk: 8 scene types · Replay: events theo year range · wwt70Enter/Move/StartReplay/StepReplay() | `cgv6_walkthrough_v70` | 16700ms |
+| `immersionRegistry.js` | UI: 5 tabs creator-hub-v32 · patches hubRenderPanel · imm70ShowTab/RefreshUI/ToggleAutoReplay() | — | 16800ms |
+
+**Global Objects:** `window.immersionEngineV70Data` · `window.worldScaleV70Data` · `window.dynamicZoomV70Data` · `window.cityImmersionV70Data` · `window.npcObservationV70Data` · `window.dynastyVizV70Data` · `window.worldWalkthroughV70Data`  
+**Đọc từ:** V64 Memory · V65 NPC Life/Family/Relationship · V55 histReplayData · V67 Spatial · V69 XR  
+**UI:** 5 tabs nội bộ creator-hub-v32 — KHÔNG tạo sidebar tab mới  
+**GameTick hooks:** KHÔNG CÓ (pure visual/immersion layer)  
+**XR Compatible:** dzm70SetupPinchZoom · dzm70RenderOverlay · wse70SetupCanvas
+
+---
+
+### 🌍 Living Universe V60 (6 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `livingUniverseOrchestrator.js` | 12 domain · 16 links · Integration score · Alert system · luo60GetState/DomainScore/IntegrationScore/Stats() | `cgv6_universe_orchestrator_v60` | 11500ms |
