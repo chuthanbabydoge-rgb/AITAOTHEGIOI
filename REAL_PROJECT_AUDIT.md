@@ -1,28 +1,49 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V78 — Digital Life Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V79 — Sentient Civilization Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V76 | V77 | V78 (Mới Nhất) |
+| Chỉ Số | V77 | V78 | V79 (Mới Nhất) |
 |---|---|---|---|
-| **Tổng file .js trên disk** | ~311 | ~316 | **~322** |
-| **Tổng file được load trong index.html** | ~303 | ~308 | **~314** |
-| **File dormant** | 1 (serve.js) | 1 | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 241 | 241 | **241** (V77/V78 inject vào hub — không thêm panel mới) |
+| **Tổng file .js trên disk** | ~316 | ~322 | **~329** |
+| **Tổng file được load trong index.html** | ~308 | ~314 | **~321** |
+| **File dormant** | 1 | 1 | **1 (serve.js)** |
+| **Tổng panel divs trong HTML** | 241 | 241 | **241** (V78/V79 inject vào hub — không thêm panel mới) |
 | **Tổng nav buttons (data-panel)** | 68 | 68 | **68** (không tạo sidebar mới từ V38+) |
-| **Tổng localStorage save keys (unique)** | 202+ | 206+ | **211+** |
-| **Engine hook vào gameTick** | 126 | 129 | **134** (V78 thêm 5 hooks) |
-| **Phiên bản hiện tại** | V76 | V77 | **V78 — Digital Life Pass** |
+| **Tổng localStorage save keys (unique)** | 206+ | 211+ | **217+** |
+| **Engine hook vào gameTick** | 129 | 134 | **140** (V79 thêm 6 hooks) |
+| **Phiên bản hiện tại** | V77 | V78 | **V79 — Sentient Civilization Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🧬 Digital Life Pass V78 ← NEWEST (6 files)
+### 🏛️ Sentient Civilization Pass V79 ← NEWEST (7 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `civilizationConsciousnessEngine.js` | 5 mục tiêu · 8 căn tính · 10 giá trị · Cohesion · Ideological Tension · Jarvis · gameTick | `cgv6_civ_consciousness_v79` | 20400ms |
+| `culturalEvolutionEngine.js` | 10 traits · 5 hybrid cultures · 5 kênh lan truyền · Extinct/Revive · gameTick | `cgv6_cultural_evo_v79` | 20500ms |
+| `collectiveMemoryEngine.js` | 10 loại ký ức · Auto-scan wars/disasters/plagues/golden ages · gameTick | `cgv6_collective_memory_v79` | 20600ms |
+| `academyEngine.js` | 8 loại học viện · 12 tên học giả · Khám phá · Auto-spawn 200 năm · gameTick | `cgv6_academy_v79` | 20700ms |
+| `cultureEngine.js` | 10 phong cách nghệ thuật · 8 công trình · Tác phẩm tự sinh · gameTick | `cgv6_culture_art_v79` | 20800ms |
+| `philosophyEngine.js` | 10 trường phái triết · 5 cải cách tôn giáo · Xung đột tư tưởng · gameTick | `cgv6_philosophy_v79` | 20900ms |
+| `sentientCivRegistryV79.js` | UI 5 tabs creator-hub-v32 · Patch hubRenderPanel | — | 21000ms |
+
+**Global Objects:** `window.civConsciousnessV79Data` · `window.culturalEvoV79Data` · `window.collectiveMemoryV79Data` · `window.academyV79Data` · `window.cultureArtV79Data` · `window.philosophyV79Data`
+**Constants:** `window.CCE79_GOALS/ARCHETYPES` · `window.CEVO79_TRAITS/CHANNELS` · `window.CMEM79_CATEGORIES` · `window.ACAD79_TYPES` · `window.CULT79_STYLES/LANDMARKS` · `window.PHIL79_SCHOOLS/REFORMS`
+**API:** `cce79GetOrCreate/GetProfile/UpdateCohesion/AddIdeologicalTension/GetJarvisAnalysis()` · `cevo79Hybridize/Propagate/Extinct/Revive()` · `cmem79Record/GetMemories/GetNarrativeSummary()` · `acad79FoundAcademy/SpawnScholar/RecordDiscovery()` · `cult79GenerateWork/BuildLandmark()` · `phil79AssignSchool/SpawnDebate/TriggerReligiousReform()`
+**UI:** 5 tabs inject vào creator-hub-v32 (Căn Tính/Văn Hóa/Triết Học/Học Viện/Ký Ức) · KHÔNG tạo sidebar tab mới
+**gameTick hooks:** +6 hooks (cce79/cevo79/cmem79/acad79/cult79/phil79) — tổng ~140 hooks
+**Cross-module:** Đọc `warsActive` · `disasterData` · `plagueData` · `window.countries` · V79 inter-module calls
+**Ghi vào:** `window.htAddEvent()` (học viện/khám phá/công trình/triết học/tôn giáo)
+
+---
+
+### 🧬 Digital Life Pass V78 (6 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `digitalLifeEngine.js` | Core Digital Lifeform — 8 triết học · 8 mục tiêu · 15 giá trị · Influence score · gameTick | `cgv6_digital_life_v78` | 19800ms |

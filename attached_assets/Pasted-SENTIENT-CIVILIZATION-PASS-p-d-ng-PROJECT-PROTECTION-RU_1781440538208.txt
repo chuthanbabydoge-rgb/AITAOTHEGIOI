@@ -1,0 +1,215 @@
+SENTIENT CIVILIZATION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- DIGITAL_LIFE_REPORT.md
+- EVOLUTION_REPORT.md
+- MEMORY_REPORT.md
+- WORLD_AUDIT_REPORT.md
+
+==================================================
+TẦM NHÌN
+==================================================
+
+NPC sống.
+
+↓
+
+Gia tộc sống.
+
+↓
+
+Xã hội sống.
+
+↓
+
+Nền văn minh sống.
+
+==================================================
+CIVILIZATION CONSCIOUSNESS CORE
+==================================================
+
+Tạo:
+
+- civilizationConsciousnessEngine.js
+- culturalEvolutionEngine.js
+- collectiveMemoryEngine.js
+
+==================================================
+COLLECTIVE IDENTITY
+==================================================
+
+Mỗi quốc gia có:
+
+- Bản sắc riêng
+- Giá trị riêng
+- Tư tưởng riêng
+- Văn hóa riêng
+
+==================================================
+COLLECTIVE MEMORY
+==================================================
+
+Quốc gia nhớ:
+
+- Chiến tranh
+- Anh hùng
+- Kẻ thù
+- Thảm họa
+- Kỷ nguyên vàng
+
+==================================================
+CULTURAL EVOLUTION
+==================================================
+
+Văn hóa có thể:
+
+- Tiến hóa
+- Lai tạo
+- Biến mất
+- Hồi sinh
+
+==================================================
+IDEOLOGICAL CONFLICT
+==================================================
+
+Các quốc gia có:
+
+- Hệ tư tưởng
+- Triết học
+- Giá trị xã hội
+
+có thể xung đột.
+
+==================================================
+KNOWLEDGE PROPAGATION
+==================================================
+
+Tri thức lan truyền:
+
+- Thương mại
+- Chiến tranh
+- Tôn giáo
+- Học thuật
+
+==================================================
+ACADEMIC SYSTEM
+==================================================
+
+Tạo:
+
+- academyEngine.js
+
+Cho phép:
+
+- Trường học
+- Học viện
+- Triết gia
+- Nhà khoa học
+
+==================================================
+ART & CULTURE SYSTEM
+==================================================
+
+Tạo:
+
+- cultureEngine.js
+
+Sinh:
+
+- Nghệ thuật
+- Âm nhạc
+- Văn học
+- Kiến trúc
+
+==================================================
+CIVILIZATION GOALS
+==================================================
+
+Mỗi nền văn minh có mục tiêu:
+
+- Chinh phục
+- Hòa bình
+- Khai phá
+- Tri thức
+- Tâm linh
+
+==================================================
+WORLD PHILOSOPHY SYSTEM
+==================================================
+
+Tạo:
+
+- philosophyEngine.js
+
+Cho phép:
+
+- Trường phái triết học
+- Hệ tư tưởng
+- Tôn giáo cải cách
+
+==================================================
+JARVIS CIVILIZATION ANALYSIS
+==================================================
+
+Jarvis có thể:
+
+- Phân tích nền văn minh
+- So sánh quốc gia
+- Dự đoán tương lai
+
+==================================================
+UI
+==================================================
+
+Không tạo sidebar mới.
+
+Tích hợp:
+
+🏛 Civilization
+
+Tab nội bộ:
+
+- Culture
+- Philosophy
+- Academia
+- Collective Memory
+- Civilization Identity
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+Một quốc gia tồn tại 3000 năm.
+
+↓
+
+Có:
+
+- Văn hóa riêng
+- Triết học riêng
+- Tôn giáo riêng
+- Kiến trúc riêng
+
+↓
+
+Người chơi nhìn vào biết ngay:
+
+"Đây là một nền văn minh độc nhất."
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- SENTIENT_CIVILIZATION_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+TẬP TRUNG:
+
+"NỀN VĂN MINH PHẢI CÓ LINH HỒN."
