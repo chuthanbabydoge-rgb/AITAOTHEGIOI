@@ -1,0 +1,187 @@
+AI WORLD GENESIS PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- CREATOR_ECONOMY_REPORT.md
+- UNIVERSE_HUB_REPORT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+User không cần tạo thủ công.
+
+User chỉ cần mô tả.
+
+AI tự tạo thế giới.
+
+==================================================
+AI GENESIS CORE
+==================================================
+
+Tạo:
+
+- aiGenesisEngine.js
+- promptToWorldEngine.js
+- worldGenerationPipeline.js
+
+==================================================
+TEXT TO WORLD
+==================================================
+
+Ví dụ:
+
+"Tạo thế giới tu tiên hắc ám."
+
+↓
+
+AI tạo:
+
+- Bản đồ
+- Chủng tộc
+- Quốc gia
+- Tôn giáo
+- Kinh tế
+- Thần thoại
+- Anh hùng
+
+==================================================
+WORLD TEMPLATE SYSTEM
+==================================================
+
+Hỗ trợ:
+
+- Fantasy
+- Sci-Fi
+- Cultivation
+- Apocalypse
+- Mythology
+- Cyberpunk
+- Hybrid
+
+==================================================
+AI LORE GENERATOR
+==================================================
+
+Tạo:
+
+- worldLoreGenerator.js
+
+Sinh:
+
+- Lịch sử
+- Truyền thuyết
+- Thần thoại
+- Biên niên sử
+
+==================================================
+AI CIVILIZATION GENERATOR
+==================================================
+
+Sinh:
+
+- Đế quốc
+- Thành phố
+- Văn hóa
+- Luật pháp
+
+==================================================
+AI CREATURE GENERATOR
+==================================================
+
+Sinh:
+
+- Quái vật
+- Sinh vật
+- Thần thú
+
+==================================================
+AI RELIGION GENERATOR
+==================================================
+
+Sinh:
+
+- Tôn giáo
+- Giáo lý
+- Thần linh
+
+==================================================
+AI WORLD PREVIEW
+==================================================
+
+Trước khi tạo:
+
+Hiển thị:
+
+- World Summary
+- Lore Summary
+- Civilization Summary
+
+==================================================
+JARVIS GENESIS MODE
+==================================================
+
+Jarvis có thể:
+
+- Gợi ý thế giới
+- Tối ưu prompt
+- Giải thích kết quả
+
+==================================================
+UI
+==================================================
+
+Creator Panel
+
+Tab nội bộ:
+
+- AI Genesis
+- Prompt Builder
+- World Preview
+- Generated Worlds
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Prompt
+- World DNA
+- Generation Data
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+User nhập:
+
+"Tạo thế giới thần thoại Bắc Âu nơi Ragnarok chưa từng xảy ra."
+
+↓
+
+60 giây sau
+
+Có nguyên thế giới sống.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- AI_GENESIS_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+TẬP TRUNG:
+
+"TEXT → WORLD"

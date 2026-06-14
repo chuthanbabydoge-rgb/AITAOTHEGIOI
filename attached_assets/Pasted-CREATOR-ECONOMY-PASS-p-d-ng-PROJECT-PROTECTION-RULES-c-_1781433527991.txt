@@ -1,0 +1,197 @@
+CREATOR ECONOMY PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- UNIVERSE_HUB_REPORT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Mỗi Creator có thể tạo:
+
+- Chủng tộc
+- Sinh vật
+- Tôn giáo
+- Công nghệ
+- Thành phố
+- Nền văn minh
+- Kịch bản lịch sử
+
+và chia sẻ với Creator khác.
+
+==================================================
+CREATOR ASSET SYSTEM
+==================================================
+
+Tạo:
+
+- creatorAssetEngine.js
+
+Các loại Asset:
+
+- Race Asset
+- Creature Asset
+- Religion Asset
+- Technology Asset
+- Civilization Asset
+- Lore Asset
+
+==================================================
+WORLD BLUEPRINT SYSTEM
+==================================================
+
+Tạo:
+
+- worldBlueprintEngine.js
+
+Creator có thể:
+
+Xuất:
+
+- Thế giới
+- Quốc gia
+- Chủng tộc
+
+thành Blueprint.
+
+==================================================
+RACE CREATOR
+==================================================
+
+Cho phép tạo:
+
+- Chủng tộc mới
+- Văn hóa mới
+- Ngôn ngữ mới
+
+==================================================
+CREATURE CREATOR
+==================================================
+
+Cho phép tạo:
+
+- Sinh vật
+- Quái vật
+- Thần thú
+
+==================================================
+LORE CREATOR
+==================================================
+
+Cho phép tạo:
+
+- Truyền thuyết
+- Thần thoại
+- Lịch sử
+
+==================================================
+ASSET SHARING
+==================================================
+
+Trong Universe Hub:
+
+Creator có thể:
+
+- Công khai Asset
+- Chia sẻ Asset
+- Import Asset
+
+==================================================
+WORLD IMPORT SYSTEM
+==================================================
+
+Ví dụ:
+
+Creator A tạo:
+
+Long Tộc
+
+↓
+
+Creator B import
+
+↓
+
+Long Tộc xuất hiện trong thế giới B
+
+==================================================
+XR SUPPORT
+==================================================
+
+Trong XR:
+
+Asset có thể được:
+
+- Xem 3D
+- Quan sát
+- So sánh
+
+==================================================
+UI
+==================================================
+
+🌌 Universe Hub
+
+Tab nội bộ:
+
+- Assets
+- Blueprints
+- Races
+- Creatures
+- Lore
+- Imports
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- Creator Assets
+- Blueprint Data
+- Asset Relations
+
+==================================================
+MỤC TIÊU CUỐI
+==================================================
+
+10.000 Creator
+
+↓
+
+100.000 Chủng tộc
+
+↓
+
+1.000.000 Sinh vật
+
+↓
+
+Kho nội dung do cộng đồng tạo ra.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- CREATOR_ECONOMY_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+KHÔNG BUILD PVP.
+
+KHÔNG BUILD MMO COMBAT.
+
+TẬP TRUNG:
+
+"NỀN KINH TẾ CỦA CÁC THẾ GIỚI."

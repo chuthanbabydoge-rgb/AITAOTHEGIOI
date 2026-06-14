@@ -1,28 +1,46 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V73 — Universe Hub Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V74 — Creator Economy Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V72 | V73 (Mới Nhất) |
+| Chỉ Số | V73 | V74 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | ~296 | **~299** |
-| **Tổng file được load trong index.html** | ~288 | **~291** |
+| **Tổng file .js trên disk** | ~299 | **~302** |
+| **Tổng file được load trong index.html** | ~291 | **~294** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **241** (V73 inject dynamic 1 panel mới) |
-| **Tổng nav buttons (data-panel)** | 67 | **68** (V73 inject dynamic — FIRST new sidebar tab từ V38) |
-| **Tổng localStorage save keys (unique)** | 188+ | **190+** |
-| **Engine hook vào gameTick** | 122 | **122** (V73 là pure interactive layer — không hook) |
-| **Phiên bản hiện tại** | V72 | **V73 — Universe Hub Pass** |
+| **Tổng panel divs trong HTML** | 241 | **241** (V74 inject dynamic vào Universe Hub panel — không thêm panel mới) |
+| **Tổng nav buttons (data-panel)** | 68 | **68** (V74 KHÔNG tạo sidebar tab mới — inject vào Universe Hub) |
+| **Tổng localStorage save keys (unique)** | 190+ | **193+** |
+| **Engine hook vào gameTick** | 122 | **122** (V74 là pure interactive layer — không hook) |
+| **Phiên bản hiện tại** | V73 | **V74 — Creator Economy Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🌌 Universe Hub Pass V73 ← NEWEST (3 files)
+### 🏪 Creator Economy Pass V74 ← NEWEST (3 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `creatorAssetEngine.js` | Asset engine — 6 loại (Race/Creature/Religion/Technology/Civilization/Lore) · 8 demo assets · 6 bậc rarity · CRUD + Rating + Import | `cgv6_creator_assets_v74` | 18100ms |
+| `worldBlueprintEngine.js` | Blueprint engine — 3 loại BP (World/Country/Race) · Export World/Country · Share Codes CGV6-BP-* · 4 demo blueprints | `cgv6_world_blueprints_v74` | 18200ms |
+| `creatorAssetRegistry.js` | UI registry — 6 tabs inject vào Universe Hub (Assets/Blueprints/Races/Creatures/Lore/Imports) · Hook uhubV73Render const _orig pattern | `cgv6_asset_registry_v74` | 18300ms |
+
+**Global Objects:** `window.creatorAssetV74Data` · `window.worldBlueprintV74Data` · `window.ASSET74_TYPES` · `window.ASSET74_RARITY` · `window.ASSET74_DEMOS` · `window.BLUEPRINT74_DEMOS`
+**API:** `ca74CreateAsset/PublishAsset/ImportAsset/RateAsset/GetAllPublic/GetMyAssets/GetImported/GetByType/GetStats()` · `wbp74ExportWorld/ExportCountry/ImportBlueprint/ShareBlueprint/GetAll/GetMine/GetImported/GetStats()`
+**UI:** 6 tabs inject vào panel-universe-hub-v73 (phần dưới) — KHÔNG tạo sidebar tab mới · Asset Economy section height 260px
+**GameTick hooks:** KHÔNG CÓ (pure interactive creator economy layer)
+**Demo Assets:** 8 assets từ 8 Demo Worlds · CivScore-linked rarity · Import/Rate system
+**Demo Blueprints:** 4 blueprints (2 World/1 Country/1 Race) · Share codes CGV6-BP-*
+**Không trùng với:** creatorEconomyEngine.js V57 (CP system) · universeTemplateSystemV57.js (world templates) · creatorProfileSystem.js (profile) · contentRegistryV57.js (content versioning)
+**Tính năng nổi bật:** Asset Market · Blueprint Export/Import · World Clone · Race Creator · Creature Creator · Lore Creator · Share Code system
+
+---
+
+### 🌌 Universe Hub Pass V73 (3 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `universeHubCore.js` | Data engine — 8 Demo Worlds · 8 Creators · 4 Events · Portal System · Rankings · Follow System · Stats | `cgv6_universe_hub_v73` | 17800ms |

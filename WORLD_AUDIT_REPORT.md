@@ -1,11 +1,45 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-14 (cập nhật sau V73 — Universe Hub Pass)
-> Tổng: ~299 JS files · 241 panels · 68 nav buttons · 190+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V74 — Creator Economy Pass)
+> Tổng: ~302 JS files · 241 panels · 68 nav buttons · 193+ save keys · 122 gameTick hooks
 
 ---
 
-## 🌌 V73 — UNIVERSE HUB PASS (MỚI NHẤT)
+## 🏪 V74 — CREATOR ECONOMY PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+"Nền Kinh Tế Của Các Thế Giới" — Creator tạo, chia sẻ và import Asset (Race/Creature/Religion/Technology/Civilization/Lore) và Blueprint (World/Country/Race) qua Universe Hub.
+
+### 6 Tabs Asset Economy (inject vào Universe Hub)
+```
+🏪 Assets       — Thị trường toàn bộ · 8 demo assets · Filter theo loại · Import + Rate
+📐 Blueprints   — 4 demo blueprints · Export World/Country · Import Blueprint · Share Code
+🧬 Races        — Chỉ Race assets · Tạo Chủng Tộc mới
+🐉 Creatures    — Chỉ Creature assets · Tạo Sinh Vật mới
+📜 Lore         — Chỉ Lore assets · Tạo Truyền Thuyết mới
+📥 Imports      — Thống kê · Assets đã import · Blueprints đã import
+```
+
+### Asset Flow
+```
+ca74CreateAsset() → ca74PublishAsset() → Thị trường công khai
+ca74ImportAsset() → importedAssets[] → htAddEvent() → Tab Imports
+```
+
+### Blueprint Flow
+```
+wbp74ExportWorld() → CGV6-BP-W[code] → myBlueprints[]
+wbp74ImportBlueprint() → importedBlueprints[] → htAddEvent()
+```
+
+### Files
+- `creatorAssetEngine.js` (init 18100ms · save: cgv6_creator_assets_v74)
+- `worldBlueprintEngine.js` (init 18200ms · save: cgv6_world_blueprints_v74)
+- `creatorAssetRegistry.js` (init 18300ms · save: cgv6_asset_registry_v74)
+
+---
+
+## 🌌 V73 — UNIVERSE HUB PASS
 
 ### Tầm Nhìn
 Creator Panel = quản lý thế giới của bản thân. Universe Hub = kết nối với các thế giới khác. Tab sidebar meta-platform đầu tiên được phép tạo kể từ V38.
