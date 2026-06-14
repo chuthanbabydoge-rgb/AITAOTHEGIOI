@@ -7,22 +7,40 @@
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V74 | V75 (Mới Nhất) |
+| Chỉ Số | V75 | V76 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | ~302 | **~306** |
-| **Tổng file được load trong index.html** | ~294 | **~298** |
+| **Tổng file .js trên disk** | ~306 | **~311** |
+| **Tổng file được load trong index.html** | ~298 | **~303** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 241 | **241** (V75 inject vào creator-hub-v32 — không thêm panel mới) |
-| **Tổng nav buttons (data-panel)** | 68 | **68** (V75 KHÔNG tạo sidebar tab mới) |
-| **Tổng localStorage save keys (unique)** | 193+ | **197+** |
-| **Engine hook vào gameTick** | 122 | **122** (V75 là pure async interactive layer — không hook) |
-| **Phiên bản hiện tại** | V74 | **V75 — AI World Genesis Pass** |
+| **Tổng panel divs trong HTML** | 241 | **241** (V76 inject vào creator-hub-v32 — không thêm panel mới) |
+| **Tổng nav buttons (data-panel)** | 68 | **68** (V76 KHÔNG tạo sidebar tab mới) |
+| **Tổng localStorage save keys (unique)** | 197+ | **202+** |
+| **Engine hook vào gameTick** | 122 | **126** (V76 thêm 4 hooks: uevo76/ah76/eciv76/lang76) |
+| **Phiên bản hiện tại** | V75 | **V76 — AI Universe Evolution Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 🤖 AI World Genesis Pass V75 ← NEWEST (4 files)
+### 🌱 AI Universe Evolution Pass V76 ← NEWEST (5 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `universeEvolutionEngine.js` | Core evolution — 7 loại tự sinh (Country/Race/Religion/Tech/Culture/Hero/Surprise) · gameTick · Speed 0.5-5x | `cgv6_universe_evolution_v76` | 18800ms |
+| `adaptiveHistoryEngine.js` | Lịch sử thích nghi — 8 chronicle templates · Emergent characters (4 roles) · World forecast 8 tiên tri · gameTick | `cgv6_adaptive_history_v76` | 18900ms |
+| `emergentCivilizationEngine.js` | Văn minh tự sinh — Phát minh/Luật pháp/Triết học/Kiến trúc · Sụp đổ · Sáp nhập · gameTick | `cgv6_emergent_civ_v76` | 19000ms |
+| `languageEvolutionSystem.js` | Ngôn ngữ tiến hóa — 5 ngôn ngữ gốc · Phân nhánh/Tiến hóa/Biến mất · Influence map · gameTick | `cgv6_language_evo_v76` | 19100ms |
+| `timelineBranchEngineV76.js` | Timeline nhánh V76 + UI Registry — 4 tabs creator-hub-v32 · Jarvis Evolution Mode · Save/Branch/Compare · RIÊNG BIỆT với V36 | `cgv6_timeline_branch_v76` | 19200ms |
+
+**Global Objects:** `window.universeEvoV76Data` · `window.adaptiveHistoryV76Data` · `window.emergentCivV76Data` · `window.languageEvoV76Data` · `window.timelineBranchV76Data`
+**API:** `uevo76GenerateCountry/Race/Religion/Tech/Hero/Surprise()` · `ah76GenerateChronicle/Character/Forecast()` · `eciv76Invent/CreateLaw/SpawnPhilosophy/CollapseCountry/MergeCivs()` · `lang76Branch/Kill/Evolve()` · `tb76SaveMainTimeline/CreateBranch/CompareBranches/JarvisAnalyze()`
+**UI:** 4 tabs inject vào creator-hub-v32 (Evolution/Timeline Branches/World Forecast/Emerging Civilizations) · height 320px · KHÔNG tạo sidebar tab mới
+**gameTick hooks:** +4 hooks (uevo76Tick/ah76Tick/eciv76Tick/lang76Tick) — tổng 126 hooks
+**Không trùng:** civEvolutionEngineV38 (UI-driven) · timelineBranchEngine.js V36 (auto-branch collapse) · livingCivilizationAI V58
+**Lưu ý file:** `timelineBranchEngine.js` đã là V36 → tạo `timelineBranchEngineV76.js` (save key khác: v76)
+
+---
+
+### 🤖 AI World Genesis Pass V75 (4 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `aiGenesisEngine.js` | Claude claude-opus-4-5 caller · 7 genre detector · JSON parser · History 30 entries | `cgv6_ai_genesis_v75` | 18400ms |

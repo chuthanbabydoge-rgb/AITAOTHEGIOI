@@ -1,11 +1,51 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-14 (cập nhật sau V75 — AI World Genesis Pass)
-> Tổng: ~306 JS files · 241 panels · 68 nav buttons · 197+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V76 — AI Universe Evolution Pass)
+> Tổng: ~311 JS files · 241 panels · 68 nav buttons · 202+ save keys · 126 gameTick hooks
 
 ---
 
-## 🤖 V75 — AI WORLD GENESIS PASS (MỚI NHẤT)
+## 🌱 V76 — AI UNIVERSE EVOLUTION PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+"Thế Giới Tự Tiến Hóa" — Creator offline 1 tháng quay lại → thế giới có lịch sử mới, quốc gia mới, truyền thuyết mới. AI tự tạo không cần Creator.
+
+### 4 Tabs Evolution (inject vào Creator Hub V32)
+```
+🌱 Evolution            — Thống kê đầy đủ · Nhật ký 25 entries · Kích hoạt thủ công · Speed 0.5-5x
+🌿 Timeline Branches    — Lưu main snapshot · Tạo nhánh mới · So sánh diff · Jarvis Notes
+🔮 World Forecast       — Tiên tri tự sinh · Nhân vật tự sinh · Biên niên sử
+🏛️ Emerging Civilizations — QG/Chủng tộc/Tôn giáo/Ngôn ngữ tự sinh · Phát minh · Văn minh sụp đổ
+```
+
+### Evolution Pipeline (gameTick)
+```
+gameTick → uevo76Tick() → Mỗi 80 tick: culture/tech · Mỗi 300 tick: country/race/religion · Mỗi 600 tick: hero/surprise
+         → ah76Tick()  → Mỗi 120 tick: chronicle · Mỗi 250 tick: character · Mỗi 400 tick: forecast
+         → eciv76Tick() → Mỗi 90 tick: invent · Mỗi 350 tick: collapse · Mỗi 500 tick: merge
+         → lang76Tick() → Mỗi tick: speaker growth · Mỗi 180 tick: branch · Mỗi 250 tick: death
+```
+
+### Self-Evolving Systems
+- **Quốc gia**: thêm vào window.countries[] tự động
+- **Chủng tộc**: emergentRaces[]
+- **Tôn giáo**: emergentReligions[] với chia phái/cải cách/sụp đổ
+- **Ngôn ngữ**: 5 gốc → phân nhánh → tiến hóa → biến mất
+- **Văn minh**: Phát minh + Luật pháp + Triết học + Kiến trúc + Sụp đổ + Sáp nhập
+- **Lịch sử**: 8 loại biên niên sử tự sinh + nhân vật tự sinh + tiên tri
+
+### Files
+- `universeEvolutionEngine.js` (init 18800ms · save: cgv6_universe_evolution_v76 · **gameTick hook**)
+- `adaptiveHistoryEngine.js` (init 18900ms · save: cgv6_adaptive_history_v76 · **gameTick hook**)
+- `emergentCivilizationEngine.js` (init 19000ms · save: cgv6_emergent_civ_v76 · **gameTick hook**)
+- `languageEvolutionSystem.js` (init 19100ms · save: cgv6_language_evo_v76 · **gameTick hook**)
+- `timelineBranchEngineV76.js` (init 19200ms · save: cgv6_timeline_branch_v76 · UI Registry)
+
+**Lưu ý:** `timelineBranchEngine.js` đã tồn tại (V36) → tạo `timelineBranchEngineV76.js` riêng biệt
+
+---
+
+## 🤖 V75 — AI WORLD GENESIS PASS
 
 ### Tầm Nhìn
 "Text → World trong 60 giây" — User mô tả thế giới bằng ngôn ngữ tự nhiên, Claude AI tạo ra thế giới hoàn chỉnh gồm quốc gia, chủng tộc, tôn giáo, sinh vật, anh hùng, lore.
