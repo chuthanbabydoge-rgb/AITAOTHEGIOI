@@ -1,0 +1,121 @@
+LIVING UNIVERSE VISUALIZATION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- UNIVERSE_EXPERIENCE_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- PROJECT_STATUS.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Trang My Universe phải tạo cảm giác:
+
+"Một vũ trụ đang sống."
+
+Không chỉ là giao diện quản lý.
+
+==================================================
+QUY TẮC
+==================================================
+
+Không build engine mới.
+
+Không build AI mới.
+
+Không build XR mới.
+
+Chỉ nâng cấp visualization.
+
+==================================================
+UNIVERSE HERO
+==================================================
+
+Trong Hero Section.
+
+Thêm khu vực visual hóa vũ trụ:
+
+Ví dụ:
+
+- Cosmic Core
+- Galaxy Visualization
+- Timeline Ring
+- Evolution Tree
+
+Visual phải realtime theo dữ liệu hiện có.
+
+==================================================
+WORLD STATE VISUALIZATION
+==================================================
+
+Thay thế các status text đơn giản bằng:
+
+- tiến trình phát triển
+- vòng đời thế giới
+- mức độ tiến hóa
+
+dạng trực quan.
+
+==================================================
+LIVING TIMELINE
+==================================================
+
+Biến Biên Niên Sử thành:
+
+Timeline sống.
+
+Hiển thị:
+
+- Khai sinh
+- Tiến hóa
+- Văn minh
+- Sự kiện
+
+theo trục thời gian.
+
+==================================================
+AMBIENT MOTION
+==================================================
+
+Thêm animation nhẹ:
+
+- sao di chuyển
+- ánh sáng
+- năng lượng
+
+Không gây lag.
+
+==================================================
+DESIGN RULE
+==================================================
+
+Lấy cảm hứng:
+
+- No Man's Sky
+- Stellaris
+- Apple Vision Pro
+
+Không lấy cảm hứng:
+
+- Admin Dashboard
+- Analytics Dashboard
+- CRM
+
+==================================================
+SIDEBAR
+==================================================
+
+Giữ nguyên.
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+LIVING_UNIVERSE_VISUALIZATION_REPORT.md
+
+và chụp lại giao diện mới.

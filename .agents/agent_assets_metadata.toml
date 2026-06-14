@@ -36,3 +36,9 @@ id = "ysVHErMvQ_hItu6meLU-6"
 uri = "file://screenshots/universe_experience_new.jpg"
 type = "image"
 title = "Giao diện — Classic UI (trước PUOS 24s init)"
+
+[[outputs]]
+id = "Y8oCtHht_SSn6aWI38BTC"
+uri = "file://LIVING_UNIVERSE_VISUALIZATION_REPORT.md"
+type = "text"
+title = "Living Universe Visualization Report"
