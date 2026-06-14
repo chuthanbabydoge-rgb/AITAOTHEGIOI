@@ -1,11 +1,76 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V85 — Cloud Scale Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V88 — Analytics Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
-## 🔒 V86 — SECURITY PASS (MỚI NHẤT)
+## 📊 V88 — ANALYTICS PASS (MỚI NHẤT)
+
+### Mục Tiêu
+Biết user dùng gì — World Growth · NPC Activity · XR Usage · Creator Activity · Time Series
+
+### 1 File Mới
+
+| File | Chức Năng | Save Key | Init |
+|---|---|---|---|
+| `analyticsEngine.js` | 27 metrics · 4 categories · Time Series · Trend · Dashboard | `cgv6_analytics_engine_v88` | 23600ms |
+
+### Public API chính
+- `ae88GetDashboard()` → full dashboard (worldGrowth/npc/xr/creator/events/session/funnel)
+- `ae88GetTimeSeries(metricId, lastN)` → time series data
+- `ae88GetTrend(metricId, windowSize)` → `{ trend: 'UP'|'DOWN'|'STABLE', change, pct }`
+- `ae88GetLatestValue(metricId)` → latest sampled value
+- `ae88TrackEvent(category, eventName, value)` → manual event tracking
+- `ae88TrackPanelOpen(panelId)` → auto-patched via showPanel()
+- `ae88GetReport()` → full report
+
+### gameTick Hooks (1 hook mới)
+- Sample mỗi 50 ticks · collectWorldGrowth + collectNPCActivity + collectXRUsage + collectCreatorActivity
+
+### Save Keys V88 (1 key)
+`cgv6_analytics_engine_v88`
+
+### Next Version
+- V89 init từ 23700ms+
+
+---
+
+## 💾 V87 — BACKUP & RECOVERY PASS
+
+### Mục Tiêu
+Không mất thế giới — Snapshot · Restore · Auto Backup · Health Check · Auto Recovery
+
+### 2 Files Mới
+
+| File | Chức Năng | Save Key | Init |
+|---|---|---|---|
+| `backupEngine.js` | Snapshot 5 types · Restore · Auto Backup · Milestone · Checksum | `cgv6_backup_engine_v87` | 23400ms |
+| `disasterRecoverySystem.js` | Health Check 10 scenarios · Recovery Plans · Emergency Restore · 6-test Suite | `cgv6_disaster_recovery_v87` | 23500ms |
+
+### Public API chính
+- `be87CreateSnapshot(label, type, metadata)` → SnapshotRecord
+- `be87RestoreSnapshot(snapshotId, opts)` → `{ success, snapshot, error? }`
+- `be87ListSnapshots(filterType?)` · `be87DeleteSnapshot(id)` · `be87ForceBackupNow()`
+- `be87SetAutoBackup(enabled, intervalTicks, maxAuto)` · `be87GetAutoBackupStatus()`
+- `drs87CheckWorldHealth(detailed?)` → `{ status: HEALTHY|WARNING|CRITICAL, issues[], warnings[], metrics }`
+- `drs87EmergencyRestore(worldId, opts)` → restore from best snapshot
+- `drs87RunRecoveryTest()` → `{ passed, total, score, status, tests[] }`
+- `drs87CreateRecoveryPlan(worldId, opts)` · `drs87SetBaseline()`
+
+### gameTick Hooks (4 hooks mới)
+- backupEngine: Auto Backup mỗi 500 ticks · Milestone Backup mỗi 1000 ticks
+- disasterRecovery: Health Check quick mỗi 200 ticks · Full check mỗi 1000 ticks
+
+### Save Keys V87 (2 keys)
+`cgv6_backup_engine_v87` · `cgv6_disaster_recovery_v87` · `cgv6_backup_engine_v87_index` · `cgv6_backup_engine_v87_snap_{id}`
+
+### Next Version
+- V88 init từ 23600ms+
+
+---
+
+## 🔒 V86 — SECURITY PASS
 
 ### Mục Tiêu
 Bảo vệ dữ liệu thế giới — RBAC · World Ownership · Creator Permissions · Tamper-Evident Audit Log
