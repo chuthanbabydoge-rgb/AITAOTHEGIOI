@@ -1,0 +1,240 @@
+UNIVERSE HUB PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc trước:
+
+- REAL_PROJECT_AUDIT.md
+- XR_WORLD_REPORT.md
+- MULTI_WORLD_REPORT.md
+- WORLD_AUDIT_REPORT.md
+- PROJECT_STATUS.md
+- PROJECT_ARCHITECTURE.md
+- PROJECT_CHANGELOG.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+KIẾN TRÚC MỚI
+==================================================
+
+Cho phép tạo:
+
+🌌 Universe Hub
+
+trong Sidebar.
+
+Đây là tab sidebar mới đầu tiên được phép tạo.
+
+Không thay đổi các tab sidebar cũ.
+
+Không xóa dữ liệu cũ.
+
+Không build lại dự án.
+
+Chỉ expand.
+
+==================================================
+TẦM NHÌN
+==================================================
+
+Creator Panel
+
+=
+
+Quản lý thế giới của bản thân
+
+Universe Hub
+
+=
+
+Kết nối với các thế giới khác
+
+==================================================
+SIDEBAR
+==================================================
+
+Giữ nguyên toàn bộ sidebar hiện tại.
+
+Thêm duy nhất:
+
+🌌 Universe Hub
+
+==================================================
+UNIVERSE HUB
+==================================================
+
+Universe Hub gồm:
+
+1. World Directory
+
+2. Creator Directory
+
+3. Universe Map
+
+4. Portals
+
+5. Featured Worlds
+
+6. Multiverse Events
+
+7. Creator Rankings
+
+==================================================
+WORLD DIRECTORY
+==================================================
+
+Hiển thị:
+
+- Thế giới công khai
+- Thế giới nổi bật
+- Thế giới mới
+- Thế giới phổ biến
+
+==================================================
+CREATOR DIRECTORY
+==================================================
+
+Hiển thị:
+
+- Creator
+- Thần sáng thế
+- Hồ sơ Creator
+
+==================================================
+UNIVERSE MAP
+==================================================
+
+Hiển thị:
+
+- Các thế giới
+- Liên kết
+- Portal
+- Cụm vũ trụ
+
+==================================================
+PORTAL SYSTEM
+==================================================
+
+Cho phép:
+
+- Mở cổng
+- Thăm thế giới khác
+- Theo dõi thế giới khác
+
+==================================================
+MULTIVERSE EVENTS
+==================================================
+
+Tạo:
+
+- Sự kiện liên thế giới
+- Sự kiện toàn nền tảng
+- Sự kiện cộng đồng
+
+==================================================
+FEATURED WORLDS
+==================================================
+
+Cho phép:
+
+- Thế giới nổi bật
+- Thế giới độc đáo
+- Thế giới được đề xuất
+
+==================================================
+CREATOR RANKINGS
+==================================================
+
+Xếp hạng:
+
+- Civilization Score
+- World Age
+- Population
+- Innovation
+- Lore Depth
+
+==================================================
+XR INTEGRATION
+==================================================
+
+Thiết kế tương thích:
+
+- Meta Quest
+- Apple Vision Pro
+- XR Devices
+
+Trong XR:
+
+Người dùng có thể:
+
+- Đi qua Portal
+- Thăm thế giới khác
+- Quan sát Creator khác
+
+==================================================
+UI
+==================================================
+
+Universe Hub
+
+Tab nội bộ:
+
+- Worlds
+- Creators
+- Universe Map
+- Portals
+- Events
+- Rankings
+
+==================================================
+SAVE SYSTEM
+==================================================
+
+Lưu:
+
+- World Connections
+- Creator Relations
+- Portal Data
+- Universe Data
+
+==================================================
+PHÂN TÍCH TRƯỚC KHI CODE
+==================================================
+
+1. Liệt kê file cần tạo
+
+2. Liệt kê file cần sửa
+
+3. Kế hoạch tích hợp
+
+4. Kiểm tra xung đột
+
+5. Không trùng lặp hệ thống cũ
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- UNIVERSE_HUB_REPORT.md
+- REAL_PROJECT_AUDIT.md
+- WORLD_AUDIT_REPORT.md
+
+UNIVERSE_HUB_REPORT phải trả lời:
+
+1. Universe Hub gồm những gì
+2. Sidebar thay đổi thế nào
+3. Có bao nhiêu thế giới kết nối được
+4. Portal hoạt động ra sao
+5. XR readiness score
+6. Đề xuất bước tiếp theo
+
+QUAN TRỌNG:
+
+🌌 Universe Hub là tab sidebar mới duy nhất được phép tạo.
+
+Creator Panel vẫn giữ nguyên vai trò quản lý thế giới cá nhân.
+
+Universe Hub là nơi kết nối đa vũ trụ.

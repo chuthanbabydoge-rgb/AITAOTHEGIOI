@@ -1,11 +1,107 @@
 # WORLD AUDIT REPORT — Creator God V6
 > Báo cáo trạng thái thế giới hiện tại dựa trên code thực tế
-> Ngày: 2026-06-14 (cập nhật sau V71 — Avatar of God Pass)
-> Tổng: ~292 JS files · 240 panels · 67 nav buttons · 185+ save keys · 122 gameTick hooks
+> Ngày: 2026-06-14 (cập nhật sau V72 — XR World Pass)
+> Tổng: ~296 JS files · 240 panels · 67 nav buttons · 188+ save keys · 122 gameTick hooks
 
 ---
 
-## 👁️ V71 — AVATAR OF GOD PASS (MỚI NHẤT)
+## 🥽 V72 — XR WORLD PASS (MỚI NHẤT)
+
+### Tầm Nhìn
+Creator đeo Meta Quest / Vision Pro / AR Glasses và **bước vào thế giới của chính mình**. Thế giới hiện ra như sa bàn sống — phóng to, thu nhỏ, xoay, kéo. Zoom từ Vũ Trụ → Thành Phố → Đường Phố → NPC. NPC nhìn thấy, chào đón, cầu nguyện. Creator can thiệp như thần.
+
+### 8 View Levels
+```
+🌌 Vũ Trụ     — Toàn bộ đa vũ trụ (scale 0.01x)
+⭐ Thiên Hà   — Hàng triệu ngôi sao (scale 0.05x)
+🌍 Hành Tinh  — Thế giới hiện tại (scale 0.15x)
+🗺️ Lục Địa   — Một lục địa (scale 0.35x)
+🏰 Vương Quốc — Một vương quốc (scale 0.60x)
+🏙️ Thành Phố — Thành phố sống động (scale 1.00x)
+🏘️ Đường Phố — Đường phố, cửa hàng (scale 1.80x)
+👤 NPC        — Một cá nhân (scale 3.00x)
+```
+
+### God Scale Shift
+```
+⚡ THẦN KHỔNG LỒ (God Scale)
+   → Cao 1000m · Bóng che khuất cả thành phố
+   → Nhìn thấy nhiều quốc gia cùng lúc
+   → Dân chúng ngã xuống sợ hãi
+
+🧑 TỶ LỆ NGƯỜI (Human Scale)
+   → Cao 1.75m · Đi giữa dân chúng
+   → NPC nhìn thấy và phản ứng
+   → Nghe tiếng chợ búa, ngửi mùi thành phố
+```
+
+### 6 Loại Phản Ứng NPC
+```
+🙏 Cầu Nguyện  — Priest, Monk, Tư Tế có faith cao
+😱 Khiếp Sợ   — Civilian, Low-power NPC
+👋 Chào Đón   — Ngẫu nhiên (20% chance)
+🤔 Hoài Nghi  — Scholar (thường)
+💬 Trò Chuyện — Ngẫu nhiên (13% chance)
+✨ Cầu Khẩn   — High-faith NPC
+```
+
+### 8 Divine Commands (từ XR Companion)
+```
+✨ Ban Phước Thành Phố — 80⚡  Mùa màng bội thu 50 năm
+🌧️ Tạo Mưa Phép Màu   — 60⚡  Mưa vàng — Thiên Ân
+⚡ Trừng Phạt Kẻ Ác   — 120⚡ Sét thần · Stability +15
+💊 Chữa Lành Đại Dịch — 150⚡ Xóa plague tại vùng đó
+⚔️ Triệu Hồi Anh Hùng — 180⚡ NPC warrior → Anh hùng
+🌅 Khai Mở Kỷ Nguyên  — 200⚡ Ghi Historical Timeline
+🔮 Phán Lời Tiên Tri  — 80⚡  Tạo prophecy V66
+📣 Thần Ngôn           — 50⚡  Gọi divVoice66Send
+```
+
+### 5 History Replay Types
+```
+⚔️ Chiến Tranh Lịch Sử   — warsActive + htData.events[war]
+👑 Đế Quốc Đã Sụp Đổ     — empireData.empires
+🦸 Hành Trình Anh Hùng    — npcs[power>70 or isHero]
+✨ Can Thiệp Thần Linh    — mfst71GetLog + das71GetAppearanceLog
+🌋 Thảm Họa Lớn           — disasterData.history
+```
+
+### Jarvis XR Companion
+```
+🚶 Đồng Hành — Đi cùng Creator, bình luận cảnh vật
+📖 Giải Thích — Lịch sử thành phố, dân số, tôn giáo, kinh tế
+🧭 Hướng Dẫn — Tip XR, cách tương tác, gợi ý tối ưu
+```
+
+### 5 Thiết Bị XR Hỗ Trợ
+```
+🥽 Meta Quest        — VR · XR Score 92/100 · Hand Tracking · God Hand
+🍎 Apple Vision Pro  — MR · XR Score 95/100 · Eye Tracking · Spatial Audio
+👓 AR Glasses        — AR · XR Score 70/100 · Plane Detection
+🖥️ Desktop Browser  — Flat · XR Score 40/100 · Mouse Orbit
+📱 Mobile Browser    — Flat · XR Score 55/100 · Touch Pinch
+```
+
+### Files (4 files · 3 save keys)
+```
+xrWorldEngine.js      — cgv6_xr_world_v72    — init 17400ms
+xrPresenceSystem.js   — cgv6_xr_presence_v72 — init 17500ms
+xrGodInteraction.js   — cgv6_xr_god_v72      — init 17600ms
+xrWorldRegistry.js    — (no save)             — init 17700ms
+```
+
+### UI (5 tabs trong creator-hub-v32)
+```
+🥽 XR World    — World Table Mode: Kích Hoạt · Scale · Xoay · View Levels
+🌍 Enter World — Bước vào quốc gia · NPC nearby · Trò chuyện
+⚡ God Scale   — Thần Khổng Lồ vs Tỷ Lệ Người · Luồng trải nghiệm
+📽️ XR Replay  — 5 loại History Replay · Progress bar · Step-by-step
+🤖 XR Companion— Jarvis XR · 8 Divine Commands · Command log
+```
+
+---
+
+## 👁️ V71 — AVATAR OF GOD PASS
 
 ### Tầm Nhìn
 Người dùng không còn là người quan sát. Creator bước vào thế giới với hình thức vật lý — NPC nhận ra, phản ứng, lập tôn giáo, kể truyền thuyết 1000 năm sau.

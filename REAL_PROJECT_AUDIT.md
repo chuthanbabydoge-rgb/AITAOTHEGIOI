@@ -1,28 +1,45 @@
 # REAL PROJECT AUDIT — Creator God V6
 > Tạo bằng cách quét mã nguồn thực tế — KHÔNG dựa vào next-version.md
-> Ngày audit: 2026-06-14 (cập nhật sau V71 — Avatar of God Pass)
+> Ngày audit: 2026-06-14 (cập nhật sau V72 — XR World Pass)
 > Phương pháp: Quét toàn bộ *.js, index.html, localStorage keys, gameTick hooks
 
 ---
 
 ## 📊 TỔNG QUAN SỐ LIỆU
 
-| Chỉ Số | V70 | V71 (Mới Nhất) |
+| Chỉ Số | V71 | V72 (Mới Nhất) |
 |---|---|---|
-| **Tổng file .js trên disk** | ~287 | **~292** |
-| **Tổng file được load trong index.html** | ~279 | **~284** |
+| **Tổng file .js trên disk** | ~292 | **~296** |
+| **Tổng file được load trong index.html** | ~284 | **~288** |
 | **File dormant** | 1 (serve.js) | **1 (serve.js)** |
-| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V71 dùng hub cũ) |
+| **Tổng panel divs trong HTML** | 240 | **240** (không đổi — V72 dùng hub cũ) |
 | **Tổng nav buttons (data-panel)** | 67 | **67** (không đổi) |
-| **Tổng localStorage save keys (unique)** | 181+ | **185+** |
-| **Engine hook vào gameTick** | 122 | **122** (V71 là pure interactive layer — không hook) |
-| **Phiên bản hiện tại** | V70 | **V71 — Avatar of God Pass** |
+| **Tổng localStorage save keys (unique)** | 185+ | **188+** |
+| **Engine hook vào gameTick** | 122 | **122** (V72 là pure interactive layer — không hook) |
+| **Phiên bản hiện tại** | V71 | **V72 — XR World Pass** |
 
 ---
 
 ## ✅ HỆ THỐNG ĐÃ TRIỂN KHAI ĐẦY ĐỦ
 
-### 👁️ Avatar of God Pass V71 ← NEWEST (5 files)
+### 🥽 XR World Pass V72 ← NEWEST (4 files)
+| File | Hệ Thống | Save Key | Init |
+|---|---|---|---|
+| `xrWorldEngine.js` | 8 view levels · World Table controls (scale/rotate/zoom) · 5 device profiles · xrw72ActivateWorldTable/SetView/SetScale/Rotate/SetGodScale/FocusEntity/GetData() | `cgv6_xr_world_v72` | 17400ms |
+| `xrPresenceSystem.js` | Enter World Mode · God Scale Shift (god/human) · 6 NPC reaction types · Conversation System · xrp72EnterWorld/ExitWorld/SetGodScale/TriggerNpcReaction/StartConversation() | `cgv6_xr_presence_v72` | 17500ms |
+| `xrGodInteraction.js` | 8 Divine Commands · 5 History Replay types · Jarvis XR 3 modes · xrg72ExecuteCommand/LoadReplay/StepReplay/JarvisActivate/JarvisSpeak/JarvisContextComment() | `cgv6_xr_god_v72` | 17600ms |
+| `xrWorldRegistry.js` | UI 5 tabs creator-hub-v32 (XR World/Enter World/God Scale/XR Replay/XR Companion) · Patch hubRenderPanel | — | 17700ms |
+
+**Global Objects:** `window.xrWorldV72Data` · `window.xrPresenceV72Data` · `window.xrGodV72Data` · `window.XRW72_VIEW_LEVELS` · `window.XRW72_DEVICE_PROFILES`  
+**Đọc từ:** V69 xrEngine · V70 imm70ZoomTo · V71 avg71SpendEnergy/avg71GetJarvisComment/mfst71GetLog/das71GetAppearanceLog/dps71EnterPresence · `window.countries` · `window.npcs` · `window.warsActive` · `window.htAddEvent()`  
+**Ghi vào:** `window.htAddEvent()` · `window.wmeAddMemory()` · proph66Create (nếu có) · divVoice66Send (nếu có) · countries[x].stability · plagueData.activePlagues  
+**UI:** 5 tabs nội bộ creator-hub-v32 — KHÔNG tạo sidebar tab mới  
+**GameTick hooks:** KHÔNG CÓ (pure interactive layer)  
+**XR Devices:** Meta Quest (92/100) · Apple Vision Pro (95/100) · AR Glasses (70/100) · Desktop (40/100) · Mobile (55/100)
+
+---
+
+### 👁️ Avatar of God Pass V71 (5 files)
 | File | Hệ Thống | Save Key | Init |
 |---|---|---|---|
 | `avatarOfGodEngine.js` | 6 hình thức avatar · Thần Năng 1000max · God name/title · Regen energy · Jarvis comment · avg71SelectForm/SpendEnergy/LogAppearance/GetJarvisComment() | `cgv6_avatar_god_v71` | 16900ms |
