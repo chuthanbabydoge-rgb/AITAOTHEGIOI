@@ -1,0 +1,212 @@
+V123 – CREATOR POWERS PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- TIMELINE_REPLAY_REPORT.md
+- CIV_AI_V120_REPORT.md
+- LIVING_WORLD_MAP_REPORT.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Hiện tại:
+
+- Thế giới tự vận hành
+- Văn minh tự phát triển
+- AI tự quyết định
+- Người chơi chủ yếu quan sát
+
+Mục tiêu:
+
+Biến người chơi thành Creator thực sự.
+
+Người chơi có thể tác động lên thế giới.
+
+==================================================
+CREATOR MODE
+==================================================
+
+Tạo:
+
+Creator Mode
+
+Cho phép bật/tắt.
+
+Khi bật:
+
+Người chơi có quyền thần thánh.
+
+==================================================
+WORLD EDIT POWERS
+==================================================
+
+Người chơi có thể:
+
+- tạo núi
+- tạo sông
+- tạo biển
+- tạo đảo
+- tạo rừng
+- tạo sa mạc
+
+Map cập nhật theo thời gian thực.
+
+==================================================
+LIFE CREATION POWERS
+==================================================
+
+Người chơi có thể:
+
+- tạo loài mới
+- chỉnh sửa loài
+- tăng giảm sinh sản
+- tăng giảm tuổi thọ
+
+==================================================
+CIVILIZATION POWERS
+==================================================
+
+Người chơi có thể:
+
+- tạo văn minh
+- ban công nghệ
+- ban tri thức
+- tăng dân số
+- thay đổi lãnh đạo
+
+==================================================
+DIVINE EVENTS
+==================================================
+
+Người chơi có thể tạo:
+
+- Blessing
+- Miracle
+- Golden Age
+- Catastrophe
+- Plague
+- Meteor
+- Great Flood
+
+==================================================
+TIME POWERS
+==================================================
+
+Người chơi có thể:
+
+- Pause Time
+- Slow Time
+- Fast Forward
+- Skip Years
+- Jump To Event
+
+==================================================
+CREATOR INTERVENTION HISTORY
+==================================================
+
+Mọi tác động của người chơi được ghi nhận.
+
+Ví dụ:
+
+"Năm 532:
+Creator tạo ra Dãy Núi Thiên Khởi."
+
+"Năm 801:
+Creator ban Công Nghệ Luyện Kim."
+
+==================================================
+JARVIS DIVINE OBSERVER
+==================================================
+
+Jarvis có thể phân tích:
+
+- Tác động của Creator
+- Sự thay đổi lịch sử
+- Hiệu ứng lâu dài
+
+==================================================
+WORLD EXPERIMENT MODE
+==================================================
+
+Cho phép tạo:
+
+Alternative Timelines
+
+Ví dụ:
+
+- Timeline A
+- Timeline B
+
+để xem tác động của các lựa chọn khác nhau.
+
+==================================================
+UI
+==================================================
+
+Tab mới:
+
+Creator Powers
+
+Các nhóm:
+
+- Geography
+- Life
+- Civilization
+- Time
+- Events
+
+==================================================
+SAFETY
+==================================================
+
+Mọi thay đổi phải:
+
+- có thể hoàn tác
+- có log
+- có snapshot
+
+==================================================
+XR FUTURE
+==================================================
+
+Thiết kế tương thích:
+
+- VR
+- AR
+- MR
+- XR
+
+để sau này người dùng có thể thao tác thế giới bằng tay trong không gian 3D.
+
+==================================================
+VALIDATION
+==================================================
+
+Sau khi build:
+
+Người chơi phải có thể:
+
+1. Tạo một loài mới
+2. Tạo một ngọn núi
+3. Ban công nghệ cho một văn minh
+4. Tua nhanh thời gian
+5. Xem lịch sử tác động của mình
+
+==================================================
+DELIVERABLE
+==================================================
+
+Generate:
+
+CREATOR_POWERS_REPORT.md
+
+Bao gồm:
+
+- số quyền Creator
+- số loại can thiệp
+- số timeline thay thế
+- mức độ kiểm soát thế giới (%)
