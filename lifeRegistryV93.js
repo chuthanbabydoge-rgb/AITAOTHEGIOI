@@ -62,11 +62,17 @@
     html += '</div>';
     html += '</div>';
 
-    // Stats row
+    // Stats row — SINH/NĂM và TỬ/NĂM lấy từ history entry cuối (per-year), không phải tổng tích lũy
+    var lastHist = history.length > 0 ? history[history.length - 1] : null;
+    var birthsPerYear = lastHist ? (lastHist.births || 0)
+                        : (total ? Math.round(total * (snap.birthRate || 0.08)) : 0);
+    var deathsPerYear = lastHist ? (lastHist.deaths || 0)
+                        : (total ? Math.round(total * (snap.deathRate || 0.04)) : 0);
+
     html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;">';
     var stats = [
-      { label: 'SINH/NĂM', value: fmtNum(snap.totalBirths || 0), color: '#22c55e' },
-      { label: 'TỬ/NĂM', value: fmtNum(snap.totalDeaths || 0), color: '#ef4444' },
+      { label: 'SINH/NĂM', value: fmtNum(birthsPerYear), color: '#22c55e' },
+      { label: 'TỬ/NĂM',   value: fmtNum(deathsPerYear), color: '#ef4444' },
       { label: 'ĐỈNH CAO', value: fmtNum(snap.peakPop || total), color: '#a78bfa' }
     ];
     stats.forEach(function(st) {

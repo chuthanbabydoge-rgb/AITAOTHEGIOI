@@ -1,0 +1,304 @@
+AI NPC SOCIETY PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- LIFE_SIMULATION_COMPLETION_REPORT.md
+- CIVILIZATION_EVOLUTION_REPORT.md
+- REAL_PROJECT_AUDIT.md
+
+Sử dụng REAL_PROJECT_AUDIT.md làm nguồn sự thật.
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Hiện tại thế giới đã có:
+
+- Sinh linh
+- Loài
+- Dân số
+- Văn minh
+- Thành phố
+- Tiến hóa
+
+Nhưng phần lớn vẫn là thống kê.
+
+Mục tiêu:
+
+Biến dân số thành xã hội thực sự.
+
+==================================================
+NPC SOCIETY ARCHITECTURE
+==================================================
+
+Không mô phỏng từng NPC cho toàn bộ dân số.
+
+Sử dụng:
+
+- Important NPC Layer
+- Simulated Population Layer
+
+để đảm bảo hiệu năng.
+
+==================================================
+IMPORTANT NPC SYSTEM
+==================================================
+
+Tạo hệ thống NPC quan trọng.
+
+Mỗi NPC có:
+
+- id
+- name
+- age
+- gender
+- species
+- civilization
+- city
+- occupation
+- personality
+- influence
+- relationships
+
+==================================================
+PERSONALITY SYSTEM
+==================================================
+
+Mỗi NPC sở hữu nhiều đặc điểm.
+
+Ví dụ:
+
+- Brave
+- Curious
+- Ambitious
+- Spiritual
+- Aggressive
+- Peaceful
+- Loyal
+- Greedy
+
+Tính cách ảnh hưởng quyết định.
+
+==================================================
+LIFE GOALS
+==================================================
+
+NPC có mục tiêu sống.
+
+Ví dụ:
+
+- Xây dựng gia đình
+- Trở thành lãnh đạo
+- Truyền bá tín ngưỡng
+- Khám phá thế giới
+- Tích lũy tri thức
+- Mở rộng lãnh thổ
+
+==================================================
+FAMILY SYSTEM
+==================================================
+
+NPC có thể:
+
+- Kết hôn
+- Sinh con
+- Có cha mẹ
+- Có anh chị em
+
+Tạo Family Tree cơ bản.
+
+==================================================
+RELATIONSHIP SYSTEM
+==================================================
+
+NPC có:
+
+- Friends
+- Rivals
+- Allies
+- Enemies
+- Mentors
+
+Quan hệ thay đổi theo thời gian.
+
+==================================================
+PROFESSION SYSTEM
+==================================================
+
+NPC có nghề nghiệp.
+
+Ví dụ:
+
+- Farmer
+- Hunter
+- Merchant
+- Scholar
+- Priest
+- Warrior
+- Leader
+- Artisan
+
+==================================================
+LEADERSHIP SYSTEM
+==================================================
+
+Mỗi Civilization có:
+
+- Chief
+- King
+- Queen
+- Emperor
+- Council
+
+tùy cấp độ phát triển.
+
+==================================================
+SOCIETY EVENTS
+==================================================
+
+Tự sinh:
+
+- Marriage
+- Birth
+- Death
+- Succession
+- Discovery
+- Rebellion
+- Migration
+
+==================================================
+HISTORICAL FIGURES
+==================================================
+
+Một số NPC có thể trở thành:
+
+- Founder
+- Hero
+- Scholar
+- Prophet
+- Ruler
+
+Được ghi nhận trong lịch sử.
+
+==================================================
+NPC MEMORY
+==================================================
+
+NPC quan trọng có:
+
+- personal history
+- major achievements
+- major relationships
+
+Không cần AI LLM thật.
+
+Sử dụng memory model nhẹ.
+
+==================================================
+JARVIS INTEGRATION
+==================================================
+
+Jarvis có thể trả lời:
+
+- Ai là người quyền lực nhất?
+- Gia tộc lớn nhất?
+- Nhà lãnh đạo hiện tại?
+- Nhà khoa học nổi tiếng nhất?
+- Anh hùng nổi bật nhất?
+
+==================================================
+UI
+==================================================
+
+Không redesign.
+
+Chỉ bổ sung:
+
+NPC Society
+
+với các tab nội bộ:
+
+- Overview
+- Important NPCs
+- Families
+- Leaders
+- Historical Figures
+
+chỉ để tab chính ở sidebar còn các tab nội bộ thì nằm bên trong.
+
+==================================================
+PERFORMANCE
+==================================================
+
+Không tạo:
+
+100.000 NPC render thật.
+
+Chỉ:
+
+- Simulate Population
+- Track Important NPCs
+
+==================================================
+XR FUTURE
+==================================================
+
+Thiết kế dữ liệu tương thích:
+
+- VR
+- AR
+- MR
+- XR
+
+để sau này người dùng có thể gặp NPC trực tiếp.
+
+==================================================
+VALIDATION
+==================================================
+
+Sau khi build:
+
+Ít nhất phải có:
+
+- 20 Important NPCs
+- 5 Families
+- 1 Leader
+- 1 Historical Figure
+
+đang tồn tại trong thế giới.
+
+==================================================
+PHÂN TÍCH TRƯỚC KHI CODE
+==================================================
+
+1. Liệt kê hệ thống NPC hiện có
+2. Liệt kê file cần sửa
+3. Liệt kê file cần tạo
+4. Kế hoạch tích hợp
+5. Kiểm tra xung đột
+6. Không tạo hệ thống trùng lặp
+
+==================================================
+KẾT THÚC
+==================================================
+
+Generate:
+
+- AI_NPC_SOCIETY_REPORT.md
+- REAL_PROJECT_AUDIT.md
+
+AI_NPC_SOCIETY_REPORT phải trả lời:
+
+1. Có bao nhiêu NPC quan trọng
+2. Có bao nhiêu gia đình
+3. Ai là lãnh đạo hiện tại
+4. Ai là nhân vật lịch sử nổi bật
+5. Xã hội phát triển ra sao
+6. Mức độ hoàn thành Society Simulation (%)
+
+TẬP TRUNG:
+
+"BIẾN DÂN SỐ THÀNH MỘT XÃ HỘI SỐNG."
