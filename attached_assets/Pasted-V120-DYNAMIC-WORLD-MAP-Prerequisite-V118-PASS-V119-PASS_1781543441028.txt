@@ -1,0 +1,142 @@
+V120 – DYNAMIC WORLD MAP
+
+Prerequisite:
+V118 PASS
+V119 PASS
+
+Mục tiêu:
+
+Biến thế giới từ bảng số liệu
+thành bản đồ sống.
+
+=================================
+PHASE 1 – WORLD MAP ENGINE
+=================================
+
+Tạo:
+
+/systems/worldMap/
+
+Map gồm:
+
+- Ocean
+- Plains
+- Forest
+- Desert
+- Mountain
+- River
+
+Seed từ worldId.
+
+Mỗi thế giới có map riêng.
+
+=================================
+PHASE 2 – TERRITORY SYSTEM
+=================================
+
+Mỗi civilization có:
+
+{
+ territory,
+ capital,
+ borders
+}
+
+Lãnh thổ mở rộng theo:
+
+- dân số
+- công nghệ
+- chiến tranh
+
+=================================
+PHASE 3 – CITY SYSTEM
+=================================
+
+Thành phố xuất hiện trên map.
+
+Hiển thị:
+
+- tên
+- dân số
+- tuổi đời
+- chủ sở hữu
+
+=================================
+PHASE 4 – VISUAL EXPANSION
+=================================
+
+Khi civilization lớn mạnh:
+
+map đổi màu vùng kiểm soát.
+
+Người chơi nhìn thấy đế chế phát triển.
+
+=================================
+PHASE 5 – WAR VISUALIZATION
+=================================
+
+Chiến tranh tạo:
+
+- mặt trận
+- vùng tranh chấp
+- thành phố bị chiếm
+
+=================================
+PHASE 6 – DISCOVERY
+=================================
+
+Fog Of War.
+
+Civilization chưa khám phá hết thế giới.
+
+Mỗi năm mở rộng vùng nhìn thấy.
+
+=================================
+PHASE 7 – NATURAL EVENTS
+=================================
+
+Map sinh:
+
+- động đất
+- núi lửa
+- hạn hán
+- lũ lụt
+
+ảnh hưởng trực tiếp lãnh thổ.
+
+=================================
+PHASE 8 – PLAYER VIEW
+=================================
+
+Tab mới:
+
+World Map
+
+Cho phép:
+
+- zoom
+- pan
+- xem từng civilization
+- xem lịch sử lãnh thổ
+
+=================================
+PHASE 9 – TIMELAPSE
+=================================
+
+Replay:
+
+Năm 1 -> hiện tại
+
+Người chơi xem:
+
+- đế chế mọc lên
+- chiến tranh
+- sụp đổ
+
+như documentary.
+
+=================================
+REPORT
+=================================
+
+WORLD_MAP_V120_REPORT.md
