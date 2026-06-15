@@ -1,0 +1,216 @@
+V122 – TIMELINE REPLAY PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- LIVING_WORLD_MAP_REPORT.md
+- CIV_AI_V120_REPORT.md
+- WORLD_STATE_AUDIT_V117.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Hiện tại:
+
+- Thế giới đang sống
+- Văn minh tự phát triển
+- Bản đồ thay đổi theo thời gian
+
+Nhưng người dùng chỉ thấy trạng thái hiện tại.
+
+Mục tiêu:
+
+Cho phép người dùng xem toàn bộ lịch sử thế giới.
+
+==================================================
+WORLD HISTORY ENGINE
+==================================================
+
+Tạo Historical Snapshot System.
+
+Mỗi giai đoạn quan trọng:
+
+- lưu trạng thái thế giới
+- lưu trạng thái văn minh
+- lưu trạng thái lãnh thổ
+
+Không lưu mỗi năm.
+
+Chỉ lưu:
+
+Major Events
+Civilization Changes
+Wars
+Discoveries
+
+==================================================
+TIMELINE REPLAY
+==================================================
+
+Tạo Replay Engine.
+
+Cho phép:
+
+- Play
+- Pause
+- Rewind
+- Fast Forward
+
+==================================================
+HISTORICAL EVENTS
+==================================================
+
+Hiển thị:
+
+- Species Emergence
+- Civilization Founding
+- Capital Creation
+- Wars
+- Alliances
+- Technology Discoveries
+- Religious Movements
+- Empire Collapse
+
+==================================================
+MAP REPLAY
+==================================================
+
+Kết hợp Living World Map.
+
+Người dùng có thể xem:
+
+Year 1
+
+↓
+
+Year 50
+
+↓
+
+Year 200
+
+↓
+
+Year 1000
+
+và quan sát lãnh thổ thay đổi.
+
+==================================================
+HISTORICAL FIGURES
+==================================================
+
+Replay hiển thị:
+
+- Founders
+- Kings
+- Queens
+- Heroes
+- Scholars
+- Prophets
+
+xuất hiện theo thời gian.
+
+==================================================
+CIVILIZATION DOCUMENTARY MODE
+==================================================
+
+Tạo chế độ:
+
+Documentary View
+
+Ví dụ:
+
+"Năm 112
+
+Ngọc Thổ Bộ Tộc thành lập.
+
+Dân số ban đầu:
+42"
+
+"Năm 417
+
+Đế Quốc Thiên Sơn mở rộng lãnh thổ."
+
+==================================================
+JARVIS HISTORIAN
+==================================================
+
+Jarvis có thể trả lời:
+
+- Ai thành lập nền văn minh đầu tiên?
+- Cuộc chiến lớn nhất?
+- Đế chế tồn tại lâu nhất?
+- Thành phố cổ nhất?
+
+==================================================
+UI
+==================================================
+
+Tab mới:
+
+Timeline Replay
+
+Bên trong:
+
+- Timeline
+- Replay Controls
+- Historical Events
+- Historical Figures
+- Documentary Mode
+
+==================================================
+PERFORMANCE
+==================================================
+
+Không lưu snapshot mỗi năm.
+
+Sử dụng:
+
+Event-Based Snapshots
+
+để tránh save file quá lớn.
+
+==================================================
+XR PREPARATION
+==================================================
+
+Thiết kế dữ liệu replay tương thích:
+
+- VR
+- AR
+- MR
+- XR
+
+để sau này người dùng có thể bước vào các thời kỳ lịch sử.
+
+==================================================
+VALIDATION
+==================================================
+
+Sau khi build:
+
+Người dùng phải có thể:
+
+1. Xem sự ra đời của nền văn minh đầu tiên
+2. Xem chiến tranh đầu tiên
+3. Xem thay đổi lãnh thổ theo thời gian
+4. Xem nhân vật lịch sử nổi bật
+
+==================================================
+DELIVERABLE
+==================================================
+
+Generate:
+
+TIMELINE_REPLAY_REPORT.md
+
+Bao gồm:
+
+- số snapshot
+- số sự kiện lịch sử
+- số nhân vật lịch sử
+- số cuộc chiến được replay
+- độ bao phủ lịch sử (%)
