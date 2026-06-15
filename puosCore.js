@@ -152,8 +152,8 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() { setTimeout(init, 21600); });
+    document.addEventListener("DOMContentLoaded", function() { setTimeout(init, 13000); });
   } else {
-    setTimeout(init, 21600);
+    setTimeout(init, 13000);
   }
 })();

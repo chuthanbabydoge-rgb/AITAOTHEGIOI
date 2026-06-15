@@ -192,9 +192,24 @@
     console.log('[PUOS Shell V90] 🪐 Personal Universe OS khởi động — 6 sections · Classic Mode available.');
   }
 
+  function refreshSidebarFooter() {
+    var footer = document.querySelector('#puos-sidebar > div:last-child > div:first-child');
+    if (footer) {
+      var yr = window.year || 1;
+      var npcs = window.npcs || [];
+      footer.textContent = 'Năm ' + yr.toLocaleString() + ' · ' + npcs.length + ' sinh linh';
+    }
+  }
+
+  var _origPuosGo = window.puosGo;
+  window.puosGo = function(sectionId) {
+    refreshSidebarFooter();
+    if (_origPuosGo) _origPuosGo(sectionId);
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 24000); });
+    document.addEventListener('DOMContentLoaded', function() { setTimeout(init, 13000); });
   } else {
-    setTimeout(init, 24000);
+    setTimeout(init, 13000);
   }
 })();
