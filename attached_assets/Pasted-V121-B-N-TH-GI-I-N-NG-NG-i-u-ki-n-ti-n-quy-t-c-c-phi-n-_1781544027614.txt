@@ -1,0 +1,141 @@
+V121 – BẢN ĐỒ THẾ GIỚI NĂNG ĐỘNG
+
+Điều kiện tiên quyết các phiên bản cũ đã PASS 
+
+
+Tiêu chí:
+
+Thế giới biến từ dữ liệu bảng
+thành bản đồ sống.
+
+====================================
+GIAI ĐOẠN 1 – CÔNG CỤ BẢN ĐỒ THẾ GIỚI
+====================================
+
+Tạo:
+
+/systems/worldMap/
+
+Bản đồ bao gồm:
+
+- Đại dương
+- Đồng bằng
+- Rừng
+- Sa mạc
+- Núi
+- Dòng sông
+
+Seed từ worldId.
+
+Mỗi thế giới có bản đồ dành riêng.
+
+====================================
+GIAI ĐOẠN 2 – HỆ THỐNG LÃNH THỔ
+====================================
+
+Mỗi nền văn minh có:
+
+{ 
+lãnh thổ, 
+thủ đô, 
+biên giới
+}
+
+Lãnh thổ mở rộng theo:
+
+- dân số
+- công nghệ
+- chiến tranh
+
+====================================
+GIAI ĐOẠN 3 – HỆ THỐNG THÀNH PHỐ
+====================================
+
+Thành phố xuất hiện trên bản đồ.
+
+Hiển thị:
+
+- tên
+- dân số
+-tuổi đời
+- chủ sở hữu
+
+====================================
+GIAI ĐOẠN 4 – MỞ RỘNG TẦM NHÌN
+====================================
+
+Khi nền văn minh lớn mạnh:
+
+control control control color control.
+
+Người chơi được nhìn thấy ở chế độ phát triển.
+
+====================================
+GIAI ĐOẠN 5 – HÌNH ẢNH CHIẾN TRANH
+====================================
+
+Chiến tranh sáng tạo:
+
+- mặt trận
+- vùng tranh chấp
+- thành phần được sử dụng
+
+====================================
+GIAI ĐOẠN 6 – KHÁM PHÁ
+====================================
+
+Sương mù chiến tranh.
+
+Nền văn minh chưa được khám phá ở thế giới.
+
+Nhìn thấy từng vùng mở rộng năm.
+
+====================================
+GIAI ĐOẠN 7 – SỰ KIỆN TỰ NHIÊN
+====================================
+
+Bản đồ sinh:
+
+-động đất
+- núi lửa
+-hạn hán
+- ngập lụt
+
+hình ảnh trực tiếp ở lãnh thổ.
+
+====================================
+GIAI ĐOẠN 8 – XEM NGƯỜI CHƠI
+====================================
+
+Tab mới:
+
+Bản đồ thế giới
+
+Allow:
+
+- phóng
+- chảo
+- xem từng nền văn minh
+- xem lịch sử lãnh thổ
+
+====================================
+GIAI ĐOẠN 9 – THỜI GIAN
+====================================
+
+Phát lại:
+
+Năm 1 -> hiện tại
+
+Người chơi xem:
+
+- đế chế mọc lên
+- chiến tranh
+- Change
+
+như phim tài liệu.
+
+=================================
+BÁO CÁO
+=================================
+
+WORLD_MAP_V121_REPORT.md
