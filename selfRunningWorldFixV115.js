@@ -14,6 +14,14 @@
   //   1. Sau khi awv92-section được build, inject ID vào các stat divs.
   //   2. Dùng cùng priority cascade như universeSyncBridgeV95.js để lấy data.
   //   3. Live-update mỗi 2s — đồng bộ với Dashboard.
+  //
+  // V115.6 — BUG FIXES (2026-06-15):
+  //   [BUG 1] getTotalEvents() sai: kiểm tra wchV92Data.events (KHÔNG TỒN TẠI).
+  //           Đúng: wchV92Data.totalEntries (scalar count) + sum yearEntries[i].events.
+  //   [BUG 2] localStorage fallback sai: cgv6_world_chronicle_v92 lưu dạng
+  //           { totalEntries, yearEntries:[...] } — không có trường events/history.
+  //   [BUG 3] getTotalPop() thiếu localStorage fallback: lev93Data.globalPop = 0
+  //           trước khi tick đầu tiên chạy → thêm đọc trực tiếp từ localStorage.
   // ══════════════════════════════════════════════════════════════════
 
   var _fixTimer    = null;
@@ -24,49 +32,98 @@
   // ── 1. SINGLE SOURCE OF TRUTH (mirror của universeSyncBridgeV95) ──
 
   function getTotalPop() {
+    // Priority 1: V93 Life Engine in-memory
     if (typeof window.lev93GetCurrentPop === 'function') {
       var p = window.lev93GetCurrentPop();
       if (p > 0) return p;
     }
+    // Priority 2: V93 Species sum in-memory
     if (window.spv93Data && Array.isArray(window.spv93Data.species)) {
       var sum = 0;
       window.spv93Data.species.forEach(function(s) { sum += (s.population || 0); });
       if (sum > 0) return sum;
     }
+    // Priority 3: localStorage cgv6_life_engine_v93 (trước khi tick đầu tiên)
+    try {
+      var ld = localStorage.getItem('cgv6_life_engine_v93');
+      if (ld) {
+        var lp = JSON.parse(ld);
+        if ((lp.globalPop || 0) > 0) return lp.globalPop;
+      }
+    } catch(e) {}
+    // Priority 4: localStorage cgv6_species_v93 — sum species population
+    try {
+      var sd = localStorage.getItem('cgv6_species_v93');
+      if (sd) {
+        var sp = JSON.parse(sd);
+        if (sp.species && sp.species.length) {
+          var st = 0;
+          sp.species.forEach(function(s) { st += (s.population || 0); });
+          if (st > 0) return st;
+        }
+      }
+    } catch(e) {}
+    // Fallback: legacy npcs array
     return (window.npcs || []).length;
   }
 
   function getTotalEvents() {
     var count = 0;
-    // Priority 1: V92 Chronicle (in-memory)
-    if (window.wchV92Data && Array.isArray(window.wchV92Data.events)) {
-      count += window.wchV92Data.events.length;
+
+    // Priority 1: V92 Chronicle in-memory
+    // FIX: wchV92Data KHÔNG có .events — dùng .totalEntries (scalar) hoặc
+    //      sum từng yearEntries[i].events.length
+    if (window.wchV92Data) {
+      if ((window.wchV92Data.totalEntries || 0) > 0) {
+        count += window.wchV92Data.totalEntries;
+      } else if (Array.isArray(window.wchV92Data.yearEntries)) {
+        window.wchV92Data.yearEntries.forEach(function(ye) {
+          count += (ye.events && ye.events.length) || 0;
+        });
+      }
     }
-    // Priority 2: V95 Civ Events (in-memory)
+
+    // Priority 2: V95 Civ Events in-memory
     if (window.cevV95Data) {
       count += (window.cevV95Data.totalEvents || 0);
     }
+
     if (count > 0) return count;
-    // Priority 3: V92 Autonomous Events (in-memory)
+
+    // Priority 3: V92 Autonomous Events in-memory
     if (window.aeeV92Data) {
       count += (window.aeeV92Data.totalEvents || 0);
     }
+
     if (count > 0) return count;
-    // Fallback: localStorage scan (mirrors getEventCount in universeSyncBridgeV95)
-    var keys = [
-      'cgv6_historical_timeline',
-      'cgv6_world_chronicle_v92',
-      'cgv6_world_events_v25',
-      'cgv6_world_event_v25'
+
+    // Fallback: localStorage scan
+    // FIX: cgv6_world_chronicle_v92 lưu { totalEntries, yearEntries:[...] }
+    //      — KHÔNG có trường events/history ở top-level
+    var lsChecks = [
+      { key: 'cgv6_world_chronicle_v92', getter: function(p) {
+          if ((p.totalEntries || 0) > 0) return p.totalEntries;
+          if (Array.isArray(p.yearEntries)) {
+            var t = 0;
+            p.yearEntries.forEach(function(ye) { t += (ye.events && ye.events.length) || 0; });
+            return t;
+          }
+          return 0;
+        }
+      },
+      { key: 'cgv6_historical_timeline',  getter: function(p) { return (p.events || p.history || []).length; } },
+      { key: 'cgv6_world_events_v25',     getter: function(p) { return (p.events || p.history || []).length; } },
+      { key: 'cgv6_world_event_v25',      getter: function(p) { return (p.events || p.history || []).length; } }
     ];
+
     var maxFound = 0;
-    for (var k = 0; k < keys.length; k++) {
+    for (var k = 0; k < lsChecks.length; k++) {
       try {
-        var d = localStorage.getItem(keys[k]);
-        if (d) {
-          var p = JSON.parse(d);
-          var a = p.events || p.history || [];
-          if (a.length > maxFound) maxFound = a.length;
+        var raw = localStorage.getItem(lsChecks[k].key);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          var n = lsChecks[k].getter(parsed) || 0;
+          if (n > maxFound) maxFound = n;
         }
       } catch(e) {}
     }
@@ -182,7 +239,7 @@
   window.srwf115PatchNow = function() {
     _injectDone = false;
     patchValues();
-    return srwf115GetData();
+    return window.srwf115GetData();
   };
 
   // ── 7. INIT ───────────────────────────────────────────────────────

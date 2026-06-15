@@ -1,131 +1,193 @@
 # SELF_RUNNING_WORLD_FIX_REPORT.md
-## V115.6 — Self-Running World Panel Fix
+> Ngày: 2026-06-15 | Version: V115.6
 
 ---
 
-## 🔍 ROOT CAUSE ANALYSIS
+## 🐛 VẤN ĐỀ BÁO CÁO
 
-### Panel: "THẾ GIỚI TỰ VẬN HÀNH" (trong `autonomousWorldRegistryV92.js`)
+Panel **"Thế Giới Tự Vận Hành"** (awv92-section) hiển thị sai:
 
-#### Vấn đề 1: Population = 0
-```javascript
-// BUG (dòng 114 trong buildSection):
-'<div style="font-size:22px;font-weight:700;color:#60a5fa;">' + ((window.npcs||[]).length) + '</div>'
-```
-- `window.npcs` là mảng NPC cũ (V1-V28), KHÔNG phải nguồn dân số của V93 Life Engine
-- V93 Life Engine lưu dân số trong `window.spv93Data.species[].population` (tổng = 383)
-- `window.lev93GetCurrentPop()` là hàm SSOT chính xác nhưng không được gọi
-
-#### Vấn đề 2: Events = 0
-```javascript
-// BUG (dòng 85 trong buildSection):
-var totalEvs = (window.aeeV92Data && window.aeeV92Data.totalEvents) || 0;
-```
-- Chỉ đọc events từ V92 Autonomous Event Engine
-- Bỏ qua: V92 Chronicle (`wchV92Data.events`), V95 Civ Events (`cevV95Data.totalEvents`), và localStorage keys
-- `universeSyncBridgeV95.js` có logic multi-source đúng nhưng không patch awv92-section
-
-#### Vấn đề 3: Giá trị baked static, không live-update
-- `buildSection()` tạo HTML string một lần khi init
-- Chỉ `#awv92-year-num` có ID và được `updateYearBadge()` cập nhật
-- SỰ KIỆN và SINH LINH không có ID → `universeSyncBridgeV95.js` không thể patch
+| Chỉ Số | Hiển Thị Sai | Giá Trị Thực |
+|---|---|---|
+| SỰ KIỆN | 0 | 7 (từ WorldChronicle V92) |
+| SINH LINH | 0 | 383 (từ LifeEngine V93 / SpeciesSystem V93) |
+| NĂM HIỆN TẠI | ✅ Đúng (446) | — |
 
 ---
 
-## ✅ FIX IMPLEMENTED
+## 🔍 PHÂN TÍCH NGUYÊN NHÂN GỐC RỄ
 
-### File Mới: `selfRunningWorldFixV115.js`
-**Pattern**: IIFE · Expand Only · KHÔNG sửa file cũ
+### Nguyên nhân 1: `buildSection()` bake giá trị tĩnh
+File: `autonomousWorldRegistryV92.js` (line 85, 109, 114)
 
-### Giải Pháp:
+```js
+// BAKED tại thời điểm khởi tạo — không live-update:
+var totalEvs = (window.aeeV92Data && window.aeeV92Data.totalEvents) || 0;  // → 0
+'<div>' + totalEvs + '</div>',      // → "0"
+'<div>' + ((window.npcs||[]).length) + '</div>',   // → "0"
+```
 
-#### 1. Population SSOT (mirror của universeSyncBridgeV95.js)
-```javascript
-function getTotalPop() {
-  // Priority 1: V93 lev93GetCurrentPop()     → kết quả chính xác nhất
-  // Priority 2: spv93Data.species sum         → species-level aggregate
-  // Priority 3: window.npcs.length            → fallback cũ
+- `aeeV92Data.totalEvents` = 0 vì Autonomous Event Engine chỉ đếm events từ chính nó.
+- `window.npcs.length` = 0 vì population thực tế nằm trong V93 SpeciesSystem.
+- Các `<div>` value không có `id` → không thể live-update.
+
+### Nguyên nhân 2 (BUG TRONG FIX CŨ): `wchV92Data.events` không tồn tại
+
+File: `selfRunningWorldFixV115.js` (phiên bản trước, line 42-44)
+
+```js
+// SAI: wchV92Data KHÔNG có property .events
+if (window.wchV92Data && Array.isArray(window.wchV92Data.events)) {
+  count += window.wchV92Data.events.length;  // → KHÔNG BAO GIỜ CHẠY
 }
 ```
 
-#### 2. Events SSOT (mirror của universeSyncBridgeV95.js)
-```javascript
-function getTotalEvents() {
-  // Priority 1: wchV92Data.events.length      → V92 Chronicle (in-memory)
-  // Priority 2: cevV95Data.totalEvents        → V95 Civ Events (in-memory)
-  // Priority 3: aeeV92Data.totalEvents        → V92 Autonomous Events
-  // Priority 4: localStorage multi-key scan   → fallback
+**Cấu trúc thực tế của `wchV92Data`** (từ `worldChronicleV92.js`):
+```js
+window.wchV92Data = {
+  totalEntries: 7,        // ← ĐÂY là tổng số sự kiện
+  yearEntries: [          // ← mỗi năm có mảng events con
+    { year: 446, events: [...], summary: '' },
+    ...
+  ]
+};
+```
+
+Fix cũ kiểm tra `wchV92Data.events` → `undefined` → `Array.isArray(undefined)` = false → bỏ qua toàn bộ Chronicle. **Luôn trả về 0.**
+
+### Nguyên nhân 3 (BUG TRONG FIX CŨ): localStorage fallback sai cho Chronicle
+
+```js
+// SAI: cgv6_world_chronicle_v92 lưu { totalEntries, yearEntries }
+//      — KHÔNG có .events / .history ở top-level
+var a = p.events || p.history || [];   // → undefined || undefined || [] → []
+if (a.length > maxFound) maxFound = a.length;  // → maxFound không thay đổi
+```
+
+### Nguyên nhân 4 (BUG TRONG FIX CŨ): Thiếu localStorage fallback cho Population
+
+Trước khi game tick đầu tiên chạy, `window.lev93Data.globalPop` = 0 trong bộ nhớ
+ngay cả khi localStorage đã lưu giá trị 383. Fix cũ không đọc trực tiếp từ localStorage khi in-memory = 0.
+
+---
+
+## ✅ GIẢI PHÁP ĐÃ TRIỂN KHAI
+
+File được cập nhật: `selfRunningWorldFixV115.js`
+
+### Fix 1: `getTotalEvents()` — Đọc đúng cấu trúc wchV92Data
+
+```js
+// ĐÚNG: dùng .totalEntries hoặc sum từ .yearEntries
+if (window.wchV92Data) {
+  if ((window.wchV92Data.totalEntries || 0) > 0) {
+    count += window.wchV92Data.totalEntries;
+  } else if (Array.isArray(window.wchV92Data.yearEntries)) {
+    window.wchV92Data.yearEntries.forEach(function(ye) {
+      count += (ye.events && ye.events.length) || 0;
+    });
+  }
 }
 ```
 
-#### 3. ID Injection
-Sau khi `buildSection()` tạo xong DOM, tìm các value divs bằng cấu trúc:
-- `#awv92-year-num` → parentNode (year box) → parentNode (stats row) → children[1]/[2]
-- Inject `id="srwf115-event-num"` và `id="srwf115-pop-num"`
+### Fix 2: `getTotalEvents()` localStorage — Đọc đúng schema Chronicle
 
-#### 4. Live Refresh
-- Interval 2000ms (đồng bộ với universeSyncBridgeV95.js)
-- Hook `puosRenderMyUniverse` via `_orig` pattern
-- Boot patches: 150ms / 400ms / 800ms sau render
+```js
+{ key: 'cgv6_world_chronicle_v92', getter: function(p) {
+    if ((p.totalEntries || 0) > 0) return p.totalEntries;
+    if (Array.isArray(p.yearEntries)) {
+      var t = 0;
+      p.yearEntries.forEach(function(ye) { t += (ye.events && ye.events.length) || 0; });
+      return t;
+    }
+    return 0;
+  }
+},
+```
 
----
+### Fix 3: `getTotalPop()` — Thêm localStorage fallback
 
-## 📊 EXPECTED RESULTS
-
-| Metric | Trước Fix | Sau Fix |
-|--------|-----------|---------|
-| Current Year | 446 ✅ | 446 ✅ |
-| Events | 0 ❌ | > 0 ✅ |
-| Population | 0 ❌ | 383 ✅ |
-
-### Consistency Check
-| Dashboard | Self-Running World |
-|-----------|-------------------|
-| `usbV95GetData().pop` | `srwf115GetData().population` |
-| `usbV95GetData().evts` | `srwf115GetData().events` |
-| ✅ Cùng nguồn dữ liệu | ✅ Cùng nguồn dữ liệu |
-
----
-
-## 📁 FILES
-
-| File | Thao Tác | Mô Tả |
-|------|----------|-------|
-| `selfRunningWorldFixV115.js` | **TẠO MỚI** | Fix engine chính |
-| `index.html` | **THÊM 1 DÒNG** | `<script src="selfRunningWorldFixV115.js">` sau universeSyncBridgeV95.js |
-| `autonomousWorldRegistryV92.js` | **KHÔNG CHỈNH SỬA** | Giữ nguyên |
-| `universeSyncBridgeV95.js` | **KHÔNG CHỈNH SỬA** | Giữ nguyên |
-
----
-
-## 🔧 PUBLIC API
-
-```javascript
-// Lấy data hiện tại từ SSOT
-srwf115GetData()
-// → { population: 383, events: N, year: 446 }
-
-// Force re-patch ngay lập tức
-srwf115PatchNow()
+```js
+// Priority 3: localStorage cgv6_life_engine_v93 (trước khi tick đầu tiên)
+try {
+  var ld = localStorage.getItem('cgv6_life_engine_v93');
+  if (ld) { var lp = JSON.parse(ld); if ((lp.globalPop || 0) > 0) return lp.globalPop; }
+} catch(e) {}
+// Priority 4: localStorage cgv6_species_v93 — sum species population
+try {
+  var sd = localStorage.getItem('cgv6_species_v93');
+  if (sd) {
+    var sp = JSON.parse(sd);
+    if (sp.species && sp.species.length) {
+      var st = 0;
+      sp.species.forEach(function(s) { st += (s.population || 0); });
+      if (st > 0) return st;
+    }
+  }
+} catch(e) {}
 ```
 
 ---
 
-## ✅ CHECKLIST SAU CODE
+## 🗺️ KIẾN TRÚC NGUỒN DỮ LIỆU (SAU FIX)
 
-| Hạng Mục | Trạng Thái |
-|----------|-----------|
-| Hệ thống cũ giữ nguyên | ✅ |
-| `autonomousWorldRegistryV92.js` không bị sửa | ✅ |
-| `universeSyncBridgeV95.js` không bị sửa | ✅ |
-| File mới: `selfRunningWorldFixV115.js` | ✅ |
-| Script tag thêm vào `index.html` | ✅ |
-| Không tạo save key mới (không cần) | ✅ |
-| Tương thích ngược | ✅ |
-| Population = Dashboard Population | ✅ |
-| Events = Dashboard Events | ✅ |
-| Không hardcode zero | ✅ |
+```
+SỰ KIỆN (Priority Cascade):
+  1. window.wchV92Data.totalEntries         (WorldChronicle V92 — in-memory) ← FIX
+  2. sum wchV92Data.yearEntries[i].events   (nếu totalEntries = 0)           ← FIX
+  3. window.cevV95Data.totalEvents          (CivEvents V95 — in-memory)
+  4. window.aeeV92Data.totalEvents          (AutonomousEventEngine V92)
+  5. localStorage cgv6_world_chronicle_v92  (fallback — schema đúng)         ← FIX
+  6. localStorage cgv6_historical_timeline  (fallback)
+  7. localStorage cgv6_world_events_v25     (fallback)
+
+SINH LINH (Priority Cascade):
+  1. window.lev93GetCurrentPop()            (LifeEngine V93 — in-memory)
+  2. sum window.spv93Data.species[].pop     (SpeciesSystem V93 — in-memory)
+  3. localStorage cgv6_life_engine_v93      (fallback — trước tick đầu)      ← FIX
+  4. localStorage cgv6_species_v93          (fallback — species pop sum)      ← FIX
+  5. window.npcs.length                     (legacy fallback)
+```
 
 ---
 
-*Generated: V115.6 · Expand Only · No Delete · No Replace*
+## ✅ XÁC NHẬN TÍNH NHẤT QUÁN
+
+| Chỉ Số | Dashboard (universeSyncBridgeV95) | Self-Running World (srwf115) | Nguồn |
+|---|---|---|---|
+| SINH LINH | `lev93GetCurrentPop()` | Cùng priority cascade | LifeEngine V93 |
+| SỰ KIỆN | `wchV92Data.totalEntries` | `wchV92Data.totalEntries` | WorldChronicle V92 |
+
+**Dashboard Population = Self-Running World Population ✅**
+**Dashboard Events = Self-Running World Events ✅**
+
+---
+
+## 🔄 CƠ CHẾ LIVE-UPDATE
+
+- Inject ID `srwf115-event-num` và `srwf115-pop-num` vào stat divs sau khi `awv92-section` build.
+- Live refresh mỗi **2 giây** — đồng bộ với `universeSyncBridgeV95.js`.
+- Hook `puosRenderMyUniverse` → re-inject sau 150ms/400ms/800ms khi panel rebuild.
+- Boot patches tại 500ms / 1500ms / 3000ms sau init (init tại 25700ms).
+
+---
+
+## 📁 FILES LIÊN QUAN
+
+| File | Vai Trò | Hành Động |
+|---|---|---|
+| `selfRunningWorldFixV115.js` | Fix đã cập nhật | ✏️ BUG FIXED |
+| `autonomousWorldRegistryV92.js` | Source awv92-section | 🔒 Không sửa |
+| `universeSyncBridgeV95.js` | Tham chiếu SSOT Dashboard | 🔒 Không sửa |
+| `worldChronicleV92.js` | Schema: totalEntries, yearEntries | 🔒 Không sửa |
+| `lifeEngineV93.js` | Schema: lev93Data.globalPop | 🔒 Không sửa |
+| `speciesSystemV93.js` | Schema: spv93Data.species[].population | 🔒 Không sửa |
+
+---
+
+## 📋 RULE TUÂN THỦ
+
+- ✅ **CHỈ MỞ RỘNG** — không xóa, không thay thế, không xây dựng lại
+- ✅ Không sửa `autonomousWorldRegistryV92.js` — chỉ patch DOM sau khi build
+- ✅ Chỉ sửa bug trong `selfRunningWorldFixV115.js` (file của chính fix này)
+- ✅ Không tạo file mới — expand file hiện có
