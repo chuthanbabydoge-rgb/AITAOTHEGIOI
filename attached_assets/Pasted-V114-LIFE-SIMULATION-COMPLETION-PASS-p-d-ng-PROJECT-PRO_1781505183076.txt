@@ -1,0 +1,228 @@
+V114 — LIFE SIMULATION COMPLETION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+* PROJECT_STATUS.md
+* AUTONOMOUS_WORLD_REPORT.md
+* LIFE_SIMULATION_REPORT.md
+* FIRST_CREATION_EXPERIENCE_REPORT.md
+
+==================================================
+MỤC TIÊU
+========
+
+Hiện tại:
+
+* Universe Clock đang chạy
+* Autonomous World đang chạy
+* Timeline đang hoạt động
+
+Nhưng:
+
+* Sinh linh vẫn bằng 0
+* Species chưa xuất hiện
+* Population chưa thay đổi
+* Life Events chưa hoạt động
+
+Hoàn thiện V114 để thế giới trở thành một Living World thực sự.
+
+==================================================
+LIFE ACTIVATION ENGINE
+======================
+
+Khi thế giới đạt điều kiện phù hợp:
+
+Tự sinh ra sinh linh đầu tiên.
+
+Ví dụ:
+
+Năm 17:
+Loài đầu tiên xuất hiện.
+
+Không yêu cầu người dùng tạo thủ công.
+
+==================================================
+SPECIES SYSTEM
+==============
+
+Tạo Species Registry.
+
+Mỗi Species gồm:
+
+* id
+* name
+* population
+* status
+* evolutionLevel
+* birthRate
+* deathRate
+
+Hỗ trợ:
+
+* Human
+* Animal
+* Fantasy Creature
+* Custom Species
+
+==================================================
+POPULATION ENGINE
+=================
+
+Mỗi năm:
+
+Population tự thay đổi.
+
+Population mới =
+Population hiện tại
+
+* Births
+
+- Deaths
+
+Không để dân số đứng yên.
+
+==================================================
+LIFE EVENTS
+===========
+
+Tự sinh các sự kiện:
+
+* Birth Boom
+* Migration
+* Adaptation
+* Disease
+* Extinction
+* New Species
+
+Mỗi sự kiện ảnh hưởng population.
+
+==================================================
+AUTONOMOUS INTEGRATION
+======================
+
+Kết nối với World Engine hiện có.
+
+Khi năm tăng:
+
+Year++
+
+↓
+
+Population Update
+
+↓
+
+Life Event Check
+
+↓
+
+Species Evolution
+
+↓
+
+Chronicle Update
+
+↓
+
+Jarvis Analysis
+
+==================================================
+TIMELINE INTEGRATION
+====================
+
+Mọi sự kiện sinh học phải ghi vào:
+
+Biên Niên Sử.
+
+Ví dụ:
+
+Năm 17:
+Loài Người xuất hiện.
+
+Năm 44:
+Dân số vượt 100.
+
+Năm 102:
+Đại dịch đầu tiên.
+
+Năm 211:
+Loài mới tiến hóa.
+
+==================================================
+JARVIS OBSERVER
+===============
+
+Jarvis có thể báo cáo:
+
+* Tổng dân số
+* Loài mới
+* Tốc độ tăng trưởng
+* Nguy cơ tuyệt chủng
+
+Ví dụ:
+
+"Tổng dân số tăng 12%."
+
+"Một loài mới vừa xuất hiện."
+
+==================================================
+UI ENHANCEMENT
+==============
+
+KHÔNG redesign giao diện.
+
+Chỉ bổ sung:
+
+1. Population Card
+2. Species Overview
+3. Life Growth Chart
+4. Top Species Panel
+
+Giữ nguyên phong cách PUOS hiện tại.
+
+==================================================
+VALIDATION
+==========
+
+Sau khi build:
+
+Không được tồn tại trường hợp:
+
+Năm > 100
+Population = 0
+
+Nếu thế giới đủ điều kiện sống:
+
+Life phải xuất hiện tự động.
+
+==================================================
+XR FUTURE COMPATIBILITY
+=======================
+
+Thiết kế dữ liệu tương thích:
+
+* VR
+* AR
+* MR
+* XR
+
+để sau này sinh linh có thể được render trong không gian 3D.
+
+==================================================
+DELIVERABLE
+===========
+
+Generate:
+
+LIFE_SIMULATION_COMPLETION_REPORT.md
+
+Báo cáo:
+
+* số loài
+* tổng dân số
+* tốc độ tăng trưởng
+* các sự kiện đã phát sinh
+
+và demo ít nhất một thế giới có sinh linh đang phát triển.
