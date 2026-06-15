@@ -1,0 +1,219 @@
+V124 – MULTIVERSE PORTAL PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- CREATOR_POWERS_REPORT.md
+- TIMELINE_REPLAY_REPORT.md
+- LIVING_WORLD_MAP_REPORT.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Hiện tại:
+
+- Người dùng sở hữu 1 thế giới
+- Thế giới có lịch sử riêng
+- Có AI Civilization
+- Có Creator Powers
+
+Mục tiêu:
+
+Cho phép nhiều thế giới tồn tại trong cùng một Multiverse.
+
+==================================================
+MULTIVERSE CORE
+==================================================
+
+Tạo:
+
+Multiverse Registry
+
+Mỗi Universe có:
+
+- universeId
+- universeName
+- creatorId
+- age
+- population
+- civilizationCount
+- worldSeed
+
+==================================================
+UNIVERSE DIRECTORY
+==================================================
+
+Người dùng có thể xem:
+
+- Universe của mình
+- Universe công khai
+- Universe nổi bật
+- Universe mới tạo
+
+==================================================
+MULTIVERSE PORTALS
+==================================================
+
+Tạo Portal System.
+
+Portal có thể kết nối:
+
+Universe A
+
+↓
+
+Universe B
+
+==================================================
+CROSS UNIVERSE OBSERVATION
+==================================================
+
+Người dùng có thể:
+
+- Ghé thăm universe khác
+- Quan sát lịch sử
+- Quan sát văn minh
+- Quan sát bản đồ
+
+Chỉ đọc.
+
+Không can thiệp.
+
+==================================================
+UNIVERSE EXPORT
+==================================================
+
+Cho phép xuất:
+
+- Timeline
+- History
+- Civilization Data
+- World State
+
+thành Universe Package.
+
+==================================================
+UNIVERSE IMPORT
+==================================================
+
+Cho phép:
+
+Import Universe Package
+
+để tạo universe mới.
+
+==================================================
+MULTIVERSE EVENTS
+==================================================
+
+Hỗ trợ:
+
+- First Contact
+- Knowledge Exchange
+- Cultural Influence
+- Technology Transfer
+
+giai đoạn đầu chỉ mô phỏng dữ liệu.
+
+Không cần gameplay phức tạp.
+
+==================================================
+UNIVERSE RANKINGS
+==================================================
+
+Xếp hạng:
+
+- Oldest Universe
+- Largest Population
+- Most Advanced Civilization
+- Most Influential Creator
+
+==================================================
+CREATOR PROFILE
+==================================================
+
+Mỗi Creator có:
+
+- số universe
+- tổng dân số
+- tổng văn minh
+- tuổi đời multiverse
+
+==================================================
+JARVIS MULTIVERSE MODE
+==================================================
+
+Jarvis có thể trả lời:
+
+- Universe nào lớn nhất?
+- Civilization nào phát triển nhất?
+- Creator nào có ảnh hưởng nhất?
+
+==================================================
+UI
+==================================================
+
+Tab mới:
+
+Multiverse
+
+Các mục:
+
+- Directory
+- Portals
+- Rankings
+- Creators
+- Universe Profiles
+
+==================================================
+SAFETY
+==================================================
+
+Mặc định:
+
+Read Only.
+
+Không cho universe khác phá hủy universe của người dùng.
+
+==================================================
+XR PREPARATION
+==================================================
+
+Thiết kế dữ liệu tương thích:
+
+- VR
+- AR
+- MR
+- XR
+
+để sau này người dùng có thể bước qua Portal giữa các universe.
+
+==================================================
+VALIDATION
+==================================================
+
+Sau khi build:
+
+- Có ít nhất 2 universe
+- Có Portal hoạt động
+- Có Universe Directory
+- Có Universe Ranking
+
+==================================================
+DELIVERABLE
+==================================================
+
+Generate:
+
+MULTIVERSE_PORTAL_REPORT.md
+
+Bao gồm:
+
+- số universe
+- số creator
+- số portal
+- số kết nối liên vũ trụ
+- mức độ hoàn thành Multiverse (%)

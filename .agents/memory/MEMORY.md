@@ -1,3 +1,4 @@
+- [V124 Multiverse Portal Architecture](v124-multiverse-portal.md) — 5 files · Registry+Portal+Observer+Rankings+Hub · 9 universes · 5 portals · 4 sự kiện · 6 tabs multiverse-hub-v35 · next V125 từ 30600ms+
 - [V33 Array Safety Pattern](v33-array-safety.md) — kingdomData.kingdoms / empireData.empires có thể là Object (không phải Array) — phải dùng Array.isArray() + Object.values() fallback trước khi .filter()
 - [Project Expand-Only Rules](project-rules.md) — EXPAND ONLY · NEVER DELETE · NEVER REPLACE · gameTick hook via const _orig pattern · IIFE required · setTimeout init staggered
 - [V38 UI Pattern](v38-ui-pattern.md) — Không tạo tab sidebar mới từ V38 trở đi · Mọi UI mới phải nằm trong các hub hiện có (ưu tiên multiverse-hub-v35) · Extend mvHubRenderPanel() bằng cách thêm section trước closing div cuối cùng
