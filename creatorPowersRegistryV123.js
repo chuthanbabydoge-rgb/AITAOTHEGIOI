@@ -65,6 +65,67 @@
       recent + '</div>';
   }
 
+  // ─── Powers catalog (for search) ─────────────────────────────────────────
+  var POWERS_CATALOG = [
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🏔️", name:"Tạo Dãy Núi",      keywords:"núi mountain geography địa hình",   fn:"cpv123CreateMountain()" },
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🌊", name:"Tạo Dòng Sông",     keywords:"sông river nước water geography",   fn:"cpv123CreateRiver()" },
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🌊", name:"Tạo Vùng Biển",     keywords:"biển sea ocean nước geography",      fn:"cpv123CreateSea(3,3,5)" },
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🏝️", name:"Tạo Hòn Đảo",       keywords:"đảo island geography địa hình",     fn:"cpv123CreateIsland()" },
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🌲", name:"Tạo Rừng",           keywords:"rừng forest cây tree geography",    fn:"cpv123CreateForest()" },
+    { group:"geography", groupIcon:"🌍", groupLabel:"Geography", icon:"🏜️", name:"Tạo Sa Mạc",        keywords:"sa mạc desert geography khô",       fn:"cpv123CreateDesert()" },
+    { group:"life",      groupIcon:"🧬", groupLabel:"Life",      icon:"🍼", name:"Tăng Sinh Sản 2x",  keywords:"sinh sản birth life sự sống dân số", fn:"cpv123BoostBirth(document.getElementById('cpv123-sp-select')?document.getElementById('cpv123-sp-select').value:'',2)" },
+    { group:"life",      groupIcon:"🧬", groupLabel:"Life",      icon:"💊", name:"Giảm Tử Vong 50%",  keywords:"tử vong death life sự sống dân",    fn:"cpv123ReduceDeath(document.getElementById('cpv123-sp-select')?document.getElementById('cpv123-sp-select').value:'',0.5)" },
+    { group:"life",      groupIcon:"🧬", groupLabel:"Life",      icon:"📈", name:"+10,000 Dân",        keywords:"dân số population life tăng",       fn:"cpv123BoostPopulation(document.getElementById('cpv123-sp-select')?document.getElementById('cpv123-sp-select').value:'',10000)" },
+    { group:"life",      groupIcon:"🧬", groupLabel:"Life",      icon:"⏳", name:"+50 Năm Tuổi Thọ",  keywords:"tuổi thọ lifespan life sống lâu",   fn:"cpv123ExtendLifespan(document.getElementById('cpv123-sp-select')?document.getElementById('cpv123-sp-select').value:'',50)" },
+    { group:"civilization", groupIcon:"🏛️", groupLabel:"Civilization", icon:"✨", name:"Tạo Văn Minh Mới", keywords:"văn minh civilization tạo mới create", fn:"cpv123CreateCiv()" },
+    { group:"civilization", groupIcon:"🏛️", groupLabel:"Civilization", icon:"⚙️", name:"Ban Công Nghệ",    keywords:"công nghệ technology civilization khoa học", fn:"cpv123GrantTech(document.getElementById('cpv123-civ-select')?document.getElementById('cpv123-civ-select').value:'','',500)" },
+    { group:"civilization", groupIcon:"🏛️", groupLabel:"Civilization", icon:"📜", name:"Ban Tri Thức",      keywords:"tri thức knowledge civilization học", fn:"cpv123GrantKnowledge(document.getElementById('cpv123-civ-select')?document.getElementById('cpv123-civ-select').value:'')" },
+    { group:"civilization", groupIcon:"🏛️", groupLabel:"Civilization", icon:"👥", name:"+100,000 Dân (Civ)", keywords:"dân số population civilization văn minh tăng", fn:"cpv123BoostCivPop(document.getElementById('cpv123-civ-select')?document.getElementById('cpv123-civ-select').value:'',100000)" },
+    { group:"civilization", groupIcon:"🏛️", groupLabel:"Civilization", icon:"👑", name:"Đổi Lãnh Đạo",      keywords:"lãnh đạo leader civilization vua king", fn:"cpv123ChangeLeader(document.getElementById('cpv123-civ-select')?document.getElementById('cpv123-civ-select').value:'')" },
+    { group:"time",      groupIcon:"⏰", groupLabel:"Time",      icon:"⏸", name:"Pause/Resume Thời Gian", keywords:"dừng pause resume time thời gian stop", fn:"cpv123PauseTime();cpv123RegistryRender('time')" },
+    { group:"time",      groupIcon:"⏰", groupLabel:"Time",      icon:"🐢", name:"Chậm 3x",            keywords:"chậm slow time thời gian 3x",       fn:"cpv123SlowTime(3);cpv123RegistryRender('time')" },
+    { group:"time",      groupIcon:"⏰", groupLabel:"Time",      icon:"⚡", name:"Nhanh 10x",           keywords:"nhanh fast time thời gian 10x tua", fn:"cpv123FastForward(10);cpv123RegistryRender('time')" },
+    { group:"time",      groupIcon:"⏰", groupLabel:"Time",      icon:"🕐", name:"Bình Thường (Thời Gian)", keywords:"bình thường normal time thời gian reset", fn:"cpv123NormalTime();cpv123RegistryRender('time')" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"🌟", name:"Trigger Blessing",    keywords:"blessing ân phúc phước lành events sự kiện", fn:"cpv123TriggerBlessing()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"✨", name:"Trigger Miracle",     keywords:"miracle kỳ tích thần kỳ events sự kiện", fn:"cpv123TriggerMiracle()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"🌠", name:"Trigger Golden Age",  keywords:"golden age thời hoàng kim kỷ nguyên vàng events", fn:"cpv123TriggerGoldenAge()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"💥", name:"Trigger Catastrophe", keywords:"catastrophe thảm họa thiên tai events sự kiện", fn:"cpv123TriggerCatastrophe()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"🦠", name:"Trigger Plague",      keywords:"plague dịch bệnh bệnh dịch events sự kiện", fn:"cpv123TriggerPlague()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"☄️", name:"Trigger Meteor",      keywords:"meteor thiên thạch sao băng events sự kiện", fn:"cpv123TriggerMeteor()" },
+    { group:"events",    groupIcon:"⚡", groupLabel:"Events",    icon:"🌊", name:"Trigger Great Flood",  keywords:"flood lũ lụt nước dâng events sự kiện", fn:"cpv123TriggerGreatFlood()" },
+    { group:"experiment",groupIcon:"🔬", groupLabel:"Experiment",icon:"🔬", name:"Fork Timeline",       keywords:"fork timeline thí nghiệm snapshot lưu nhánh", fn:"cpv123ForkTimeline();cpv123RegistryRender('experiment')" }
+  ];
+
+  function renderSearchResults(query) {
+    var q = query.toLowerCase().trim();
+    if (!q) return null;
+    var results = POWERS_CATALOG.filter(function(p) {
+      return (p.name + " " + p.keywords).toLowerCase().indexOf(q) !== -1;
+    });
+    if (!results.length) {
+      return '<div style="text-align:center;padding:32px;color:#64748b">' +
+        '<div style="font-size:32px;margin-bottom:8px">🔍</div>' +
+        '<div>Không tìm thấy quyền năng nào cho "<strong style=\'color:#a855f7\'>' + query + '</strong>"</div>' +
+        '<div style="font-size:12px;margin-top:6px">Thử: núi, dân, văn minh, thời gian, sự kiện...</div>' +
+        '</div>';
+    }
+    var groupColors = { geography:"#60a5fa", life:"#34d399", civilization:"#a855f7", time:"#38bdf8", events:"#f59e0b", experiment:"#c084fc" };
+    return '<div style="color:#64748b;font-size:12px;margin-bottom:10px">Tìm thấy <strong style="color:#e2e8f0">' + results.length + '</strong> quyền năng</div>' +
+      results.map(function(p) {
+        var color = groupColors[p.group] || "#94a3b8";
+        return '<div style="background:#1e293b;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px">' +
+          '<div style="flex:1">' +
+            '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">' +
+              '<span style="font-size:18px">' + p.icon + '</span>' +
+              '<span style="font-weight:700;font-size:13px;color:#e2e8f0">' + p.name + '</span>' +
+            '</div>' +
+            '<span style="font-size:11px;background:' + color + '22;color:' + color + ';border-radius:4px;padding:2px 8px">' + p.groupIcon + ' ' + p.groupLabel + '</span>' +
+          '</div>' +
+          '<button onclick="' + p.fn.replace(/"/g,"'") + '" style="background:' + color + ';color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:12px;white-space:nowrap;flex-shrink:0">Dùng</button>' +
+        '</div>';
+      }).join("");
+  }
+
   // ─── Main render ──────────────────────────────────────────────────────────
   window.cpv123RegistryRender = function(activeTab) {
     var panel = document.getElementById(PANEL_ID);
@@ -116,10 +177,28 @@
             modeBtn +
           '</div>' +
         '</div>' +
-        jarvisAnalysis() +
-        '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">' + tabHtml + '</div>' +
-        '<div>' + content + '</div>' +
+
+        '<div style="position:relative;margin-bottom:16px">' +
+          '<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none">🔍</span>' +
+          '<input id="cpv123-search" type="text" placeholder="Tìm quyền năng... (núi, dân, văn minh, sự kiện...)" ' +
+            'value="' + (window._cpv123Search || "") + '" ' +
+            'oninput="window._cpv123Search=this.value;var sr=document.getElementById(\'cpv123-search-results\');var tv=document.getElementById(\'cpv123-tab-view\');var q=this.value.trim();if(q){tv.style.display=\'none\';sr.style.display=\'\';sr.innerHTML=window._cpv123RenderSearch(q);}else{tv.style.display=\'\';sr.style.display=\'none\';}" ' +
+            'style="width:100%;padding:10px 12px 10px 36px;background:#0f172a;color:#e2e8f0;border:1px solid #374151;border-radius:10px;font-size:13px;outline:none;box-sizing:border-box" />' +
+          (window._cpv123Search ? '<button onclick="window._cpv123Search=\'\';cpv123RegistryRender()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#64748b;cursor:pointer;font-size:16px">✕</button>' : '') +
+        '</div>' +
+
+        '<div id="cpv123-search-results" style="display:' + (window._cpv123Search ? '' : 'none') + '">' +
+          (window._cpv123Search ? (renderSearchResults(window._cpv123Search) || '') : '') +
+        '</div>' +
+
+        '<div id="cpv123-tab-view" style="display:' + (window._cpv123Search ? 'none' : '') + '">' +
+          jarvisAnalysis() +
+          '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">' + tabHtml + '</div>' +
+          '<div>' + content + '</div>' +
+        '</div>' +
       '</div>';
+
+    window._cpv123RenderSearch = renderSearchResults;
   };
 
   function renderGeography(enabled) {
