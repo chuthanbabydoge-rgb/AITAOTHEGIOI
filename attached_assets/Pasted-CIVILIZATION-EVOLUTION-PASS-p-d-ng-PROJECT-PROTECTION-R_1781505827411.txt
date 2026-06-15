@@ -1,0 +1,172 @@
+CIVILIZATION EVOLUTION PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+* PROJECT_STATUS.md
+* LIFE_SIMULATION_COMPLETION_REPORT.md
+* AUTONOMOUS_WORLD_REPORT.md
+
+==================================================
+MỤC TIÊU
+========
+
+Hiện tại thế giới đã có:
+
+* Sinh linh
+* Dân số
+* Vòng đời
+* Tiến hóa sinh học
+
+Bước tiếp theo:
+
+Sinh linh phải hình thành văn minh.
+
+==================================================
+CIVILIZATION ENGINE
+===================
+
+Tạo Civilization Engine.
+
+Sinh linh không còn tồn tại riêng lẻ.
+
+Có thể hình thành:
+
+* Bộ lạc
+* Thị trấn
+* Thành phố
+* Vương quốc
+* Đế chế
+
+==================================================
+FOUNDING EVENTS
+===============
+
+Tự sinh sự kiện:
+
+* Thành lập bộ lạc
+* Thành lập thành phố
+* Mở rộng lãnh thổ
+* Liên minh
+* Chia tách
+
+==================================================
+CIVILIZATION ATTRIBUTES
+=======================
+
+Mỗi văn minh có:
+
+* Name
+* Population
+* Territory
+* Knowledge
+* Culture
+* Technology
+* Stability
+
+==================================================
+TECHNOLOGY EVOLUTION
+====================
+
+Văn minh phát triển công nghệ.
+
+Các giai đoạn:
+
+* Primitive
+* Agricultural
+* Bronze Age
+* Iron Age
+* Medieval
+* Industrial
+* Modern
+* Advanced
+
+==================================================
+CITY SYSTEM
+===========
+
+Một văn minh có thể sở hữu:
+
+* Capital
+* Cities
+* Settlements
+
+Dân số phân bố theo khu vực.
+
+==================================================
+WORLD MAP INTEGRATION
+=====================
+
+Hiển thị:
+
+* Các khu vực sinh sống
+* Thành phố
+* Trung tâm văn minh
+
+trên bản đồ thế giới hiện có.
+
+==================================================
+CIVILIZATION TIMELINE
+=====================
+
+Biên niên sử ghi nhận:
+
+"Năm 430:
+Bộ lạc đầu tiên được thành lập."
+
+"Năm 512:
+Thành phố đầu tiên xuất hiện."
+
+"Năm 731:
+Đế chế đầu tiên ra đời."
+
+==================================================
+JARVIS ANALYSIS
+===============
+
+Jarvis có thể phân tích:
+
+* Văn minh mạnh nhất
+* Văn minh đông dân nhất
+* Văn minh phát triển nhanh nhất
+
+==================================================
+VISUALIZATION
+=============
+
+Không redesign UI.
+
+Chỉ bổ sung:
+
+* Civilization Overview
+* Civilization Ranking
+* Technology Progress
+* Civilization Timeline
+
+==================================================
+XR FUTURE
+=========
+
+Thiết kế dữ liệu tương thích:
+
+* VR
+* AR
+* MR
+* XR
+
+để sau này người dùng có thể bước vào thành phố và nền văn minh.
+
+==================================================
+DELIVERABLE
+===========
+
+Generate:
+
+CIVILIZATION_EVOLUTION_REPORT.md
+
+và demo ít nhất:
+
+* 1 bộ lạc
+* 1 thành phố
+* 1 nền văn minh đang phát triển.
