@@ -1,0 +1,215 @@
+V121 – LIVING WORLD MAP PASS
+
+Áp dụng PROJECT PROTECTION RULES.
+
+Đọc:
+
+- PROJECT_STATUS.md
+- WORLD_CONSOLIDATION_REPORT_V118.md
+- CIV_AI_V120_REPORT.md
+- REAL_PROJECT_AUDIT.md
+
+==================================================
+MỤC TIÊU
+==================================================
+
+Hiện tại:
+
+- Thế giới có sinh linh
+- Có văn minh
+- Có AI Civilization
+- Có chiến tranh
+- Có ngoại giao
+
+Nhưng người dùng chỉ thấy dữ liệu và dashboard.
+
+Mục tiêu:
+
+Biến thế giới thành một bản đồ sống có thể quan sát.
+
+==================================================
+WORLD MAP ENGINE
+==================================================
+
+Tạo World Map thực sự.
+
+Bao gồm:
+
+- Ocean
+- Forest
+- Mountain
+- Desert
+- Plains
+- River
+
+Map được sinh từ world seed.
+
+Mỗi thế giới có bản đồ riêng.
+
+==================================================
+CIVILIZATION TERRITORIES
+==================================================
+
+Mỗi Civilization có:
+
+- Capital
+- Territory
+- Border
+- Influence Zone
+
+Hiển thị trực tiếp trên bản đồ.
+
+==================================================
+CITY VISUALIZATION
+==================================================
+
+Hiển thị:
+
+- Capital Cities
+- Major Cities
+- Settlements
+
+Thông tin:
+
+- tên
+- dân số
+- tuổi đời
+- civilization sở hữu
+
+==================================================
+AI CIVILIZATION INTEGRATION
+==================================================
+
+Kết nối với AI Civilization.
+
+Khi AI:
+
+- mở rộng
+- xâm lược
+- liên minh
+- sụp đổ
+
+bản đồ phải thay đổi.
+
+==================================================
+WAR VISUALIZATION
+==================================================
+
+Chiến tranh tạo:
+
+- Frontlines
+- Conflict Zones
+- Occupied Territories
+
+Hiển thị trực tiếp.
+
+==================================================
+DIPLOMACY VISUALIZATION
+==================================================
+
+Hiển thị:
+
+- Alliance Lines
+- Trade Routes
+- Neutral Borders
+- Rivalries
+
+==================================================
+DISCOVERY SYSTEM
+==================================================
+
+Fog Of War.
+
+Civilizations không biết toàn bộ thế giới.
+
+Khám phá theo thời gian.
+
+==================================================
+WORLD TIMELAPSE
+==================================================
+
+Cho phép xem:
+
+Year 1 → Current Year
+
+Người dùng có thể quan sát:
+
+- sự xuất hiện văn minh
+- mở rộng lãnh thổ
+- chiến tranh
+- sụp đổ đế chế
+
+như một documentary.
+
+==================================================
+JARVIS INTEGRATION
+==================================================
+
+Jarvis có thể trả lời:
+
+- Ai đang kiểm soát lục địa lớn nhất?
+- Thành phố cổ nhất?
+- Cuộc chiến lớn nhất?
+- Đế chế nào đã sụp đổ?
+
+==================================================
+UI
+==================================================
+
+Tạo tab mới:
+
+Living World Map
+
+Các chế độ:
+
+- Political View
+- Civilization View
+- Population View
+- Technology View
+- Historical Replay
+
+Không redesign hệ thống hiện tại.
+
+==================================================
+XR PREPARATION
+==================================================
+
+Thiết kế dữ liệu map tương thích:
+
+- VR
+- AR
+- MR
+- XR
+
+để sau này người dùng có thể bước vào thế giới.
+
+==================================================
+VALIDATION
+==================================================
+
+Sau khi build:
+
+Người dùng phải nhìn thấy:
+
+- ít nhất 3 civilization
+- lãnh thổ riêng
+- thành phố riêng
+- biên giới riêng
+
+trên bản đồ.
+
+==================================================
+DELIVERABLE
+==================================================
+
+Generate:
+
+LIVING_WORLD_MAP_REPORT.md
+
+Bao gồm:
+
+- số vùng lãnh thổ
+- số thành phố
+- số cuộc chiến hiển thị
+- số tuyến giao thương
+- mức độ hoàn thành Living World (%)

@@ -43,10 +43,16 @@ description: 3-file extension layer adding terrain grid, civ territories, war fr
 - `cgv6_worldmap_registry_v121` — active sidebar tab
 - `cgv6_worldmap_report_v121` — generated markdown report (via `wmV121GenerateReport()`)
 
+## V121b Extension Files (EXPAND ONLY — KHÔNG ghi đè V121)
+- `worldMapDiplomacyV121b.js` (28750ms) — wraps drawCountries (AFTER V121 civ wrap) to draw alliance/trade/treaty/rival lines · reads allianceData+treatyData+sanctionData+tradeNetworkV54 · aeAreAllied()+drGetRelation() inferred · window.wmDiploV121 · wmToggleDiplo(layer) · wmGetDiploStats()
+- `worldMapViewsV121b.js` (28800ms) — wraps drawBiomeBackground (AFTER V121 terrain wrap) for 5 view modes · Political/Civ/Population/Tech/History overlays · wmV121JarvisQuery(q) 7 categories · window.wmV121XRData 3D coords · wmV121GenerateLivingReport() full markdown
+
 ## Init Order
 - worldMapTerrainV121.js: 28500ms
 - worldMapCivV121.js: 28600ms
 - worldMapRegistryV121.js: 28700ms
-- next V122 init từ 28800ms+
+- worldMapDiplomacyV121b.js: 28750ms
+- worldMapViewsV121b.js: 28800ms
+- next V122 init từ 28900ms+
 
 **Why:** worldMapSystem.js uses global non-IIFE strict-mode functions, making them patchable via window.xxx = wrap pattern without touching the original file.
