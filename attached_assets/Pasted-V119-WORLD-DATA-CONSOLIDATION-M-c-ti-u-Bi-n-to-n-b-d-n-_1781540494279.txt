@@ -1,0 +1,198 @@
+V119 WORLD DATA CONSOLIDATION
+
+
+Mục tiêu:
+
+Biến toàn bộ dự án thành kiến trúc Single Source Of Truth.
+
+Không thêm gameplay mới.
+Không thêm UI mới.
+
+====================================================
+PHASE 1 – CREATE MASTER WORLD STATE
+====================================================
+
+Tạo:
+
+/core/WorldStateManager.js
+
+WorldState:
+
+{
+  year,
+  gameTick,
+
+  population,
+  speciesCount,
+
+  civilizationCount,
+  cityCount,
+
+  eventCount,
+  warCount,
+
+  technologyLevel,
+  universeAge,
+
+  lastUpdate
+}
+
+Đây là nguồn dữ liệu DUY NHẤT.
+
+====================================================
+PHASE 2 – REMOVE DUPLICATE READS
+====================================================
+
+Tìm toàn bộ nơi đang đọc:
+
+localStorage
+window.*
+legacy saves
+cached objects
+
+đối với:
+
+year
+population
+events
+civilizations
+wars
+
+Thay bằng:
+
+WorldStateManager.get()
+
+====================================================
+PHASE 3 – REMOVE DUPLICATE WRITES
+====================================================
+
+Tìm mọi nơi ghi:
+
+year
+population
+species
+events
+civilizations
+
+Chỉ cho phép ghi thông qua:
+
+WorldStateManager.update()
+
+Không cho engine ghi trực tiếp localStorage nữa.
+
+====================================================
+PHASE 4 – ENGINE ADAPTERS
+====================================================
+
+Các engine cũ:
+
+V93 Life
+V95 CivCore
+War Engine
+Economy
+Guild
+Hero
+Kingdom
+Disaster
+Diplomacy
+
+chuyển thành:
+
+READ WorldState
+WRITE WorldState
+
+Không tạo save key riêng.
+
+====================================================
+PHASE 5 – DATA MIGRATION
+====================================================
+
+Nếu tồn tại:
+
+population_v93
+population_v95
+globalPop
+lifeData.population
+
+=> tự merge.
+
+Giữ giá trị hợp lệ nhất.
+
+Tạo migration script.
+
+Chạy 1 lần.
+
+====================================================
+PHASE 6 – CROSS PANEL TEST
+====================================================
+
+Kiểm tra:
+
+Universe Hub
+My Universe
+Worlds
+Civilization
+Jarvis
+Dashboard
+
+Các giá trị:
+
+year
+population
+events
+civilizations
+
+phải giống nhau 100%.
+
+====================================================
+PHASE 7 – REMOVE DEAD DATA
+====================================================
+
+Xóa:
+
+- orphan keys
+- legacy saves
+- duplicate caches
+- abandoned systems
+
+Nếu không được dùng ở đâu:
+delete.
+
+====================================================
+PHASE 8 – REPORT
+====================================================
+
+Sinh:
+
+WORLD_CONSOLIDATION_REPORT_V118.md
+
+Bao gồm:
+
+1. Tổng engine
+2. Tổng save key trước
+3. Tổng save key sau
+4. Các duplicate đã loại bỏ
+5. Các hệ thống đã migrate
+6. Các vấn đề còn tồn tại
+
+====================================================
+SUCCESS CONDITION
+====================================================
+
+Nếu:
+
+Universe Hub = 337 dân
+Dashboard = 337 dân
+Self Running = 337 dân
+
+và
+
+Events giống nhau
+Year giống nhau
+Civilizations giống nhau
+
+=> PASS.
+
+Nếu khác nhau dù 1 giá trị:
+
+=> FAIL.
