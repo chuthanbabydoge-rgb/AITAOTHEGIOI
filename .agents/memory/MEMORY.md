@@ -46,5 +46,6 @@
 - [V120 Autonomous Civilization AI](v120-civ-ai-architecture.md) — 7 files · Brain+Decision+Memory+Diplomacy+TechTree+History+Registry · civAIV120Data · civAIReport() · init 27200→28400ms · next V121 từ 28500ms+
 - [V121 World Map Architecture](v121-worldmap-architecture.md) — 3 files · wrap drawBiomeBackground+drawCountries+onMapPanelShow · 22×22 terrain grid · civ zones · war fronts · timelapse · init 28500→28700ms · next V122 từ 28800ms+
 - [V122 World Create Inline Fix](v122-world-create-fix.md) — worldCreateInlinePatch.js · 3 fixes: (1) PUOS inline form (không thoát PUOS), (2) worlds array sync sau V91 wizard, (3) watcher sync 10s · init 28850ms
+- [V122 Timeline Replay Architecture](v122-timeline-replay.md) — 3 files · Engine+UI+Registry · event-based snapshots (17 triggers) · max 200 snaps · 5 tabs · Jarvis Historian · Documentary Mode · sidebar tab inject · hook htAddEvent · SAVE cgv6_timeline_replay_v122 · init 29000→29200ms · next V123 từ 29300ms+
 - [V117 UWS Architecture](v117-uws-architecture.md) — window.UWS read-only aggregation · 5 files · NO save NO overwrite · uwsRefresh()/uwsGet()/uwsGetForAI() · init 26100→26500ms
 - [V118 UWS Dashboard](v118-uws-dashboard.md) — 1 file · inject nav btn vào PUOS sidebar · puosGo('uws-dashboard') · live setInterval 1s · flash animation khi giá trị thay đổi · init 26600ms · next V119 từ 26700ms+
