@@ -2,12 +2,13 @@
   "use strict";
 
   // ══════════════════════════════════════════════════════════════════
-  // SELF-RUNNING WORLD FIX V115.6
+  // SELF-RUNNING WORLD FIX V115.7
   // Đồng bộ panel "THẾ GIỚI TỰ VẬN HÀNH" với nguồn dữ liệu thực tế.
   // Root cause: buildSection() trong autonomousWorldRegistryV92.js bake
   //   tĩnh giá trị vào HTML khi khởi tạo, dùng sai nguồn dữ liệu:
   //   - Population: (window.npcs||[]).length  → bỏ qua V93 Life Engine
   //   - Events: aeeV92Data.totalEvents        → bỏ qua Chronicle, V95, localStorage
+  //   - Elapsed: wacV92Data.totalYearsElapsed → session counter, reset về 0 sau refresh
   //   - Không ID nên không thể live-update
   //
   // Fix approach: EXPAND ONLY — không sửa file cũ.
@@ -22,6 +23,13 @@
   //           { totalEntries, yearEntries:[...] } — không có trường events/history.
   //   [BUG 3] getTotalPop() thiếu localStorage fallback: lev93Data.globalPop = 0
   //           trước khi tick đầu tiên chạy → thêm đọc trực tiếp từ localStorage.
+  //
+  // V115.7 — BUG FIXES (2026-06-15):
+  //   [BUG 4] getElapsedYears() sai: wacV92Data.totalYearsElapsed là session counter —
+  //           chỉ đếm số tick trong phiên hiện tại, reset về 0 sau mỗi lần tải lại.
+  //           Đúng: elapsed = currentYear - startYear + 1 (tính toán từ năm hiện tại).
+  //           Dữ liệu: window.year (loaded từ localStorage) + wacV92Data.startYear (persists).
+  //           Yêu cầu: năm hiện tại = 589, thế giới bắt đầu năm 1 → elapsed = 589.
   // ══════════════════════════════════════════════════════════════════
 
   var _fixTimer    = null;
@@ -130,6 +138,64 @@
     return maxFound;
   }
 
+  // ── V115.7: getElapsedYears() — TÍNH TOÁN từ năm hiện tại ─────────
+  // FIX: wacV92Data.totalYearsElapsed là session counter — reset về 0 sau
+  //   mỗi lần tải lại trang. Thay thế bằng: elapsed = currentYear - startYear + 1.
+  //   Cả window.year và wacV92Data.startYear đều được load từ localStorage → persist.
+  //
+  // Công thức: elapsed = cy - startYear + 1
+  //   Ví dụ: cy = 589, startYear = 1 → elapsed = 589 ✅ (user requirement)
+  //          cy = 1,   startYear = 1 → elapsed = 1   ✅ (năm đầu tiên)
+  //
+  // Nguồn dữ liệu (cùng với Tuổi Vũ Trụ):
+  //   Priority 1: window.year (in-memory — load từ localStorage khi world load)
+  //   Priority 2: wacV92Data.lastYear (persists qua localStorage cgv6_autonomy_clock_v92)
+  //   Priority 3: localStorage cgv6_autonomy_clock_v92 → lastYear
+  //   startYear:  wacV92Data.startYear (persists) | localStorage fallback | default 1
+
+  function getElapsedYears() {
+    // ── A. Lấy năm hiện tại ──
+    var cy = window.year || 0;
+
+    // Fallback: wacV92Data.lastYear (persisted in localStorage)
+    if (cy <= 0 && window.wacV92Data && (window.wacV92Data.lastYear || 0) > 0) {
+      cy = window.wacV92Data.lastYear;
+    }
+
+    // Fallback: đọc trực tiếp từ localStorage cgv6_autonomy_clock_v92
+    if (cy <= 0) {
+      try {
+        var cd = localStorage.getItem('cgv6_autonomy_clock_v92');
+        if (cd) {
+          var cp = JSON.parse(cd);
+          cy = cp.lastYear || cp.startYear || 0;
+        }
+      } catch(e) {}
+    }
+
+    if (cy <= 0) cy = 1;
+
+    // ── B. Lấy startYear ──
+    var startYear = 1;
+    if (window.wacV92Data && (window.wacV92Data.startYear || 0) > 0) {
+      startYear = window.wacV92Data.startYear;
+    } else {
+      try {
+        var cd2 = localStorage.getItem('cgv6_autonomy_clock_v92');
+        if (cd2) {
+          var cp2 = JSON.parse(cd2);
+          if ((cp2.startYear || 0) > 0) startYear = cp2.startYear;
+        }
+      } catch(e) {}
+    }
+
+    // ── C. Tính elapsed ──
+    // elapsed = cy - startYear + 1
+    // (năm 1 đến năm 589 = 589 năm đã diễn ra; year 1 = 1 năm đã trôi qua)
+    var elapsed = cy - startYear + 1;
+    return elapsed > 0 ? elapsed : 0;
+  }
+
   function fmt(n) {
     if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
     if (n >= 10000)   return Math.round(n / 1000) + 'k';
@@ -144,6 +210,7 @@
   //   year-box  > [label-div, #awv92-year-num]
   //   events-box > [label-div, VALUE-DIV(no id)]
   //   pop-box    > [label-div, VALUE-DIV(no id)]
+  // elapsed badge: #awv92-elapsed (đã có id, chỉ cần overwrite textContent)
 
   function injectStatIds() {
     if (_injectDone && document.getElementById(ID_EVT) && document.getElementById(ID_POP)) return true;
@@ -174,7 +241,7 @@
     popVal.id = ID_POP;
 
     _injectDone = true;
-    console.log('[SelfRunningWorldFix V115.6] ✅ Injected IDs vào awv92 stat divs.');
+    console.log('[SelfRunningWorldFix V115.7] ✅ Injected IDs vào awv92 stat divs.');
     return true;
   }
 
@@ -183,12 +250,13 @@
   function patchValues() {
     if (!injectStatIds()) return;
 
-    var evtEl = document.getElementById(ID_EVT);
-    var popEl = document.getElementById(ID_POP);
-    if (!evtEl && !popEl) return;
+    var evtEl     = document.getElementById(ID_EVT);
+    var popEl     = document.getElementById(ID_POP);
+    var elapsedEl = document.getElementById('awv92-elapsed');
 
-    var pop  = getTotalPop();
-    var evts = getTotalEvents();
+    var pop     = getTotalPop();
+    var evts    = getTotalEvents();
+    var elapsed = getElapsedYears();
 
     if (evtEl) {
       var newEvt = fmt(evts);
@@ -198,6 +266,12 @@
     if (popEl) {
       var newPop = fmt(pop);
       if (popEl.textContent !== newPop) popEl.textContent = newPop;
+    }
+
+    // V115.7: Ghi đè awv92-elapsed bằng giá trị tính toán (không dùng session counter)
+    if (elapsedEl) {
+      var newElapsed = fmt(elapsed) + ' năm đã trôi qua';
+      if (elapsedEl.textContent !== newElapsed) elapsedEl.textContent = newElapsed;
     }
   }
 
@@ -212,7 +286,7 @@
       setTimeout(patchValues, 400);
       setTimeout(patchValues, 800);
     };
-    console.log('[SelfRunningWorldFix V115.6] 🔗 Đã hook puosRenderMyUniverse.');
+    console.log('[SelfRunningWorldFix V115.7] 🔗 Đã hook puosRenderMyUniverse.');
   }
 
   // ── 5. LIVE REFRESH (đồng bộ với universeSyncBridgeV95 2s interval) ─
@@ -230,9 +304,10 @@
 
   window.srwf115GetData = function() {
     return {
-      population: getTotalPop(),
-      events:     getTotalEvents(),
-      year:       window.year || 1
+      population:   getTotalPop(),
+      events:       getTotalEvents(),
+      year:         window.year || 1,
+      elapsedYears: getElapsedYears()
     };
   };
 
@@ -253,7 +328,7 @@
     setTimeout(patchValues, 1500);
     setTimeout(patchValues, 3000);
 
-    console.log('[SelfRunningWorldFix V115.6] 🌍 Fix khởi động — Population SSOT · Events SSOT · Live 2s sync.');
+    console.log('[SelfRunningWorldFix V115.7] 🌍 Fix khởi động — Population SSOT · Events SSOT · Elapsed Years SSOT · Live 2s sync.');
   }
 
   if (document.readyState === 'loading') {
