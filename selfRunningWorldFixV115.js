@@ -293,11 +293,12 @@
 
   function startLiveRefresh() {
     if (_fixTimer) clearInterval(_fixTimer);
+    // BUG-008 FIX: offset 1 giây so với universeSyncBridgeV95 (2s) để tránh race condition
     _fixTimer = setInterval(function() {
       if (document.getElementById('awv92-section')) {
         patchValues();
       }
-    }, 2000);
+    }, 3000);
   }
 
   // ── 6. PUBLIC API ─────────────────────────────────────────────────

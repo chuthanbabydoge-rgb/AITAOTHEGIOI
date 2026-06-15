@@ -54,8 +54,9 @@
   function evolvePopulation(year) {
     if (!window.world || !window.world.name) return;
 
-    // Let speciesSystem handle individual evolution
-    if (typeof window.spv93EvolveAll === 'function') {
+    // BUG-002 FIX: V94 là SSOT cho species evolution — skip nếu V94 đang active để tránh double-evolution
+    var v94Active = window.laeV94Data && window.laeV94Data.activated;
+    if (!v94Active && typeof window.spv93EvolveAll === 'function') {
       window.spv93EvolveAll(year);
     }
 

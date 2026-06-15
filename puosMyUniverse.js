@@ -21,7 +21,10 @@
     var wars  = window.warsActive|| [];
 
     var name = world.name || (ctrs.length > 0 && ctrs[0] && ctrs[0].name) || null;
-    var pop  = npcs.length;
+    // BUG-005 FIX: dùng lev93GetCurrentPop() (SSOT V93) thay vì npcs.length
+    var pop  = (typeof window.lev93GetCurrentPop === 'function' && window.lev93GetCurrentPop() > 0)
+               ? window.lev93GetCurrentPop()
+               : npcs.length;
     var civs = ctrs.filter(function(c){ return c && c.population > 0; }).length;
 
     var stage = 'void';

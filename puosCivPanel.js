@@ -44,8 +44,11 @@
   };
 
   function renderOverview() {
+    // BUG-003 FIX: dùng cecV95Data.civs là primary source, fallback window.countries
+    var v95Civs = (window.cecV95Data && Array.isArray(window.cecV95Data.civs)) ? window.cecV95Data.civs : null;
     var ctrs = window.countries || [];
     var alive = ctrs.filter(function(c) { return c && c.population > 0; });
+    var civCount = v95Civs ? v95Civs.length : alive.length;
 
     var techLevels = {};
     alive.forEach(function(c) {
@@ -59,7 +62,7 @@
     var relCount = Object.keys(religions).length;
 
     var html = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px">';
-    html += _civCard('🏛', 'Văn Minh', alive.length, '#10b981');
+    html += _civCard('🏛', 'Văn Minh', civCount, '#10b981');
     html += _civCard('🛕', 'Tôn Giáo', relCount, '#f59e0b');
     html += _civCard('⚙️', 'Tech TB', 'Lv. ' + avgTech, '#3b82f6');
     html += _civCard('⚔️', 'Xung Đột', (window.warsActive || []).length, '#ef4444');

@@ -60,7 +60,13 @@
 
   function init() {
     load();
-    window.wacV92Data.lastYear = window.year || 1;
+    var currentYear = window.year || 1;
+    window.wacV92Data.lastYear = currentYear;
+    // BUG-004 FIX: sync totalYearsElapsed với window.year thực tế sau reload
+    if (window.wacV92Data.totalYearsElapsed === 0 && currentYear > 1) {
+      var startY = window.wacV92Data.startYear || 1;
+      window.wacV92Data.totalYearsElapsed = Math.max(0, currentYear - startY);
+    }
     save();
 
     var _orig = window.gameTick;

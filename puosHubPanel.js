@@ -53,7 +53,8 @@
     if (mvData && Array.isArray(mvData.worlds)) mvWorlds = mvData.worlds.length;
 
     var html = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">';
-    html += _hubCard('🌍', 'Thế Giới Đã Tạo', worlds.length > 0 ? worlds.length : (window.countries && window.countries.length > 0 ? '1+' : '0'), '#3b82f6');
+    // BUG-011 FIX: trả về số thực thay vì string '1+'
+    html += _hubCard('🌍', 'Thế Giới Đã Tạo', worlds.length > 0 ? worlds.length : (window.countries ? window.countries.length : 0), '#3b82f6');
     html += _hubCard('🌌', 'Đa Vũ Trụ', mvWorlds + ' vũ trụ', '#8b5cf6');
     html += _hubCard('👤', 'Creators', worlds.filter(function(w) { return w.creator; }).length || 0, '#10b981');
     html += '</div>';

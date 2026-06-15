@@ -77,17 +77,23 @@
   }
 
   function getEventCount() {
-    // Priority: V92 Chronicle > V95 civ events > historical timeline
+    // BUG-007 FIX: cộng gộp TẤT CẢ event sources thay vì chỉ pick MAX
     var count = 0;
     if (window.wchV92Data && Array.isArray(window.wchV92Data.events)) count += window.wchV92Data.events.length;
     if (window.cevV95Data) count += (window.cevV95Data.totalEvents || 0);
+    // Thêm autonomous events V92
+    if (window.aeeV92Data && Array.isArray(window.aeeV92Data.events)) count += window.aeeV92Data.events.length;
+    // Thêm age events V43
+    if (window.ageEventData && Array.isArray(window.ageEventData.events)) count += window.ageEventData.events.length;
+    // Thêm scheduled events V59
+    if (window.gesV59Data && window.gesV59Data.totalFired) count += window.gesV59Data.totalFired;
     if (count > 0) return count;
-    // Fall back to localStorage
-    var keys = ['cgv6_historical_timeline','cgv6_world_events_v25','cgv6_world_event_v25','cgv6_world_chronicle_v92'];
+    // Fall back to localStorage — SUM tất cả, không chỉ MAX
+    var keys = ['cgv6_historical_timeline','cgv6_world_events_v25','cgv6_world_event_v25','cgv6_autonomous_events_v92'];
     for (var k = 0; k < keys.length; k++) {
       try {
         var d = localStorage.getItem(keys[k]);
-        if (d) { var p = JSON.parse(d); var a = p.events || p.history || []; if (a.length > count) count = a.length; }
+        if (d) { var p = JSON.parse(d); var a = p.events || p.history || []; count += a.length; }
       } catch(e) {}
     }
     return count;

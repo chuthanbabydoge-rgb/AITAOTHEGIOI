@@ -2176,6 +2176,11 @@ function simulateWorld() {
     addLog(`🌱 Thế giới [${world.name}] phục sinh từ tuyệt chủng!`, "important");
   }
 
+  // BUG-001 FIX: Kích hoạt toàn bộ extension engine chain (V92-V95+)
+  if (typeof window.gameTick === 'function') {
+    try { window.gameTick(); } catch(e) { console.warn('[gameTick chain]', e); }
+  }
+
   renderAll();
   if (year % 10 === 0) save();  // save mỗi 10 năm thay vì mỗi tick
 }

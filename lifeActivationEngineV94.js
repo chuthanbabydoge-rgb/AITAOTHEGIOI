@@ -101,7 +101,13 @@
       try { localStorage.setItem('cgv6_species_v93', JSON.stringify(window.spv93Data)); } catch(e) {}
 
       if (typeof window.lev93Data !== 'undefined') {
-        window.lev93Data.globalPop = calcSpeciesTotal();
+        var initPop = calcSpeciesTotal();
+        window.lev93Data.globalPop = initPop;
+        // BUG-009 FIX: push initial populationHistory entry để chart không bị trống
+        if (!Array.isArray(window.lev93Data.populationHistory)) window.lev93Data.populationHistory = [];
+        if (window.lev93Data.populationHistory.length === 0) {
+          window.lev93Data.populationHistory.push({ year: yr, total: initPop, births: 0, deaths: 0, netGrowth: 0 });
+        }
         try { localStorage.setItem('cgv6_life_engine_v93', JSON.stringify(window.lev93Data)); } catch(e) {}
       }
 
