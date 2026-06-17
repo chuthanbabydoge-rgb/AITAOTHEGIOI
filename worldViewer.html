@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌍 Xem Thế Giới — Creator God V6</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Noto+Serif+SC:wght@300;400;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #0a0c10; color: #e8e8f0; font-family: 'Noto Serif', serif; }
+
+:root {
+  --gold: #facc15; --gold-dim: #c4961e; --gold-faint: rgba(250,204,21,0.08);
+  --jade: #4ade80; --blue: #60a5fa; --purple: #c084fc; --red: #f87171;
+  --bg-card: #13171f; --bg-sec: #0f1218; --border: rgba(250,204,21,0.12);
+}
+
+::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-thumb { background: rgba(250,204,21,.25); border-radius: 3px; }
+
+/* ── Layout ── */
+.viewer-wrap { min-height: 100vh; }
+
+/* ── Header ── */
+.vw-header {
+  background: linear-gradient(180deg, #0f172a 0%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px 20px;
+  text-align: center;
+  position: relative;
+}
+.vw-header .badge {
+  display: inline-block; background: #facc1522; border: 1px solid #facc1544;
+  color: var(--gold); font-size: 11px; font-family: Cinzel, serif;
+  padding: 3px 12px; border-radius: 99px; letter-spacing: .1em; margin-bottom: 10px;
+}
+.vw-title { font-family: 'Cinzel Decorative', serif; font-size: 26px; color: var(--gold); margin-bottom: 4px; }
+.vw-subtitle { font-size: 13px; color: #64748b; }
+.vw-year-badge {
+  display: inline-block; margin-top: 10px;
+  background: #1e293b; border: 1px solid #334155;
+  padding: 5px 18px; border-radius: 99px; font-size: 13px; color: #94a3b8;
+}
+.vw-readonly {
+  position: absolute; top: 20px; right: 24px;
+  background: #1e293b; border: 1px solid #475569; border-radius: 99px;
+  font-size: 11px; color: #64748b; padding: 4px 12px; font-family: Cinzel, serif;
+}
+
+/* ── Tabs ── */
+.vw-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 24px; background: #0f1218; overflow-x: auto; }
+.vw-tab {
+  padding: 12px 20px; cursor: pointer; font-size: 13px; font-family: Cinzel, serif;
+  color: #64748b; border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .2s, border-color .2s;
+}
+.vw-tab:hover { color: #94a3b8; }
+.vw-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── Content ── */
+.vw-content { padding: 24px 32px; max-width: 1100px; margin: 0 auto; }
+
+/* ── Cards ── */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px; text-align: center;
+}
+.stat-card .val { font-size: 22px; font-weight: 700; color: var(--gold); font-family: Cinzel, serif; }
+.stat-card .lbl { font-size: 11px; color: #64748b; margin-top: 4px; letter-spacing: .05em; }
+
+.section-title {
+  font-family: Cinzel, serif; font-size: 13px; color: #94a3b8;
+  letter-spacing: .1em; margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── NPC List ── */
+.npc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.npc-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; transition: border-color .2s;
+}
+.npc-card:hover { border-color: rgba(250,204,21,.3); }
+.npc-name { font-family: Cinzel, serif; font-size: 13px; color: var(--gold); margin-bottom: 4px; }
+.npc-realm { font-size: 11px; color: var(--purple); margin-bottom: 6px; }
+.npc-stats { font-size: 11px; color: #64748b; line-height: 1.7; }
+.npc-alive { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--jade); margin-right: 5px; vertical-align: middle; }
+.npc-dead  { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--red); margin-right: 5px; vertical-align: middle; }
+
+/* ── Country List ── */
+.country-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.country-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
+}
+.country-name { font-family: Cinzel, serif; font-size: 14px; color: var(--blue); margin-bottom: 6px; }
+.progress-bar-wrap { margin-bottom: 5px; }
+.progress-bar-lbl { font-size: 10px; color: #64748b; margin-bottom: 2px; display: flex; justify-content: space-between; }
+.progress-bar-bg { background: #1e293b; border-radius: 99px; height: 6px; }
+.progress-bar-fill { height: 100%; border-radius: 99px; }
+
+/* ── History ── */
+.history-list { display: flex; flex-direction: column; gap: 8px; }
+.history-item {
+  background: var(--bg-card); border-left: 3px solid var(--border);
+  border-radius: 0 8px 8px 0; padding: 10px 14px;
+}
+.history-year { font-size: 11px; color: var(--gold-dim); font-family: Cinzel, serif; margin-bottom: 3px; }
+.history-text { font-size: 13px; color: #c0c8d8; }
+
+/* ── Import box ── */
+.import-box {
+  background: #1e293b; border: 1px dashed #334155; border-radius: 12px;
+  padding: 20px; text-align: center; margin-top: 32px;
+}
+.import-box h3 { font-family: Cinzel, serif; font-size: 14px; color: var(--jade); margin-bottom: 10px; }
+.import-box p { font-size: 12px; color: #64748b; margin-bottom: 14px; }
+.import-box textarea {
+  width: 100%; background: #0f172a; border: 1px solid #334155; border-radius: 8px;
+  padding: 10px; color: var(--jade); font-size: 11px; font-family: monospace;
+  resize: vertical; outline: none; margin-bottom: 10px;
+}
+.import-box button {
+  background: #4ade8022; border: 1px solid #4ade8066; color: var(--jade);
+  padding: 9px 24px; border-radius: 8px; cursor: pointer; font-size: 13px;
+  font-family: Cinzel, serif;
+}
+.import-box button:hover { background: #4ade8033; }
+
+/* ── Loading / Error ── */
+.center-msg { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; }
+.center-msg .icon { font-size: 48px; margin-bottom: 16px; }
+.center-msg h2 { font-family: 'Cinzel Decorative', serif; color: var(--gold); margin-bottom: 8px; }
+.center-msg p { color: #64748b; font-size: 14px; }
+
+/* ── Responsive ── */
+@media(max-width:600px) {
+  .vw-header { padding: 16px; } .vw-title { font-size: 18px; }
+  .vw-content { padding: 16px; }
+  .vw-readonly { position: static; margin: 8px auto 0; display: block; width: fit-content; }
+}
+</style>
+</head>
+<body>
+<div class="viewer-wrap" id="viewer-root">
+  <div class="center-msg"><div class="icon">⏳</div><h2>Đang tải thế giới...</h2><p>Vui lòng chờ trong giây lát</p></div>
+</div>
+
+<script>
+// ─── Tiện ích ────────────────────────────────────────────────
+function qs(sel) { return document.querySelector(sel); }
+function el(tag, attrs, html) {
+  var d = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){ d.setAttribute(k, attrs[k]); });
+  if (html) d.innerHTML = html;
+  return d;
+}
+function fmtNum(n) { return (n||0).toLocaleString("vi-VN"); }
+function progressBar(val, max, color) {
+  var pct = max > 0 ? Math.min(100, Math.round((val/max)*100)) : 0;
+  return '<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:'+pct+'%;background:'+color+'"></div></div>';
+}
+
+// ─── Giải mã snapshot ────────────────────────────────────────
+function decodeSnapshot(code) {
+  try { return JSON.parse(decodeURIComponent(escape(atob(code.trim())))); } catch(e) { return null; }
+}
+
+// ─── Tải snapshot từ server (/api/share/:id) ────────────────
+async function fetchSnapshot(id) {
+  const res = await fetch("/api/share/" + encodeURIComponent(id));
+  if (!res.ok) throw new Error("Không tìm thấy thế giới (id: " + id + ")");
+  return res.json();
+}
+
+// ─── Render toàn bộ viewer ───────────────────────────────────
+var _snap = null;
+var _activeTab = "overview";
+
+function renderViewer(snap) {
+  _snap = snap;
+  var root = document.getElementById("viewer-root");
+
+  var genreEmoji = { cultivation:"⚔️", fantasy:"🧙", scifi:"🚀", modern:"🏙️", mythology:"⚡" };
+  var emoji = genreEmoji[snap.genre] || genreEmoji[snap.template] || "🌍";
+
+  root.innerHTML = [
+    // Header
+    '<div class="vw-header">',
+    '<span class="vw-readonly">👁️ Chỉ xem</span>',
+    '<div class="badge">Creator God V6 · ' + (snap.version || "V125") + '</div>',
+    '<div class="vw-title">' + emoji + ' ' + snap.name + '</div>',
+    '<div class="vw-subtitle">' + (snap.genre || snap.template || "cultivation") + '</div>',
+    '<div class="vw-year-badge">📅 Năm ' + fmtNum(snap.year) + ' &nbsp;·&nbsp; 🌅 ' + (snap.currentEra || "Hỗn Nguyên") + '</div>',
+    '</div>',
+
+    // Tabs
+    '<div class="vw-tabs">',
+    ['overview','npcs','countries','history'].map(function(t){
+      var labels = {overview:'🌐 Tổng Quan', npcs:'👤 NPC', countries:'🏳️ Quốc Gia', history:'📜 Lịch Sử'};
+      return '<div class="vw-tab'+(t===_activeTab?' active':'')+'" onclick="switchTab(\''+t+'\')">'+labels[t]+'</div>';
+    }).join(""),
+    '</div>',
+
+    // Content placeholder
+    '<div class="vw-content" id="vw-tab-content"></div>',
+
+    // Import box ở cuối
+    '<div class="vw-content">',
+    '<div class="import-box">',
+    '<h3>📥 Muốn nhập thế giới này vào game của bạn?</h3>',
+    '<p>Sao chép mã dưới đây rồi dán vào ô "Nhập Thế Giới" trong Creator God V6</p>',
+    '<textarea id="vw-export-code" rows="4" readonly></textarea>',
+    '<button onclick="copyCode()">📋 Sao chép mã</button>',
+    '</div>',
+    '</div>',
+  ].join("");
+
+  // Tạo mã export
+  try {
+    var code = btoa(unescape(encodeURIComponent(JSON.stringify(snap))));
+    document.getElementById("vw-export-code").value = code;
+  } catch(e) {}
+
+  switchTab(_activeTab);
+}
+
+function switchTab(tab) {
+  _activeTab = tab;
+  // Update tab active
+  document.querySelectorAll(".vw-tab").forEach(function(t){
+    t.classList.toggle("active", t.textContent.toLowerCase().includes(tab) || t.getAttribute("onclick").includes(tab));
+  });
+  var content = document.getElementById("vw-tab-content");
+  if (!content) return;
+  if (tab === "overview")   content.innerHTML = renderOverview(_snap);
+  if (tab === "npcs")       content.innerHTML = renderNPCs(_snap);
+  if (tab === "countries")  content.innerHTML = renderCountries(_snap);
+  if (tab === "history")    content.innerHTML = renderHistory(_snap);
+}
+
+function copyCode() {
+  var ta = document.getElementById("vw-export-code");
+  if (ta) { navigator.clipboard.writeText(ta.value); }
+  var btn = document.querySelector(".import-box button");
+  if (btn) { btn.textContent = "✓ Đã sao chép!"; setTimeout(function(){ btn.textContent = "📋 Sao chép mã"; }, 2000); }
+}
+
+// ── Render tabs ─────────────────────────────────────────────
+function renderOverview(snap) {
+  var npcs = snap.npcs || [];
+  var alive = npcs.filter(function(n){ return n.isAlive !== false; }).length;
+  var dead  = npcs.length - alive;
+  var countries = snap.countries || [];
+  var sects = snap.sects || [];
+  var maxPop = Math.max.apply(null, countries.map(function(c){ return c.population||0; }).concat([1]));
+
+  return [
+    '<div class="stat-grid">',
+    statCard("📅", fmtNum(snap.year), "Năm hiện tại"),
+    statCard("👤", fmtNum(npcs.length), "Tổng NPC"),
+    statCard("💚", fmtNum(alive), "NPC còn sống"),
+    statCard("💀", fmtNum(dead), "NPC đã chết"),
+    statCard("🏳️", fmtNum(countries.length), "Quốc gia"),
+    statCard("⚔️", fmtNum(sects.length), "Tông môn"),
+    '</div>',
+
+    countries.length > 0 ? [
+      '<div class="section-title">🏳️ QUỐC GIA HÀNG ĐẦU</div>',
+      '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">',
+      countries.slice(0,5).map(function(c){
+        return '<div style="display:flex;align-items:center;gap:12px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:10px 14px">'
+          +'<div style="flex:1"><div style="font-family:Cinzel,serif;font-size:13px;color:var(--blue)">' + c.name + '</div>'
+          +'<div style="font-size:11px;color:#64748b">' + (c.government||"") + (c.culture ? " · " + c.culture : "") + '</div></div>'
+          +'<div style="text-align:right;font-size:12px;color:#94a3b8">'
+          +'👥 <b style="color:#e8e8f0">' + fmtNum(c.population) + '</b></div>'
+          +'</div>';
+      }).join(""),
+      '</div>',
+    ].join("") : "",
+
+    sects.length > 0 ? [
+      '<div class="section-title">⚔️ TÔNG MÔN MẠNH NHẤT</div>',
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:24px">',
+      sects.slice(0,6).map(function(s){
+        return '<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px">'
+          +'<div style="font-family:Cinzel,serif;font-size:13px;color:var(--purple);margin-bottom:4px">' + s.name + '</div>'
+          +'<div style="font-size:11px;color:#64748b">Sức mạnh: <b style="color:#e8e8f0">' + fmtNum(s.power||0) + '</b></div>'
+          +'<div style="font-size:11px;color:#64748b">Thành viên: <b style="color:#e8e8f0">' + fmtNum(s.members||0) + '</b></div>'
+          +'</div>';
+      }).join(""),
+      '</div>',
+    ].join("") : "",
+
+  ].join("");
+}
+
+function statCard(icon, val, lbl) {
+  return '<div class="stat-card"><div style="font-size:22px;margin-bottom:4px">' + icon + '</div><div class="val">' + val + '</div><div class="lbl">' + lbl + '</div></div>';
+}
+
+function renderNPCs(snap) {
+  var npcs = snap.npcs || [];
+  if (!npcs.length) return '<div style="color:#64748b;text-align:center;padding:40px">Không có dữ liệu NPC</div>';
+  var realmColors = { "Luyện Khí":"#94a3b8", "Trúc Cơ":"#4ade80", "Kim Đan":"#facc15", "Nguyên Anh":"#c084fc", "Hóa Thần":"#60a5fa", "Luyện Hư":"#f87171", "Hợp Thể":"#fb923c", "Đại Thừa":"#a78bfa", "Độ Kiếp":"#ff6b6b" };
+
+  return [
+    '<div class="section-title">👤 DANH SÁCH NPC (' + npcs.length + ')</div>',
+    '<div class="npc-grid">',
+    npcs.map(function(n){
+      var rc = realmColors[n.realm] || "#94a3b8";
+      return '<div class="npc-card">'
+        + '<div class="npc-name"><span class="'+(n.isAlive!==false?'npc-alive':'npc-dead')+'"></span>' + (n.title ? n.title + " " : "") + n.name + '</div>'
+        + '<div class="npc-realm" style="color:' + rc + '">' + (n.realm||"Thường Dân") + (n.realmLevel ? " Tầng " + n.realmLevel : "") + '</div>'
+        + '<div class="npc-stats">'
+        + '❤️ ' + fmtNum(n.hp) + ' / ' + fmtNum(n.maxHp) + '<br>'
+        + '⚔️ Công kích: ' + fmtNum(n.attack) + '<br>'
+        + '🌀 Tu vi: ' + fmtNum(n.cultivation)
+        + '</div>'
+        + '</div>';
+    }).join(""),
+    '</div>',
+  ].join("");
+}
+
+function renderCountries(snap) {
+  var countries = snap.countries || [];
+  if (!countries.length) return '<div style="color:#64748b;text-align:center;padding:40px">Không có dữ liệu quốc gia</div>';
+  var maxPow = Math.max.apply(null, countries.map(function(c){ return c.power||0; }).concat([1]));
+  var maxWea = Math.max.apply(null, countries.map(function(c){ return c.wealth||0; }).concat([1]));
+  var maxTech = Math.max.apply(null, countries.map(function(c){ return c.tech||0; }).concat([1]));
+
+  return [
+    '<div class="section-title">🏳️ DANH SÁCH QUỐC GIA (' + countries.length + ')</div>',
+    '<div class="country-list">',
+    countries.map(function(c){
+      return '<div class="country-card">'
+        + '<div class="country-name">' + c.name + '</div>'
+        + '<div style="font-size:11px;color:#64748b;margin-bottom:10px">' + (c.government||"") + (c.culture ? " · " + c.culture : "") + '</div>'
+
+        + '<div class="progress-bar-wrap">'
+        + '<div class="progress-bar-lbl"><span>⚔️ Sức mạnh</span><span>' + fmtNum(c.power) + '</span></div>'
+        + progressBar(c.power, maxPow, "#f87171")
+        + '</div>'
+
+        + '<div class="progress-bar-wrap">'
+        + '<div class="progress-bar-lbl"><span>💰 Tài nguyên</span><span>' + fmtNum(c.wealth) + '</span></div>'
+        + progressBar(c.wealth, maxWea, "#facc15")
+        + '</div>'
+
+        + '<div class="progress-bar-wrap">'
+        + '<div class="progress-bar-lbl"><span>🔬 Công nghệ</span><span>' + fmtNum(c.tech) + '</span></div>'
+        + progressBar(c.tech, maxTech, "#60a5fa")
+        + '</div>'
+
+        + '<div style="margin-top:8px;font-size:11px;color:#64748b">👥 Dân số: <b style="color:#e8e8f0">' + fmtNum(c.population) + '</b></div>'
+        + '</div>';
+    }).join(""),
+    '</div>',
+  ].join("");
+}
+
+function renderHistory(snap) {
+  var history = (snap.worldHistory || []).slice().reverse().slice(0, 80);
+  if (!history.length) return '<div style="color:#64748b;text-align:center;padding:40px">Chưa có lịch sử sự kiện</div>';
+
+  return [
+    '<div class="section-title">📜 LỊCH SỬ SỰ KIỆN (' + history.length + ' gần nhất)</div>',
+    '<div class="history-list">',
+    history.map(function(h){
+      var text = h.text || h.content || h.description || h.event || JSON.stringify(h);
+      var year = h.year ? ("Năm " + fmtNum(h.year)) : "";
+      return '<div class="history-item"><div class="history-year">' + year + '</div><div class="history-text">' + text + '</div></div>';
+    }).join(""),
+    '</div>',
+  ].join("");
+}
+
+// ─── Show error ──────────────────────────────────────────────
+function showError(msg) {
+  document.getElementById("viewer-root").innerHTML = [
+    '<div class="center-msg">',
+    '<div class="icon">🌑</div>',
+    '<h2>Không tìm thấy thế giới</h2>',
+    '<p style="margin-bottom:24px">' + msg + '</p>',
+
+    '<div class="import-box" style="max-width:480px;margin:0 auto">',
+    '<h3>📥 Có mã import? Dán vào đây để xem</h3>',
+    '<p>Hoặc mở game để chia sẻ thế giới của bạn</p>',
+    '<textarea id="vw-manual-code" rows="4" placeholder="Dán mã import vào đây..."></textarea>',
+    '<button onclick="loadFromManualCode()">🔍 Xem thế giới</button>',
+    '</div>',
+    '</div>',
+  ].join("");
+}
+
+function loadFromManualCode() {
+  var code = document.getElementById("vw-manual-code").value.trim();
+  if (!code) return;
+  var snap = decodeSnapshot(code);
+  if (!snap || !snap.name) { alert("Mã không hợp lệ!"); return; }
+  renderViewer(snap);
+}
+
+// ─── Bootstrap ───────────────────────────────────────────────
+(async function() {
+  var params = new URLSearchParams(window.location.search);
+  var shareId = params.get("id");
+  var code    = params.get("code");
+
+  try {
+    if (shareId) {
+      // Load từ server
+      var snap = await fetchSnapshot(shareId);
+      renderViewer(snap);
+    } else if (code) {
+      // Load từ URL code param
+      var snap = decodeSnapshot(code);
+      if (!snap || !snap.name) throw new Error("Mã không hợp lệ");
+      renderViewer(snap);
+    } else {
+      // Không có tham số
+      showError("Không có ID hoặc mã thế giới trong URL.");
+    }
+  } catch(e) {
+    showError(e.message || "Lỗi không xác định");
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,6 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
+
+const SHARED_WORLDS_DIR = path.join(__dirname, 'shared_worlds');
+if (!fs.existsSync(SHARED_WORLDS_DIR)) fs.mkdirSync(SHARED_WORLDS_DIR, { recursive: true });
 
 const PORT = 5000;
 
@@ -29,6 +33,64 @@ function readBody(req) {
 }
 
 const server = http.createServer(async (req, res) => {
+
+  // ── CORS headers ──
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }
+
+  // ── POST /api/share — lưu world snapshot ──
+  if (req.method === 'POST' && req.url === '/api/share') {
+    try {
+      const body = await readBody(req);
+      const snap = JSON.parse(body);
+      const id = crypto.randomBytes(8).toString('hex');
+      const filePath = path.join(SHARED_WORLDS_DIR, id + '.json');
+      fs.writeFileSync(filePath, JSON.stringify(snap));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ id }));
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
+  // ── GET /api/share/:id — lấy world snapshot ──
+  const shareMatch = req.method === 'GET' && req.url.match(/^\/api\/share\/([a-f0-9]+)$/);
+  if (shareMatch) {
+    try {
+      const id = shareMatch[1];
+      const filePath = path.join(SHARED_WORLDS_DIR, id + '.json');
+      if (!fs.existsSync(filePath)) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Không tìm thấy thế giới' }));
+        return;
+      }
+      const data = fs.readFileSync(filePath, 'utf8');
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(data);
+    } catch (err) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: err.message }));
+    }
+    return;
+  }
+
+  // ── GET /view — trả về worldViewer.html ──
+  if (req.method === 'GET' && req.url.startsWith('/view')) {
+    try {
+      const viewerPath = path.join(__dirname, 'worldViewer.html');
+      const data = fs.readFileSync(viewerPath);
+      res.writeHead(200, { 'Content-Type': 'text/html', 'Cache-Control': 'no-store' });
+      res.end(data);
+    } catch (err) {
+      res.writeHead(404); res.end('Not Found');
+    }
+    return;
+  }
+
   if (req.method === 'POST' && req.url === '/api/claude') {
     try {
       const body = await readBody(req);
